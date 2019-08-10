@@ -1,0 +1,2520 @@
+##################################################################### 
+                    Table of Contents
+===================================================================== 
+	1::Clock Frequency Summary
+	2::Clock Relationship Summary
+	3::Datasheet Report
+		3.1::Setup to Clock
+		3.2::Clock to Out
+		3.3::Pad to Pad
+	4::Path Details for Clock Frequency Summary
+		4.1::Critical Path Report for CyHFClk
+	5::Path Details for Clock Relationship Summary
+		5.1::Critical Path Report for (CyHFClk:R vs. CyHFClk:R)
+===================================================================== 
+                    End of Table of Contents
+##################################################################### 
+
+##################################################################### 
+                    1::Clock Frequency Summary
+===================================================================== 
+Number of clocks: 14
+Clock: ADC_intClock       | N/A                   | Target: 1.00 MHz   | 
+Clock: ADC_intClock(FFB)  | N/A                   | Target: 1.00 MHz   | 
+Clock: CyECO              | N/A                   | Target: 24.00 MHz  | 
+Clock: CyHFClk            | Frequency: 55.44 MHz  | Target: 48.00 MHz  | 
+Clock: CyILO              | N/A                   | Target: 0.03 MHz   | 
+Clock: CyIMO              | N/A                   | Target: 48.00 MHz  | 
+Clock: CyLFClk            | N/A                   | Target: 0.03 MHz   | 
+Clock: CyRouted1          | N/A                   | Target: 48.00 MHz  | 
+Clock: CySysClk           | N/A                   | Target: 48.00 MHz  | 
+Clock: CyWCO              | N/A                   | Target: 0.03 MHz   | 
+Clock: I2C_SCBCLK         | N/A                   | Target: 8.00 MHz   | 
+Clock: I2C_SCBCLK(FFB)    | N/A                   | Target: 8.00 MHz   | 
+Clock: UART_SCBCLK        | N/A                   | Target: 0.10 MHz   | 
+Clock: UART_SCBCLK(FFB)   | N/A                   | Target: 0.10 MHz   | 
+
+ =====================================================================
+                    End of Clock Frequency Summary
+ #####################################################################
+
+
+ #####################################################################
+                    2::Clock Relationship Summary
+ =====================================================================
+
+Launch Clock  Capture Clock  Constraint(R-R)  Slack(R-R)  Constraint(R-F)  Slack(R-F)  Constraint(F-F)  Slack(F-F)  Constraint(F-R)  Slack(F-R)  
+------------  -------------  ---------------  ----------  ---------------  ----------  ---------------  ----------  ---------------  ----------  
+CyHFClk       CyHFClk        20833.3          2795        N/A              N/A         N/A              N/A         N/A              N/A         
+
+ =====================================================================
+                    End of Clock Relationship Summary
+ #####################################################################
+
+
+ #####################################################################
+                    3::Datasheet Report
+
+All values are in Picoseconds
+ =====================================================================
+
+3.1::Setup to Clock                     
+-------------------                     
+
+Port Name  Setup to Clk  Clock Name:Phase  
+---------  ------------  ----------------  
+
+
+-----------------------3.2::Clock to Out
+----------------------------------------
+
+Port Name              Clock to Out  Clock Name:Phase  
+---------------------  ------------  ----------------  
+stripHourPin(0)_PAD    28710         CyHFClk:R         
+stripMinutePin(0)_PAD  29651         CyHFClk:R         
+
+
+                         3.3::Pad to Pad
+                         ---------------
+
+Port Name (Source)  Port Name (Destination)  Delay  
+------------------  -----------------------  -----  
+
+===================================================================== 
+                    End of Datasheet Report
+##################################################################### 
+##################################################################### 
+                    4::Path Details for Clock Frequency Summary
+===================================================================== 
+4.1::Critical Path Report for CyHFClk
+*************************************
+Clock: CyHFClk
+Frequency: 55.44 MHz | Target: 48.00 MHz
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:pwm8:u0\/z0_comb
+Path End       : \ledStrip:B_WS2811:pwm8:u0\/cs_addr_0
+Capture Clock  : \ledStrip:B_WS2811:pwm8:u0\/clock
+Path slack     : 2795p
+
+Capture Clock Arrival Time                          0
++ Clock path delay                                  0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)    20833
+- Setup time                                   -11520
+--------------------------------------------   ------ 
+End-of-path required time (ps)                   9313
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6518
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6518
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/clock                     datapathcell2           0      0  RISE       1
+
+Data path
+pin name                               model name     delay     AT  slack  edge  Fanout
+-------------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:pwm8:u0\/z0_comb    datapathcell2   3850   3850   2795  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/cs_addr_0  datapathcell2   2668   6518   2795  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/clock                     datapathcell2           0      0  RISE       1
+
+
+
+===================================================================== 
+                    End of Path Details for Clock Frequency Summary
+##################################################################### 
+
+
+##################################################################### 
+                    5::Path Details for Clock Relationship Summary
+===================================================================== 
+
+5.1::Critical Path Report for (CyHFClk:R vs. CyHFClk:R)
+*******************************************************
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:pwm8:u0\/z0_comb
+Path End       : \ledStrip:B_WS2811:pwm8:u0\/cs_addr_0
+Capture Clock  : \ledStrip:B_WS2811:pwm8:u0\/clock
+Path slack     : 2795p
+
+Capture Clock Arrival Time                          0
++ Clock path delay                                  0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)    20833
+- Setup time                                   -11520
+--------------------------------------------   ------ 
+End-of-path required time (ps)                   9313
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6518
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6518
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/clock                     datapathcell2           0      0  RISE       1
+
+Data path
+pin name                               model name     delay     AT  slack  edge  Fanout
+-------------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:pwm8:u0\/z0_comb    datapathcell2   3850   3850   2795  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/cs_addr_0  datapathcell2   2668   6518   2795  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/clock                     datapathcell2           0      0  RISE       1
+
+
+
+===================================================================== 
+                    End of Path Details for Clock Relationship Summary
+##################################################################### 
+
+##################################################################### 
+                    Detailed Report for all timing paths 
+===================================================================== 
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:pwm8:u0\/z0_comb
+Path End       : \ledStrip:B_WS2811:pwm8:u0\/cs_addr_0
+Capture Clock  : \ledStrip:B_WS2811:pwm8:u0\/clock
+Path slack     : 2795p
+
+Capture Clock Arrival Time                          0
++ Clock path delay                                  0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)    20833
+- Setup time                                   -11520
+--------------------------------------------   ------ 
+End-of-path required time (ps)                   9313
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6518
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6518
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/clock                     datapathcell2           0      0  RISE       1
+
+Data path
+pin name                               model name     delay     AT  slack  edge  Fanout
+-------------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:pwm8:u0\/z0_comb    datapathcell2   3850   3850   2795  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/cs_addr_0  datapathcell2   2668   6518   2795  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/clock                     datapathcell2           0      0  RISE       1
+
+
+
+++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:pwmCntl\/q
+Path End       : \ledStrip:B_WS2811:pwm8:u0\/cs_addr_1
+Capture Clock  : \ledStrip:B_WS2811:pwm8:u0\/clock
+Path slack     : 5531p
+
+Capture Clock Arrival Time                          0
++ Clock path delay                                  0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)    20833
+- Setup time                                   -11520
+--------------------------------------------   ------ 
+End-of-path required time (ps)                   9313
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3783
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3783
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwmCntl\/clock_0                   macrocell14             0      0  RISE       1
+
+Data path
+pin name                               model name     delay     AT  slack  edge  Fanout
+-------------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:pwmCntl\/q          macrocell14     1250   1250   5531  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/cs_addr_1  datapathcell2   2533   3783   5531  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/clock                     datapathcell2           0      0  RISE       1
+
+
+
+++++ Path 3 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:dshifter:u0\/f0_blk_stat_comb
+Path End       : \ledStrip:B_WS2811:state_1\/main_3
+Capture Clock  : \ledStrip:B_WS2811:state_1\/clock_0
+Path slack     : 6184p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                       0
++ Clock path delay                          0
++ Data path delay                       11139
+-------------------------------------   ----- 
+End-of-path arrival time (ps)           11139
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dshifter:u0\/busclk                datapathcell1           0      0  RISE       1
+
+Data path
+pin name                                          model name     delay     AT  slack  edge  Fanout
+------------------------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:dshifter:u0\/f0_blk_stat_comb  datapathcell1   7340   7340   6184  RISE       1
+\ledStrip:B_WS2811:state_1\/main_3                macrocell8      3799  11139   6184  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+
+
+++++ Path 4 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:dshifter:u0\/f0_blk_stat_comb
+Path End       : \ledStrip:B_WS2811:state_0\/main_3
+Capture Clock  : \ledStrip:B_WS2811:state_0\/clock_0
+Path slack     : 6184p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                       0
++ Clock path delay                          0
++ Data path delay                       11139
+-------------------------------------   ----- 
+End-of-path arrival time (ps)           11139
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dshifter:u0\/busclk                datapathcell1           0      0  RISE       1
+
+Data path
+pin name                                          model name     delay     AT  slack  edge  Fanout
+------------------------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:dshifter:u0\/f0_blk_stat_comb  datapathcell1   7340   7340   6184  RISE       1
+\ledStrip:B_WS2811:state_0\/main_3                macrocell9      3799  11139   6184  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+
+
+++++ Path 5 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:dshifter:u0\/f0_blk_stat_comb
+Path End       : \ledStrip:B_WS2811:pwmCntl\/main_1
+Capture Clock  : \ledStrip:B_WS2811:pwmCntl\/clock_0
+Path slack     : 6602p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                       0
++ Clock path delay                          0
++ Data path delay                       10721
+-------------------------------------   ----- 
+End-of-path arrival time (ps)           10721
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dshifter:u0\/busclk                datapathcell1           0      0  RISE       1
+
+Data path
+pin name                                          model name     delay     AT  slack  edge  Fanout
+------------------------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:dshifter:u0\/f0_blk_stat_comb  datapathcell1   7340   7340   6184  RISE       1
+\ledStrip:B_WS2811:pwmCntl\/main_1                macrocell14     3381  10721   6602  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwmCntl\/clock_0                   macrocell14             0      0  RISE       1
+
+
+
+++++ Path 6 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:dpAddr_0\/q
+Path End       : \ledStrip:B_WS2811:dshifter:u0\/cs_addr_0
+Capture Clock  : \ledStrip:B_WS2811:dshifter:u0\/clock
+Path slack     : 8979p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -6290
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 14543
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       5564
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           5564
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dpAddr_0\/clock_0                  macrocell13             0      0  RISE       1
+
+Data path
+pin name                                   model name     delay     AT  slack  edge  Fanout
+-----------------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:dpAddr_0\/q             macrocell13     1250   1250   8979  RISE       1
+\ledStrip:B_WS2811:dshifter:u0\/cs_addr_0  datapathcell1   4314   5564   8979  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dshifter:u0\/clock                 datapathcell1           0      0  RISE       1
+
+
+
+++++ Path 7 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:pwm8:u0\/cl0_comb
+Path End       : \ledStrip:Net_64\/main_0
+Capture Clock  : \ledStrip:Net_64\/clock_0
+Path slack     : 9399p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       7924
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           7924
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/clock                     datapathcell2           0      0  RISE       1
+
+Data path
+pin name                              model name     delay     AT  slack  edge  Fanout
+------------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:pwm8:u0\/cl0_comb  datapathcell2   5680   5680   9399  RISE       1
+\ledStrip:Net_64\/main_0              macrocell5      2244   7924   9399  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:Net_64\/clock_0                             macrocell5              0      0  RISE       1
+
+
+
+++++ Path 8 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:dpAddr_0\/q
+Path End       : \ledStrip:B_WS2811:dpAddr_0\/main_2
+Capture Clock  : \ledStrip:B_WS2811:dpAddr_0\/clock_0
+Path slack     : 10310p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       7013
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           7013
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dpAddr_0\/clock_0                  macrocell13             0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT  slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:dpAddr_0\/q       macrocell13   1250   1250   8979  RISE       1
+\ledStrip:B_WS2811:dpAddr_0\/main_2  macrocell13   5763   7013  10310  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dpAddr_0\/clock_0                  macrocell13             0      0  RISE       1
+
+
+
+++++ Path 9 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:dshifter:u0\/so_comb
+Path End       : \ledStrip:Net_64\/main_4
+Capture Clock  : \ledStrip:Net_64\/clock_0
+Path slack     : 10523p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6800
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6800
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dshifter:u0\/clock                 datapathcell1           0      0  RISE       1
+
+Data path
+pin name                                 model name     delay     AT  slack  edge  Fanout
+---------------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:dshifter:u0\/so_comb  datapathcell1   4550   4550  10523  RISE       1
+\ledStrip:Net_64\/main_4                 macrocell5      2250   6800  10523  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:Net_64\/clock_0                             macrocell5              0      0  RISE       1
+
+
+
+++++ Path 10 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:dpAddr_1\/q
+Path End       : \ledStrip:B_WS2811:dshifter:u0\/cs_addr_1
+Capture Clock  : \ledStrip:B_WS2811:dshifter:u0\/clock
+Path slack     : 10765p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -6290
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 14543
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3778
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3778
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/clock_0                  macrocell12             0      0  RISE       1
+
+Data path
+pin name                                   model name     delay     AT  slack  edge  Fanout
+-----------------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:dpAddr_1\/q             macrocell12     1250   1250  10765  RISE       1
+\ledStrip:B_WS2811:dshifter:u0\/cs_addr_1  datapathcell1   2528   3778  10765  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dshifter:u0\/clock                 datapathcell1           0      0  RISE       1
+
+
+
+++++ Path 11 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:pwm8:u0\/z0_comb
+Path End       : \ledStrip:B_WS2811:bitCount_1\/main_0
+Capture Clock  : \ledStrip:B_WS2811:bitCount_1\/clock_0
+Path slack     : 10789p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6534
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6534
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/clock                     datapathcell2           0      0  RISE       1
+
+Data path
+pin name                               model name     delay     AT  slack  edge  Fanout
+-------------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:pwm8:u0\/z0_comb    datapathcell2   3850   3850   2795  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/main_0  macrocell10     2684   6534  10789  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/clock_0                macrocell10             0      0  RISE       1
+
+
+
+++++ Path 12 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:pwm8:u0\/z0_comb
+Path End       : \ledStrip:B_WS2811:bitCount_0\/main_0
+Capture Clock  : \ledStrip:B_WS2811:bitCount_0\/clock_0
+Path slack     : 10789p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6534
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6534
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/clock                     datapathcell2           0      0  RISE       1
+
+Data path
+pin name                               model name     delay     AT  slack  edge  Fanout
+-------------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:pwm8:u0\/z0_comb    datapathcell2   3850   3850   2795  RISE       1
+\ledStrip:B_WS2811:bitCount_0\/main_0  macrocell11     2684   6534  10789  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_0\/clock_0                macrocell11             0      0  RISE       1
+
+
+
+++++ Path 13 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:pwm8:u0\/z0_comb
+Path End       : \ledStrip:B_WS2811:dpAddr_1\/main_0
+Capture Clock  : \ledStrip:B_WS2811:dpAddr_1\/clock_0
+Path slack     : 10789p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6534
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6534
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/clock                     datapathcell2           0      0  RISE       1
+
+Data path
+pin name                             model name     delay     AT  slack  edge  Fanout
+-----------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:pwm8:u0\/z0_comb  datapathcell2   3850   3850   2795  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/main_0  macrocell12     2684   6534  10789  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/clock_0                  macrocell12             0      0  RISE       1
+
+
+
+++++ Path 14 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:ctrl\/control_0
+Path End       : \ledStrip:B_WS2811:state_1\/main_2
+Capture Clock  : \ledStrip:B_WS2811:state_1\/clock_0
+Path slack     : 10896p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6427
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6427
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:ctrl\/busclk                       controlcell2            0      0  RISE       1
+
+Data path
+pin name                            model name    delay     AT  slack  edge  Fanout
+----------------------------------  ------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:ctrl\/control_0  controlcell2   2580   2580  10896  RISE       1
+\ledStrip:B_WS2811:state_1\/main_2  macrocell8     3847   6427  10896  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+
+
+++++ Path 15 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:ctrl\/control_0
+Path End       : \ledStrip:B_WS2811:state_0\/main_2
+Capture Clock  : \ledStrip:B_WS2811:state_0\/clock_0
+Path slack     : 10896p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6427
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6427
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:ctrl\/busclk                       controlcell2            0      0  RISE       1
+
+Data path
+pin name                            model name    delay     AT  slack  edge  Fanout
+----------------------------------  ------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:ctrl\/control_0  controlcell2   2580   2580  10896  RISE       1
+\ledStrip:B_WS2811:state_0\/main_2  macrocell9     3847   6427  10896  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+
+
+++++ Path 16 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:pwm8:u0\/z0_comb
+Path End       : \ledStrip:B_WS2811:bitCount_2\/main_0
+Capture Clock  : \ledStrip:B_WS2811:bitCount_2\/clock_0
+Path slack     : 11214p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6109
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6109
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/clock                     datapathcell2           0      0  RISE       1
+
+Data path
+pin name                               model name     delay     AT  slack  edge  Fanout
+-------------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:pwm8:u0\/z0_comb    datapathcell2   3850   3850   2795  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/main_0  macrocell7      2259   6109  11214  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/clock_0                macrocell7              0      0  RISE       1
+
+
+
+++++ Path 17 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:pwm8:u0\/z0_comb
+Path End       : \ledStrip:B_WS2811:state_1\/main_0
+Capture Clock  : \ledStrip:B_WS2811:state_1\/clock_0
+Path slack     : 11214p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6109
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6109
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/clock                     datapathcell2           0      0  RISE       1
+
+Data path
+pin name                             model name     delay     AT  slack  edge  Fanout
+-----------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:pwm8:u0\/z0_comb  datapathcell2   3850   3850   2795  RISE       1
+\ledStrip:B_WS2811:state_1\/main_0   macrocell8      2259   6109  11214  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+
+
+++++ Path 18 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:pwm8:u0\/z0_comb
+Path End       : \ledStrip:B_WS2811:state_0\/main_0
+Capture Clock  : \ledStrip:B_WS2811:state_0\/clock_0
+Path slack     : 11214p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6109
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6109
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwm8:u0\/clock                     datapathcell2           0      0  RISE       1
+
+Data path
+pin name                             model name     delay     AT  slack  edge  Fanout
+-----------------------------------  -------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:pwm8:u0\/z0_comb  datapathcell2   3850   3850   2795  RISE       1
+\ledStrip:B_WS2811:state_0\/main_0   macrocell9      2259   6109  11214  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+
+
+++++ Path 19 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:ctrl\/control_0
+Path End       : \ledStrip:B_WS2811:pwmCntl\/main_0
+Capture Clock  : \ledStrip:B_WS2811:pwmCntl\/clock_0
+Path slack     : 11314p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6009
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6009
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:ctrl\/busclk                       controlcell2            0      0  RISE       1
+
+Data path
+pin name                            model name    delay     AT  slack  edge  Fanout
+----------------------------------  ------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:ctrl\/control_0  controlcell2   2580   2580  10896  RISE       1
+\ledStrip:B_WS2811:pwmCntl\/main_0  macrocell14    3429   6009  11314  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwmCntl\/clock_0                   macrocell14             0      0  RISE       1
+
+
+
+++++ Path 20 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:ctrl\/control_5
+Path End       : \ledStrip:B_WS2811:state_1\/main_1
+Capture Clock  : \ledStrip:B_WS2811:state_1\/clock_0
+Path slack     : 12489p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4834
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4834
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:ctrl\/busclk                       controlcell2            0      0  RISE       1
+
+Data path
+pin name                            model name    delay     AT  slack  edge  Fanout
+----------------------------------  ------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:ctrl\/control_5  controlcell2   2580   2580  12489  RISE       1
+\ledStrip:B_WS2811:state_1\/main_1  macrocell8     2254   4834  12489  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+
+
+++++ Path 21 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:ctrl\/control_5
+Path End       : \ledStrip:B_WS2811:state_0\/main_1
+Capture Clock  : \ledStrip:B_WS2811:state_0\/clock_0
+Path slack     : 12489p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4834
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4834
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:ctrl\/busclk                       controlcell2            0      0  RISE       1
+
+Data path
+pin name                            model name    delay     AT  slack  edge  Fanout
+----------------------------------  ------------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:ctrl\/control_5  controlcell2   2580   2580  12489  RISE       1
+\ledStrip:B_WS2811:state_0\/main_1  macrocell9     2254   4834  12489  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+
+
+++++ Path 22 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_1\/q
+Path End       : \ledStrip:B_WS2811:bitCount_1\/main_1
+Capture Clock  : \ledStrip:B_WS2811:bitCount_1\/clock_0
+Path slack     : 12768p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4555
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4555
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+Data path
+pin name                               model name   delay     AT  slack  edge  Fanout
+-------------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_1\/q          macrocell8    1250   1250  12768  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/main_1  macrocell10   3305   4555  12768  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/clock_0                macrocell10             0      0  RISE       1
+
+
+
+++++ Path 23 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_1\/q
+Path End       : \ledStrip:B_WS2811:bitCount_0\/main_1
+Capture Clock  : \ledStrip:B_WS2811:bitCount_0\/clock_0
+Path slack     : 12768p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4555
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4555
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+Data path
+pin name                               model name   delay     AT  slack  edge  Fanout
+-------------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_1\/q          macrocell8    1250   1250  12768  RISE       1
+\ledStrip:B_WS2811:bitCount_0\/main_1  macrocell11   3305   4555  12768  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_0\/clock_0                macrocell11             0      0  RISE       1
+
+
+
+++++ Path 24 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_1\/q
+Path End       : \ledStrip:B_WS2811:dpAddr_1\/main_2
+Capture Clock  : \ledStrip:B_WS2811:dpAddr_1\/clock_0
+Path slack     : 12768p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4555
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4555
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT  slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_1\/q        macrocell8    1250   1250  12768  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/main_2  macrocell12   3305   4555  12768  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/clock_0                  macrocell12             0      0  RISE       1
+
+
+
+++++ Path 25 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_1\/q
+Path End       : \ledStrip:B_WS2811:status_6\/main_0
+Capture Clock  : \ledStrip:B_WS2811:status_6\/clock_0
+Path slack     : 12771p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4553
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4553
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT  slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_1\/q        macrocell8    1250   1250  12768  RISE       1
+\ledStrip:B_WS2811:status_6\/main_0  macrocell6    3303   4553  12771  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:status_6\/clock_0                  macrocell6              0      0  RISE       1
+
+
+
+++++ Path 26 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_1\/q
+Path End       : \ledStrip:B_WS2811:pwmCntl\/main_2
+Capture Clock  : \ledStrip:B_WS2811:pwmCntl\/clock_0
+Path slack     : 12771p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4553
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4553
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+Data path
+pin name                            model name   delay     AT  slack  edge  Fanout
+----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_1\/q       macrocell8    1250   1250  12768  RISE       1
+\ledStrip:B_WS2811:pwmCntl\/main_2  macrocell14   3303   4553  12771  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwmCntl\/clock_0                   macrocell14             0      0  RISE       1
+
+
+
+++++ Path 27 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_1\/q
+Path End       : \ledStrip:B_WS2811:bitCount_2\/main_2
+Capture Clock  : \ledStrip:B_WS2811:bitCount_2\/clock_0
+Path slack     : 12774p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4550
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4550
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+Data path
+pin name                               model name   delay     AT  slack  edge  Fanout
+-------------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_1\/q          macrocell8    1250   1250  12768  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/main_2  macrocell7    3300   4550  12774  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/clock_0                macrocell7              0      0  RISE       1
+
+
+
+++++ Path 28 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_1\/q
+Path End       : \ledStrip:B_WS2811:state_1\/main_5
+Capture Clock  : \ledStrip:B_WS2811:state_1\/clock_0
+Path slack     : 12774p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4550
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4550
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+Data path
+pin name                            model name   delay     AT  slack  edge  Fanout
+----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_1\/q       macrocell8    1250   1250  12768  RISE       1
+\ledStrip:B_WS2811:state_1\/main_5  macrocell8    3300   4550  12774  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+
+
+++++ Path 29 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_1\/q
+Path End       : \ledStrip:B_WS2811:state_0\/main_5
+Capture Clock  : \ledStrip:B_WS2811:state_0\/clock_0
+Path slack     : 12774p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4550
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4550
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+Data path
+pin name                            model name   delay     AT  slack  edge  Fanout
+----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_1\/q       macrocell8    1250   1250  12768  RISE       1
+\ledStrip:B_WS2811:state_0\/main_5  macrocell9    3300   4550  12774  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+
+
+++++ Path 30 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_0\/q
+Path End       : \ledStrip:B_WS2811:status_6\/main_1
+Capture Clock  : \ledStrip:B_WS2811:status_6\/clock_0
+Path slack     : 12783p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4540
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4540
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT  slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_0\/q        macrocell9    1250   1250  12783  RISE       1
+\ledStrip:B_WS2811:status_6\/main_1  macrocell6    3290   4540  12783  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:status_6\/clock_0                  macrocell6              0      0  RISE       1
+
+
+
+++++ Path 31 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_0\/q
+Path End       : \ledStrip:B_WS2811:pwmCntl\/main_3
+Capture Clock  : \ledStrip:B_WS2811:pwmCntl\/clock_0
+Path slack     : 12783p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4540
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4540
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+Data path
+pin name                            model name   delay     AT  slack  edge  Fanout
+----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_0\/q       macrocell9    1250   1250  12783  RISE       1
+\ledStrip:B_WS2811:pwmCntl\/main_3  macrocell14   3290   4540  12783  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwmCntl\/clock_0                   macrocell14             0      0  RISE       1
+
+
+
+++++ Path 32 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_0\/q
+Path End       : \ledStrip:B_WS2811:bitCount_1\/main_2
+Capture Clock  : \ledStrip:B_WS2811:bitCount_1\/clock_0
+Path slack     : 12785p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4539
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4539
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+Data path
+pin name                               model name   delay     AT  slack  edge  Fanout
+-------------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_0\/q          macrocell9    1250   1250  12783  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/main_2  macrocell10   3289   4539  12785  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/clock_0                macrocell10             0      0  RISE       1
+
+
+
+++++ Path 33 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_0\/q
+Path End       : \ledStrip:B_WS2811:bitCount_0\/main_2
+Capture Clock  : \ledStrip:B_WS2811:bitCount_0\/clock_0
+Path slack     : 12785p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4539
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4539
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+Data path
+pin name                               model name   delay     AT  slack  edge  Fanout
+-------------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_0\/q          macrocell9    1250   1250  12783  RISE       1
+\ledStrip:B_WS2811:bitCount_0\/main_2  macrocell11   3289   4539  12785  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_0\/clock_0                macrocell11             0      0  RISE       1
+
+
+
+++++ Path 34 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_0\/q
+Path End       : \ledStrip:B_WS2811:dpAddr_1\/main_3
+Capture Clock  : \ledStrip:B_WS2811:dpAddr_1\/clock_0
+Path slack     : 12785p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4539
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4539
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT  slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_0\/q        macrocell9    1250   1250  12783  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/main_3  macrocell12   3289   4539  12785  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/clock_0                  macrocell12             0      0  RISE       1
+
+
+
+++++ Path 35 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_0\/q
+Path End       : \ledStrip:B_WS2811:bitCount_2\/main_3
+Capture Clock  : \ledStrip:B_WS2811:bitCount_2\/clock_0
+Path slack     : 12788p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4536
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4536
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+Data path
+pin name                               model name   delay     AT  slack  edge  Fanout
+-------------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_0\/q          macrocell9    1250   1250  12783  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/main_3  macrocell7    3286   4536  12788  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/clock_0                macrocell7              0      0  RISE       1
+
+
+
+++++ Path 36 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_0\/q
+Path End       : \ledStrip:B_WS2811:state_1\/main_6
+Capture Clock  : \ledStrip:B_WS2811:state_1\/clock_0
+Path slack     : 12788p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4536
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4536
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+Data path
+pin name                            model name   delay     AT  slack  edge  Fanout
+----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_0\/q       macrocell9    1250   1250  12783  RISE       1
+\ledStrip:B_WS2811:state_1\/main_6  macrocell8    3286   4536  12788  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+
+
+++++ Path 37 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_0\/q
+Path End       : \ledStrip:B_WS2811:state_0\/main_6
+Capture Clock  : \ledStrip:B_WS2811:state_0\/clock_0
+Path slack     : 12788p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4536
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4536
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+Data path
+pin name                            model name   delay     AT  slack  edge  Fanout
+----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_0\/q       macrocell9    1250   1250  12783  RISE       1
+\ledStrip:B_WS2811:state_0\/main_6  macrocell9    3286   4536  12788  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+
+
+++++ Path 38 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_0\/q
+Path End       : \ledStrip:Net_64\/main_3
+Capture Clock  : \ledStrip:Net_64\/clock_0
+Path slack     : 13046p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4277
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4277
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+Data path
+pin name                       model name   delay     AT  slack  edge  Fanout
+-----------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_0\/q  macrocell9    1250   1250  12783  RISE       1
+\ledStrip:Net_64\/main_3       macrocell5    3027   4277  13046  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:Net_64\/clock_0                             macrocell5              0      0  RISE       1
+
+
+
+++++ Path 39 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_0\/q
+Path End       : \ledStrip:B_WS2811:dpAddr_0\/main_1
+Capture Clock  : \ledStrip:B_WS2811:dpAddr_0\/clock_0
+Path slack     : 13046p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4277
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4277
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT  slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_0\/q        macrocell9    1250   1250  12783  RISE       1
+\ledStrip:B_WS2811:dpAddr_0\/main_1  macrocell13   3027   4277  13046  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dpAddr_0\/clock_0                  macrocell13             0      0  RISE       1
+
+
+
+++++ Path 40 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_1\/q
+Path End       : \ledStrip:Net_64\/main_2
+Capture Clock  : \ledStrip:Net_64\/clock_0
+Path slack     : 13072p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4251
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4251
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+Data path
+pin name                       model name   delay     AT  slack  edge  Fanout
+-----------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_1\/q  macrocell8    1250   1250  12768  RISE       1
+\ledStrip:Net_64\/main_2       macrocell5    3001   4251  13072  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:Net_64\/clock_0                             macrocell5              0      0  RISE       1
+
+
+
+++++ Path 41 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:state_1\/q
+Path End       : \ledStrip:B_WS2811:dpAddr_0\/main_0
+Capture Clock  : \ledStrip:B_WS2811:dpAddr_0\/clock_0
+Path slack     : 13072p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4251
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4251
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT  slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:state_1\/q        macrocell8    1250   1250  12768  RISE       1
+\ledStrip:B_WS2811:dpAddr_0\/main_0  macrocell13   3001   4251  13072  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dpAddr_0\/clock_0                  macrocell13             0      0  RISE       1
+
+
+
+++++ Path 42 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_2\/q
+Path End       : \ledStrip:B_WS2811:dpAddr_1\/main_1
+Capture Clock  : \ledStrip:B_WS2811:dpAddr_1\/clock_0
+Path slack     : 13376p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3947
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3947
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/clock_0                macrocell7              0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT  slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_2\/q     macrocell7    1250   1250  13376  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/main_1  macrocell12   2697   3947  13376  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/clock_0                  macrocell12             0      0  RISE       1
+
+
+
+++++ Path 43 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_2\/q
+Path End       : \ledStrip:B_WS2811:bitCount_2\/main_1
+Capture Clock  : \ledStrip:B_WS2811:bitCount_2\/clock_0
+Path slack     : 13377p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3946
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3946
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/clock_0                macrocell7              0      0  RISE       1
+
+Data path
+pin name                               model name   delay     AT  slack  edge  Fanout
+-------------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_2\/q       macrocell7    1250   1250  13376  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/main_1  macrocell7    2696   3946  13377  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/clock_0                macrocell7              0      0  RISE       1
+
+
+
+++++ Path 44 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_2\/q
+Path End       : \ledStrip:B_WS2811:state_1\/main_4
+Capture Clock  : \ledStrip:B_WS2811:state_1\/clock_0
+Path slack     : 13377p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3946
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3946
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/clock_0                macrocell7              0      0  RISE       1
+
+Data path
+pin name                            model name   delay     AT  slack  edge  Fanout
+----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_2\/q    macrocell7    1250   1250  13376  RISE       1
+\ledStrip:B_WS2811:state_1\/main_4  macrocell8    2696   3946  13377  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+
+
+++++ Path 45 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_2\/q
+Path End       : \ledStrip:B_WS2811:state_0\/main_4
+Capture Clock  : \ledStrip:B_WS2811:state_0\/clock_0
+Path slack     : 13377p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3946
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3946
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/clock_0                macrocell7              0      0  RISE       1
+
+Data path
+pin name                            model name   delay     AT  slack  edge  Fanout
+----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_2\/q    macrocell7    1250   1250  13376  RISE       1
+\ledStrip:B_WS2811:state_0\/main_4  macrocell9    2696   3946  13377  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+
+
+++++ Path 46 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_0\/q
+Path End       : \ledStrip:B_WS2811:bitCount_1\/main_4
+Capture Clock  : \ledStrip:B_WS2811:bitCount_1\/clock_0
+Path slack     : 13517p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3806
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3806
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_0\/clock_0                macrocell11             0      0  RISE       1
+
+Data path
+pin name                               model name   delay     AT  slack  edge  Fanout
+-------------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_0\/q       macrocell11   1250   1250  13517  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/main_4  macrocell10   2556   3806  13517  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/clock_0                macrocell10             0      0  RISE       1
+
+
+
+++++ Path 47 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_0\/q
+Path End       : \ledStrip:B_WS2811:bitCount_0\/main_3
+Capture Clock  : \ledStrip:B_WS2811:bitCount_0\/clock_0
+Path slack     : 13517p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3806
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3806
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_0\/clock_0                macrocell11             0      0  RISE       1
+
+Data path
+pin name                               model name   delay     AT  slack  edge  Fanout
+-------------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_0\/q       macrocell11   1250   1250  13517  RISE       1
+\ledStrip:B_WS2811:bitCount_0\/main_3  macrocell11   2556   3806  13517  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_0\/clock_0                macrocell11             0      0  RISE       1
+
+
+
+++++ Path 48 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_0\/q
+Path End       : \ledStrip:B_WS2811:dpAddr_1\/main_5
+Capture Clock  : \ledStrip:B_WS2811:dpAddr_1\/clock_0
+Path slack     : 13517p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3806
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3806
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_0\/clock_0                macrocell11             0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT  slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_0\/q     macrocell11   1250   1250  13517  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/main_5  macrocell12   2556   3806  13517  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/clock_0                  macrocell12             0      0  RISE       1
+
+
+
+++++ Path 49 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_0\/q
+Path End       : \ledStrip:B_WS2811:bitCount_2\/main_5
+Capture Clock  : \ledStrip:B_WS2811:bitCount_2\/clock_0
+Path slack     : 13522p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3801
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3801
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_0\/clock_0                macrocell11             0      0  RISE       1
+
+Data path
+pin name                               model name   delay     AT  slack  edge  Fanout
+-------------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_0\/q       macrocell11   1250   1250  13517  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/main_5  macrocell7    2551   3801  13522  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/clock_0                macrocell7              0      0  RISE       1
+
+
+
+++++ Path 50 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_0\/q
+Path End       : \ledStrip:B_WS2811:state_1\/main_8
+Capture Clock  : \ledStrip:B_WS2811:state_1\/clock_0
+Path slack     : 13522p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3801
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3801
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_0\/clock_0                macrocell11             0      0  RISE       1
+
+Data path
+pin name                            model name   delay     AT  slack  edge  Fanout
+----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_0\/q    macrocell11   1250   1250  13517  RISE       1
+\ledStrip:B_WS2811:state_1\/main_8  macrocell8    2551   3801  13522  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+
+
+++++ Path 51 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_0\/q
+Path End       : \ledStrip:B_WS2811:state_0\/main_8
+Capture Clock  : \ledStrip:B_WS2811:state_0\/clock_0
+Path slack     : 13522p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3801
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3801
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_0\/clock_0                macrocell11             0      0  RISE       1
+
+Data path
+pin name                            model name   delay     AT  slack  edge  Fanout
+----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_0\/q    macrocell11   1250   1250  13517  RISE       1
+\ledStrip:B_WS2811:state_0\/main_8  macrocell9    2551   3801  13522  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+
+
+++++ Path 52 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_1\/q
+Path End       : \ledStrip:B_WS2811:bitCount_1\/main_3
+Capture Clock  : \ledStrip:B_WS2811:bitCount_1\/clock_0
+Path slack     : 13530p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3794
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3794
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/clock_0                macrocell10             0      0  RISE       1
+
+Data path
+pin name                               model name   delay     AT  slack  edge  Fanout
+-------------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_1\/q       macrocell10   1250   1250  13530  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/main_3  macrocell10   2544   3794  13530  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/clock_0                macrocell10             0      0  RISE       1
+
+
+
+++++ Path 53 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_1\/q
+Path End       : \ledStrip:B_WS2811:dpAddr_1\/main_4
+Capture Clock  : \ledStrip:B_WS2811:dpAddr_1\/clock_0
+Path slack     : 13530p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3794
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3794
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/clock_0                macrocell10             0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT  slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_1\/q     macrocell10   1250   1250  13530  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/main_4  macrocell12   2544   3794  13530  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/clock_0                  macrocell12             0      0  RISE       1
+
+
+
+++++ Path 54 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_1\/q
+Path End       : \ledStrip:B_WS2811:bitCount_2\/main_4
+Capture Clock  : \ledStrip:B_WS2811:bitCount_2\/clock_0
+Path slack     : 13532p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3791
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3791
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/clock_0                macrocell10             0      0  RISE       1
+
+Data path
+pin name                               model name   delay     AT  slack  edge  Fanout
+-------------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_1\/q       macrocell10   1250   1250  13530  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/main_4  macrocell7    2541   3791  13532  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_2\/clock_0                macrocell7              0      0  RISE       1
+
+
+
+++++ Path 55 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_1\/q
+Path End       : \ledStrip:B_WS2811:state_1\/main_7
+Capture Clock  : \ledStrip:B_WS2811:state_1\/clock_0
+Path slack     : 13532p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3791
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3791
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/clock_0                macrocell10             0      0  RISE       1
+
+Data path
+pin name                            model name   delay     AT  slack  edge  Fanout
+----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_1\/q    macrocell10   1250   1250  13530  RISE       1
+\ledStrip:B_WS2811:state_1\/main_7  macrocell8    2541   3791  13532  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_1\/clock_0                   macrocell8              0      0  RISE       1
+
+
+
+++++ Path 56 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:bitCount_1\/q
+Path End       : \ledStrip:B_WS2811:state_0\/main_7
+Capture Clock  : \ledStrip:B_WS2811:state_0\/clock_0
+Path slack     : 13532p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3791
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3791
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:bitCount_1\/clock_0                macrocell10             0      0  RISE       1
+
+Data path
+pin name                            model name   delay     AT  slack  edge  Fanout
+----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:bitCount_1\/q    macrocell10   1250   1250  13530  RISE       1
+\ledStrip:B_WS2811:state_0\/main_7  macrocell9    2541   3791  13532  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:state_0\/clock_0                   macrocell9              0      0  RISE       1
+
+
+
+++++ Path 57 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:dpAddr_1\/q
+Path End       : \ledStrip:B_WS2811:dpAddr_1\/main_6
+Capture Clock  : \ledStrip:B_WS2811:dpAddr_1\/clock_0
+Path slack     : 13546p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3777
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3777
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/clock_0                  macrocell12             0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT  slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:dpAddr_1\/q       macrocell12   1250   1250  10765  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/main_6  macrocell12   2527   3777  13546  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:dpAddr_1\/clock_0                  macrocell12             0      0  RISE       1
+
+
+
+++++ Path 58 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \ledStrip:B_WS2811:pwmCntl\/q
+Path End       : \ledStrip:B_WS2811:pwmCntl\/main_4
+Capture Clock  : \ledStrip:B_WS2811:pwmCntl\/clock_0
+Path slack     : 13546p
+
+Capture Clock Arrival Time                         0
++ Clock path delay                                 0
++ Cycle adjust (CyHFClk:R#1 vs. CyHFClk:R#2)   20833
+- Setup time                                   -3510
+--------------------------------------------   ----- 
+End-of-path required time (ps)                 17323
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3777
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3777
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwmCntl\/clock_0                   macrocell14             0      0  RISE       1
+
+Data path
+pin name                            model name   delay     AT  slack  edge  Fanout
+----------------------------------  -----------  -----  -----  -----  ----  ------
+\ledStrip:B_WS2811:pwmCntl\/q       macrocell14   1250   1250   5531  RISE       1
+\ledStrip:B_WS2811:pwmCntl\/main_4  macrocell14   2527   3777  13546  RISE       1
+
+Capture Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+\ledStrip:B_WS2811:pwmCntl\/clock_0                   macrocell14             0      0  RISE       1
+
+
+===================================================================== 
+                    End of Detailed Report for all timing paths 
+##################################################################### 
+
+##################################################################### 
+                    End of Timing Report 
+##################################################################### 
+

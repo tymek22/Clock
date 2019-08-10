@@ -1,0 +1,1913 @@
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Bootloadable.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Bootloadable_WriteFlashByte,"ax",%progbits
+  20              		.align	2
+  21              		.code	16
+  22              		.thumb_func
+  23              		.type	Bootloadable_WriteFlashByte, %function
+  24              	Bootloadable_WriteFlashByte:
+  25              	.LFB5:
+  26              		.file 1 "Generated_Source\\PSoC4\\Bootloadable.c"
+   1:Generated_Source\PSoC4/Bootloadable.c **** /****************************************************************************//**
+   2:Generated_Source\PSoC4/Bootloadable.c **** * \file Bootloadable.c
+   3:Generated_Source\PSoC4/Bootloadable.c **** * \version 1.50
+   4:Generated_Source\PSoC4/Bootloadable.c **** *
+   5:Generated_Source\PSoC4/Bootloadable.c **** * \brief
+   6:Generated_Source\PSoC4/Bootloadable.c **** *   Provides an API for the Bootloadable application.
+   7:Generated_Source\PSoC4/Bootloadable.c **** *
+   8:Generated_Source\PSoC4/Bootloadable.c **** ********************************************************************************
+   9:Generated_Source\PSoC4/Bootloadable.c **** * \copyright
+  10:Generated_Source\PSoC4/Bootloadable.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  11:Generated_Source\PSoC4/Bootloadable.c **** * You may use this file only in accordance with the license, terms, conditions,
+  12:Generated_Source\PSoC4/Bootloadable.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  13:Generated_Source\PSoC4/Bootloadable.c **** * the software package with which this file was provided.
+  14:Generated_Source\PSoC4/Bootloadable.c **** *******************************************************************************/
+  15:Generated_Source\PSoC4/Bootloadable.c **** 
+  16:Generated_Source\PSoC4/Bootloadable.c **** #include "Bootloadable.h"
+  17:Generated_Source\PSoC4/Bootloadable.c **** 
+  18:Generated_Source\PSoC4/Bootloadable.c **** /**
+  19:Generated_Source\PSoC4/Bootloadable.c ****  \defgroup functions_group Functions
+  20:Generated_Source\PSoC4/Bootloadable.c ****  @{
+  21:Generated_Source\PSoC4/Bootloadable.c **** */
+  22:Generated_Source\PSoC4/Bootloadable.c **** 
+  23:Generated_Source\PSoC4/Bootloadable.c **** #if (CYDEV_PROJ_TYPE == CYDEV_PROJ_TYPE_LOADABLEANDBOOTLOADER)
+  24:Generated_Source\PSoC4/Bootloadable.c **** static cystatus Bootloadable_WriteFlashByte(const uint32 address, const uint8 inputValue) CYLARGE \
+  25:Generated_Source\PSoC4/Bootloadable.c ****                                ;
+  26:Generated_Source\PSoC4/Bootloadable.c **** #endif /*(CYDEV_PROJ_TYPE == CYDEV_PROJ_TYPE_LOADABLEANDBOOTLOADER)*/
+  27:Generated_Source\PSoC4/Bootloadable.c **** 
+  28:Generated_Source\PSoC4/Bootloadable.c **** /*******************************************************************************
+  29:Generated_Source\PSoC4/Bootloadable.c **** * Function Name: Bootloadable_Load
+  30:Generated_Source\PSoC4/Bootloadable.c **** ****************************************************************************//**
+  31:Generated_Source\PSoC4/Bootloadable.c **** *
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 2
+
+
+  32:Generated_Source\PSoC4/Bootloadable.c **** * \brief
+  33:Generated_Source\PSoC4/Bootloadable.c **** *  Schedules the Bootloader/Launcher to be launched and then performs
+  34:Generated_Source\PSoC4/Bootloadable.c **** *  a software reset to launch it
+  35:Generated_Source\PSoC4/Bootloadable.c **** *
+  36:Generated_Source\PSoC4/Bootloadable.c **** * \return
+  37:Generated_Source\PSoC4/Bootloadable.c **** *  This method will never return. It will load a new application and reset
+  38:Generated_Source\PSoC4/Bootloadable.c **** *  the device.
+  39:Generated_Source\PSoC4/Bootloadable.c **** *
+  40:Generated_Source\PSoC4/Bootloadable.c **** *******************************************************************************/
+  41:Generated_Source\PSoC4/Bootloadable.c **** void Bootloadable_Load(void) 
+  42:Generated_Source\PSoC4/Bootloadable.c **** {
+  43:Generated_Source\PSoC4/Bootloadable.c ****     /* Schedule Bootloader to start after reset */
+  44:Generated_Source\PSoC4/Bootloadable.c ****     Bootloadable_SET_RUN_TYPE(Bootloadable_SCHEDULE_BTLDR);
+  45:Generated_Source\PSoC4/Bootloadable.c **** 
+  46:Generated_Source\PSoC4/Bootloadable.c ****     CySoftwareReset();
+  47:Generated_Source\PSoC4/Bootloadable.c **** }
+  48:Generated_Source\PSoC4/Bootloadable.c **** 
+  49:Generated_Source\PSoC4/Bootloadable.c **** #if (CYDEV_PROJ_TYPE == CYDEV_PROJ_TYPE_LOADABLEANDBOOTLOADER)
+  50:Generated_Source\PSoC4/Bootloadable.c **** /*******************************************************************************
+  51:Generated_Source\PSoC4/Bootloadable.c **** * Function Name: Bootloadable_GetActiveApplication
+  52:Generated_Source\PSoC4/Bootloadable.c **** ****************************************************************************//**
+  53:Generated_Source\PSoC4/Bootloadable.c **** *
+  54:Generated_Source\PSoC4/Bootloadable.c **** * \brief
+  55:Generated_Source\PSoC4/Bootloadable.c **** *   Gets the application which will be loaded after a next reset event.
+  56:Generated_Source\PSoC4/Bootloadable.c **** *   NOTE Intended for the combination project type ONLY!
+  57:Generated_Source\PSoC4/Bootloadable.c **** *
+  58:Generated_Source\PSoC4/Bootloadable.c **** * \return 
+  59:Generated_Source\PSoC4/Bootloadable.c **** *  A number of the current active application set in the metadata section.
+  60:Generated_Source\PSoC4/Bootloadable.c **** *  \n  0 - app#0 is set as active.
+  61:Generated_Source\PSoC4/Bootloadable.c **** *  \n  1 - app#1 is set as active.
+  62:Generated_Source\PSoC4/Bootloadable.c **** *
+  63:Generated_Source\PSoC4/Bootloadable.c **** * \note If neither of the applications is set active, then the API returns 0x02.
+  64:Generated_Source\PSoC4/Bootloadable.c **** *
+  65:Generated_Source\PSoC4/Bootloadable.c **** *******************************************************************************/
+  66:Generated_Source\PSoC4/Bootloadable.c **** uint8 Bootloadable_GetActiveApplication(void) CYSMALL \
+  67:Generated_Source\PSoC4/Bootloadable.c ****                           
+  68:Generated_Source\PSoC4/Bootloadable.c **** {   
+  69:Generated_Source\PSoC4/Bootloadable.c ****     uint8 result = Bootloadable_MD_BTLDB_ACTIVE_NONE;
+  70:Generated_Source\PSoC4/Bootloadable.c ****     
+  71:Generated_Source\PSoC4/Bootloadable.c ****     if (0u != Bootloadable_GET_CODE_DATA( \
+  72:Generated_Source\PSoC4/Bootloadable.c ****               Bootloadable_MD_BTLDB_ACTIVE_OFFSET(Bootloadable_MD_BTLDB_ACTIVE_0))) 
+  73:Generated_Source\PSoC4/Bootloadable.c ****     {
+  74:Generated_Source\PSoC4/Bootloadable.c ****         result = Bootloadable_MD_BTLDB_ACTIVE_0;
+  75:Generated_Source\PSoC4/Bootloadable.c ****     }
+  76:Generated_Source\PSoC4/Bootloadable.c ****     else if (0u != Bootloadable_GET_CODE_DATA( \
+  77:Generated_Source\PSoC4/Bootloadable.c ****                    Bootloadable_MD_BTLDB_ACTIVE_OFFSET(Bootloadable_MD_BTLDB_ACTIVE_1)))
+  78:Generated_Source\PSoC4/Bootloadable.c ****     {
+  79:Generated_Source\PSoC4/Bootloadable.c ****         result = Bootloadable_MD_BTLDB_ACTIVE_1;    
+  80:Generated_Source\PSoC4/Bootloadable.c ****     }
+  81:Generated_Source\PSoC4/Bootloadable.c ****     else
+  82:Generated_Source\PSoC4/Bootloadable.c ****     {
+  83:Generated_Source\PSoC4/Bootloadable.c ****         /*Do nothing, result is none*/
+  84:Generated_Source\PSoC4/Bootloadable.c ****     }
+  85:Generated_Source\PSoC4/Bootloadable.c ****     
+  86:Generated_Source\PSoC4/Bootloadable.c ****     return (result);
+  87:Generated_Source\PSoC4/Bootloadable.c **** }
+  88:Generated_Source\PSoC4/Bootloadable.c **** 
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 3
+
+
+  89:Generated_Source\PSoC4/Bootloadable.c **** /*******************************************************************************
+  90:Generated_Source\PSoC4/Bootloadable.c **** * Function Name: Bootloadable_SetActiveApplication
+  91:Generated_Source\PSoC4/Bootloadable.c **** ****************************************************************************//**
+  92:Generated_Source\PSoC4/Bootloadable.c **** *
+  93:Generated_Source\PSoC4/Bootloadable.c **** * \brief 
+  94:Generated_Source\PSoC4/Bootloadable.c **** *   Sets the application which will be loaded after a next reset event.          
+  95:Generated_Source\PSoC4/Bootloadable.c **** *   
+  96:Generated_Source\PSoC4/Bootloadable.c **** * \details
+  97:Generated_Source\PSoC4/Bootloadable.c **** * Theory: 
+  98:Generated_Source\PSoC4/Bootloadable.c **** *   This API sets in the Flash (metadata section) the given active application 
+  99:Generated_Source\PSoC4/Bootloadable.c **** *   number.
+ 100:Generated_Source\PSoC4/Bootloadable.c **** *          
+ 101:Generated_Source\PSoC4/Bootloadable.c **** *   NOTE The active application number is not set directly, but the boolean 
+ 102:Generated_Source\PSoC4/Bootloadable.c **** *   mark instead means that the application is active or not for the relative 
+ 103:Generated_Source\PSoC4/Bootloadable.c **** *   metadata. Both metadata sections are updated. For example, if the second 
+ 104:Generated_Source\PSoC4/Bootloadable.c **** *   application is to be set active, then in the metadata section for the first 
+ 105:Generated_Source\PSoC4/Bootloadable.c **** *   application there will be a "0" written, which means that it is not active, and 
+ 106:Generated_Source\PSoC4/Bootloadable.c **** *   for the second metadata section there will be a "1" written, which means that it is 
+ 107:Generated_Source\PSoC4/Bootloadable.c **** *   active. 
+ 108:Generated_Source\PSoC4/Bootloadable.c **** *
+ 109:Generated_Source\PSoC4/Bootloadable.c **** *   NOTE Intended for the combination project type ONLY!
+ 110:Generated_Source\PSoC4/Bootloadable.c **** *
+ 111:Generated_Source\PSoC4/Bootloadable.c **** * \param appId  
+ 112:Generated_Source\PSoC4/Bootloadable.c **** *   The active application number to be written to flash (metadata section) 
+ 113:Generated_Source\PSoC4/Bootloadable.c **** *   NOTE Possible values are:
+ 114:Generated_Source\PSoC4/Bootloadable.c **** *   0 - for the first application
+ 115:Generated_Source\PSoC4/Bootloadable.c **** *   1 - for the second application.
+ 116:Generated_Source\PSoC4/Bootloadable.c **** *   Any other number is considered invalid. 
+ 117:Generated_Source\PSoC4/Bootloadable.c **** *
+ 118:Generated_Source\PSoC4/Bootloadable.c **** * \return 
+ 119:Generated_Source\PSoC4/Bootloadable.c **** *   A status of writing to flash operation.
+ 120:Generated_Source\PSoC4/Bootloadable.c **** *   \n CYRET_SUCCESS - Returned if appId was successfully changed. 
+ 121:Generated_Source\PSoC4/Bootloadable.c **** *   \n CYRET_BAD_PARAM - Returned if the parameter appID passed to the function has the 
+ 122:Generated_Source\PSoC4/Bootloadable.c **** *                       same value as the active application ID. 
+ 123:Generated_Source\PSoC4/Bootloadable.c **** *   \note - The other non-zero value is considered as a failure during writing to flash.  
+ 124:Generated_Source\PSoC4/Bootloadable.c **** *
+ 125:Generated_Source\PSoC4/Bootloadable.c **** *   \note - This API does not update Bootloader_activeApp variable.
+ 126:Generated_Source\PSoC4/Bootloadable.c **** *
+ 127:Generated_Source\PSoC4/Bootloadable.c **** *******************************************************************************/
+ 128:Generated_Source\PSoC4/Bootloadable.c **** cystatus Bootloadable_SetActiveApplication(uint8 appId) CYSMALL \
+ 129:Generated_Source\PSoC4/Bootloadable.c ****                 
+ 130:Generated_Source\PSoC4/Bootloadable.c **** {
+ 131:Generated_Source\PSoC4/Bootloadable.c ****     cystatus result = CYRET_SUCCESS;
+ 132:Generated_Source\PSoC4/Bootloadable.c **** 
+ 133:Generated_Source\PSoC4/Bootloadable.c ****     uint8 CYDATA idx;
+ 134:Generated_Source\PSoC4/Bootloadable.c ****     
+ 135:Generated_Source\PSoC4/Bootloadable.c ****     /* If invalid application number */
+ 136:Generated_Source\PSoC4/Bootloadable.c ****     if (appId > Bootloadable_MD_BTLDB_ACTIVE_1)
+ 137:Generated_Source\PSoC4/Bootloadable.c ****     {
+ 138:Generated_Source\PSoC4/Bootloadable.c ****         result = CYRET_BAD_PARAM;
+ 139:Generated_Source\PSoC4/Bootloadable.c ****     }
+ 140:Generated_Source\PSoC4/Bootloadable.c ****     else
+ 141:Generated_Source\PSoC4/Bootloadable.c ****     {
+ 142:Generated_Source\PSoC4/Bootloadable.c ****         /* If appID has same value as active application ID */
+ 143:Generated_Source\PSoC4/Bootloadable.c ****         if (1u == Bootloadable_GET_CODE_DATA(Bootloadable_MD_BTLDB_ACTIVE_OFFSET(appId)))
+ 144:Generated_Source\PSoC4/Bootloadable.c ****         {
+ 145:Generated_Source\PSoC4/Bootloadable.c ****             result = CYRET_BAD_PARAM;
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 4
+
+
+ 146:Generated_Source\PSoC4/Bootloadable.c ****         }
+ 147:Generated_Source\PSoC4/Bootloadable.c ****         else
+ 148:Generated_Source\PSoC4/Bootloadable.c ****         {
+ 149:Generated_Source\PSoC4/Bootloadable.c ****             /* Updating metadata section */
+ 150:Generated_Source\PSoC4/Bootloadable.c ****             for(idx = 0u; idx < Bootloadable_MAX_NUM_OF_BTLDB; idx++)
+ 151:Generated_Source\PSoC4/Bootloadable.c ****             {
+ 152:Generated_Source\PSoC4/Bootloadable.c ****                 result |= Bootloadable_WriteFlashByte((uint32) Bootloadable_MD_BTLDB_ACTIVE_OFFSET(
+ 153:Generated_Source\PSoC4/Bootloadable.c ****                                                                                             (uint8)
+ 154:Generated_Source\PSoC4/Bootloadable.c ****             }
+ 155:Generated_Source\PSoC4/Bootloadable.c ****         }
+ 156:Generated_Source\PSoC4/Bootloadable.c ****     }
+ 157:Generated_Source\PSoC4/Bootloadable.c ****     
+ 158:Generated_Source\PSoC4/Bootloadable.c ****     return (result);
+ 159:Generated_Source\PSoC4/Bootloadable.c **** }
+ 160:Generated_Source\PSoC4/Bootloadable.c **** 
+ 161:Generated_Source\PSoC4/Bootloadable.c **** /*******************************************************************************
+ 162:Generated_Source\PSoC4/Bootloadable.c **** * Function Name: Bootloadable_WriteFlashByte
+ 163:Generated_Source\PSoC4/Bootloadable.c **** ****************************************************************************//**
+ 164:Generated_Source\PSoC4/Bootloadable.c **** *
+ 165:Generated_Source\PSoC4/Bootloadable.c **** * \brief 
+ 166:Generated_Source\PSoC4/Bootloadable.c **** *   This API writes to flash the specified data.
+ 167:Generated_Source\PSoC4/Bootloadable.c **** *
+ 168:Generated_Source\PSoC4/Bootloadable.c **** * \param address 
+ 169:Generated_Source\PSoC4/Bootloadable.c **** *   The address in flash.
+ 170:Generated_Source\PSoC4/Bootloadable.c **** *
+ 171:Generated_Source\PSoC4/Bootloadable.c **** * \param inputValue 
+ 172:Generated_Source\PSoC4/Bootloadable.c **** *   One-byte data.
+ 173:Generated_Source\PSoC4/Bootloadable.c **** *
+ 174:Generated_Source\PSoC4/Bootloadable.c **** * \return 
+ 175:Generated_Source\PSoC4/Bootloadable.c **** *   A status of the writing to flash procedure.
+ 176:Generated_Source\PSoC4/Bootloadable.c **** *
+ 177:Generated_Source\PSoC4/Bootloadable.c **** *******************************************************************************/
+ 178:Generated_Source\PSoC4/Bootloadable.c **** static cystatus Bootloadable_WriteFlashByte(const uint32 address, const uint8 inputValue) CYLARGE \
+ 179:Generated_Source\PSoC4/Bootloadable.c ****                                
+ 180:Generated_Source\PSoC4/Bootloadable.c **** {
+  27              		.loc 1 180 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 256
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 70B5     		push	{r4, r5, r6, lr}
+  33              		.cfi_def_cfa_offset 16
+  34              		.cfi_offset 4, -16
+  35              		.cfi_offset 5, -12
+  36              		.cfi_offset 6, -8
+  37              		.cfi_offset 14, -4
+  38 0002 C0B0     		sub	sp, sp, #256
+  39              		.cfi_def_cfa_offset 272
+  40 0004 0500     		movs	r5, r0
+  41              	.LVL1:
+ 181:Generated_Source\PSoC4/Bootloadable.c ****     cystatus result = CYRET_SUCCESS;
+ 182:Generated_Source\PSoC4/Bootloadable.c ****     uint32 flsAddr = address - CYDEV_FLASH_BASE;
+ 183:Generated_Source\PSoC4/Bootloadable.c ****     uint8  rowData[CYDEV_FLS_ROW_SIZE];
+ 184:Generated_Source\PSoC4/Bootloadable.c **** 
+ 185:Generated_Source\PSoC4/Bootloadable.c ****     #if !(CY_PSOC4)
+ 186:Generated_Source\PSoC4/Bootloadable.c ****         uint8 arrayId = ( uint8 )(flsAddr / CYDEV_FLS_SECTOR_SIZE);
+ 187:Generated_Source\PSoC4/Bootloadable.c ****     #endif  /* !(CY_PSOC4) */
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 5
+
+
+ 188:Generated_Source\PSoC4/Bootloadable.c **** 
+ 189:Generated_Source\PSoC4/Bootloadable.c ****     #if (CY_PSOC4)
+ 190:Generated_Source\PSoC4/Bootloadable.c ****         uint16 rowNum = ( uint16 )(flsAddr / CYDEV_FLS_ROW_SIZE);
+  42              		.loc 1 190 0
+  43 0006 000A     		lsrs	r0, r0, #8
+  44              	.LVL2:
+ 191:Generated_Source\PSoC4/Bootloadable.c ****     #else
+ 192:Generated_Source\PSoC4/Bootloadable.c ****         uint16 rowNum = ( uint16 )((flsAddr % CYDEV_FLS_SECTOR_SIZE) / CYDEV_FLS_ROW_SIZE);
+ 193:Generated_Source\PSoC4/Bootloadable.c ****     #endif  /* (CY_PSOC4) */
+ 194:Generated_Source\PSoC4/Bootloadable.c **** 
+ 195:Generated_Source\PSoC4/Bootloadable.c ****     uint32 baseAddr = address - (address % CYDEV_FLS_ROW_SIZE);
+  45              		.loc 1 195 0
+  46 0008 FF23     		movs	r3, #255
+  47 000a 2C00     		movs	r4, r5
+  48 000c 9C43     		bics	r4, r3
+  49              	.LVL3:
+ 196:Generated_Source\PSoC4/Bootloadable.c ****     uint16 idx;
+ 197:Generated_Source\PSoC4/Bootloadable.c **** 
+ 198:Generated_Source\PSoC4/Bootloadable.c ****     for(idx = 0u; idx < CYDEV_FLS_ROW_SIZE; idx++)
+  50              		.loc 1 198 0
+  51 000e 0023     		movs	r3, #0
+  52 0010 04E0     		b	.L2
+  53              	.LVL4:
+  54              	.L3:
+ 199:Generated_Source\PSoC4/Bootloadable.c ****     {
+ 200:Generated_Source\PSoC4/Bootloadable.c ****         rowData[idx] = (uint8)Bootloadable_GET_CODE_DATA(baseAddr + idx);
+  55              		.loc 1 200 0 discriminator 3
+  56 0012 1A5D     		ldrb	r2, [r3, r4]
+  57 0014 6E46     		mov	r6, sp
+  58 0016 F254     		strb	r2, [r6, r3]
+ 198:Generated_Source\PSoC4/Bootloadable.c ****     {
+  59              		.loc 1 198 0 discriminator 3
+  60 0018 0133     		adds	r3, r3, #1
+  61              	.LVL5:
+  62 001a 9BB2     		uxth	r3, r3
+  63              	.LVL6:
+  64              	.L2:
+ 198:Generated_Source\PSoC4/Bootloadable.c ****     {
+  65              		.loc 1 198 0 is_stmt 0 discriminator 1
+  66 001c FF2B     		cmp	r3, #255
+  67 001e F8D9     		bls	.L3
+ 201:Generated_Source\PSoC4/Bootloadable.c ****     }
+ 202:Generated_Source\PSoC4/Bootloadable.c **** 
+ 203:Generated_Source\PSoC4/Bootloadable.c ****     rowData[address % CYDEV_FLS_ROW_SIZE] = inputValue;
+  68              		.loc 1 203 0 is_stmt 1
+  69 0020 FF23     		movs	r3, #255
+  70              	.LVL7:
+  71 0022 1D40     		ands	r5, r3
+  72              	.LVL8:
+  73 0024 6B46     		mov	r3, sp
+  74 0026 5955     		strb	r1, [r3, r5]
+ 204:Generated_Source\PSoC4/Bootloadable.c **** 
+ 205:Generated_Source\PSoC4/Bootloadable.c ****     #if(CY_PSOC4)
+ 206:Generated_Source\PSoC4/Bootloadable.c ****         result = CySysFlashWriteRow((uint32) rowNum, rowData);
+  75              		.loc 1 206 0
+  76 0028 0004     		lsls	r0, r0, #16
+  77              	.LVL9:
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 6
+
+
+  78 002a 000C     		lsrs	r0, r0, #16
+  79 002c 6946     		mov	r1, sp
+  80              	.LVL10:
+  81 002e FFF7FEFF 		bl	CySysFlashWriteRow
+  82              	.LVL11:
+ 207:Generated_Source\PSoC4/Bootloadable.c ****     #else
+ 208:Generated_Source\PSoC4/Bootloadable.c ****         result = CyWriteRowData(arrayId, rowNum, rowData);
+ 209:Generated_Source\PSoC4/Bootloadable.c ****     #endif  /* (CY_PSOC4) */
+ 210:Generated_Source\PSoC4/Bootloadable.c **** 
+ 211:Generated_Source\PSoC4/Bootloadable.c ****     #if(CY_PSOC5)
+ 212:Generated_Source\PSoC4/Bootloadable.c ****         /***************************************************************************
+ 213:Generated_Source\PSoC4/Bootloadable.c ****         * When writing to flash, data in the instruction cache can become stale.
+ 214:Generated_Source\PSoC4/Bootloadable.c ****         * Therefore, the cache data does not correlate to the data just written to
+ 215:Generated_Source\PSoC4/Bootloadable.c ****         * flash. A call to CyFlushCache() is required to invalidate the data in the
+ 216:Generated_Source\PSoC4/Bootloadable.c ****         * cache and force fresh information to be loaded from flash.
+ 217:Generated_Source\PSoC4/Bootloadable.c ****         ***************************************************************************/
+ 218:Generated_Source\PSoC4/Bootloadable.c ****         CyFlushCache();
+ 219:Generated_Source\PSoC4/Bootloadable.c ****     #endif /* (CY_PSOC5) */
+ 220:Generated_Source\PSoC4/Bootloadable.c ****     return (result);
+ 221:Generated_Source\PSoC4/Bootloadable.c **** }
+  83              		.loc 1 221 0
+  84 0032 40B0     		add	sp, sp, #256
+  85              		@ sp needed
+  86              	.LVL12:
+  87 0034 70BD     		pop	{r4, r5, r6, pc}
+  88              		.cfi_endproc
+  89              	.LFE5:
+  90              		.size	Bootloadable_WriteFlashByte, .-Bootloadable_WriteFlashByte
+  91 0036 C046     		.section	.text.Bootloadable_Load,"ax",%progbits
+  92              		.align	2
+  93              		.global	Bootloadable_Load
+  94              		.code	16
+  95              		.thumb_func
+  96              		.type	Bootloadable_Load, %function
+  97              	Bootloadable_Load:
+  98              	.LFB2:
+  42:Generated_Source\PSoC4/Bootloadable.c ****     /* Schedule Bootloader to start after reset */
+  99              		.loc 1 42 0
+ 100              		.cfi_startproc
+ 101              		@ args = 0, pretend = 0, frame = 0
+ 102              		@ frame_needed = 0, uses_anonymous_args = 0
+ 103 0000 10B5     		push	{r4, lr}
+ 104              		.cfi_def_cfa_offset 8
+ 105              		.cfi_offset 4, -8
+ 106              		.cfi_offset 14, -4
+  44:Generated_Source\PSoC4/Bootloadable.c **** 
+ 107              		.loc 1 44 0
+ 108 0002 4022     		movs	r2, #64
+ 109 0004 024B     		ldr	r3, .L5
+ 110 0006 1A60     		str	r2, [r3]
+  46:Generated_Source\PSoC4/Bootloadable.c **** }
+ 111              		.loc 1 46 0
+ 112 0008 FFF7FEFF 		bl	CySoftwareReset
+ 113              	.LVL13:
+  47:Generated_Source\PSoC4/Bootloadable.c **** 
+ 114              		.loc 1 47 0
+ 115              		@ sp needed
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 7
+
+
+ 116 000c 10BD     		pop	{r4, pc}
+ 117              	.L6:
+ 118 000e C046     		.align	2
+ 119              	.L5:
+ 120 0010 00000000 		.word	cyBtldrRunType
+ 121              		.cfi_endproc
+ 122              	.LFE2:
+ 123              		.size	Bootloadable_Load, .-Bootloadable_Load
+ 124              		.section	.text.Bootloadable_GetActiveApplication,"ax",%progbits
+ 125              		.align	2
+ 126              		.global	Bootloadable_GetActiveApplication
+ 127              		.code	16
+ 128              		.thumb_func
+ 129              		.type	Bootloadable_GetActiveApplication, %function
+ 130              	Bootloadable_GetActiveApplication:
+ 131              	.LFB3:
+  68:Generated_Source\PSoC4/Bootloadable.c ****     uint8 result = Bootloadable_MD_BTLDB_ACTIVE_NONE;
+ 132              		.loc 1 68 0
+ 133              		.cfi_startproc
+ 134              		@ args = 0, pretend = 0, frame = 0
+ 135              		@ frame_needed = 0, uses_anonymous_args = 0
+ 136              		@ link register save eliminated.
+ 137              	.LVL14:
+  71:Generated_Source\PSoC4/Bootloadable.c ****               Bootloadable_MD_BTLDB_ACTIVE_OFFSET(Bootloadable_MD_BTLDB_ACTIVE_0))) 
+ 138              		.loc 1 71 0
+ 139 0000 064B     		ldr	r3, .L11
+ 140 0002 1B78     		ldrb	r3, [r3]
+ 141 0004 002B     		cmp	r3, #0
+ 142 0006 05D1     		bne	.L9
+  76:Generated_Source\PSoC4/Bootloadable.c ****                    Bootloadable_MD_BTLDB_ACTIVE_OFFSET(Bootloadable_MD_BTLDB_ACTIVE_1)))
+ 143              		.loc 1 76 0
+ 144 0008 054B     		ldr	r3, .L11+4
+ 145 000a 1B78     		ldrb	r3, [r3]
+ 146 000c 002B     		cmp	r3, #0
+ 147 000e 03D1     		bne	.L10
+  69:Generated_Source\PSoC4/Bootloadable.c ****     
+ 148              		.loc 1 69 0
+ 149 0010 0220     		movs	r0, #2
+ 150 0012 02E0     		b	.L8
+ 151              	.L9:
+  74:Generated_Source\PSoC4/Bootloadable.c ****     }
+ 152              		.loc 1 74 0
+ 153 0014 0020     		movs	r0, #0
+ 154 0016 00E0     		b	.L8
+ 155              	.L10:
+  79:Generated_Source\PSoC4/Bootloadable.c ****     }
+ 156              		.loc 1 79 0
+ 157 0018 0120     		movs	r0, #1
+ 158              	.L8:
+ 159              	.LVL15:
+  87:Generated_Source\PSoC4/Bootloadable.c **** 
+ 160              		.loc 1 87 0
+ 161              		@ sp needed
+ 162 001a 7047     		bx	lr
+ 163              	.L12:
+ 164              		.align	2
+ 165              	.L11:
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 8
+
+
+ 166 001c D0FF0300 		.word	262096
+ 167 0020 D0FE0300 		.word	261840
+ 168              		.cfi_endproc
+ 169              	.LFE3:
+ 170              		.size	Bootloadable_GetActiveApplication, .-Bootloadable_GetActiveApplication
+ 171              		.section	.text.Bootloadable_SetActiveApplication,"ax",%progbits
+ 172              		.align	2
+ 173              		.global	Bootloadable_SetActiveApplication
+ 174              		.code	16
+ 175              		.thumb_func
+ 176              		.type	Bootloadable_SetActiveApplication, %function
+ 177              	Bootloadable_SetActiveApplication:
+ 178              	.LFB4:
+ 130:Generated_Source\PSoC4/Bootloadable.c ****     cystatus result = CYRET_SUCCESS;
+ 179              		.loc 1 130 0
+ 180              		.cfi_startproc
+ 181              		@ args = 0, pretend = 0, frame = 0
+ 182              		@ frame_needed = 0, uses_anonymous_args = 0
+ 183              	.LVL16:
+ 184 0000 70B5     		push	{r4, r5, r6, lr}
+ 185              		.cfi_def_cfa_offset 16
+ 186              		.cfi_offset 4, -16
+ 187              		.cfi_offset 5, -12
+ 188              		.cfi_offset 6, -8
+ 189              		.cfi_offset 14, -4
+ 190 0002 0500     		movs	r5, r0
+ 191              	.LVL17:
+ 136:Generated_Source\PSoC4/Bootloadable.c ****     {
+ 192              		.loc 1 136 0
+ 193 0004 0128     		cmp	r0, #1
+ 194 0006 1DD8     		bhi	.L17
+ 143:Generated_Source\PSoC4/Bootloadable.c ****         {
+ 195              		.loc 1 143 0
+ 196 0008 0206     		lsls	r2, r0, #24
+ 197 000a 121A     		subs	r2, r2, r0
+ 198 000c 1302     		lsls	r3, r2, #8
+ 199 000e 104A     		ldr	r2, .L19
+ 200 0010 9446     		mov	ip, r2
+ 201 0012 6344     		add	r3, r3, ip
+ 202 0014 1B78     		ldrb	r3, [r3]
+ 203 0016 012B     		cmp	r3, #1
+ 204 0018 16D0     		beq	.L18
+ 205 001a 0024     		movs	r4, #0
+ 206 001c 0026     		movs	r6, #0
+ 207 001e 0EE0     		b	.L15
+ 208              	.LVL18:
+ 209              	.L16:
+ 152:Generated_Source\PSoC4/Bootloadable.c ****                                                                                             (uint8)
+ 210              		.loc 1 152 0 discriminator 3
+ 211 0020 611B     		subs	r1, r4, r5
+ 212 0022 4B42     		rsbs	r3, r1, #0
+ 213 0024 5941     		adcs	r1, r1, r3
+ 214 0026 C9B2     		uxtb	r1, r1
+ 215 0028 2306     		lsls	r3, r4, #24
+ 216 002a 1B1B     		subs	r3, r3, r4
+ 217 002c 1802     		lsls	r0, r3, #8
+ 218 002e 084B     		ldr	r3, .L19
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 9
+
+
+ 219 0030 9C46     		mov	ip, r3
+ 220 0032 6044     		add	r0, r0, ip
+ 221 0034 FFF7FEFF 		bl	Bootloadable_WriteFlashByte
+ 222              	.LVL19:
+ 223 0038 0643     		orrs	r6, r0
+ 224              	.LVL20:
+ 150:Generated_Source\PSoC4/Bootloadable.c ****             {
+ 225              		.loc 1 150 0 discriminator 3
+ 226 003a 0134     		adds	r4, r4, #1
+ 227              	.LVL21:
+ 228 003c E4B2     		uxtb	r4, r4
+ 229              	.LVL22:
+ 230              	.L15:
+ 150:Generated_Source\PSoC4/Bootloadable.c ****             {
+ 231              		.loc 1 150 0 is_stmt 0 discriminator 1
+ 232 003e 012C     		cmp	r4, #1
+ 233 0040 EED9     		bls	.L16
+ 234 0042 02E0     		b	.L14
+ 235              	.LVL23:
+ 236              	.L17:
+ 138:Generated_Source\PSoC4/Bootloadable.c ****     }
+ 237              		.loc 1 138 0 is_stmt 1
+ 238 0044 0126     		movs	r6, #1
+ 239 0046 00E0     		b	.L14
+ 240              	.L18:
+ 145:Generated_Source\PSoC4/Bootloadable.c ****         }
+ 241              		.loc 1 145 0
+ 242 0048 0126     		movs	r6, #1
+ 243              	.LVL24:
+ 244              	.L14:
+ 159:Generated_Source\PSoC4/Bootloadable.c **** 
+ 245              		.loc 1 159 0
+ 246 004a 3000     		movs	r0, r6
+ 247              		@ sp needed
+ 248              	.LVL25:
+ 249 004c 70BD     		pop	{r4, r5, r6, pc}
+ 250              	.L20:
+ 251 004e C046     		.align	2
+ 252              	.L19:
+ 253 0050 D0FF0300 		.word	262096
+ 254              		.cfi_endproc
+ 255              	.LFE4:
+ 256              		.size	Bootloadable_SetActiveApplication, .-Bootloadable_SetActiveApplication
+ 257              		.section	.text.Bootloadable_SetFlashByte,"ax",%progbits
+ 258              		.align	2
+ 259              		.global	Bootloadable_SetFlashByte
+ 260              		.code	16
+ 261              		.thumb_func
+ 262              		.type	Bootloadable_SetFlashByte, %function
+ 263              	Bootloadable_SetFlashByte:
+ 264              	.LFB6:
+ 222:Generated_Source\PSoC4/Bootloadable.c **** #endif /*(CYDEV_PROJ_TYPE == CYDEV_PROJ_TYPE_LOADABLEANDBOOTLOADER)*/
+ 223:Generated_Source\PSoC4/Bootloadable.c **** /** @} functions_group */
+ 224:Generated_Source\PSoC4/Bootloadable.c **** 
+ 225:Generated_Source\PSoC4/Bootloadable.c **** /*******************************************************************************
+ 226:Generated_Source\PSoC4/Bootloadable.c **** * The following code is OBSOLETE and must not be used.
+ 227:Generated_Source\PSoC4/Bootloadable.c **** *******************************************************************************/
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 10
+
+
+ 228:Generated_Source\PSoC4/Bootloadable.c **** void Bootloadable_SetFlashByte(uint32 address, uint8 runType) 
+ 229:Generated_Source\PSoC4/Bootloadable.c **** {
+ 265              		.loc 1 229 0
+ 266              		.cfi_startproc
+ 267              		@ args = 0, pretend = 0, frame = 256
+ 268              		@ frame_needed = 0, uses_anonymous_args = 0
+ 269              	.LVL26:
+ 270 0000 70B5     		push	{r4, r5, r6, lr}
+ 271              		.cfi_def_cfa_offset 16
+ 272              		.cfi_offset 4, -16
+ 273              		.cfi_offset 5, -12
+ 274              		.cfi_offset 6, -8
+ 275              		.cfi_offset 14, -4
+ 276 0002 C0B0     		sub	sp, sp, #256
+ 277              		.cfi_def_cfa_offset 272
+ 278 0004 0500     		movs	r5, r0
+ 279              	.LVL27:
+ 230:Generated_Source\PSoC4/Bootloadable.c ****     uint32 flsAddr = address - CYDEV_FLASH_BASE;
+ 231:Generated_Source\PSoC4/Bootloadable.c ****     uint8  rowData[CYDEV_FLS_ROW_SIZE];
+ 232:Generated_Source\PSoC4/Bootloadable.c **** 
+ 233:Generated_Source\PSoC4/Bootloadable.c ****     #if !(CY_PSOC4)
+ 234:Generated_Source\PSoC4/Bootloadable.c ****         uint8 arrayId = ( uint8 )(flsAddr / CYDEV_FLS_SECTOR_SIZE);
+ 235:Generated_Source\PSoC4/Bootloadable.c ****     #endif  /* !(CY_PSOC4) */
+ 236:Generated_Source\PSoC4/Bootloadable.c **** 
+ 237:Generated_Source\PSoC4/Bootloadable.c ****     #if (CY_PSOC4)
+ 238:Generated_Source\PSoC4/Bootloadable.c ****         uint16 rowNum = ( uint16 )(flsAddr / CYDEV_FLS_ROW_SIZE);
+ 280              		.loc 1 238 0
+ 281 0006 000A     		lsrs	r0, r0, #8
+ 282              	.LVL28:
+ 239:Generated_Source\PSoC4/Bootloadable.c ****     #else
+ 240:Generated_Source\PSoC4/Bootloadable.c ****         uint16 rowNum = ( uint16 )((flsAddr % CYDEV_FLS_SECTOR_SIZE) / CYDEV_FLS_ROW_SIZE);
+ 241:Generated_Source\PSoC4/Bootloadable.c ****     #endif  /* (CY_PSOC4) */
+ 242:Generated_Source\PSoC4/Bootloadable.c **** 
+ 243:Generated_Source\PSoC4/Bootloadable.c ****     uint32 baseAddr = address - (address % CYDEV_FLS_ROW_SIZE);
+ 283              		.loc 1 243 0
+ 284 0008 FF23     		movs	r3, #255
+ 285 000a 2C00     		movs	r4, r5
+ 286 000c 9C43     		bics	r4, r3
+ 287              	.LVL29:
+ 244:Generated_Source\PSoC4/Bootloadable.c ****     uint16 idx;
+ 245:Generated_Source\PSoC4/Bootloadable.c **** 
+ 246:Generated_Source\PSoC4/Bootloadable.c **** 
+ 247:Generated_Source\PSoC4/Bootloadable.c ****     for (idx = 0u; idx < CYDEV_FLS_ROW_SIZE; idx++)
+ 288              		.loc 1 247 0
+ 289 000e 0023     		movs	r3, #0
+ 290 0010 04E0     		b	.L22
+ 291              	.LVL30:
+ 292              	.L23:
+ 248:Generated_Source\PSoC4/Bootloadable.c ****     {
+ 249:Generated_Source\PSoC4/Bootloadable.c ****         rowData[idx] = Bootloadable_GET_CODE_DATA(baseAddr + idx);
+ 293              		.loc 1 249 0 discriminator 3
+ 294 0012 1A5D     		ldrb	r2, [r3, r4]
+ 295 0014 6E46     		mov	r6, sp
+ 296 0016 F254     		strb	r2, [r6, r3]
+ 247:Generated_Source\PSoC4/Bootloadable.c ****     {
+ 297              		.loc 1 247 0 discriminator 3
+ 298 0018 0133     		adds	r3, r3, #1
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 11
+
+
+ 299              	.LVL31:
+ 300 001a 9BB2     		uxth	r3, r3
+ 301              	.LVL32:
+ 302              	.L22:
+ 247:Generated_Source\PSoC4/Bootloadable.c ****     {
+ 303              		.loc 1 247 0 is_stmt 0 discriminator 1
+ 304 001c FF2B     		cmp	r3, #255
+ 305 001e F8D9     		bls	.L23
+ 250:Generated_Source\PSoC4/Bootloadable.c ****     }
+ 251:Generated_Source\PSoC4/Bootloadable.c ****     rowData[address % CYDEV_FLS_ROW_SIZE] = runType;
+ 306              		.loc 1 251 0 is_stmt 1
+ 307 0020 FF23     		movs	r3, #255
+ 308              	.LVL33:
+ 309 0022 1D40     		ands	r5, r3
+ 310              	.LVL34:
+ 311 0024 6B46     		mov	r3, sp
+ 312 0026 5955     		strb	r1, [r3, r5]
+ 252:Generated_Source\PSoC4/Bootloadable.c **** 
+ 253:Generated_Source\PSoC4/Bootloadable.c ****     #if(CY_PSOC4)
+ 254:Generated_Source\PSoC4/Bootloadable.c ****         (void) CySysFlashWriteRow((uint32) rowNum, rowData);
+ 313              		.loc 1 254 0
+ 314 0028 0004     		lsls	r0, r0, #16
+ 315              	.LVL35:
+ 316 002a 000C     		lsrs	r0, r0, #16
+ 317 002c 6946     		mov	r1, sp
+ 318              	.LVL36:
+ 319 002e FFF7FEFF 		bl	CySysFlashWriteRow
+ 320              	.LVL37:
+ 255:Generated_Source\PSoC4/Bootloadable.c ****     #else
+ 256:Generated_Source\PSoC4/Bootloadable.c ****         (void) CyWriteRowData(arrayId, rowNum, rowData);
+ 257:Generated_Source\PSoC4/Bootloadable.c ****     #endif  /* (CY_PSOC4) */
+ 258:Generated_Source\PSoC4/Bootloadable.c **** 
+ 259:Generated_Source\PSoC4/Bootloadable.c ****     #if(CY_PSOC5)
+ 260:Generated_Source\PSoC4/Bootloadable.c ****         /***************************************************************************
+ 261:Generated_Source\PSoC4/Bootloadable.c ****         * When writing to flash, data in the instruction cache can become obsolete.
+ 262:Generated_Source\PSoC4/Bootloadable.c ****         * Therefore, the cache data does not correlate to the data just written to
+ 263:Generated_Source\PSoC4/Bootloadable.c ****         * flash. A call to CyFlushCache() is required to invalidate the data in the
+ 264:Generated_Source\PSoC4/Bootloadable.c ****         * cache and force fresh information to be loaded from flash.
+ 265:Generated_Source\PSoC4/Bootloadable.c ****         ***************************************************************************/
+ 266:Generated_Source\PSoC4/Bootloadable.c ****         CyFlushCache();
+ 267:Generated_Source\PSoC4/Bootloadable.c ****     #endif /* (CY_PSOC5) */
+ 268:Generated_Source\PSoC4/Bootloadable.c **** }
+ 321              		.loc 1 268 0
+ 322 0032 40B0     		add	sp, sp, #256
+ 323              		@ sp needed
+ 324              	.LVL38:
+ 325 0034 70BD     		pop	{r4, r5, r6, pc}
+ 326              		.cfi_endproc
+ 327              	.LFE6:
+ 328              		.size	Bootloadable_SetFlashByte, .-Bootloadable_SetFlashByte
+ 329 0036 C046     		.text
+ 330              	.Letext0:
+ 331              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 332              		.file 3 "Generated_Source\\PSoC4\\CyFlash.h"
+ 333              		.file 4 "Generated_Source\\PSoC4\\CyLib.h"
+ 334              		.file 5 "Generated_Source\\PSoC4\\Bootloadable.h"
+ 335              		.section	.debug_info,"",%progbits
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 12
+
+
+ 336              	.Ldebug_info0:
+ 337 0000 FB020000 		.4byte	0x2fb
+ 338 0004 0400     		.2byte	0x4
+ 339 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 340 000a 04       		.byte	0x4
+ 341 000b 01       		.uleb128 0x1
+ 342 000c CE010000 		.4byte	.LASF33
+ 343 0010 0C       		.byte	0xc
+ 344 0011 A8010000 		.4byte	.LASF34
+ 345 0015 23000000 		.4byte	.LASF35
+ 346 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 347 001d 00000000 		.4byte	0
+ 348 0021 00000000 		.4byte	.Ldebug_line0
+ 349 0025 02       		.uleb128 0x2
+ 350 0026 01       		.byte	0x1
+ 351 0027 06       		.byte	0x6
+ 352 0028 DB020000 		.4byte	.LASF0
+ 353 002c 02       		.uleb128 0x2
+ 354 002d 01       		.byte	0x1
+ 355 002e 08       		.byte	0x8
+ 356 002f D0000000 		.4byte	.LASF1
+ 357 0033 02       		.uleb128 0x2
+ 358 0034 02       		.byte	0x2
+ 359 0035 05       		.byte	0x5
+ 360 0036 A1020000 		.4byte	.LASF2
+ 361 003a 02       		.uleb128 0x2
+ 362 003b 02       		.byte	0x2
+ 363 003c 07       		.byte	0x7
+ 364 003d 10000000 		.4byte	.LASF3
+ 365 0041 02       		.uleb128 0x2
+ 366 0042 04       		.byte	0x4
+ 367 0043 05       		.byte	0x5
+ 368 0044 C6020000 		.4byte	.LASF4
+ 369 0048 02       		.uleb128 0x2
+ 370 0049 04       		.byte	0x4
+ 371 004a 07       		.byte	0x7
+ 372 004b E6000000 		.4byte	.LASF5
+ 373 004f 02       		.uleb128 0x2
+ 374 0050 08       		.byte	0x8
+ 375 0051 05       		.byte	0x5
+ 376 0052 6E020000 		.4byte	.LASF6
+ 377 0056 02       		.uleb128 0x2
+ 378 0057 08       		.byte	0x8
+ 379 0058 07       		.byte	0x7
+ 380 0059 B9000000 		.4byte	.LASF7
+ 381 005d 03       		.uleb128 0x3
+ 382 005e 04       		.byte	0x4
+ 383 005f 05       		.byte	0x5
+ 384 0060 696E7400 		.ascii	"int\000"
+ 385 0064 02       		.uleb128 0x2
+ 386 0065 04       		.byte	0x4
+ 387 0066 07       		.byte	0x7
+ 388 0067 62010000 		.4byte	.LASF8
+ 389 006b 04       		.uleb128 0x4
+ 390 006c F8000000 		.4byte	.LASF9
+ 391 0070 02       		.byte	0x2
+ 392 0071 D201     		.2byte	0x1d2
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 13
+
+
+ 393 0073 2C000000 		.4byte	0x2c
+ 394 0077 04       		.uleb128 0x4
+ 395 0078 54010000 		.4byte	.LASF10
+ 396 007c 02       		.byte	0x2
+ 397 007d D301     		.2byte	0x1d3
+ 398 007f 3A000000 		.4byte	0x3a
+ 399 0083 04       		.uleb128 0x4
+ 400 0084 5B010000 		.4byte	.LASF11
+ 401 0088 02       		.byte	0x2
+ 402 0089 D401     		.2byte	0x1d4
+ 403 008b 48000000 		.4byte	0x48
+ 404 008f 02       		.uleb128 0x2
+ 405 0090 04       		.byte	0x4
+ 406 0091 04       		.byte	0x4
+ 407 0092 B3000000 		.4byte	.LASF12
+ 408 0096 02       		.uleb128 0x2
+ 409 0097 08       		.byte	0x8
+ 410 0098 04       		.byte	0x4
+ 411 0099 10010000 		.4byte	.LASF13
+ 412 009d 02       		.uleb128 0x2
+ 413 009e 01       		.byte	0x1
+ 414 009f 08       		.byte	0x8
+ 415 00a0 7C020000 		.4byte	.LASF14
+ 416 00a4 04       		.uleb128 0x4
+ 417 00a5 00000000 		.4byte	.LASF15
+ 418 00a9 02       		.byte	0x2
+ 419 00aa 7402     		.2byte	0x274
+ 420 00ac 48000000 		.4byte	0x48
+ 421 00b0 05       		.uleb128 0x5
+ 422 00b1 83000000 		.4byte	0x83
+ 423 00b5 02       		.uleb128 0x2
+ 424 00b6 08       		.byte	0x8
+ 425 00b7 04       		.byte	0x4
+ 426 00b8 CF020000 		.4byte	.LASF16
+ 427 00bc 02       		.uleb128 0x2
+ 428 00bd 04       		.byte	0x4
+ 429 00be 07       		.byte	0x7
+ 430 00bf 65020000 		.4byte	.LASF17
+ 431 00c3 06       		.uleb128 0x6
+ 432 00c4 97000000 		.4byte	.LASF36
+ 433 00c8 01       		.byte	0x1
+ 434 00c9 B2       		.byte	0xb2
+ 435 00ca A4000000 		.4byte	0xa4
+ 436 00ce 00000000 		.4byte	.LFB5
+ 437 00d2 36000000 		.4byte	.LFE5-.LFB5
+ 438 00d6 01       		.uleb128 0x1
+ 439 00d7 9C       		.byte	0x9c
+ 440 00d8 72010000 		.4byte	0x172
+ 441 00dc 07       		.uleb128 0x7
+ 442 00dd 6F010000 		.4byte	.LASF18
+ 443 00e1 01       		.byte	0x1
+ 444 00e2 B2       		.byte	0xb2
+ 445 00e3 72010000 		.4byte	0x172
+ 446 00e7 00000000 		.4byte	.LLST0
+ 447 00eb 07       		.uleb128 0x7
+ 448 00ec AB020000 		.4byte	.LASF19
+ 449 00f0 01       		.byte	0x1
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 14
+
+
+ 450 00f1 B2       		.byte	0xb2
+ 451 00f2 77010000 		.4byte	0x177
+ 452 00f6 2C000000 		.4byte	.LLST1
+ 453 00fa 08       		.uleb128 0x8
+ 454 00fb 99010000 		.4byte	.LASF20
+ 455 00ff 01       		.byte	0x1
+ 456 0100 B5       		.byte	0xb5
+ 457 0101 A4000000 		.4byte	0xa4
+ 458 0105 5C000000 		.4byte	.LLST2
+ 459 0109 08       		.uleb128 0x8
+ 460 010a 4C010000 		.4byte	.LASF21
+ 461 010e 01       		.byte	0x1
+ 462 010f B6       		.byte	0xb6
+ 463 0110 83000000 		.4byte	0x83
+ 464 0114 7B000000 		.4byte	.LLST3
+ 465 0118 09       		.uleb128 0x9
+ 466 0119 DE000000 		.4byte	.LASF22
+ 467 011d 01       		.byte	0x1
+ 468 011e B7       		.byte	0xb7
+ 469 011f 7C010000 		.4byte	0x17c
+ 470 0123 03       		.uleb128 0x3
+ 471 0124 91       		.byte	0x91
+ 472 0125 F07D     		.sleb128 -272
+ 473 0127 08       		.uleb128 0x8
+ 474 0128 09000000 		.4byte	.LASF23
+ 475 012c 01       		.byte	0x1
+ 476 012d BE       		.byte	0xbe
+ 477 012e 77000000 		.4byte	0x77
+ 478 0132 A7000000 		.4byte	.LLST4
+ 479 0136 08       		.uleb128 0x8
+ 480 0137 5C020000 		.4byte	.LASF24
+ 481 013b 01       		.byte	0x1
+ 482 013c C3       		.byte	0xc3
+ 483 013d 83000000 		.4byte	0x83
+ 484 0141 CA000000 		.4byte	.LLST5
+ 485 0145 0A       		.uleb128 0xa
+ 486 0146 69647800 		.ascii	"idx\000"
+ 487 014a 01       		.byte	0x1
+ 488 014b C4       		.byte	0xc4
+ 489 014c 77000000 		.4byte	0x77
+ 490 0150 EF000000 		.4byte	.LLST6
+ 491 0154 0B       		.uleb128 0xb
+ 492 0155 32000000 		.4byte	.LVL11
+ 493 0159 E8020000 		.4byte	0x2e8
+ 494 015d 0C       		.uleb128 0xc
+ 495 015e 01       		.uleb128 0x1
+ 496 015f 50       		.byte	0x50
+ 497 0160 09       		.uleb128 0x9
+ 498 0161 F3       		.byte	0xf3
+ 499 0162 01       		.uleb128 0x1
+ 500 0163 50       		.byte	0x50
+ 501 0164 38       		.byte	0x38
+ 502 0165 25       		.byte	0x25
+ 503 0166 40       		.byte	0x40
+ 504 0167 24       		.byte	0x24
+ 505 0168 40       		.byte	0x40
+ 506 0169 25       		.byte	0x25
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 15
+
+
+ 507 016a 0C       		.uleb128 0xc
+ 508 016b 01       		.uleb128 0x1
+ 509 016c 51       		.byte	0x51
+ 510 016d 02       		.uleb128 0x2
+ 511 016e 7D       		.byte	0x7d
+ 512 016f 00       		.sleb128 0
+ 513 0170 00       		.byte	0
+ 514 0171 00       		.byte	0
+ 515 0172 0D       		.uleb128 0xd
+ 516 0173 83000000 		.4byte	0x83
+ 517 0177 0D       		.uleb128 0xd
+ 518 0178 6B000000 		.4byte	0x6b
+ 519 017c 0E       		.uleb128 0xe
+ 520 017d 6B000000 		.4byte	0x6b
+ 521 0181 8C010000 		.4byte	0x18c
+ 522 0185 0F       		.uleb128 0xf
+ 523 0186 BC000000 		.4byte	0xbc
+ 524 018a FF       		.byte	0xff
+ 525 018b 00       		.byte	0
+ 526 018c 10       		.uleb128 0x10
+ 527 018d FE000000 		.4byte	.LASF28
+ 528 0191 01       		.byte	0x1
+ 529 0192 29       		.byte	0x29
+ 530 0193 00000000 		.4byte	.LFB2
+ 531 0197 14000000 		.4byte	.LFE2-.LFB2
+ 532 019b 01       		.uleb128 0x1
+ 533 019c 9C       		.byte	0x9c
+ 534 019d AB010000 		.4byte	0x1ab
+ 535 01a1 11       		.uleb128 0x11
+ 536 01a2 0C000000 		.4byte	.LVL13
+ 537 01a6 F3020000 		.4byte	0x2f3
+ 538 01aa 00       		.byte	0
+ 539 01ab 12       		.uleb128 0x12
+ 540 01ac 77010000 		.4byte	.LASF25
+ 541 01b0 01       		.byte	0x1
+ 542 01b1 42       		.byte	0x42
+ 543 01b2 6B000000 		.4byte	0x6b
+ 544 01b6 00000000 		.4byte	.LFB3
+ 545 01ba 24000000 		.4byte	.LFE3-.LFB3
+ 546 01be 01       		.uleb128 0x1
+ 547 01bf 9C       		.byte	0x9c
+ 548 01c0 D4010000 		.4byte	0x1d4
+ 549 01c4 08       		.uleb128 0x8
+ 550 01c5 99010000 		.4byte	.LASF20
+ 551 01c9 01       		.byte	0x1
+ 552 01ca 45       		.byte	0x45
+ 553 01cb 6B000000 		.4byte	0x6b
+ 554 01cf 19010000 		.4byte	.LLST7
+ 555 01d3 00       		.byte	0
+ 556 01d4 12       		.uleb128 0x12
+ 557 01d5 17010000 		.4byte	.LASF26
+ 558 01d9 01       		.byte	0x1
+ 559 01da 80       		.byte	0x80
+ 560 01db A4000000 		.4byte	0xa4
+ 561 01df 00000000 		.4byte	.LFB4
+ 562 01e3 54000000 		.4byte	.LFE4-.LFB4
+ 563 01e7 01       		.uleb128 0x1
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 16
+
+
+ 564 01e8 9C       		.byte	0x9c
+ 565 01e9 41020000 		.4byte	0x241
+ 566 01ed 07       		.uleb128 0x7
+ 567 01ee 81020000 		.4byte	.LASF27
+ 568 01f2 01       		.byte	0x1
+ 569 01f3 80       		.byte	0x80
+ 570 01f4 6B000000 		.4byte	0x6b
+ 571 01f8 38010000 		.4byte	.LLST8
+ 572 01fc 08       		.uleb128 0x8
+ 573 01fd 99010000 		.4byte	.LASF20
+ 574 0201 01       		.byte	0x1
+ 575 0202 83       		.byte	0x83
+ 576 0203 A4000000 		.4byte	0xa4
+ 577 0207 72010000 		.4byte	.LLST9
+ 578 020b 0A       		.uleb128 0xa
+ 579 020c 69647800 		.ascii	"idx\000"
+ 580 0210 01       		.byte	0x1
+ 581 0211 85       		.byte	0x85
+ 582 0212 6B000000 		.4byte	0x6b
+ 583 0216 B3010000 		.4byte	.LLST10
+ 584 021a 0B       		.uleb128 0xb
+ 585 021b 38000000 		.4byte	.LVL19
+ 586 021f C3000000 		.4byte	0xc3
+ 587 0223 0C       		.uleb128 0xc
+ 588 0224 01       		.uleb128 0x1
+ 589 0225 50       		.byte	0x50
+ 590 0226 0D       		.uleb128 0xd
+ 591 0227 74       		.byte	0x74
+ 592 0228 00       		.sleb128 0
+ 593 0229 48       		.byte	0x48
+ 594 022a 24       		.byte	0x24
+ 595 022b 74       		.byte	0x74
+ 596 022c 00       		.sleb128 0
+ 597 022d 1C       		.byte	0x1c
+ 598 022e 38       		.byte	0x38
+ 599 022f 24       		.byte	0x24
+ 600 0230 23       		.byte	0x23
+ 601 0231 D0FF0F   		.uleb128 0x3ffd0
+ 602 0234 0C       		.uleb128 0xc
+ 603 0235 01       		.uleb128 0x1
+ 604 0236 51       		.byte	0x51
+ 605 0237 07       		.uleb128 0x7
+ 606 0238 74       		.byte	0x74
+ 607 0239 00       		.sleb128 0
+ 608 023a 75       		.byte	0x75
+ 609 023b 00       		.sleb128 0
+ 610 023c 1C       		.byte	0x1c
+ 611 023d 30       		.byte	0x30
+ 612 023e 29       		.byte	0x29
+ 613 023f 00       		.byte	0
+ 614 0240 00       		.byte	0
+ 615 0241 10       		.uleb128 0x10
+ 616 0242 87020000 		.4byte	.LASF29
+ 617 0246 01       		.byte	0x1
+ 618 0247 E4       		.byte	0xe4
+ 619 0248 00000000 		.4byte	.LFB6
+ 620 024c 36000000 		.4byte	.LFE6-.LFB6
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 17
+
+
+ 621 0250 01       		.uleb128 0x1
+ 622 0251 9C       		.byte	0x9c
+ 623 0252 DD020000 		.4byte	0x2dd
+ 624 0256 07       		.uleb128 0x7
+ 625 0257 6F010000 		.4byte	.LASF18
+ 626 025b 01       		.byte	0x1
+ 627 025c E4       		.byte	0xe4
+ 628 025d 83000000 		.4byte	0x83
+ 629 0261 D1010000 		.4byte	.LLST11
+ 630 0265 07       		.uleb128 0x7
+ 631 0266 A0010000 		.4byte	.LASF30
+ 632 026a 01       		.byte	0x1
+ 633 026b E4       		.byte	0xe4
+ 634 026c 6B000000 		.4byte	0x6b
+ 635 0270 FD010000 		.4byte	.LLST12
+ 636 0274 08       		.uleb128 0x8
+ 637 0275 4C010000 		.4byte	.LASF21
+ 638 0279 01       		.byte	0x1
+ 639 027a E6       		.byte	0xe6
+ 640 027b 83000000 		.4byte	0x83
+ 641 027f 2D020000 		.4byte	.LLST13
+ 642 0283 09       		.uleb128 0x9
+ 643 0284 DE000000 		.4byte	.LASF22
+ 644 0288 01       		.byte	0x1
+ 645 0289 E7       		.byte	0xe7
+ 646 028a 7C010000 		.4byte	0x17c
+ 647 028e 03       		.uleb128 0x3
+ 648 028f 91       		.byte	0x91
+ 649 0290 F07D     		.sleb128 -272
+ 650 0292 08       		.uleb128 0x8
+ 651 0293 09000000 		.4byte	.LASF23
+ 652 0297 01       		.byte	0x1
+ 653 0298 EE       		.byte	0xee
+ 654 0299 77000000 		.4byte	0x77
+ 655 029d 59020000 		.4byte	.LLST14
+ 656 02a1 08       		.uleb128 0x8
+ 657 02a2 5C020000 		.4byte	.LASF24
+ 658 02a6 01       		.byte	0x1
+ 659 02a7 F3       		.byte	0xf3
+ 660 02a8 83000000 		.4byte	0x83
+ 661 02ac 7C020000 		.4byte	.LLST15
+ 662 02b0 0A       		.uleb128 0xa
+ 663 02b1 69647800 		.ascii	"idx\000"
+ 664 02b5 01       		.byte	0x1
+ 665 02b6 F4       		.byte	0xf4
+ 666 02b7 77000000 		.4byte	0x77
+ 667 02bb A1020000 		.4byte	.LLST16
+ 668 02bf 0B       		.uleb128 0xb
+ 669 02c0 32000000 		.4byte	.LVL37
+ 670 02c4 E8020000 		.4byte	0x2e8
+ 671 02c8 0C       		.uleb128 0xc
+ 672 02c9 01       		.uleb128 0x1
+ 673 02ca 50       		.byte	0x50
+ 674 02cb 09       		.uleb128 0x9
+ 675 02cc F3       		.byte	0xf3
+ 676 02cd 01       		.uleb128 0x1
+ 677 02ce 50       		.byte	0x50
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 18
+
+
+ 678 02cf 38       		.byte	0x38
+ 679 02d0 25       		.byte	0x25
+ 680 02d1 40       		.byte	0x40
+ 681 02d2 24       		.byte	0x24
+ 682 02d3 40       		.byte	0x40
+ 683 02d4 25       		.byte	0x25
+ 684 02d5 0C       		.uleb128 0xc
+ 685 02d6 01       		.uleb128 0x1
+ 686 02d7 51       		.byte	0x51
+ 687 02d8 02       		.uleb128 0x2
+ 688 02d9 7D       		.byte	0x7d
+ 689 02da 00       		.sleb128 0
+ 690 02db 00       		.byte	0
+ 691 02dc 00       		.byte	0
+ 692 02dd 13       		.uleb128 0x13
+ 693 02de E7020000 		.4byte	.LASF37
+ 694 02e2 05       		.byte	0x5
+ 695 02e3 38       		.byte	0x38
+ 696 02e4 B0000000 		.4byte	0xb0
+ 697 02e8 14       		.uleb128 0x14
+ 698 02e9 39010000 		.4byte	.LASF31
+ 699 02ed 39010000 		.4byte	.LASF31
+ 700 02f1 03       		.byte	0x3
+ 701 02f2 4E       		.byte	0x4e
+ 702 02f3 14       		.uleb128 0x14
+ 703 02f4 B6020000 		.4byte	.LASF32
+ 704 02f8 B6020000 		.4byte	.LASF32
+ 705 02fc 04       		.byte	0x4
+ 706 02fd E4       		.byte	0xe4
+ 707 02fe 00       		.byte	0
+ 708              		.section	.debug_abbrev,"",%progbits
+ 709              	.Ldebug_abbrev0:
+ 710 0000 01       		.uleb128 0x1
+ 711 0001 11       		.uleb128 0x11
+ 712 0002 01       		.byte	0x1
+ 713 0003 25       		.uleb128 0x25
+ 714 0004 0E       		.uleb128 0xe
+ 715 0005 13       		.uleb128 0x13
+ 716 0006 0B       		.uleb128 0xb
+ 717 0007 03       		.uleb128 0x3
+ 718 0008 0E       		.uleb128 0xe
+ 719 0009 1B       		.uleb128 0x1b
+ 720 000a 0E       		.uleb128 0xe
+ 721 000b 55       		.uleb128 0x55
+ 722 000c 17       		.uleb128 0x17
+ 723 000d 11       		.uleb128 0x11
+ 724 000e 01       		.uleb128 0x1
+ 725 000f 10       		.uleb128 0x10
+ 726 0010 17       		.uleb128 0x17
+ 727 0011 00       		.byte	0
+ 728 0012 00       		.byte	0
+ 729 0013 02       		.uleb128 0x2
+ 730 0014 24       		.uleb128 0x24
+ 731 0015 00       		.byte	0
+ 732 0016 0B       		.uleb128 0xb
+ 733 0017 0B       		.uleb128 0xb
+ 734 0018 3E       		.uleb128 0x3e
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 19
+
+
+ 735 0019 0B       		.uleb128 0xb
+ 736 001a 03       		.uleb128 0x3
+ 737 001b 0E       		.uleb128 0xe
+ 738 001c 00       		.byte	0
+ 739 001d 00       		.byte	0
+ 740 001e 03       		.uleb128 0x3
+ 741 001f 24       		.uleb128 0x24
+ 742 0020 00       		.byte	0
+ 743 0021 0B       		.uleb128 0xb
+ 744 0022 0B       		.uleb128 0xb
+ 745 0023 3E       		.uleb128 0x3e
+ 746 0024 0B       		.uleb128 0xb
+ 747 0025 03       		.uleb128 0x3
+ 748 0026 08       		.uleb128 0x8
+ 749 0027 00       		.byte	0
+ 750 0028 00       		.byte	0
+ 751 0029 04       		.uleb128 0x4
+ 752 002a 16       		.uleb128 0x16
+ 753 002b 00       		.byte	0
+ 754 002c 03       		.uleb128 0x3
+ 755 002d 0E       		.uleb128 0xe
+ 756 002e 3A       		.uleb128 0x3a
+ 757 002f 0B       		.uleb128 0xb
+ 758 0030 3B       		.uleb128 0x3b
+ 759 0031 05       		.uleb128 0x5
+ 760 0032 49       		.uleb128 0x49
+ 761 0033 13       		.uleb128 0x13
+ 762 0034 00       		.byte	0
+ 763 0035 00       		.byte	0
+ 764 0036 05       		.uleb128 0x5
+ 765 0037 35       		.uleb128 0x35
+ 766 0038 00       		.byte	0
+ 767 0039 49       		.uleb128 0x49
+ 768 003a 13       		.uleb128 0x13
+ 769 003b 00       		.byte	0
+ 770 003c 00       		.byte	0
+ 771 003d 06       		.uleb128 0x6
+ 772 003e 2E       		.uleb128 0x2e
+ 773 003f 01       		.byte	0x1
+ 774 0040 03       		.uleb128 0x3
+ 775 0041 0E       		.uleb128 0xe
+ 776 0042 3A       		.uleb128 0x3a
+ 777 0043 0B       		.uleb128 0xb
+ 778 0044 3B       		.uleb128 0x3b
+ 779 0045 0B       		.uleb128 0xb
+ 780 0046 27       		.uleb128 0x27
+ 781 0047 19       		.uleb128 0x19
+ 782 0048 49       		.uleb128 0x49
+ 783 0049 13       		.uleb128 0x13
+ 784 004a 11       		.uleb128 0x11
+ 785 004b 01       		.uleb128 0x1
+ 786 004c 12       		.uleb128 0x12
+ 787 004d 06       		.uleb128 0x6
+ 788 004e 40       		.uleb128 0x40
+ 789 004f 18       		.uleb128 0x18
+ 790 0050 9742     		.uleb128 0x2117
+ 791 0052 19       		.uleb128 0x19
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 20
+
+
+ 792 0053 01       		.uleb128 0x1
+ 793 0054 13       		.uleb128 0x13
+ 794 0055 00       		.byte	0
+ 795 0056 00       		.byte	0
+ 796 0057 07       		.uleb128 0x7
+ 797 0058 05       		.uleb128 0x5
+ 798 0059 00       		.byte	0
+ 799 005a 03       		.uleb128 0x3
+ 800 005b 0E       		.uleb128 0xe
+ 801 005c 3A       		.uleb128 0x3a
+ 802 005d 0B       		.uleb128 0xb
+ 803 005e 3B       		.uleb128 0x3b
+ 804 005f 0B       		.uleb128 0xb
+ 805 0060 49       		.uleb128 0x49
+ 806 0061 13       		.uleb128 0x13
+ 807 0062 02       		.uleb128 0x2
+ 808 0063 17       		.uleb128 0x17
+ 809 0064 00       		.byte	0
+ 810 0065 00       		.byte	0
+ 811 0066 08       		.uleb128 0x8
+ 812 0067 34       		.uleb128 0x34
+ 813 0068 00       		.byte	0
+ 814 0069 03       		.uleb128 0x3
+ 815 006a 0E       		.uleb128 0xe
+ 816 006b 3A       		.uleb128 0x3a
+ 817 006c 0B       		.uleb128 0xb
+ 818 006d 3B       		.uleb128 0x3b
+ 819 006e 0B       		.uleb128 0xb
+ 820 006f 49       		.uleb128 0x49
+ 821 0070 13       		.uleb128 0x13
+ 822 0071 02       		.uleb128 0x2
+ 823 0072 17       		.uleb128 0x17
+ 824 0073 00       		.byte	0
+ 825 0074 00       		.byte	0
+ 826 0075 09       		.uleb128 0x9
+ 827 0076 34       		.uleb128 0x34
+ 828 0077 00       		.byte	0
+ 829 0078 03       		.uleb128 0x3
+ 830 0079 0E       		.uleb128 0xe
+ 831 007a 3A       		.uleb128 0x3a
+ 832 007b 0B       		.uleb128 0xb
+ 833 007c 3B       		.uleb128 0x3b
+ 834 007d 0B       		.uleb128 0xb
+ 835 007e 49       		.uleb128 0x49
+ 836 007f 13       		.uleb128 0x13
+ 837 0080 02       		.uleb128 0x2
+ 838 0081 18       		.uleb128 0x18
+ 839 0082 00       		.byte	0
+ 840 0083 00       		.byte	0
+ 841 0084 0A       		.uleb128 0xa
+ 842 0085 34       		.uleb128 0x34
+ 843 0086 00       		.byte	0
+ 844 0087 03       		.uleb128 0x3
+ 845 0088 08       		.uleb128 0x8
+ 846 0089 3A       		.uleb128 0x3a
+ 847 008a 0B       		.uleb128 0xb
+ 848 008b 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 21
+
+
+ 849 008c 0B       		.uleb128 0xb
+ 850 008d 49       		.uleb128 0x49
+ 851 008e 13       		.uleb128 0x13
+ 852 008f 02       		.uleb128 0x2
+ 853 0090 17       		.uleb128 0x17
+ 854 0091 00       		.byte	0
+ 855 0092 00       		.byte	0
+ 856 0093 0B       		.uleb128 0xb
+ 857 0094 898201   		.uleb128 0x4109
+ 858 0097 01       		.byte	0x1
+ 859 0098 11       		.uleb128 0x11
+ 860 0099 01       		.uleb128 0x1
+ 861 009a 31       		.uleb128 0x31
+ 862 009b 13       		.uleb128 0x13
+ 863 009c 00       		.byte	0
+ 864 009d 00       		.byte	0
+ 865 009e 0C       		.uleb128 0xc
+ 866 009f 8A8201   		.uleb128 0x410a
+ 867 00a2 00       		.byte	0
+ 868 00a3 02       		.uleb128 0x2
+ 869 00a4 18       		.uleb128 0x18
+ 870 00a5 9142     		.uleb128 0x2111
+ 871 00a7 18       		.uleb128 0x18
+ 872 00a8 00       		.byte	0
+ 873 00a9 00       		.byte	0
+ 874 00aa 0D       		.uleb128 0xd
+ 875 00ab 26       		.uleb128 0x26
+ 876 00ac 00       		.byte	0
+ 877 00ad 49       		.uleb128 0x49
+ 878 00ae 13       		.uleb128 0x13
+ 879 00af 00       		.byte	0
+ 880 00b0 00       		.byte	0
+ 881 00b1 0E       		.uleb128 0xe
+ 882 00b2 01       		.uleb128 0x1
+ 883 00b3 01       		.byte	0x1
+ 884 00b4 49       		.uleb128 0x49
+ 885 00b5 13       		.uleb128 0x13
+ 886 00b6 01       		.uleb128 0x1
+ 887 00b7 13       		.uleb128 0x13
+ 888 00b8 00       		.byte	0
+ 889 00b9 00       		.byte	0
+ 890 00ba 0F       		.uleb128 0xf
+ 891 00bb 21       		.uleb128 0x21
+ 892 00bc 00       		.byte	0
+ 893 00bd 49       		.uleb128 0x49
+ 894 00be 13       		.uleb128 0x13
+ 895 00bf 2F       		.uleb128 0x2f
+ 896 00c0 0B       		.uleb128 0xb
+ 897 00c1 00       		.byte	0
+ 898 00c2 00       		.byte	0
+ 899 00c3 10       		.uleb128 0x10
+ 900 00c4 2E       		.uleb128 0x2e
+ 901 00c5 01       		.byte	0x1
+ 902 00c6 3F       		.uleb128 0x3f
+ 903 00c7 19       		.uleb128 0x19
+ 904 00c8 03       		.uleb128 0x3
+ 905 00c9 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 22
+
+
+ 906 00ca 3A       		.uleb128 0x3a
+ 907 00cb 0B       		.uleb128 0xb
+ 908 00cc 3B       		.uleb128 0x3b
+ 909 00cd 0B       		.uleb128 0xb
+ 910 00ce 27       		.uleb128 0x27
+ 911 00cf 19       		.uleb128 0x19
+ 912 00d0 11       		.uleb128 0x11
+ 913 00d1 01       		.uleb128 0x1
+ 914 00d2 12       		.uleb128 0x12
+ 915 00d3 06       		.uleb128 0x6
+ 916 00d4 40       		.uleb128 0x40
+ 917 00d5 18       		.uleb128 0x18
+ 918 00d6 9742     		.uleb128 0x2117
+ 919 00d8 19       		.uleb128 0x19
+ 920 00d9 01       		.uleb128 0x1
+ 921 00da 13       		.uleb128 0x13
+ 922 00db 00       		.byte	0
+ 923 00dc 00       		.byte	0
+ 924 00dd 11       		.uleb128 0x11
+ 925 00de 898201   		.uleb128 0x4109
+ 926 00e1 00       		.byte	0
+ 927 00e2 11       		.uleb128 0x11
+ 928 00e3 01       		.uleb128 0x1
+ 929 00e4 31       		.uleb128 0x31
+ 930 00e5 13       		.uleb128 0x13
+ 931 00e6 00       		.byte	0
+ 932 00e7 00       		.byte	0
+ 933 00e8 12       		.uleb128 0x12
+ 934 00e9 2E       		.uleb128 0x2e
+ 935 00ea 01       		.byte	0x1
+ 936 00eb 3F       		.uleb128 0x3f
+ 937 00ec 19       		.uleb128 0x19
+ 938 00ed 03       		.uleb128 0x3
+ 939 00ee 0E       		.uleb128 0xe
+ 940 00ef 3A       		.uleb128 0x3a
+ 941 00f0 0B       		.uleb128 0xb
+ 942 00f1 3B       		.uleb128 0x3b
+ 943 00f2 0B       		.uleb128 0xb
+ 944 00f3 27       		.uleb128 0x27
+ 945 00f4 19       		.uleb128 0x19
+ 946 00f5 49       		.uleb128 0x49
+ 947 00f6 13       		.uleb128 0x13
+ 948 00f7 11       		.uleb128 0x11
+ 949 00f8 01       		.uleb128 0x1
+ 950 00f9 12       		.uleb128 0x12
+ 951 00fa 06       		.uleb128 0x6
+ 952 00fb 40       		.uleb128 0x40
+ 953 00fc 18       		.uleb128 0x18
+ 954 00fd 9742     		.uleb128 0x2117
+ 955 00ff 19       		.uleb128 0x19
+ 956 0100 01       		.uleb128 0x1
+ 957 0101 13       		.uleb128 0x13
+ 958 0102 00       		.byte	0
+ 959 0103 00       		.byte	0
+ 960 0104 13       		.uleb128 0x13
+ 961 0105 34       		.uleb128 0x34
+ 962 0106 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 23
+
+
+ 963 0107 03       		.uleb128 0x3
+ 964 0108 0E       		.uleb128 0xe
+ 965 0109 3A       		.uleb128 0x3a
+ 966 010a 0B       		.uleb128 0xb
+ 967 010b 3B       		.uleb128 0x3b
+ 968 010c 0B       		.uleb128 0xb
+ 969 010d 49       		.uleb128 0x49
+ 970 010e 13       		.uleb128 0x13
+ 971 010f 3F       		.uleb128 0x3f
+ 972 0110 19       		.uleb128 0x19
+ 973 0111 3C       		.uleb128 0x3c
+ 974 0112 19       		.uleb128 0x19
+ 975 0113 00       		.byte	0
+ 976 0114 00       		.byte	0
+ 977 0115 14       		.uleb128 0x14
+ 978 0116 2E       		.uleb128 0x2e
+ 979 0117 00       		.byte	0
+ 980 0118 3F       		.uleb128 0x3f
+ 981 0119 19       		.uleb128 0x19
+ 982 011a 3C       		.uleb128 0x3c
+ 983 011b 19       		.uleb128 0x19
+ 984 011c 6E       		.uleb128 0x6e
+ 985 011d 0E       		.uleb128 0xe
+ 986 011e 03       		.uleb128 0x3
+ 987 011f 0E       		.uleb128 0xe
+ 988 0120 3A       		.uleb128 0x3a
+ 989 0121 0B       		.uleb128 0xb
+ 990 0122 3B       		.uleb128 0x3b
+ 991 0123 0B       		.uleb128 0xb
+ 992 0124 00       		.byte	0
+ 993 0125 00       		.byte	0
+ 994 0126 00       		.byte	0
+ 995              		.section	.debug_loc,"",%progbits
+ 996              	.Ldebug_loc0:
+ 997              	.LLST0:
+ 998 0000 00000000 		.4byte	.LVL0
+ 999 0004 08000000 		.4byte	.LVL2
+ 1000 0008 0100     		.2byte	0x1
+ 1001 000a 50       		.byte	0x50
+ 1002 000b 08000000 		.4byte	.LVL2
+ 1003 000f 24000000 		.4byte	.LVL8
+ 1004 0013 0100     		.2byte	0x1
+ 1005 0015 55       		.byte	0x55
+ 1006 0016 24000000 		.4byte	.LVL8
+ 1007 001a 36000000 		.4byte	.LFE5
+ 1008 001e 0400     		.2byte	0x4
+ 1009 0020 F3       		.byte	0xf3
+ 1010 0021 01       		.uleb128 0x1
+ 1011 0022 50       		.byte	0x50
+ 1012 0023 9F       		.byte	0x9f
+ 1013 0024 00000000 		.4byte	0
+ 1014 0028 00000000 		.4byte	0
+ 1015              	.LLST1:
+ 1016 002c 00000000 		.4byte	.LVL0
+ 1017 0030 2E000000 		.4byte	.LVL10
+ 1018 0034 0100     		.2byte	0x1
+ 1019 0036 51       		.byte	0x51
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 24
+
+
+ 1020 0037 2E000000 		.4byte	.LVL10
+ 1021 003b 31000000 		.4byte	.LVL11-1
+ 1022 003f 0500     		.2byte	0x5
+ 1023 0041 71       		.byte	0x71
+ 1024 0042 00       		.sleb128 0
+ 1025 0043 75       		.byte	0x75
+ 1026 0044 00       		.sleb128 0
+ 1027 0045 22       		.byte	0x22
+ 1028 0046 31000000 		.4byte	.LVL11-1
+ 1029 004a 36000000 		.4byte	.LFE5
+ 1030 004e 0400     		.2byte	0x4
+ 1031 0050 F3       		.byte	0xf3
+ 1032 0051 01       		.uleb128 0x1
+ 1033 0052 51       		.byte	0x51
+ 1034 0053 9F       		.byte	0x9f
+ 1035 0054 00000000 		.4byte	0
+ 1036 0058 00000000 		.4byte	0
+ 1037              	.LLST2:
+ 1038 005c 06000000 		.4byte	.LVL1
+ 1039 0060 32000000 		.4byte	.LVL11
+ 1040 0064 0200     		.2byte	0x2
+ 1041 0066 30       		.byte	0x30
+ 1042 0067 9F       		.byte	0x9f
+ 1043 0068 32000000 		.4byte	.LVL11
+ 1044 006c 36000000 		.4byte	.LFE5
+ 1045 0070 0100     		.2byte	0x1
+ 1046 0072 50       		.byte	0x50
+ 1047 0073 00000000 		.4byte	0
+ 1048 0077 00000000 		.4byte	0
+ 1049              	.LLST3:
+ 1050 007b 06000000 		.4byte	.LVL1
+ 1051 007f 08000000 		.4byte	.LVL2
+ 1052 0083 0100     		.2byte	0x1
+ 1053 0085 50       		.byte	0x50
+ 1054 0086 08000000 		.4byte	.LVL2
+ 1055 008a 24000000 		.4byte	.LVL8
+ 1056 008e 0100     		.2byte	0x1
+ 1057 0090 55       		.byte	0x55
+ 1058 0091 24000000 		.4byte	.LVL8
+ 1059 0095 36000000 		.4byte	.LFE5
+ 1060 0099 0400     		.2byte	0x4
+ 1061 009b F3       		.byte	0xf3
+ 1062 009c 01       		.uleb128 0x1
+ 1063 009d 50       		.byte	0x50
+ 1064 009e 9F       		.byte	0x9f
+ 1065 009f 00000000 		.4byte	0
+ 1066 00a3 00000000 		.4byte	0
+ 1067              	.LLST4:
+ 1068 00a7 08000000 		.4byte	.LVL2
+ 1069 00ab 2A000000 		.4byte	.LVL9
+ 1070 00af 0100     		.2byte	0x1
+ 1071 00b1 50       		.byte	0x50
+ 1072 00b2 2A000000 		.4byte	.LVL9
+ 1073 00b6 36000000 		.4byte	.LFE5
+ 1074 00ba 0600     		.2byte	0x6
+ 1075 00bc F3       		.byte	0xf3
+ 1076 00bd 01       		.uleb128 0x1
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 25
+
+
+ 1077 00be 50       		.byte	0x50
+ 1078 00bf 38       		.byte	0x38
+ 1079 00c0 25       		.byte	0x25
+ 1080 00c1 9F       		.byte	0x9f
+ 1081 00c2 00000000 		.4byte	0
+ 1082 00c6 00000000 		.4byte	0
+ 1083              	.LLST5:
+ 1084 00ca 0E000000 		.4byte	.LVL3
+ 1085 00ce 34000000 		.4byte	.LVL12
+ 1086 00d2 0100     		.2byte	0x1
+ 1087 00d4 54       		.byte	0x54
+ 1088 00d5 34000000 		.4byte	.LVL12
+ 1089 00d9 36000000 		.4byte	.LFE5
+ 1090 00dd 0800     		.2byte	0x8
+ 1091 00df F3       		.byte	0xf3
+ 1092 00e0 01       		.uleb128 0x1
+ 1093 00e1 50       		.byte	0x50
+ 1094 00e2 0B       		.byte	0xb
+ 1095 00e3 00FF     		.2byte	0xff00
+ 1096 00e5 1A       		.byte	0x1a
+ 1097 00e6 9F       		.byte	0x9f
+ 1098 00e7 00000000 		.4byte	0
+ 1099 00eb 00000000 		.4byte	0
+ 1100              	.LLST6:
+ 1101 00ef 0E000000 		.4byte	.LVL3
+ 1102 00f3 12000000 		.4byte	.LVL4
+ 1103 00f7 0200     		.2byte	0x2
+ 1104 00f9 30       		.byte	0x30
+ 1105 00fa 9F       		.byte	0x9f
+ 1106 00fb 12000000 		.4byte	.LVL4
+ 1107 00ff 1A000000 		.4byte	.LVL5
+ 1108 0103 0100     		.2byte	0x1
+ 1109 0105 53       		.byte	0x53
+ 1110 0106 1C000000 		.4byte	.LVL6
+ 1111 010a 22000000 		.4byte	.LVL7
+ 1112 010e 0100     		.2byte	0x1
+ 1113 0110 53       		.byte	0x53
+ 1114 0111 00000000 		.4byte	0
+ 1115 0115 00000000 		.4byte	0
+ 1116              	.LLST7:
+ 1117 0119 00000000 		.4byte	.LVL14
+ 1118 011d 1A000000 		.4byte	.LVL15
+ 1119 0121 0200     		.2byte	0x2
+ 1120 0123 32       		.byte	0x32
+ 1121 0124 9F       		.byte	0x9f
+ 1122 0125 1A000000 		.4byte	.LVL15
+ 1123 0129 24000000 		.4byte	.LFE3
+ 1124 012d 0100     		.2byte	0x1
+ 1125 012f 50       		.byte	0x50
+ 1126 0130 00000000 		.4byte	0
+ 1127 0134 00000000 		.4byte	0
+ 1128              	.LLST8:
+ 1129 0138 00000000 		.4byte	.LVL16
+ 1130 013c 20000000 		.4byte	.LVL18
+ 1131 0140 0100     		.2byte	0x1
+ 1132 0142 50       		.byte	0x50
+ 1133 0143 20000000 		.4byte	.LVL18
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 26
+
+
+ 1134 0147 44000000 		.4byte	.LVL23
+ 1135 014b 0400     		.2byte	0x4
+ 1136 014d F3       		.byte	0xf3
+ 1137 014e 01       		.uleb128 0x1
+ 1138 014f 50       		.byte	0x50
+ 1139 0150 9F       		.byte	0x9f
+ 1140 0151 44000000 		.4byte	.LVL23
+ 1141 0155 4A000000 		.4byte	.LVL24
+ 1142 0159 0100     		.2byte	0x1
+ 1143 015b 50       		.byte	0x50
+ 1144 015c 4A000000 		.4byte	.LVL24
+ 1145 0160 54000000 		.4byte	.LFE4
+ 1146 0164 0400     		.2byte	0x4
+ 1147 0166 F3       		.byte	0xf3
+ 1148 0167 01       		.uleb128 0x1
+ 1149 0168 50       		.byte	0x50
+ 1150 0169 9F       		.byte	0x9f
+ 1151 016a 00000000 		.4byte	0
+ 1152 016e 00000000 		.4byte	0
+ 1153              	.LLST9:
+ 1154 0172 04000000 		.4byte	.LVL17
+ 1155 0176 20000000 		.4byte	.LVL18
+ 1156 017a 0200     		.2byte	0x2
+ 1157 017c 30       		.byte	0x30
+ 1158 017d 9F       		.byte	0x9f
+ 1159 017e 20000000 		.4byte	.LVL18
+ 1160 0182 44000000 		.4byte	.LVL23
+ 1161 0186 0100     		.2byte	0x1
+ 1162 0188 56       		.byte	0x56
+ 1163 0189 44000000 		.4byte	.LVL23
+ 1164 018d 4A000000 		.4byte	.LVL24
+ 1165 0191 0200     		.2byte	0x2
+ 1166 0193 30       		.byte	0x30
+ 1167 0194 9F       		.byte	0x9f
+ 1168 0195 4A000000 		.4byte	.LVL24
+ 1169 0199 4C000000 		.4byte	.LVL25
+ 1170 019d 0100     		.2byte	0x1
+ 1171 019f 56       		.byte	0x56
+ 1172 01a0 4C000000 		.4byte	.LVL25
+ 1173 01a4 54000000 		.4byte	.LFE4
+ 1174 01a8 0100     		.2byte	0x1
+ 1175 01aa 50       		.byte	0x50
+ 1176 01ab 00000000 		.4byte	0
+ 1177 01af 00000000 		.4byte	0
+ 1178              	.LLST10:
+ 1179 01b3 20000000 		.4byte	.LVL18
+ 1180 01b7 3C000000 		.4byte	.LVL21
+ 1181 01bb 0100     		.2byte	0x1
+ 1182 01bd 54       		.byte	0x54
+ 1183 01be 3E000000 		.4byte	.LVL22
+ 1184 01c2 44000000 		.4byte	.LVL23
+ 1185 01c6 0100     		.2byte	0x1
+ 1186 01c8 54       		.byte	0x54
+ 1187 01c9 00000000 		.4byte	0
+ 1188 01cd 00000000 		.4byte	0
+ 1189              	.LLST11:
+ 1190 01d1 00000000 		.4byte	.LVL26
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 27
+
+
+ 1191 01d5 08000000 		.4byte	.LVL28
+ 1192 01d9 0100     		.2byte	0x1
+ 1193 01db 50       		.byte	0x50
+ 1194 01dc 08000000 		.4byte	.LVL28
+ 1195 01e0 24000000 		.4byte	.LVL34
+ 1196 01e4 0100     		.2byte	0x1
+ 1197 01e6 55       		.byte	0x55
+ 1198 01e7 24000000 		.4byte	.LVL34
+ 1199 01eb 36000000 		.4byte	.LFE6
+ 1200 01ef 0400     		.2byte	0x4
+ 1201 01f1 F3       		.byte	0xf3
+ 1202 01f2 01       		.uleb128 0x1
+ 1203 01f3 50       		.byte	0x50
+ 1204 01f4 9F       		.byte	0x9f
+ 1205 01f5 00000000 		.4byte	0
+ 1206 01f9 00000000 		.4byte	0
+ 1207              	.LLST12:
+ 1208 01fd 00000000 		.4byte	.LVL26
+ 1209 0201 2E000000 		.4byte	.LVL36
+ 1210 0205 0100     		.2byte	0x1
+ 1211 0207 51       		.byte	0x51
+ 1212 0208 2E000000 		.4byte	.LVL36
+ 1213 020c 31000000 		.4byte	.LVL37-1
+ 1214 0210 0500     		.2byte	0x5
+ 1215 0212 71       		.byte	0x71
+ 1216 0213 00       		.sleb128 0
+ 1217 0214 75       		.byte	0x75
+ 1218 0215 00       		.sleb128 0
+ 1219 0216 22       		.byte	0x22
+ 1220 0217 31000000 		.4byte	.LVL37-1
+ 1221 021b 36000000 		.4byte	.LFE6
+ 1222 021f 0400     		.2byte	0x4
+ 1223 0221 F3       		.byte	0xf3
+ 1224 0222 01       		.uleb128 0x1
+ 1225 0223 51       		.byte	0x51
+ 1226 0224 9F       		.byte	0x9f
+ 1227 0225 00000000 		.4byte	0
+ 1228 0229 00000000 		.4byte	0
+ 1229              	.LLST13:
+ 1230 022d 06000000 		.4byte	.LVL27
+ 1231 0231 08000000 		.4byte	.LVL28
+ 1232 0235 0100     		.2byte	0x1
+ 1233 0237 50       		.byte	0x50
+ 1234 0238 08000000 		.4byte	.LVL28
+ 1235 023c 24000000 		.4byte	.LVL34
+ 1236 0240 0100     		.2byte	0x1
+ 1237 0242 55       		.byte	0x55
+ 1238 0243 24000000 		.4byte	.LVL34
+ 1239 0247 36000000 		.4byte	.LFE6
+ 1240 024b 0400     		.2byte	0x4
+ 1241 024d F3       		.byte	0xf3
+ 1242 024e 01       		.uleb128 0x1
+ 1243 024f 50       		.byte	0x50
+ 1244 0250 9F       		.byte	0x9f
+ 1245 0251 00000000 		.4byte	0
+ 1246 0255 00000000 		.4byte	0
+ 1247              	.LLST14:
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 28
+
+
+ 1248 0259 08000000 		.4byte	.LVL28
+ 1249 025d 2A000000 		.4byte	.LVL35
+ 1250 0261 0100     		.2byte	0x1
+ 1251 0263 50       		.byte	0x50
+ 1252 0264 2A000000 		.4byte	.LVL35
+ 1253 0268 36000000 		.4byte	.LFE6
+ 1254 026c 0600     		.2byte	0x6
+ 1255 026e F3       		.byte	0xf3
+ 1256 026f 01       		.uleb128 0x1
+ 1257 0270 50       		.byte	0x50
+ 1258 0271 38       		.byte	0x38
+ 1259 0272 25       		.byte	0x25
+ 1260 0273 9F       		.byte	0x9f
+ 1261 0274 00000000 		.4byte	0
+ 1262 0278 00000000 		.4byte	0
+ 1263              	.LLST15:
+ 1264 027c 0E000000 		.4byte	.LVL29
+ 1265 0280 34000000 		.4byte	.LVL38
+ 1266 0284 0100     		.2byte	0x1
+ 1267 0286 54       		.byte	0x54
+ 1268 0287 34000000 		.4byte	.LVL38
+ 1269 028b 36000000 		.4byte	.LFE6
+ 1270 028f 0800     		.2byte	0x8
+ 1271 0291 F3       		.byte	0xf3
+ 1272 0292 01       		.uleb128 0x1
+ 1273 0293 50       		.byte	0x50
+ 1274 0294 0B       		.byte	0xb
+ 1275 0295 00FF     		.2byte	0xff00
+ 1276 0297 1A       		.byte	0x1a
+ 1277 0298 9F       		.byte	0x9f
+ 1278 0299 00000000 		.4byte	0
+ 1279 029d 00000000 		.4byte	0
+ 1280              	.LLST16:
+ 1281 02a1 0E000000 		.4byte	.LVL29
+ 1282 02a5 12000000 		.4byte	.LVL30
+ 1283 02a9 0200     		.2byte	0x2
+ 1284 02ab 30       		.byte	0x30
+ 1285 02ac 9F       		.byte	0x9f
+ 1286 02ad 12000000 		.4byte	.LVL30
+ 1287 02b1 1A000000 		.4byte	.LVL31
+ 1288 02b5 0100     		.2byte	0x1
+ 1289 02b7 53       		.byte	0x53
+ 1290 02b8 1C000000 		.4byte	.LVL32
+ 1291 02bc 22000000 		.4byte	.LVL33
+ 1292 02c0 0100     		.2byte	0x1
+ 1293 02c2 53       		.byte	0x53
+ 1294 02c3 00000000 		.4byte	0
+ 1295 02c7 00000000 		.4byte	0
+ 1296              		.section	.debug_aranges,"",%progbits
+ 1297 0000 3C000000 		.4byte	0x3c
+ 1298 0004 0200     		.2byte	0x2
+ 1299 0006 00000000 		.4byte	.Ldebug_info0
+ 1300 000a 04       		.byte	0x4
+ 1301 000b 00       		.byte	0
+ 1302 000c 0000     		.2byte	0
+ 1303 000e 0000     		.2byte	0
+ 1304 0010 00000000 		.4byte	.LFB5
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 29
+
+
+ 1305 0014 36000000 		.4byte	.LFE5-.LFB5
+ 1306 0018 00000000 		.4byte	.LFB2
+ 1307 001c 14000000 		.4byte	.LFE2-.LFB2
+ 1308 0020 00000000 		.4byte	.LFB3
+ 1309 0024 24000000 		.4byte	.LFE3-.LFB3
+ 1310 0028 00000000 		.4byte	.LFB4
+ 1311 002c 54000000 		.4byte	.LFE4-.LFB4
+ 1312 0030 00000000 		.4byte	.LFB6
+ 1313 0034 36000000 		.4byte	.LFE6-.LFB6
+ 1314 0038 00000000 		.4byte	0
+ 1315 003c 00000000 		.4byte	0
+ 1316              		.section	.debug_ranges,"",%progbits
+ 1317              	.Ldebug_ranges0:
+ 1318 0000 00000000 		.4byte	.LFB5
+ 1319 0004 36000000 		.4byte	.LFE5
+ 1320 0008 00000000 		.4byte	.LFB2
+ 1321 000c 14000000 		.4byte	.LFE2
+ 1322 0010 00000000 		.4byte	.LFB3
+ 1323 0014 24000000 		.4byte	.LFE3
+ 1324 0018 00000000 		.4byte	.LFB4
+ 1325 001c 54000000 		.4byte	.LFE4
+ 1326 0020 00000000 		.4byte	.LFB6
+ 1327 0024 36000000 		.4byte	.LFE6
+ 1328 0028 00000000 		.4byte	0
+ 1329 002c 00000000 		.4byte	0
+ 1330              		.section	.debug_line,"",%progbits
+ 1331              	.Ldebug_line0:
+ 1332 0000 25010000 		.section	.debug_str,"MS",%progbits,1
+ 1332      02007300 
+ 1332      00000201 
+ 1332      FB0E0D00 
+ 1332      01010101 
+ 1333              	.LASF15:
+ 1334 0000 63797374 		.ascii	"cystatus\000"
+ 1334      61747573 
+ 1334      00
+ 1335              	.LASF23:
+ 1336 0009 726F774E 		.ascii	"rowNum\000"
+ 1336      756D00
+ 1337              	.LASF3:
+ 1338 0010 73686F72 		.ascii	"short unsigned int\000"
+ 1338      7420756E 
+ 1338      7369676E 
+ 1338      65642069 
+ 1338      6E7400
+ 1339              	.LASF35:
+ 1340 0023 433A5C55 		.ascii	"C:\\Users\\Tymek\\Documents\\EE\\Programming\\PSoC\\"
+ 1340      73657273 
+ 1340      5C54796D 
+ 1340      656B5C44 
+ 1340      6F63756D 
+ 1341 0050 4359424C 		.ascii	"CYBLE-224110-00_Clock_OTA\\BLE_OTA_UpgradableStackE"
+ 1341      452D3232 
+ 1341      34313130 
+ 1341      2D30305F 
+ 1341      436C6F63 
+ 1342 0082 78616D70 		.ascii	"xample_Stack01.cydsn\000"
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 30
+
+
+ 1342      6C655F53 
+ 1342      7461636B 
+ 1342      30312E63 
+ 1342      7964736E 
+ 1343              	.LASF36:
+ 1344 0097 426F6F74 		.ascii	"Bootloadable_WriteFlashByte\000"
+ 1344      6C6F6164 
+ 1344      61626C65 
+ 1344      5F577269 
+ 1344      7465466C 
+ 1345              	.LASF12:
+ 1346 00b3 666C6F61 		.ascii	"float\000"
+ 1346      7400
+ 1347              	.LASF7:
+ 1348 00b9 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1348      206C6F6E 
+ 1348      6720756E 
+ 1348      7369676E 
+ 1348      65642069 
+ 1349              	.LASF1:
+ 1350 00d0 756E7369 		.ascii	"unsigned char\000"
+ 1350      676E6564 
+ 1350      20636861 
+ 1350      7200
+ 1351              	.LASF22:
+ 1352 00de 726F7744 		.ascii	"rowData\000"
+ 1352      61746100 
+ 1353              	.LASF5:
+ 1354 00e6 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1354      20756E73 
+ 1354      69676E65 
+ 1354      6420696E 
+ 1354      7400
+ 1355              	.LASF9:
+ 1356 00f8 75696E74 		.ascii	"uint8\000"
+ 1356      3800
+ 1357              	.LASF28:
+ 1358 00fe 426F6F74 		.ascii	"Bootloadable_Load\000"
+ 1358      6C6F6164 
+ 1358      61626C65 
+ 1358      5F4C6F61 
+ 1358      6400
+ 1359              	.LASF13:
+ 1360 0110 646F7562 		.ascii	"double\000"
+ 1360      6C6500
+ 1361              	.LASF26:
+ 1362 0117 426F6F74 		.ascii	"Bootloadable_SetActiveApplication\000"
+ 1362      6C6F6164 
+ 1362      61626C65 
+ 1362      5F536574 
+ 1362      41637469 
+ 1363              	.LASF31:
+ 1364 0139 43795379 		.ascii	"CySysFlashWriteRow\000"
+ 1364      73466C61 
+ 1364      73685772 
+ 1364      69746552 
+ 1364      6F7700
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 31
+
+
+ 1365              	.LASF21:
+ 1366 014c 666C7341 		.ascii	"flsAddr\000"
+ 1366      64647200 
+ 1367              	.LASF10:
+ 1368 0154 75696E74 		.ascii	"uint16\000"
+ 1368      313600
+ 1369              	.LASF11:
+ 1370 015b 75696E74 		.ascii	"uint32\000"
+ 1370      333200
+ 1371              	.LASF8:
+ 1372 0162 756E7369 		.ascii	"unsigned int\000"
+ 1372      676E6564 
+ 1372      20696E74 
+ 1372      00
+ 1373              	.LASF18:
+ 1374 016f 61646472 		.ascii	"address\000"
+ 1374      65737300 
+ 1375              	.LASF25:
+ 1376 0177 426F6F74 		.ascii	"Bootloadable_GetActiveApplication\000"
+ 1376      6C6F6164 
+ 1376      61626C65 
+ 1376      5F476574 
+ 1376      41637469 
+ 1377              	.LASF20:
+ 1378 0199 72657375 		.ascii	"result\000"
+ 1378      6C7400
+ 1379              	.LASF30:
+ 1380 01a0 72756E54 		.ascii	"runType\000"
+ 1380      79706500 
+ 1381              	.LASF34:
+ 1382 01a8 47656E65 		.ascii	"Generated_Source\\PSoC4\\Bootloadable.c\000"
+ 1382      72617465 
+ 1382      645F536F 
+ 1382      75726365 
+ 1382      5C50536F 
+ 1383              	.LASF33:
+ 1384 01ce 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1384      43313120 
+ 1384      352E342E 
+ 1384      31203230 
+ 1384      31363036 
+ 1385 0201 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1385      20726576 
+ 1385      6973696F 
+ 1385      6E203233 
+ 1385      37373135 
+ 1386 0234 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1386      66756E63 
+ 1386      74696F6E 
+ 1386      2D736563 
+ 1386      74696F6E 
+ 1387              	.LASF24:
+ 1388 025c 62617365 		.ascii	"baseAddr\000"
+ 1388      41646472 
+ 1388      00
+ 1389              	.LASF17:
+ 1390 0265 73697A65 		.ascii	"sizetype\000"
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccl7E0Lk.s 			page 32
+
+
+ 1390      74797065 
+ 1390      00
+ 1391              	.LASF6:
+ 1392 026e 6C6F6E67 		.ascii	"long long int\000"
+ 1392      206C6F6E 
+ 1392      6720696E 
+ 1392      7400
+ 1393              	.LASF14:
+ 1394 027c 63686172 		.ascii	"char\000"
+ 1394      00
+ 1395              	.LASF27:
+ 1396 0281 61707049 		.ascii	"appId\000"
+ 1396      6400
+ 1397              	.LASF29:
+ 1398 0287 426F6F74 		.ascii	"Bootloadable_SetFlashByte\000"
+ 1398      6C6F6164 
+ 1398      61626C65 
+ 1398      5F536574 
+ 1398      466C6173 
+ 1399              	.LASF2:
+ 1400 02a1 73686F72 		.ascii	"short int\000"
+ 1400      7420696E 
+ 1400      7400
+ 1401              	.LASF19:
+ 1402 02ab 696E7075 		.ascii	"inputValue\000"
+ 1402      7456616C 
+ 1402      756500
+ 1403              	.LASF32:
+ 1404 02b6 4379536F 		.ascii	"CySoftwareReset\000"
+ 1404      66747761 
+ 1404      72655265 
+ 1404      73657400 
+ 1405              	.LASF4:
+ 1406 02c6 6C6F6E67 		.ascii	"long int\000"
+ 1406      20696E74 
+ 1406      00
+ 1407              	.LASF16:
+ 1408 02cf 6C6F6E67 		.ascii	"long double\000"
+ 1408      20646F75 
+ 1408      626C6500 
+ 1409              	.LASF0:
+ 1410 02db 7369676E 		.ascii	"signed char\000"
+ 1410      65642063 
+ 1410      68617200 
+ 1411              	.LASF37:
+ 1412 02e7 63794274 		.ascii	"cyBtldrRunType\000"
+ 1412      6C647252 
+ 1412      756E5479 
+ 1412      706500
+ 1413              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

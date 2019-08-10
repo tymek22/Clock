@@ -1,0 +1,112 @@
+--------------- Rebuild Started: 07/31/2019 22:55:31 Project: CYBLE-224110-00 Clock firmware, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\main.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\ota_mandatory.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\cymetadata.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\Cm0Start.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\CyFlash.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\CyLib.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\cyPm.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\cyutils.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\CyBootAsmGnu.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\CyLFClk.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\I2C.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\I2C_I2C_INT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\I2C_I2C.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\I2C_I2C_BOOT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\I2C_I2C_MASTER.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\I2C_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\I2C_BOOT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\UART.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\UART_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\UART_BOOT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\UART_SPI_UART.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\UART_SPI_UART_INT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\UART_UART.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\UART_UART_BOOT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\BLE.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\BLE_gatt.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\BLE_eventHandler.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\BLE_HAL_INT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\BLE_HAL_PVT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\BLE_custom.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\ADC.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\ADC_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\ADC_INT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\ldrPin.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\ldrPin_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\pirPin.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\pirPin_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\sqwPin.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\sqwPin_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\sqwPin_isr.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\stripHourPin.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\stripHourPin_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\stripMinutePin.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\stripMinutePin_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\ledStrip.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\ledStrip_fonts.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\I2C_SCBCLK.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\I2C_sda.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\I2C_sda_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\I2C_scl.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\I2C_scl_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\I2C_SCB_IRQ.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\BLE_bless_isr.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\ADC_IRQ.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\ADC_intClock.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\ledStrip_cisr.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\ledStrip_fisr.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\ledStrip_StringSel.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\ledStrip_StringSel_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\UART_SCBCLK.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\UART_tx.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\UART_tx_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\CPS.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\CPS_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\CSD.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\CSD_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\cybootloader.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\Bootloadable.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\CYBLE-224110-00 Clock firmware.hex"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\CYBLE-224110-00 Clock firmware.elf"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\CYBLE-224110-00 Clock firmware.map"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\CYBLE-224110-00 Clock firmware.cyacd"
+Deleting file ".\CYBLE-224110-00 Clock firmware.rpt"
+Deleting file ".\CYBLE-224110-00 Clock firmware_timing.html"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\.deps\SOURCE_C__ARM_GCC_GENERIC.P"
+Deleting file ".\CortexM0\ARM_GCC_541\Debug\.deps\SOURCE_ASM__ARM_GCC_GENERIC.P"
+cydsfit.exe -.appdatapath "C:\Users\Tymek\AppData\Local\Cypress Semiconductor\PSoC Creator\4.1" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p "C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\CYBLE-224110-00 Clock firmware.cyprj" -d CYBLE-224110-00 -s "C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\Generated_Source\PSoC4" -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+Elaborating Design...
+ADD: sdb.M0033: error: The instance 'B_WS2811', of component B_WS2811_v1_3, contains an error. Unable to locate and customize component 'B_WS2811_v1_3' used in schematic 'C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch'.
+ *  (Component Update Tool)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Instance:B_WS2811)
+ADD: sdb.M0025: error: No input on Instance "fisr", terminal "int_signal".
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Signal: Net_159)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_135)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_154.1)
+ADD: sdb.M0050: error: Terminal "int_signal" requires connection when it is visible.
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Signal: Net_159)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_135)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_154.1)
+ADD: sdb.M0025: error: No input on Instance "demux_1", terminal "inTerm".
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Signal: Net_64)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_120)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_83.20)
+ADD: sdb.M0050: error: Terminal "inTerm" requires connection when it is visible.
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Signal: Net_64)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_120)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_83.20)
+ADD: sdb.M0017: error: No drivers on signal "rdy", bit(s) "0".
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Signal: rdy)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_130)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_131.1)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_136)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_137)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_138)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_139)
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\StripLights_v2_2\PSoC4\StripLights_v2_2.cysch (Shape_42)
+ADD: sdb.M0061: information: Info from component: ADC. The actual sample rate (6944 SPS) differs from the desired sample rate (7000 SPS) due to the clock configuration in the DWR.
+ * C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\TopDesign\TopDesign.cysch (Instance:ADC)
+Error: fit.M0050: The fitter aborted due to errors, please address all errors and rebuild. (App=cydsfit)
+--------------- Rebuild Failed: 07/31/2019 22:55:38 ---------------

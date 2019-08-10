@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWorkspaceSerialize" version="5" xml_contents_version="3" name="CYBLE-224110-00 Clock" persistent="CYBLE-224110-00 Clock.cywrk" platform="NOT_USED">
+<current_project name=".\CYBLE-224110-00 Clock firmware.cydsn\CYBLE-224110-00 Clock firmware.cyprj" />
+<wrkspc_folders>
+<CyGuid_3d701fc1-2c3a-425c-8638-e8a3348fa282 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWkspFolderSerialize" version="2" name="LinkerScripts" persistent="">
+<wrkspc_folders />
+<files>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="cm0gcc.ld" persistent="cm0gcc.ld">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="LINKER_SCRIPT;;;b98f980c-3bd1-4fc7-a887-c56a20a46fdd;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="cm0mdk.scat" persistent="cm0mdk.scat">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="LINKER_SCRIPT;;;fdb8e1ae-f83a-46cf-9446-1d703716f38a;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+</files>
+<projects />
+</CyGuid_3d701fc1-2c3a-425c-8638-e8a3348fa282>
+</wrkspc_folders>
+<files />
+<projects>
+<v>.\CYBLE-224110-00 Clock firmware.cydsn\CYBLE-224110-00 Clock firmware.cyprj</v>
+<v>.\BLE_OTA_UpgradableStackExample_Launcher01.cydsn\BLE_OTA_UpgradableStackExample_Launcher01.cyprj</v>
+<v>.\BLE_OTA_UpgradableStackExample_Stack01.cydsn\BLE_OTA_UpgradableStackExample_Stack01.cyprj</v>
+</projects>
+<workspace_id v="dad66faf-d4b8-4065-a25d-379357dc19a0" />
+<WriteAppVersionLastSavedWith v="4.1.0.3210" />
+<WriteAppMarketingVersionLastSavedWith v="4.1 Update 1" />
+<CyGuid_dcbd9771-0334-43dc-9cc3-fe99dc3c5316 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWorkspaceSerialize+CyPrjDependencyList" version="4">
+<wrkspc_dependencies>
+<wrkspc_dependency project="CYBLE-224110-00 Clock firmware.cydsn\CYBLE-224110-00 Clock firmware.cyprj" dependency="..\..\WS2812 Library Cypress\StripLightLib.cylib\StripLightLib.cyprj" />
+</wrkspc_dependencies>
+</CyGuid_dcbd9771-0334-43dc-9cc3-fe99dc3c5316>
+<CyGuid_63b68103-67f5-4406-8da6-5c8625765b82 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWorkspaceSerialize+CyIgnoredSystemDepsList" version="1">
+<wrkspc_dependencies />
+</CyGuid_63b68103-67f5-4406-8da6-5c8625765b82>
+</CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd>
+</CyXmlSerializer>

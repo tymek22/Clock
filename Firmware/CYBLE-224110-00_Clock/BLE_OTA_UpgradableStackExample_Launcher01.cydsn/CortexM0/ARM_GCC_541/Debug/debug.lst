@@ -1,0 +1,2009 @@
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"debug.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text._write,"ax",%progbits
+  20              		.align	1
+  21              		.global	_write
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	_write, %function
+  25              	_write:
+  26              	.LFB36:
+  27              		.file 1 "debug.c"
+   1:debug.c       **** /*******************************************************************************
+   2:debug.c       **** * File Name: debug.c
+   3:debug.c       **** *
+   4:debug.c       **** * Version: 1.20
+   5:debug.c       **** *
+   6:debug.c       **** * Description:
+   7:debug.c       **** *
+   8:debug.c       **** * Hardware Dependency:
+   9:debug.c       **** *  CY8CKIT-042 BLE
+  10:debug.c       **** *
+  11:debug.c       **** ********************************************************************************
+  12:debug.c       **** * Copyright 2014-2016, Cypress Semiconductor Corporation. All rights reserved.
+  13:debug.c       **** * This software is owned by Cypress Semiconductor Corporation and is protected
+  14:debug.c       **** * by and subject to worldwide patent and copyright laws and treaties.
+  15:debug.c       **** * Therefore, you may use this software only as provided in the license agreement
+  16:debug.c       **** * accompanying the software package from which you obtained this software.
+  17:debug.c       **** * CYPRESS AND ITS SUPPLIERS MAKE NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+  18:debug.c       **** * WITH REGARD TO THIS SOFTWARE, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT,
+  19:debug.c       **** * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  20:debug.c       **** *******************************************************************************/
+  21:debug.c       **** 
+  22:debug.c       **** #include "cytypes.h"
+  23:debug.c       **** #include "debug.h"
+  24:debug.c       **** #include "project.h"
+  25:debug.c       **** 
+  26:debug.c       **** #if (DEBUG_UART_ENABLED == YES)
+  27:debug.c       **** 
+  28:debug.c       **** #if defined(__ARMCC_VERSION)
+  29:debug.c       **** 
+  30:debug.c       **** /* For MDK/RVDS compiler revise fputc() for the printf() */
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 2
+
+
+  31:debug.c       **** struct __FILE
+  32:debug.c       **** {
+  33:debug.c       ****     int handle;
+  34:debug.c       **** };
+  35:debug.c       **** 
+  36:debug.c       **** enum
+  37:debug.c       **** {
+  38:debug.c       ****     STDIN_HANDLE,
+  39:debug.c       ****     STDOUT_HANDLE,
+  40:debug.c       ****     STDERR_HANDLE
+  41:debug.c       **** } ;
+  42:debug.c       **** 
+  43:debug.c       **** FILE __stdin = {STDIN_HANDLE};
+  44:debug.c       **** FILE __stdout = {STDOUT_HANDLE};
+  45:debug.c       **** FILE __stderr = {STDERR_HANDLE};
+  46:debug.c       **** 
+  47:debug.c       **** int fputc(int ch, FILE *file)
+  48:debug.c       **** {
+  49:debug.c       ****     int ret = EOF;
+  50:debug.c       **** 
+  51:debug.c       ****     switch( file->handle )
+  52:debug.c       ****     {
+  53:debug.c       ****         case STDOUT_HANDLE:
+  54:debug.c       ****             UART_PutChar(ch);
+  55:debug.c       ****             ret = ch ;
+  56:debug.c       ****             break ;
+  57:debug.c       **** 
+  58:debug.c       ****         case STDERR_HANDLE:
+  59:debug.c       ****             ret = ch ;
+  60:debug.c       ****             break ;
+  61:debug.c       **** 
+  62:debug.c       ****         default:
+  63:debug.c       ****             file = file;
+  64:debug.c       ****             break ;
+  65:debug.c       ****     }
+  66:debug.c       ****     return ret ;
+  67:debug.c       **** }
+  68:debug.c       **** 
+  69:debug.c       **** #elif defined (__ICCARM__)      /* IAR */
+  70:debug.c       **** 
+  71:debug.c       **** /* For IAR compiler revise __write() function for printf functionality */
+  72:debug.c       **** size_t __write(int handle, const unsigned char * buffer, size_t size)
+  73:debug.c       **** {
+  74:debug.c       ****     size_t nChars = 0;
+  75:debug.c       **** 
+  76:debug.c       ****     if (buffer == 0)
+  77:debug.c       ****     {
+  78:debug.c       ****         /*
+  79:debug.c       ****          * This means that we should flush internal buffers.  Since we
+  80:debug.c       ****          * don't we just return.  (Remember, "handle" == -1 means that all
+  81:debug.c       ****          * handles should be flushed.)
+  82:debug.c       ****          */
+  83:debug.c       ****         return (0);
+  84:debug.c       ****     }
+  85:debug.c       **** 
+  86:debug.c       ****     for (/* Empty */; size != 0; --size)
+  87:debug.c       ****     {
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 3
+
+
+  88:debug.c       ****         UART_PutChar(*buffer);
+  89:debug.c       ****         ++buffer;
+  90:debug.c       ****         ++nChars;
+  91:debug.c       ****     }
+  92:debug.c       **** 
+  93:debug.c       ****     return (nChars);
+  94:debug.c       **** }
+  95:debug.c       **** 
+  96:debug.c       **** #else  /* (__GNUC__)  GCC */
+  97:debug.c       **** 
+  98:debug.c       **** /* For GCC compiler revise _write() function for printf functionality */
+  99:debug.c       **** int _write(int file, char *ptr, int len)
+ 100:debug.c       **** {
+  28              		.loc 1 100 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 70B5     		push	{r4, r5, r6, lr}
+  34              		.cfi_def_cfa_offset 16
+  35              		.cfi_offset 4, -16
+  36              		.cfi_offset 5, -12
+  37              		.cfi_offset 6, -8
+  38              		.cfi_offset 14, -4
+  39              		.loc 1 100 0
+  40 0002 0E00     		movs	r6, r1
+  41 0004 1500     		movs	r5, r2
+ 101:debug.c       ****     int i;
+ 102:debug.c       ****     file = file;
+ 103:debug.c       ****     for (i = 0; i < len; i++)
+  42              		.loc 1 103 0
+  43 0006 0C00     		movs	r4, r1
+  44              	.LVL1:
+  45              	.L2:
+  46              		.loc 1 103 0 is_stmt 0 discriminator 1
+  47 0008 A31B     		subs	r3, r4, r6
+  48              	.LVL2:
+  49 000a 9D42     		cmp	r5, r3
+  50 000c 04DD     		ble	.L5
+ 104:debug.c       ****     {
+ 105:debug.c       ****         UART_PutChar(*ptr);
+  51              		.loc 1 105 0 is_stmt 1 discriminator 3
+  52 000e 2078     		ldrb	r0, [r4]
+  53 0010 FFF7FEFF 		bl	UART_PutChar
+  54              	.LVL3:
+ 106:debug.c       ****         ++ptr;
+  55              		.loc 1 106 0 discriminator 3
+  56 0014 0134     		adds	r4, r4, #1
+  57              	.LVL4:
+  58 0016 F7E7     		b	.L2
+  59              	.LVL5:
+  60              	.L5:
+ 107:debug.c       ****     }
+ 108:debug.c       ****     return len;
+ 109:debug.c       **** }
+  61              		.loc 1 109 0
+  62 0018 2800     		movs	r0, r5
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 4
+
+
+  63              		@ sp needed
+  64              	.LVL6:
+  65              	.LVL7:
+  66 001a 70BD     		pop	{r4, r5, r6, pc}
+  67              		.cfi_endproc
+  68              	.LFE36:
+  69              		.size	_write, .-_write
+  70              		.global	__aeabi_uidiv
+  71              		.section	.text.DBG_PRINT_DEC,"ax",%progbits
+  72              		.align	1
+  73              		.global	DBG_PRINT_DEC
+  74              		.code	16
+  75              		.thumb_func
+  76              		.type	DBG_PRINT_DEC, %function
+  77              	DBG_PRINT_DEC:
+  78              	.LFB38:
+ 110:debug.c       **** 
+ 111:debug.c       **** #endif  /* (__ARMCC_VERSION) */
+ 112:debug.c       **** 
+ 113:debug.c       ****     
+ 114:debug.c       ****     
+ 115:debug.c       **** #if DEBUG_UART_USE_PRINTF_FORMAT == NO
+ 116:debug.c       **** 
+ 117:debug.c       **** static uint32 divmod10(uint32 value, uint32 *reminder)
+ 118:debug.c       **** {
+ 119:debug.c       ****     uint32_t result = value / 10u;
+ 120:debug.c       ****     *reminder = value - result * 10u;
+ 121:debug.c       ****     return result;
+ 122:debug.c       **** }
+ 123:debug.c       **** 
+ 124:debug.c       **** void DBG_PRINT_DEC(uint32 value)
+ 125:debug.c       **** {
+  79              		.loc 1 125 0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 16
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83              	.LVL8:
+  84 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  85              		.cfi_def_cfa_offset 20
+  86              		.cfi_offset 4, -20
+  87              		.cfi_offset 5, -16
+  88              		.cfi_offset 6, -12
+  89              		.cfi_offset 7, -8
+  90              		.cfi_offset 14, -4
+  91 0002 0400     		movs	r4, r0
+ 126:debug.c       ****     char buf[12];
+ 127:debug.c       ****     uint32 len = 0;
+  92              		.loc 1 127 0
+  93 0004 0026     		movs	r6, #0
+  94              	.LBB6:
+  95              	.LBB7:
+  96              	.LBB8:
+ 119:debug.c       ****     *reminder = value - result * 10u;
+  97              		.loc 1 119 0
+  98 0006 0A27     		movs	r7, #10
+  99              	.LBE8:
+ 100              	.LBE7:
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 5
+
+
+ 101              	.LBE6:
+ 125:debug.c       ****     char buf[12];
+ 102              		.loc 1 125 0
+ 103 0008 85B0     		sub	sp, sp, #20
+ 104              		.cfi_def_cfa_offset 40
+ 105              	.LBB11:
+ 128:debug.c       ****     uint32 i = 0;
+ 129:debug.c       ****     do
+ 130:debug.c       ****     {
+ 131:debug.c       ****         uint32 rem;
+ 132:debug.c       ****         value = divmod10(value, &rem);
+ 133:debug.c       ****         buf[len] = '0' + rem;
+ 106              		.loc 1 133 0
+ 107 000a 01AD     		add	r5, sp, #4
+ 108              	.LVL9:
+ 109              	.L7:
+ 110              	.LBB10:
+ 111              	.LBB9:
+ 119:debug.c       ****     *reminder = value - result * 10u;
+ 112              		.loc 1 119 0 discriminator 1
+ 113 000c 2000     		movs	r0, r4
+ 114 000e 0A21     		movs	r1, #10
+ 115 0010 FFF7FEFF 		bl	__aeabi_uidiv
+ 116              	.LVL10:
+ 117              	.LBE9:
+ 118              	.LBE10:
+ 119              		.loc 1 133 0 discriminator 1
+ 120 0014 3B00     		movs	r3, r7
+ 121 0016 4343     		muls	r3, r0
+ 122 0018 E41A     		subs	r4, r4, r3
+ 123              	.LVL11:
+ 124 001a 3034     		adds	r4, r4, #48
+ 125 001c 7455     		strb	r4, [r6, r5]
+ 134:debug.c       ****         ++len;
+ 126              		.loc 1 134 0 discriminator 1
+ 127 001e 721C     		adds	r2, r6, #1
+ 128              	.LVL12:
+ 129 0020 041E     		subs	r4, r0, #0
+ 130              	.LBE11:
+ 135:debug.c       ****     } while (value != 0);
+ 131              		.loc 1 135 0 discriminator 1
+ 132 0022 01D0     		beq	.L11
+ 133              	.LBB12:
+ 134:debug.c       ****         ++len;
+ 134              		.loc 1 134 0
+ 135 0024 1600     		movs	r6, r2
+ 136 0026 F1E7     		b	.L7
+ 137              	.L11:
+ 138              	.LVL13:
+ 139              	.L8:
+ 140 0028 4142     		rsbs	r1, r0, #0
+ 141 002a AB19     		adds	r3, r5, r6
+ 142              	.LBE12:
+ 143              	.LBB13:
+ 136:debug.c       ****     for (i = 0; i < len; ++i)
+ 137:debug.c       ****     {
+ 138:debug.c       ****         char tmp = buf[len - i - 1];
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 6
+
+
+ 139:debug.c       ****         buf[len - i - 1] = buf[i];
+ 144              		.loc 1 139 0 discriminator 3
+ 145 002c 2F5C     		ldrb	r7, [r5, r0]
+ 138:debug.c       ****         buf[len - i - 1] = buf[i];
+ 146              		.loc 1 138 0 discriminator 3
+ 147 002e 5C5C     		ldrb	r4, [r3, r1]
+ 148              	.LVL14:
+ 149              		.loc 1 139 0 discriminator 3
+ 150 0030 5F54     		strb	r7, [r3, r1]
+ 140:debug.c       ****         buf[i] = tmp;
+ 151              		.loc 1 140 0 discriminator 3
+ 152 0032 2C54     		strb	r4, [r5, r0]
+ 153              	.LBE13:
+ 136:debug.c       ****     for (i = 0; i < len; ++i)
+ 154              		.loc 1 136 0 discriminator 3
+ 155 0034 0130     		adds	r0, r0, #1
+ 156              	.LVL15:
+ 157 0036 8242     		cmp	r2, r0
+ 158 0038 F6D1     		bne	.L8
+ 141:debug.c       ****     }
+ 142:debug.c       ****     buf[len] = '\0';
+ 159              		.loc 1 142 0
+ 160 003a 0023     		movs	r3, #0
+ 143:debug.c       ****     UART_PutString(buf);
+ 161              		.loc 1 143 0
+ 162 003c 2800     		movs	r0, r5
+ 163              	.LVL16:
+ 142:debug.c       ****     UART_PutString(buf);
+ 164              		.loc 1 142 0
+ 165 003e AB54     		strb	r3, [r5, r2]
+ 166              		.loc 1 143 0
+ 167 0040 FFF7FEFF 		bl	UART_PutString
+ 168              	.LVL17:
+ 144:debug.c       **** }
+ 169              		.loc 1 144 0
+ 170 0044 05B0     		add	sp, sp, #20
+ 171              		@ sp needed
+ 172              	.LVL18:
+ 173              	.LVL19:
+ 174 0046 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 175              		.cfi_endproc
+ 176              	.LFE38:
+ 177              		.size	DBG_PRINT_DEC, .-DBG_PRINT_DEC
+ 178              		.section	.text.DBG_PRINT_HEX,"ax",%progbits
+ 179              		.align	1
+ 180              		.global	DBG_PRINT_HEX
+ 181              		.code	16
+ 182              		.thumb_func
+ 183              		.type	DBG_PRINT_HEX, %function
+ 184              	DBG_PRINT_HEX:
+ 185              	.LFB39:
+ 145:debug.c       **** 
+ 146:debug.c       **** 
+ 147:debug.c       **** void DBG_PRINT_HEX(uint32 a)
+ 148:debug.c       **** {
+ 186              		.loc 1 148 0
+ 187              		.cfi_startproc
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 7
+
+
+ 188              		@ args = 0, pretend = 0, frame = 0
+ 189              		@ frame_needed = 0, uses_anonymous_args = 0
+ 190              	.LVL20:
+ 191 0000 70B5     		push	{r4, r5, r6, lr}
+ 192              		.cfi_def_cfa_offset 16
+ 193              		.cfi_offset 4, -16
+ 194              		.cfi_offset 5, -12
+ 195              		.cfi_offset 6, -8
+ 196              		.cfi_offset 14, -4
+ 197              		.loc 1 148 0
+ 198 0002 0400     		movs	r4, r0
+ 149:debug.c       ****     int len = 0;
+ 199              		.loc 1 149 0
+ 200 0004 0025     		movs	r5, #0
+ 201              	.LVL21:
+ 202              	.L14:
+ 150:debug.c       ****     do
+ 151:debug.c       ****     {
+ 152:debug.c       ****         if ((a >> 24) != 0)
+ 203              		.loc 1 152 0
+ 204 0006 230E     		lsrs	r3, r4, #24
+ 205 0008 03D1     		bne	.L13
+ 153:debug.c       ****         {
+ 154:debug.c       ****             break;
+ 155:debug.c       ****         }
+ 156:debug.c       ****         a <<= 8u;
+ 157:debug.c       ****         ++len;
+ 206              		.loc 1 157 0
+ 207 000a 0135     		adds	r5, r5, #1
+ 208              	.LVL22:
+ 156:debug.c       ****         ++len;
+ 209              		.loc 1 156 0
+ 210 000c 2402     		lsls	r4, r4, #8
+ 211              	.LVL23:
+ 158:debug.c       ****     }
+ 159:debug.c       ****     while (len < 3);
+ 212              		.loc 1 159 0
+ 213 000e 032D     		cmp	r5, #3
+ 214 0010 F9D1     		bne	.L14
+ 215              	.L13:
+ 160:debug.c       ****     len = 4 - len;
+ 216              		.loc 1 160 0
+ 217 0012 0423     		movs	r3, #4
+ 218 0014 5D1B     		subs	r5, r3, r5
+ 219              	.LVL24:
+ 220              	.L15:
+ 161:debug.c       **** 
+ 162:debug.c       ****     for ( ; len != 0; --len)
+ 163:debug.c       ****     {
+ 164:debug.c       ****         UART_PutHexByte(a >> 24);
+ 221              		.loc 1 164 0 discriminator 2
+ 222 0016 200E     		lsrs	r0, r4, #24
+ 162:debug.c       ****     {
+ 223              		.loc 1 162 0 discriminator 2
+ 224 0018 013D     		subs	r5, r5, #1
+ 225              	.LVL25:
+ 226              		.loc 1 164 0 discriminator 2
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 8
+
+
+ 227 001a FFF7FEFF 		bl	UART_PutHexByte
+ 228              	.LVL26:
+ 165:debug.c       ****         a <<= 8;
+ 229              		.loc 1 165 0 discriminator 2
+ 230 001e 2402     		lsls	r4, r4, #8
+ 231              	.LVL27:
+ 162:debug.c       ****     {
+ 232              		.loc 1 162 0 discriminator 2
+ 233 0020 002D     		cmp	r5, #0
+ 234 0022 F8D1     		bne	.L15
+ 166:debug.c       ****     }
+ 167:debug.c       **** }
+ 235              		.loc 1 167 0
+ 236              		@ sp needed
+ 237              	.LVL28:
+ 238              	.LVL29:
+ 239 0024 70BD     		pop	{r4, r5, r6, pc}
+ 240              		.cfi_endproc
+ 241              	.LFE39:
+ 242              		.size	DBG_PRINT_HEX, .-DBG_PRINT_HEX
+ 243              		.section	.text.DBG_PRINT_HEX_TEXT,"ax",%progbits
+ 244              		.align	1
+ 245              		.global	DBG_PRINT_HEX_TEXT
+ 246              		.code	16
+ 247              		.thumb_func
+ 248              		.type	DBG_PRINT_HEX_TEXT, %function
+ 249              	DBG_PRINT_HEX_TEXT:
+ 250              	.LFB40:
+ 168:debug.c       **** 
+ 169:debug.c       **** #endif /* DEBUG_UART_USE_PRINTF_FORMAT == NO */
+ 170:debug.c       **** 
+ 171:debug.c       **** void DBG_PRINT_HEX_TEXT(uint32 hex, char *text)
+ 172:debug.c       **** {
+ 251              		.loc 1 172 0
+ 252              		.cfi_startproc
+ 253              		@ args = 0, pretend = 0, frame = 0
+ 254              		@ frame_needed = 0, uses_anonymous_args = 0
+ 255              	.LVL30:
+ 256 0000 10B5     		push	{r4, lr}
+ 257              		.cfi_def_cfa_offset 8
+ 258              		.cfi_offset 4, -8
+ 259              		.cfi_offset 14, -4
+ 260              		.loc 1 172 0
+ 261 0002 0C00     		movs	r4, r1
+ 173:debug.c       ****     DBG_PRINT_HEX(hex);
+ 262              		.loc 1 173 0
+ 263 0004 FFF7FEFF 		bl	DBG_PRINT_HEX
+ 264              	.LVL31:
+ 174:debug.c       ****     DBG_PRINT_TEXT(text);
+ 265              		.loc 1 174 0
+ 266 0008 2000     		movs	r0, r4
+ 267 000a FFF7FEFF 		bl	UART_PutString
+ 268              	.LVL32:
+ 175:debug.c       **** }
+ 269              		.loc 1 175 0
+ 270              		@ sp needed
+ 271              	.LVL33:
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 9
+
+
+ 272 000e 10BD     		pop	{r4, pc}
+ 273              		.cfi_endproc
+ 274              	.LFE40:
+ 275              		.size	DBG_PRINT_HEX_TEXT, .-DBG_PRINT_HEX_TEXT
+ 276              		.section	.text.DBG_PRINT_HEX8_TEXT,"ax",%progbits
+ 277              		.align	1
+ 278              		.global	DBG_PRINT_HEX8_TEXT
+ 279              		.code	16
+ 280              		.thumb_func
+ 281              		.type	DBG_PRINT_HEX8_TEXT, %function
+ 282              	DBG_PRINT_HEX8_TEXT:
+ 283              	.LFB41:
+ 176:debug.c       **** 
+ 177:debug.c       **** void DBG_PRINT_HEX8_TEXT(uint32 hex, char *text)
+ 178:debug.c       **** {
+ 284              		.loc 1 178 0
+ 285              		.cfi_startproc
+ 286              		@ args = 0, pretend = 0, frame = 0
+ 287              		@ frame_needed = 0, uses_anonymous_args = 0
+ 288              	.LVL34:
+ 289 0000 10B5     		push	{r4, lr}
+ 290              		.cfi_def_cfa_offset 8
+ 291              		.cfi_offset 4, -8
+ 292              		.cfi_offset 14, -4
+ 293              		.loc 1 178 0
+ 294 0002 0C00     		movs	r4, r1
+ 179:debug.c       ****     DBG_PRINT_HEX_BYTE(hex);
+ 295              		.loc 1 179 0
+ 296 0004 C0B2     		uxtb	r0, r0
+ 297              	.LVL35:
+ 298 0006 FFF7FEFF 		bl	UART_PutHexByte
+ 299              	.LVL36:
+ 180:debug.c       ****     DBG_PRINT_TEXT(text);
+ 300              		.loc 1 180 0
+ 301 000a 2000     		movs	r0, r4
+ 302 000c FFF7FEFF 		bl	UART_PutString
+ 303              	.LVL37:
+ 181:debug.c       **** }
+ 304              		.loc 1 181 0
+ 305              		@ sp needed
+ 306              	.LVL38:
+ 307 0010 10BD     		pop	{r4, pc}
+ 308              		.cfi_endproc
+ 309              	.LFE41:
+ 310              		.size	DBG_PRINT_HEX8_TEXT, .-DBG_PRINT_HEX8_TEXT
+ 311              		.section	.text.DBG_PRINT_DEC_TEXT,"ax",%progbits
+ 312              		.align	1
+ 313              		.global	DBG_PRINT_DEC_TEXT
+ 314              		.code	16
+ 315              		.thumb_func
+ 316              		.type	DBG_PRINT_DEC_TEXT, %function
+ 317              	DBG_PRINT_DEC_TEXT:
+ 318              	.LFB42:
+ 182:debug.c       **** 
+ 183:debug.c       **** void DBG_PRINT_DEC_TEXT(uint32 dec, char *text)
+ 184:debug.c       **** {
+ 319              		.loc 1 184 0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 10
+
+
+ 320              		.cfi_startproc
+ 321              		@ args = 0, pretend = 0, frame = 0
+ 322              		@ frame_needed = 0, uses_anonymous_args = 0
+ 323              	.LVL39:
+ 324 0000 10B5     		push	{r4, lr}
+ 325              		.cfi_def_cfa_offset 8
+ 326              		.cfi_offset 4, -8
+ 327              		.cfi_offset 14, -4
+ 328              		.loc 1 184 0
+ 329 0002 0C00     		movs	r4, r1
+ 185:debug.c       ****     DBG_PRINT_DEC(dec);
+ 330              		.loc 1 185 0
+ 331 0004 FFF7FEFF 		bl	DBG_PRINT_DEC
+ 332              	.LVL40:
+ 186:debug.c       ****     DBG_PRINT_TEXT(text);
+ 333              		.loc 1 186 0
+ 334 0008 2000     		movs	r0, r4
+ 335 000a FFF7FEFF 		bl	UART_PutString
+ 336              	.LVL41:
+ 187:debug.c       **** }
+ 337              		.loc 1 187 0
+ 338              		@ sp needed
+ 339              	.LVL42:
+ 340 000e 10BD     		pop	{r4, pc}
+ 341              		.cfi_endproc
+ 342              	.LFE42:
+ 343              		.size	DBG_PRINT_DEC_TEXT, .-DBG_PRINT_DEC_TEXT
+ 344              		.text
+ 345              	.Letext0:
+ 346              		.file 2 "d:\\apps\\cypress psoc creator\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.1\
+ 347              		.file 3 "d:\\apps\\cypress psoc creator\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.1\
+ 348              		.file 4 "Generated_Source\\PSoC4/cytypes.h"
+ 349              		.file 5 "Generated_Source\\PSoC4/UART.h"
+ 350              		.section	.debug_info,"",%progbits
+ 351              	.Ldebug_info0:
+ 352 0000 8A030000 		.4byte	0x38a
+ 353 0004 0400     		.2byte	0x4
+ 354 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 355 000a 04       		.byte	0x4
+ 356 000b 01       		.uleb128 0x1
+ 357 000c E7010000 		.4byte	.LASF29
+ 358 0010 0C       		.byte	0xc
+ 359 0011 90000000 		.4byte	.LASF30
+ 360 0015 D5000000 		.4byte	.LASF31
+ 361 0019 38000000 		.4byte	.Ldebug_ranges0+0x38
+ 362 001d 00000000 		.4byte	0
+ 363 0021 00000000 		.4byte	.Ldebug_line0
+ 364 0025 02       		.uleb128 0x2
+ 365 0026 01       		.byte	0x1
+ 366 0027 06       		.byte	0x6
+ 367 0028 CC010000 		.4byte	.LASF0
+ 368 002c 02       		.uleb128 0x2
+ 369 002d 01       		.byte	0x1
+ 370 002e 08       		.byte	0x8
+ 371 002f 62000000 		.4byte	.LASF1
+ 372 0033 02       		.uleb128 0x2
+ 373 0034 02       		.byte	0x2
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 11
+
+
+ 374 0035 05       		.byte	0x5
+ 375 0036 A4010000 		.4byte	.LASF2
+ 376 003a 02       		.uleb128 0x2
+ 377 003b 02       		.byte	0x2
+ 378 003c 07       		.byte	0x7
+ 379 003d 0F000000 		.4byte	.LASF3
+ 380 0041 02       		.uleb128 0x2
+ 381 0042 04       		.byte	0x4
+ 382 0043 05       		.byte	0x5
+ 383 0044 B7010000 		.4byte	.LASF4
+ 384 0048 03       		.uleb128 0x3
+ 385 0049 9F000000 		.4byte	.LASF9
+ 386 004d 02       		.byte	0x2
+ 387 004e 41       		.byte	0x41
+ 388 004f 53000000 		.4byte	0x53
+ 389 0053 02       		.uleb128 0x2
+ 390 0054 04       		.byte	0x4
+ 391 0055 07       		.byte	0x7
+ 392 0056 70000000 		.4byte	.LASF5
+ 393 005a 02       		.uleb128 0x2
+ 394 005b 08       		.byte	0x8
+ 395 005c 05       		.byte	0x5
+ 396 005d 77010000 		.4byte	.LASF6
+ 397 0061 02       		.uleb128 0x2
+ 398 0062 08       		.byte	0x8
+ 399 0063 07       		.byte	0x7
+ 400 0064 BE000000 		.4byte	.LASF7
+ 401 0068 04       		.uleb128 0x4
+ 402 0069 04       		.byte	0x4
+ 403 006a 05       		.byte	0x5
+ 404 006b 696E7400 		.ascii	"int\000"
+ 405 006f 02       		.uleb128 0x2
+ 406 0070 04       		.byte	0x4
+ 407 0071 07       		.byte	0x7
+ 408 0072 B1000000 		.4byte	.LASF8
+ 409 0076 03       		.uleb128 0x3
+ 410 0077 AE010000 		.4byte	.LASF10
+ 411 007b 03       		.byte	0x3
+ 412 007c 30       		.byte	0x30
+ 413 007d 48000000 		.4byte	0x48
+ 414 0081 05       		.uleb128 0x5
+ 415 0082 AA000000 		.4byte	.LASF11
+ 416 0086 04       		.byte	0x4
+ 417 0087 D401     		.2byte	0x1d4
+ 418 0089 53000000 		.4byte	0x53
+ 419 008d 02       		.uleb128 0x2
+ 420 008e 04       		.byte	0x4
+ 421 008f 04       		.byte	0x4
+ 422 0090 57000000 		.4byte	.LASF12
+ 423 0094 02       		.uleb128 0x2
+ 424 0095 08       		.byte	0x8
+ 425 0096 04       		.byte	0x4
+ 426 0097 98000000 		.4byte	.LASF13
+ 427 009b 02       		.uleb128 0x2
+ 428 009c 01       		.byte	0x1
+ 429 009d 08       		.byte	0x8
+ 430 009e 85010000 		.4byte	.LASF14
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 12
+
+
+ 431 00a2 02       		.uleb128 0x2
+ 432 00a3 08       		.byte	0x8
+ 433 00a4 04       		.byte	0x4
+ 434 00a5 C0010000 		.4byte	.LASF15
+ 435 00a9 02       		.uleb128 0x2
+ 436 00aa 04       		.byte	0x4
+ 437 00ab 07       		.byte	0x7
+ 438 00ac 6E010000 		.4byte	.LASF16
+ 439 00b0 06       		.uleb128 0x6
+ 440 00b1 04       		.byte	0x4
+ 441 00b2 9B000000 		.4byte	0x9b
+ 442 00b6 07       		.uleb128 0x7
+ 443 00b7 4E000000 		.4byte	.LASF32
+ 444 00bb 01       		.byte	0x1
+ 445 00bc 75       		.byte	0x75
+ 446 00bd 81000000 		.4byte	0x81
+ 447 00c1 01       		.byte	0x1
+ 448 00c2 E8000000 		.4byte	0xe8
+ 449 00c6 08       		.uleb128 0x8
+ 450 00c7 00000000 		.4byte	.LASF17
+ 451 00cb 01       		.byte	0x1
+ 452 00cc 75       		.byte	0x75
+ 453 00cd 81000000 		.4byte	0x81
+ 454 00d1 08       		.uleb128 0x8
+ 455 00d2 06000000 		.4byte	.LASF18
+ 456 00d6 01       		.byte	0x1
+ 457 00d7 75       		.byte	0x75
+ 458 00d8 E8000000 		.4byte	0xe8
+ 459 00dc 09       		.uleb128 0x9
+ 460 00dd 4C010000 		.4byte	.LASF33
+ 461 00e1 01       		.byte	0x1
+ 462 00e2 77       		.byte	0x77
+ 463 00e3 76000000 		.4byte	0x76
+ 464 00e7 00       		.byte	0
+ 465 00e8 06       		.uleb128 0x6
+ 466 00e9 04       		.byte	0x4
+ 467 00ea 81000000 		.4byte	0x81
+ 468 00ee 0A       		.uleb128 0xa
+ 469 00ef 8A010000 		.4byte	.LASF34
+ 470 00f3 01       		.byte	0x1
+ 471 00f4 63       		.byte	0x63
+ 472 00f5 68000000 		.4byte	0x68
+ 473 00f9 00000000 		.4byte	.LFB36
+ 474 00fd 1C000000 		.4byte	.LFE36-.LFB36
+ 475 0101 01       		.uleb128 0x1
+ 476 0102 9C       		.byte	0x9c
+ 477 0103 4B010000 		.4byte	0x14b
+ 478 0107 0B       		.uleb128 0xb
+ 479 0108 5D000000 		.4byte	.LASF19
+ 480 010c 01       		.byte	0x1
+ 481 010d 63       		.byte	0x63
+ 482 010e 68000000 		.4byte	0x68
+ 483 0112 00000000 		.4byte	.LLST0
+ 484 0116 0C       		.uleb128 0xc
+ 485 0117 70747200 		.ascii	"ptr\000"
+ 486 011b 01       		.byte	0x1
+ 487 011c 63       		.byte	0x63
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 13
+
+
+ 488 011d B0000000 		.4byte	0xb0
+ 489 0121 21000000 		.4byte	.LLST1
+ 490 0125 0C       		.uleb128 0xc
+ 491 0126 6C656E00 		.ascii	"len\000"
+ 492 012a 01       		.byte	0x1
+ 493 012b 63       		.byte	0x63
+ 494 012c 68000000 		.4byte	0x68
+ 495 0130 3F000000 		.4byte	.LLST2
+ 496 0134 0D       		.uleb128 0xd
+ 497 0135 6900     		.ascii	"i\000"
+ 498 0137 01       		.byte	0x1
+ 499 0138 65       		.byte	0x65
+ 500 0139 68000000 		.4byte	0x68
+ 501 013d 68000000 		.4byte	.LLST3
+ 502 0141 0E       		.uleb128 0xe
+ 503 0142 14000000 		.4byte	.LVL3
+ 504 0146 6C030000 		.4byte	0x36c
+ 505 014a 00       		.byte	0
+ 506 014b 0F       		.uleb128 0xf
+ 507 014c 53010000 		.4byte	.LASF20
+ 508 0150 01       		.byte	0x1
+ 509 0151 7C       		.byte	0x7c
+ 510 0152 00000000 		.4byte	.LFB38
+ 511 0156 48000000 		.4byte	.LFE38-.LFB38
+ 512 015a 01       		.uleb128 0x1
+ 513 015b 9C       		.byte	0x9c
+ 514 015c 0D020000 		.4byte	0x20d
+ 515 0160 0B       		.uleb128 0xb
+ 516 0161 00000000 		.4byte	.LASF17
+ 517 0165 01       		.byte	0x1
+ 518 0166 7C       		.byte	0x7c
+ 519 0167 81000000 		.4byte	0x81
+ 520 016b B2000000 		.4byte	.LLST4
+ 521 016f 10       		.uleb128 0x10
+ 522 0170 62756600 		.ascii	"buf\000"
+ 523 0174 01       		.byte	0x1
+ 524 0175 7E       		.byte	0x7e
+ 525 0176 0D020000 		.4byte	0x20d
+ 526 017a 02       		.uleb128 0x2
+ 527 017b 91       		.byte	0x91
+ 528 017c 5C       		.sleb128 -36
+ 529 017d 0D       		.uleb128 0xd
+ 530 017e 6C656E00 		.ascii	"len\000"
+ 531 0182 01       		.byte	0x1
+ 532 0183 7F       		.byte	0x7f
+ 533 0184 81000000 		.4byte	0x81
+ 534 0188 D0000000 		.4byte	.LLST5
+ 535 018c 0D       		.uleb128 0xd
+ 536 018d 6900     		.ascii	"i\000"
+ 537 018f 01       		.byte	0x1
+ 538 0190 80       		.byte	0x80
+ 539 0191 81000000 		.4byte	0x81
+ 540 0195 07010000 		.4byte	.LLST6
+ 541 0199 11       		.uleb128 0x11
+ 542 019a 00000000 		.4byte	.Ldebug_ranges0+0
+ 543 019e DF010000 		.4byte	0x1df
+ 544 01a2 0D       		.uleb128 0xd
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 14
+
+
+ 545 01a3 72656D00 		.ascii	"rem\000"
+ 546 01a7 01       		.byte	0x1
+ 547 01a8 83       		.byte	0x83
+ 548 01a9 81000000 		.4byte	0x81
+ 549 01ad 35010000 		.4byte	.LLST7
+ 550 01b1 12       		.uleb128 0x12
+ 551 01b2 B6000000 		.4byte	0xb6
+ 552 01b6 06000000 		.4byte	.LBB7
+ 553 01ba 20000000 		.4byte	.Ldebug_ranges0+0x20
+ 554 01be 01       		.byte	0x1
+ 555 01bf 84       		.byte	0x84
+ 556 01c0 13       		.uleb128 0x13
+ 557 01c1 D1000000 		.4byte	0xd1
+ 558 01c5 4F010000 		.4byte	.LLST8
+ 559 01c9 13       		.uleb128 0x13
+ 560 01ca C6000000 		.4byte	0xc6
+ 561 01ce 67010000 		.4byte	.LLST9
+ 562 01d2 14       		.uleb128 0x14
+ 563 01d3 20000000 		.4byte	.Ldebug_ranges0+0x20
+ 564 01d7 15       		.uleb128 0x15
+ 565 01d8 DC000000 		.4byte	0xdc
+ 566 01dc 00       		.byte	0
+ 567 01dd 00       		.byte	0
+ 568 01de 00       		.byte	0
+ 569 01df 16       		.uleb128 0x16
+ 570 01e0 2C000000 		.4byte	.LBB13
+ 571 01e4 08000000 		.4byte	.LBE13-.LBB13
+ 572 01e8 FC010000 		.4byte	0x1fc
+ 573 01ec 0D       		.uleb128 0xd
+ 574 01ed 746D7000 		.ascii	"tmp\000"
+ 575 01f1 01       		.byte	0x1
+ 576 01f2 8A       		.byte	0x8a
+ 577 01f3 9B000000 		.4byte	0x9b
+ 578 01f7 7A010000 		.4byte	.LLST10
+ 579 01fb 00       		.byte	0
+ 580 01fc 17       		.uleb128 0x17
+ 581 01fd 44000000 		.4byte	.LVL17
+ 582 0201 77030000 		.4byte	0x377
+ 583 0205 18       		.uleb128 0x18
+ 584 0206 01       		.uleb128 0x1
+ 585 0207 50       		.byte	0x50
+ 586 0208 02       		.uleb128 0x2
+ 587 0209 75       		.byte	0x75
+ 588 020a 00       		.sleb128 0
+ 589 020b 00       		.byte	0
+ 590 020c 00       		.byte	0
+ 591 020d 19       		.uleb128 0x19
+ 592 020e 9B000000 		.4byte	0x9b
+ 593 0212 1D020000 		.4byte	0x21d
+ 594 0216 1A       		.uleb128 0x1a
+ 595 0217 A9000000 		.4byte	0xa9
+ 596 021b 0B       		.byte	0xb
+ 597 021c 00       		.byte	0
+ 598 021d 1B       		.uleb128 0x1b
+ 599 021e 82000000 		.4byte	.LASF21
+ 600 0222 01       		.byte	0x1
+ 601 0223 93       		.byte	0x93
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 15
+
+
+ 602 0224 00000000 		.4byte	.LFB39
+ 603 0228 26000000 		.4byte	.LFE39-.LFB39
+ 604 022c 01       		.uleb128 0x1
+ 605 022d 9C       		.byte	0x9c
+ 606 022e 61020000 		.4byte	0x261
+ 607 0232 0C       		.uleb128 0xc
+ 608 0233 6100     		.ascii	"a\000"
+ 609 0235 01       		.byte	0x1
+ 610 0236 93       		.byte	0x93
+ 611 0237 81000000 		.4byte	0x81
+ 612 023b 8D010000 		.4byte	.LLST11
+ 613 023f 0D       		.uleb128 0xd
+ 614 0240 6C656E00 		.ascii	"len\000"
+ 615 0244 01       		.byte	0x1
+ 616 0245 95       		.byte	0x95
+ 617 0246 68000000 		.4byte	0x68
+ 618 024a AB010000 		.4byte	.LLST12
+ 619 024e 17       		.uleb128 0x17
+ 620 024f 1E000000 		.4byte	.LVL26
+ 621 0253 82030000 		.4byte	0x382
+ 622 0257 18       		.uleb128 0x18
+ 623 0258 01       		.uleb128 0x1
+ 624 0259 50       		.byte	0x50
+ 625 025a 04       		.uleb128 0x4
+ 626 025b 74       		.byte	0x74
+ 627 025c 00       		.sleb128 0
+ 628 025d 48       		.byte	0x48
+ 629 025e 25       		.byte	0x25
+ 630 025f 00       		.byte	0
+ 631 0260 00       		.byte	0
+ 632 0261 1B       		.uleb128 0x1b
+ 633 0262 91010000 		.4byte	.LASF22
+ 634 0266 01       		.byte	0x1
+ 635 0267 AB       		.byte	0xab
+ 636 0268 00000000 		.4byte	.LFB40
+ 637 026c 10000000 		.4byte	.LFE40-.LFB40
+ 638 0270 01       		.uleb128 0x1
+ 639 0271 9C       		.byte	0x9c
+ 640 0272 BA020000 		.4byte	0x2ba
+ 641 0276 0C       		.uleb128 0xc
+ 642 0277 68657800 		.ascii	"hex\000"
+ 643 027b 01       		.byte	0x1
+ 644 027c AB       		.byte	0xab
+ 645 027d 81000000 		.4byte	0x81
+ 646 0281 FA010000 		.4byte	.LLST13
+ 647 0285 0B       		.uleb128 0xb
+ 648 0286 35000000 		.4byte	.LASF23
+ 649 028a 01       		.byte	0x1
+ 650 028b AB       		.byte	0xab
+ 651 028c B0000000 		.4byte	0xb0
+ 652 0290 1B020000 		.4byte	.LLST14
+ 653 0294 1C       		.uleb128 0x1c
+ 654 0295 08000000 		.4byte	.LVL31
+ 655 0299 1D020000 		.4byte	0x21d
+ 656 029d A9020000 		.4byte	0x2a9
+ 657 02a1 18       		.uleb128 0x18
+ 658 02a2 01       		.uleb128 0x1
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 16
+
+
+ 659 02a3 50       		.byte	0x50
+ 660 02a4 03       		.uleb128 0x3
+ 661 02a5 F3       		.byte	0xf3
+ 662 02a6 01       		.uleb128 0x1
+ 663 02a7 50       		.byte	0x50
+ 664 02a8 00       		.byte	0
+ 665 02a9 17       		.uleb128 0x17
+ 666 02aa 0E000000 		.4byte	.LVL32
+ 667 02ae 77030000 		.4byte	0x377
+ 668 02b2 18       		.uleb128 0x18
+ 669 02b3 01       		.uleb128 0x1
+ 670 02b4 50       		.byte	0x50
+ 671 02b5 02       		.uleb128 0x2
+ 672 02b6 74       		.byte	0x74
+ 673 02b7 00       		.sleb128 0
+ 674 02b8 00       		.byte	0
+ 675 02b9 00       		.byte	0
+ 676 02ba 1B       		.uleb128 0x1b
+ 677 02bb 3A000000 		.4byte	.LASF24
+ 678 02bf 01       		.byte	0x1
+ 679 02c0 B1       		.byte	0xb1
+ 680 02c1 00000000 		.4byte	.LFB41
+ 681 02c5 12000000 		.4byte	.LFE41-.LFB41
+ 682 02c9 01       		.uleb128 0x1
+ 683 02ca 9C       		.byte	0x9c
+ 684 02cb 13030000 		.4byte	0x313
+ 685 02cf 0C       		.uleb128 0xc
+ 686 02d0 68657800 		.ascii	"hex\000"
+ 687 02d4 01       		.byte	0x1
+ 688 02d5 B1       		.byte	0xb1
+ 689 02d6 81000000 		.4byte	0x81
+ 690 02da 47020000 		.4byte	.LLST15
+ 691 02de 0B       		.uleb128 0xb
+ 692 02df 35000000 		.4byte	.LASF23
+ 693 02e3 01       		.byte	0x1
+ 694 02e4 B1       		.byte	0xb1
+ 695 02e5 B0000000 		.4byte	0xb0
+ 696 02e9 68020000 		.4byte	.LLST16
+ 697 02ed 1C       		.uleb128 0x1c
+ 698 02ee 0A000000 		.4byte	.LVL36
+ 699 02f2 82030000 		.4byte	0x382
+ 700 02f6 02030000 		.4byte	0x302
+ 701 02fa 18       		.uleb128 0x18
+ 702 02fb 01       		.uleb128 0x1
+ 703 02fc 50       		.byte	0x50
+ 704 02fd 03       		.uleb128 0x3
+ 705 02fe F3       		.byte	0xf3
+ 706 02ff 01       		.uleb128 0x1
+ 707 0300 50       		.byte	0x50
+ 708 0301 00       		.byte	0
+ 709 0302 17       		.uleb128 0x17
+ 710 0303 10000000 		.4byte	.LVL37
+ 711 0307 77030000 		.4byte	0x377
+ 712 030b 18       		.uleb128 0x18
+ 713 030c 01       		.uleb128 0x1
+ 714 030d 50       		.byte	0x50
+ 715 030e 02       		.uleb128 0x2
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 17
+
+
+ 716 030f 74       		.byte	0x74
+ 717 0310 00       		.sleb128 0
+ 718 0311 00       		.byte	0
+ 719 0312 00       		.byte	0
+ 720 0313 1B       		.uleb128 0x1b
+ 721 0314 22000000 		.4byte	.LASF25
+ 722 0318 01       		.byte	0x1
+ 723 0319 B7       		.byte	0xb7
+ 724 031a 00000000 		.4byte	.LFB42
+ 725 031e 10000000 		.4byte	.LFE42-.LFB42
+ 726 0322 01       		.uleb128 0x1
+ 727 0323 9C       		.byte	0x9c
+ 728 0324 6C030000 		.4byte	0x36c
+ 729 0328 0C       		.uleb128 0xc
+ 730 0329 64656300 		.ascii	"dec\000"
+ 731 032d 01       		.byte	0x1
+ 732 032e B7       		.byte	0xb7
+ 733 032f 81000000 		.4byte	0x81
+ 734 0333 94020000 		.4byte	.LLST17
+ 735 0337 0B       		.uleb128 0xb
+ 736 0338 35000000 		.4byte	.LASF23
+ 737 033c 01       		.byte	0x1
+ 738 033d B7       		.byte	0xb7
+ 739 033e B0000000 		.4byte	0xb0
+ 740 0342 B5020000 		.4byte	.LLST18
+ 741 0346 1C       		.uleb128 0x1c
+ 742 0347 08000000 		.4byte	.LVL40
+ 743 034b 4B010000 		.4byte	0x14b
+ 744 034f 5B030000 		.4byte	0x35b
+ 745 0353 18       		.uleb128 0x18
+ 746 0354 01       		.uleb128 0x1
+ 747 0355 50       		.byte	0x50
+ 748 0356 03       		.uleb128 0x3
+ 749 0357 F3       		.byte	0xf3
+ 750 0358 01       		.uleb128 0x1
+ 751 0359 50       		.byte	0x50
+ 752 035a 00       		.byte	0
+ 753 035b 17       		.uleb128 0x17
+ 754 035c 0E000000 		.4byte	.LVL41
+ 755 0360 77030000 		.4byte	0x377
+ 756 0364 18       		.uleb128 0x18
+ 757 0365 01       		.uleb128 0x1
+ 758 0366 50       		.byte	0x50
+ 759 0367 02       		.uleb128 0x2
+ 760 0368 74       		.byte	0x74
+ 761 0369 00       		.sleb128 0
+ 762 036a 00       		.byte	0
+ 763 036b 00       		.byte	0
+ 764 036c 1D       		.uleb128 0x1d
+ 765 036d 61010000 		.4byte	.LASF26
+ 766 0371 61010000 		.4byte	.LASF26
+ 767 0375 05       		.byte	0x5
+ 768 0376 25       		.byte	0x25
+ 769 0377 1D       		.uleb128 0x1d
+ 770 0378 D8010000 		.4byte	.LASF27
+ 771 037c D8010000 		.4byte	.LASF27
+ 772 0380 05       		.byte	0x5
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 18
+
+
+ 773 0381 26       		.byte	0x26
+ 774 0382 1D       		.uleb128 0x1d
+ 775 0383 75020000 		.4byte	.LASF28
+ 776 0387 75020000 		.4byte	.LASF28
+ 777 038b 05       		.byte	0x5
+ 778 038c 28       		.byte	0x28
+ 779 038d 00       		.byte	0
+ 780              		.section	.debug_abbrev,"",%progbits
+ 781              	.Ldebug_abbrev0:
+ 782 0000 01       		.uleb128 0x1
+ 783 0001 11       		.uleb128 0x11
+ 784 0002 01       		.byte	0x1
+ 785 0003 25       		.uleb128 0x25
+ 786 0004 0E       		.uleb128 0xe
+ 787 0005 13       		.uleb128 0x13
+ 788 0006 0B       		.uleb128 0xb
+ 789 0007 03       		.uleb128 0x3
+ 790 0008 0E       		.uleb128 0xe
+ 791 0009 1B       		.uleb128 0x1b
+ 792 000a 0E       		.uleb128 0xe
+ 793 000b 55       		.uleb128 0x55
+ 794 000c 17       		.uleb128 0x17
+ 795 000d 11       		.uleb128 0x11
+ 796 000e 01       		.uleb128 0x1
+ 797 000f 10       		.uleb128 0x10
+ 798 0010 17       		.uleb128 0x17
+ 799 0011 00       		.byte	0
+ 800 0012 00       		.byte	0
+ 801 0013 02       		.uleb128 0x2
+ 802 0014 24       		.uleb128 0x24
+ 803 0015 00       		.byte	0
+ 804 0016 0B       		.uleb128 0xb
+ 805 0017 0B       		.uleb128 0xb
+ 806 0018 3E       		.uleb128 0x3e
+ 807 0019 0B       		.uleb128 0xb
+ 808 001a 03       		.uleb128 0x3
+ 809 001b 0E       		.uleb128 0xe
+ 810 001c 00       		.byte	0
+ 811 001d 00       		.byte	0
+ 812 001e 03       		.uleb128 0x3
+ 813 001f 16       		.uleb128 0x16
+ 814 0020 00       		.byte	0
+ 815 0021 03       		.uleb128 0x3
+ 816 0022 0E       		.uleb128 0xe
+ 817 0023 3A       		.uleb128 0x3a
+ 818 0024 0B       		.uleb128 0xb
+ 819 0025 3B       		.uleb128 0x3b
+ 820 0026 0B       		.uleb128 0xb
+ 821 0027 49       		.uleb128 0x49
+ 822 0028 13       		.uleb128 0x13
+ 823 0029 00       		.byte	0
+ 824 002a 00       		.byte	0
+ 825 002b 04       		.uleb128 0x4
+ 826 002c 24       		.uleb128 0x24
+ 827 002d 00       		.byte	0
+ 828 002e 0B       		.uleb128 0xb
+ 829 002f 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 19
+
+
+ 830 0030 3E       		.uleb128 0x3e
+ 831 0031 0B       		.uleb128 0xb
+ 832 0032 03       		.uleb128 0x3
+ 833 0033 08       		.uleb128 0x8
+ 834 0034 00       		.byte	0
+ 835 0035 00       		.byte	0
+ 836 0036 05       		.uleb128 0x5
+ 837 0037 16       		.uleb128 0x16
+ 838 0038 00       		.byte	0
+ 839 0039 03       		.uleb128 0x3
+ 840 003a 0E       		.uleb128 0xe
+ 841 003b 3A       		.uleb128 0x3a
+ 842 003c 0B       		.uleb128 0xb
+ 843 003d 3B       		.uleb128 0x3b
+ 844 003e 05       		.uleb128 0x5
+ 845 003f 49       		.uleb128 0x49
+ 846 0040 13       		.uleb128 0x13
+ 847 0041 00       		.byte	0
+ 848 0042 00       		.byte	0
+ 849 0043 06       		.uleb128 0x6
+ 850 0044 0F       		.uleb128 0xf
+ 851 0045 00       		.byte	0
+ 852 0046 0B       		.uleb128 0xb
+ 853 0047 0B       		.uleb128 0xb
+ 854 0048 49       		.uleb128 0x49
+ 855 0049 13       		.uleb128 0x13
+ 856 004a 00       		.byte	0
+ 857 004b 00       		.byte	0
+ 858 004c 07       		.uleb128 0x7
+ 859 004d 2E       		.uleb128 0x2e
+ 860 004e 01       		.byte	0x1
+ 861 004f 03       		.uleb128 0x3
+ 862 0050 0E       		.uleb128 0xe
+ 863 0051 3A       		.uleb128 0x3a
+ 864 0052 0B       		.uleb128 0xb
+ 865 0053 3B       		.uleb128 0x3b
+ 866 0054 0B       		.uleb128 0xb
+ 867 0055 27       		.uleb128 0x27
+ 868 0056 19       		.uleb128 0x19
+ 869 0057 49       		.uleb128 0x49
+ 870 0058 13       		.uleb128 0x13
+ 871 0059 20       		.uleb128 0x20
+ 872 005a 0B       		.uleb128 0xb
+ 873 005b 01       		.uleb128 0x1
+ 874 005c 13       		.uleb128 0x13
+ 875 005d 00       		.byte	0
+ 876 005e 00       		.byte	0
+ 877 005f 08       		.uleb128 0x8
+ 878 0060 05       		.uleb128 0x5
+ 879 0061 00       		.byte	0
+ 880 0062 03       		.uleb128 0x3
+ 881 0063 0E       		.uleb128 0xe
+ 882 0064 3A       		.uleb128 0x3a
+ 883 0065 0B       		.uleb128 0xb
+ 884 0066 3B       		.uleb128 0x3b
+ 885 0067 0B       		.uleb128 0xb
+ 886 0068 49       		.uleb128 0x49
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 20
+
+
+ 887 0069 13       		.uleb128 0x13
+ 888 006a 00       		.byte	0
+ 889 006b 00       		.byte	0
+ 890 006c 09       		.uleb128 0x9
+ 891 006d 34       		.uleb128 0x34
+ 892 006e 00       		.byte	0
+ 893 006f 03       		.uleb128 0x3
+ 894 0070 0E       		.uleb128 0xe
+ 895 0071 3A       		.uleb128 0x3a
+ 896 0072 0B       		.uleb128 0xb
+ 897 0073 3B       		.uleb128 0x3b
+ 898 0074 0B       		.uleb128 0xb
+ 899 0075 49       		.uleb128 0x49
+ 900 0076 13       		.uleb128 0x13
+ 901 0077 00       		.byte	0
+ 902 0078 00       		.byte	0
+ 903 0079 0A       		.uleb128 0xa
+ 904 007a 2E       		.uleb128 0x2e
+ 905 007b 01       		.byte	0x1
+ 906 007c 3F       		.uleb128 0x3f
+ 907 007d 19       		.uleb128 0x19
+ 908 007e 03       		.uleb128 0x3
+ 909 007f 0E       		.uleb128 0xe
+ 910 0080 3A       		.uleb128 0x3a
+ 911 0081 0B       		.uleb128 0xb
+ 912 0082 3B       		.uleb128 0x3b
+ 913 0083 0B       		.uleb128 0xb
+ 914 0084 27       		.uleb128 0x27
+ 915 0085 19       		.uleb128 0x19
+ 916 0086 49       		.uleb128 0x49
+ 917 0087 13       		.uleb128 0x13
+ 918 0088 11       		.uleb128 0x11
+ 919 0089 01       		.uleb128 0x1
+ 920 008a 12       		.uleb128 0x12
+ 921 008b 06       		.uleb128 0x6
+ 922 008c 40       		.uleb128 0x40
+ 923 008d 18       		.uleb128 0x18
+ 924 008e 9742     		.uleb128 0x2117
+ 925 0090 19       		.uleb128 0x19
+ 926 0091 01       		.uleb128 0x1
+ 927 0092 13       		.uleb128 0x13
+ 928 0093 00       		.byte	0
+ 929 0094 00       		.byte	0
+ 930 0095 0B       		.uleb128 0xb
+ 931 0096 05       		.uleb128 0x5
+ 932 0097 00       		.byte	0
+ 933 0098 03       		.uleb128 0x3
+ 934 0099 0E       		.uleb128 0xe
+ 935 009a 3A       		.uleb128 0x3a
+ 936 009b 0B       		.uleb128 0xb
+ 937 009c 3B       		.uleb128 0x3b
+ 938 009d 0B       		.uleb128 0xb
+ 939 009e 49       		.uleb128 0x49
+ 940 009f 13       		.uleb128 0x13
+ 941 00a0 02       		.uleb128 0x2
+ 942 00a1 17       		.uleb128 0x17
+ 943 00a2 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 21
+
+
+ 944 00a3 00       		.byte	0
+ 945 00a4 0C       		.uleb128 0xc
+ 946 00a5 05       		.uleb128 0x5
+ 947 00a6 00       		.byte	0
+ 948 00a7 03       		.uleb128 0x3
+ 949 00a8 08       		.uleb128 0x8
+ 950 00a9 3A       		.uleb128 0x3a
+ 951 00aa 0B       		.uleb128 0xb
+ 952 00ab 3B       		.uleb128 0x3b
+ 953 00ac 0B       		.uleb128 0xb
+ 954 00ad 49       		.uleb128 0x49
+ 955 00ae 13       		.uleb128 0x13
+ 956 00af 02       		.uleb128 0x2
+ 957 00b0 17       		.uleb128 0x17
+ 958 00b1 00       		.byte	0
+ 959 00b2 00       		.byte	0
+ 960 00b3 0D       		.uleb128 0xd
+ 961 00b4 34       		.uleb128 0x34
+ 962 00b5 00       		.byte	0
+ 963 00b6 03       		.uleb128 0x3
+ 964 00b7 08       		.uleb128 0x8
+ 965 00b8 3A       		.uleb128 0x3a
+ 966 00b9 0B       		.uleb128 0xb
+ 967 00ba 3B       		.uleb128 0x3b
+ 968 00bb 0B       		.uleb128 0xb
+ 969 00bc 49       		.uleb128 0x49
+ 970 00bd 13       		.uleb128 0x13
+ 971 00be 02       		.uleb128 0x2
+ 972 00bf 17       		.uleb128 0x17
+ 973 00c0 00       		.byte	0
+ 974 00c1 00       		.byte	0
+ 975 00c2 0E       		.uleb128 0xe
+ 976 00c3 898201   		.uleb128 0x4109
+ 977 00c6 00       		.byte	0
+ 978 00c7 11       		.uleb128 0x11
+ 979 00c8 01       		.uleb128 0x1
+ 980 00c9 31       		.uleb128 0x31
+ 981 00ca 13       		.uleb128 0x13
+ 982 00cb 00       		.byte	0
+ 983 00cc 00       		.byte	0
+ 984 00cd 0F       		.uleb128 0xf
+ 985 00ce 2E       		.uleb128 0x2e
+ 986 00cf 01       		.byte	0x1
+ 987 00d0 3F       		.uleb128 0x3f
+ 988 00d1 19       		.uleb128 0x19
+ 989 00d2 03       		.uleb128 0x3
+ 990 00d3 0E       		.uleb128 0xe
+ 991 00d4 3A       		.uleb128 0x3a
+ 992 00d5 0B       		.uleb128 0xb
+ 993 00d6 3B       		.uleb128 0x3b
+ 994 00d7 0B       		.uleb128 0xb
+ 995 00d8 27       		.uleb128 0x27
+ 996 00d9 19       		.uleb128 0x19
+ 997 00da 11       		.uleb128 0x11
+ 998 00db 01       		.uleb128 0x1
+ 999 00dc 12       		.uleb128 0x12
+ 1000 00dd 06       		.uleb128 0x6
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 22
+
+
+ 1001 00de 40       		.uleb128 0x40
+ 1002 00df 18       		.uleb128 0x18
+ 1003 00e0 9642     		.uleb128 0x2116
+ 1004 00e2 19       		.uleb128 0x19
+ 1005 00e3 01       		.uleb128 0x1
+ 1006 00e4 13       		.uleb128 0x13
+ 1007 00e5 00       		.byte	0
+ 1008 00e6 00       		.byte	0
+ 1009 00e7 10       		.uleb128 0x10
+ 1010 00e8 34       		.uleb128 0x34
+ 1011 00e9 00       		.byte	0
+ 1012 00ea 03       		.uleb128 0x3
+ 1013 00eb 08       		.uleb128 0x8
+ 1014 00ec 3A       		.uleb128 0x3a
+ 1015 00ed 0B       		.uleb128 0xb
+ 1016 00ee 3B       		.uleb128 0x3b
+ 1017 00ef 0B       		.uleb128 0xb
+ 1018 00f0 49       		.uleb128 0x49
+ 1019 00f1 13       		.uleb128 0x13
+ 1020 00f2 02       		.uleb128 0x2
+ 1021 00f3 18       		.uleb128 0x18
+ 1022 00f4 00       		.byte	0
+ 1023 00f5 00       		.byte	0
+ 1024 00f6 11       		.uleb128 0x11
+ 1025 00f7 0B       		.uleb128 0xb
+ 1026 00f8 01       		.byte	0x1
+ 1027 00f9 55       		.uleb128 0x55
+ 1028 00fa 17       		.uleb128 0x17
+ 1029 00fb 01       		.uleb128 0x1
+ 1030 00fc 13       		.uleb128 0x13
+ 1031 00fd 00       		.byte	0
+ 1032 00fe 00       		.byte	0
+ 1033 00ff 12       		.uleb128 0x12
+ 1034 0100 1D       		.uleb128 0x1d
+ 1035 0101 01       		.byte	0x1
+ 1036 0102 31       		.uleb128 0x31
+ 1037 0103 13       		.uleb128 0x13
+ 1038 0104 52       		.uleb128 0x52
+ 1039 0105 01       		.uleb128 0x1
+ 1040 0106 55       		.uleb128 0x55
+ 1041 0107 17       		.uleb128 0x17
+ 1042 0108 58       		.uleb128 0x58
+ 1043 0109 0B       		.uleb128 0xb
+ 1044 010a 59       		.uleb128 0x59
+ 1045 010b 0B       		.uleb128 0xb
+ 1046 010c 00       		.byte	0
+ 1047 010d 00       		.byte	0
+ 1048 010e 13       		.uleb128 0x13
+ 1049 010f 05       		.uleb128 0x5
+ 1050 0110 00       		.byte	0
+ 1051 0111 31       		.uleb128 0x31
+ 1052 0112 13       		.uleb128 0x13
+ 1053 0113 02       		.uleb128 0x2
+ 1054 0114 17       		.uleb128 0x17
+ 1055 0115 00       		.byte	0
+ 1056 0116 00       		.byte	0
+ 1057 0117 14       		.uleb128 0x14
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 23
+
+
+ 1058 0118 0B       		.uleb128 0xb
+ 1059 0119 01       		.byte	0x1
+ 1060 011a 55       		.uleb128 0x55
+ 1061 011b 17       		.uleb128 0x17
+ 1062 011c 00       		.byte	0
+ 1063 011d 00       		.byte	0
+ 1064 011e 15       		.uleb128 0x15
+ 1065 011f 34       		.uleb128 0x34
+ 1066 0120 00       		.byte	0
+ 1067 0121 31       		.uleb128 0x31
+ 1068 0122 13       		.uleb128 0x13
+ 1069 0123 00       		.byte	0
+ 1070 0124 00       		.byte	0
+ 1071 0125 16       		.uleb128 0x16
+ 1072 0126 0B       		.uleb128 0xb
+ 1073 0127 01       		.byte	0x1
+ 1074 0128 11       		.uleb128 0x11
+ 1075 0129 01       		.uleb128 0x1
+ 1076 012a 12       		.uleb128 0x12
+ 1077 012b 06       		.uleb128 0x6
+ 1078 012c 01       		.uleb128 0x1
+ 1079 012d 13       		.uleb128 0x13
+ 1080 012e 00       		.byte	0
+ 1081 012f 00       		.byte	0
+ 1082 0130 17       		.uleb128 0x17
+ 1083 0131 898201   		.uleb128 0x4109
+ 1084 0134 01       		.byte	0x1
+ 1085 0135 11       		.uleb128 0x11
+ 1086 0136 01       		.uleb128 0x1
+ 1087 0137 31       		.uleb128 0x31
+ 1088 0138 13       		.uleb128 0x13
+ 1089 0139 00       		.byte	0
+ 1090 013a 00       		.byte	0
+ 1091 013b 18       		.uleb128 0x18
+ 1092 013c 8A8201   		.uleb128 0x410a
+ 1093 013f 00       		.byte	0
+ 1094 0140 02       		.uleb128 0x2
+ 1095 0141 18       		.uleb128 0x18
+ 1096 0142 9142     		.uleb128 0x2111
+ 1097 0144 18       		.uleb128 0x18
+ 1098 0145 00       		.byte	0
+ 1099 0146 00       		.byte	0
+ 1100 0147 19       		.uleb128 0x19
+ 1101 0148 01       		.uleb128 0x1
+ 1102 0149 01       		.byte	0x1
+ 1103 014a 49       		.uleb128 0x49
+ 1104 014b 13       		.uleb128 0x13
+ 1105 014c 01       		.uleb128 0x1
+ 1106 014d 13       		.uleb128 0x13
+ 1107 014e 00       		.byte	0
+ 1108 014f 00       		.byte	0
+ 1109 0150 1A       		.uleb128 0x1a
+ 1110 0151 21       		.uleb128 0x21
+ 1111 0152 00       		.byte	0
+ 1112 0153 49       		.uleb128 0x49
+ 1113 0154 13       		.uleb128 0x13
+ 1114 0155 2F       		.uleb128 0x2f
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 24
+
+
+ 1115 0156 0B       		.uleb128 0xb
+ 1116 0157 00       		.byte	0
+ 1117 0158 00       		.byte	0
+ 1118 0159 1B       		.uleb128 0x1b
+ 1119 015a 2E       		.uleb128 0x2e
+ 1120 015b 01       		.byte	0x1
+ 1121 015c 3F       		.uleb128 0x3f
+ 1122 015d 19       		.uleb128 0x19
+ 1123 015e 03       		.uleb128 0x3
+ 1124 015f 0E       		.uleb128 0xe
+ 1125 0160 3A       		.uleb128 0x3a
+ 1126 0161 0B       		.uleb128 0xb
+ 1127 0162 3B       		.uleb128 0x3b
+ 1128 0163 0B       		.uleb128 0xb
+ 1129 0164 27       		.uleb128 0x27
+ 1130 0165 19       		.uleb128 0x19
+ 1131 0166 11       		.uleb128 0x11
+ 1132 0167 01       		.uleb128 0x1
+ 1133 0168 12       		.uleb128 0x12
+ 1134 0169 06       		.uleb128 0x6
+ 1135 016a 40       		.uleb128 0x40
+ 1136 016b 18       		.uleb128 0x18
+ 1137 016c 9742     		.uleb128 0x2117
+ 1138 016e 19       		.uleb128 0x19
+ 1139 016f 01       		.uleb128 0x1
+ 1140 0170 13       		.uleb128 0x13
+ 1141 0171 00       		.byte	0
+ 1142 0172 00       		.byte	0
+ 1143 0173 1C       		.uleb128 0x1c
+ 1144 0174 898201   		.uleb128 0x4109
+ 1145 0177 01       		.byte	0x1
+ 1146 0178 11       		.uleb128 0x11
+ 1147 0179 01       		.uleb128 0x1
+ 1148 017a 31       		.uleb128 0x31
+ 1149 017b 13       		.uleb128 0x13
+ 1150 017c 01       		.uleb128 0x1
+ 1151 017d 13       		.uleb128 0x13
+ 1152 017e 00       		.byte	0
+ 1153 017f 00       		.byte	0
+ 1154 0180 1D       		.uleb128 0x1d
+ 1155 0181 2E       		.uleb128 0x2e
+ 1156 0182 00       		.byte	0
+ 1157 0183 3F       		.uleb128 0x3f
+ 1158 0184 19       		.uleb128 0x19
+ 1159 0185 3C       		.uleb128 0x3c
+ 1160 0186 19       		.uleb128 0x19
+ 1161 0187 6E       		.uleb128 0x6e
+ 1162 0188 0E       		.uleb128 0xe
+ 1163 0189 03       		.uleb128 0x3
+ 1164 018a 0E       		.uleb128 0xe
+ 1165 018b 3A       		.uleb128 0x3a
+ 1166 018c 0B       		.uleb128 0xb
+ 1167 018d 3B       		.uleb128 0x3b
+ 1168 018e 0B       		.uleb128 0xb
+ 1169 018f 00       		.byte	0
+ 1170 0190 00       		.byte	0
+ 1171 0191 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 25
+
+
+ 1172              		.section	.debug_loc,"",%progbits
+ 1173              	.Ldebug_loc0:
+ 1174              	.LLST0:
+ 1175 0000 00000000 		.4byte	.LVL0
+ 1176 0004 08000000 		.4byte	.LVL1
+ 1177 0008 0100     		.2byte	0x1
+ 1178 000a 50       		.byte	0x50
+ 1179 000b 08000000 		.4byte	.LVL1
+ 1180 000f 1C000000 		.4byte	.LFE36
+ 1181 0013 0400     		.2byte	0x4
+ 1182 0015 F3       		.byte	0xf3
+ 1183 0016 01       		.uleb128 0x1
+ 1184 0017 50       		.byte	0x50
+ 1185 0018 9F       		.byte	0x9f
+ 1186 0019 00000000 		.4byte	0
+ 1187 001d 00000000 		.4byte	0
+ 1188              	.LLST1:
+ 1189 0021 00000000 		.4byte	.LVL0
+ 1190 0025 08000000 		.4byte	.LVL1
+ 1191 0029 0100     		.2byte	0x1
+ 1192 002b 51       		.byte	0x51
+ 1193 002c 08000000 		.4byte	.LVL1
+ 1194 0030 1A000000 		.4byte	.LVL6
+ 1195 0034 0100     		.2byte	0x1
+ 1196 0036 54       		.byte	0x54
+ 1197 0037 00000000 		.4byte	0
+ 1198 003b 00000000 		.4byte	0
+ 1199              	.LLST2:
+ 1200 003f 00000000 		.4byte	.LVL0
+ 1201 0043 08000000 		.4byte	.LVL1
+ 1202 0047 0100     		.2byte	0x1
+ 1203 0049 52       		.byte	0x52
+ 1204 004a 08000000 		.4byte	.LVL1
+ 1205 004e 1A000000 		.4byte	.LVL7
+ 1206 0052 0100     		.2byte	0x1
+ 1207 0054 55       		.byte	0x55
+ 1208 0055 1A000000 		.4byte	.LVL7
+ 1209 0059 1C000000 		.4byte	.LFE36
+ 1210 005d 0100     		.2byte	0x1
+ 1211 005f 50       		.byte	0x50
+ 1212 0060 00000000 		.4byte	0
+ 1213 0064 00000000 		.4byte	0
+ 1214              	.LLST3:
+ 1215 0068 00000000 		.4byte	.LVL0
+ 1216 006c 08000000 		.4byte	.LVL1
+ 1217 0070 0200     		.2byte	0x2
+ 1218 0072 30       		.byte	0x30
+ 1219 0073 9F       		.byte	0x9f
+ 1220 0074 08000000 		.4byte	.LVL1
+ 1221 0078 0A000000 		.4byte	.LVL2
+ 1222 007c 0600     		.2byte	0x6
+ 1223 007e 74       		.byte	0x74
+ 1224 007f 00       		.sleb128 0
+ 1225 0080 76       		.byte	0x76
+ 1226 0081 00       		.sleb128 0
+ 1227 0082 1C       		.byte	0x1c
+ 1228 0083 9F       		.byte	0x9f
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 26
+
+
+ 1229 0084 0A000000 		.4byte	.LVL2
+ 1230 0088 13000000 		.4byte	.LVL3-1
+ 1231 008c 0100     		.2byte	0x1
+ 1232 008e 53       		.byte	0x53
+ 1233 008f 13000000 		.4byte	.LVL3-1
+ 1234 0093 18000000 		.4byte	.LVL5
+ 1235 0097 0600     		.2byte	0x6
+ 1236 0099 74       		.byte	0x74
+ 1237 009a 00       		.sleb128 0
+ 1238 009b 76       		.byte	0x76
+ 1239 009c 00       		.sleb128 0
+ 1240 009d 1C       		.byte	0x1c
+ 1241 009e 9F       		.byte	0x9f
+ 1242 009f 18000000 		.4byte	.LVL5
+ 1243 00a3 1C000000 		.4byte	.LFE36
+ 1244 00a7 0100     		.2byte	0x1
+ 1245 00a9 53       		.byte	0x53
+ 1246 00aa 00000000 		.4byte	0
+ 1247 00ae 00000000 		.4byte	0
+ 1248              	.LLST4:
+ 1249 00b2 00000000 		.4byte	.LVL8
+ 1250 00b6 0C000000 		.4byte	.LVL9
+ 1251 00ba 0100     		.2byte	0x1
+ 1252 00bc 50       		.byte	0x50
+ 1253 00bd 0C000000 		.4byte	.LVL9
+ 1254 00c1 14000000 		.4byte	.LVL10
+ 1255 00c5 0100     		.2byte	0x1
+ 1256 00c7 54       		.byte	0x54
+ 1257 00c8 00000000 		.4byte	0
+ 1258 00cc 00000000 		.4byte	0
+ 1259              	.LLST5:
+ 1260 00d0 00000000 		.4byte	.LVL8
+ 1261 00d4 0C000000 		.4byte	.LVL9
+ 1262 00d8 0200     		.2byte	0x2
+ 1263 00da 30       		.byte	0x30
+ 1264 00db 9F       		.byte	0x9f
+ 1265 00dc 0C000000 		.4byte	.LVL9
+ 1266 00e0 20000000 		.4byte	.LVL12
+ 1267 00e4 0100     		.2byte	0x1
+ 1268 00e6 56       		.byte	0x56
+ 1269 00e7 20000000 		.4byte	.LVL12
+ 1270 00eb 43000000 		.4byte	.LVL17-1
+ 1271 00ef 0100     		.2byte	0x1
+ 1272 00f1 52       		.byte	0x52
+ 1273 00f2 43000000 		.4byte	.LVL17-1
+ 1274 00f6 46000000 		.4byte	.LVL19
+ 1275 00fa 0300     		.2byte	0x3
+ 1276 00fc 76       		.byte	0x76
+ 1277 00fd 01       		.sleb128 1
+ 1278 00fe 9F       		.byte	0x9f
+ 1279 00ff 00000000 		.4byte	0
+ 1280 0103 00000000 		.4byte	0
+ 1281              	.LLST6:
+ 1282 0107 00000000 		.4byte	.LVL8
+ 1283 010b 28000000 		.4byte	.LVL13
+ 1284 010f 0200     		.2byte	0x2
+ 1285 0111 30       		.byte	0x30
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 27
+
+
+ 1286 0112 9F       		.byte	0x9f
+ 1287 0113 28000000 		.4byte	.LVL13
+ 1288 0117 3E000000 		.4byte	.LVL16
+ 1289 011b 0100     		.2byte	0x1
+ 1290 011d 50       		.byte	0x50
+ 1291 011e 3E000000 		.4byte	.LVL16
+ 1292 0122 43000000 		.4byte	.LVL17-1
+ 1293 0126 0500     		.2byte	0x5
+ 1294 0128 31       		.byte	0x31
+ 1295 0129 71       		.byte	0x71
+ 1296 012a 00       		.sleb128 0
+ 1297 012b 1C       		.byte	0x1c
+ 1298 012c 9F       		.byte	0x9f
+ 1299 012d 00000000 		.4byte	0
+ 1300 0131 00000000 		.4byte	0
+ 1301              	.LLST7:
+ 1302 0135 14000000 		.4byte	.LVL10
+ 1303 0139 1A000000 		.4byte	.LVL11
+ 1304 013d 0800     		.2byte	0x8
+ 1305 013f 74       		.byte	0x74
+ 1306 0140 00       		.sleb128 0
+ 1307 0141 70       		.byte	0x70
+ 1308 0142 00       		.sleb128 0
+ 1309 0143 3A       		.byte	0x3a
+ 1310 0144 1E       		.byte	0x1e
+ 1311 0145 1C       		.byte	0x1c
+ 1312 0146 9F       		.byte	0x9f
+ 1313 0147 00000000 		.4byte	0
+ 1314 014b 00000000 		.4byte	0
+ 1315              	.LLST8:
+ 1316 014f 0C000000 		.4byte	.LVL9
+ 1317 0153 14000000 		.4byte	.LVL10
+ 1318 0157 0600     		.2byte	0x6
+ 1319 0159 F2       		.byte	0xf2
+ 1320 015a A2010000 		.4byte	.Ldebug_info0+418
+ 1321 015e 00       		.sleb128 0
+ 1322 015f 00000000 		.4byte	0
+ 1323 0163 00000000 		.4byte	0
+ 1324              	.LLST9:
+ 1325 0167 0C000000 		.4byte	.LVL9
+ 1326 016b 14000000 		.4byte	.LVL10
+ 1327 016f 0100     		.2byte	0x1
+ 1328 0171 54       		.byte	0x54
+ 1329 0172 00000000 		.4byte	0
+ 1330 0176 00000000 		.4byte	0
+ 1331              	.LLST10:
+ 1332 017a 30000000 		.4byte	.LVL14
+ 1333 017e 46000000 		.4byte	.LVL18
+ 1334 0182 0100     		.2byte	0x1
+ 1335 0184 54       		.byte	0x54
+ 1336 0185 00000000 		.4byte	0
+ 1337 0189 00000000 		.4byte	0
+ 1338              	.LLST11:
+ 1339 018d 00000000 		.4byte	.LVL20
+ 1340 0191 06000000 		.4byte	.LVL21
+ 1341 0195 0100     		.2byte	0x1
+ 1342 0197 50       		.byte	0x50
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 28
+
+
+ 1343 0198 06000000 		.4byte	.LVL21
+ 1344 019c 24000000 		.4byte	.LVL28
+ 1345 01a0 0100     		.2byte	0x1
+ 1346 01a2 54       		.byte	0x54
+ 1347 01a3 00000000 		.4byte	0
+ 1348 01a7 00000000 		.4byte	0
+ 1349              	.LLST12:
+ 1350 01ab 00000000 		.4byte	.LVL20
+ 1351 01af 06000000 		.4byte	.LVL21
+ 1352 01b3 0200     		.2byte	0x2
+ 1353 01b5 30       		.byte	0x30
+ 1354 01b6 9F       		.byte	0x9f
+ 1355 01b7 06000000 		.4byte	.LVL21
+ 1356 01bb 0C000000 		.4byte	.LVL22
+ 1357 01bf 0100     		.2byte	0x1
+ 1358 01c1 55       		.byte	0x55
+ 1359 01c2 0C000000 		.4byte	.LVL22
+ 1360 01c6 0E000000 		.4byte	.LVL23
+ 1361 01ca 0300     		.2byte	0x3
+ 1362 01cc 75       		.byte	0x75
+ 1363 01cd 7F       		.sleb128 -1
+ 1364 01ce 9F       		.byte	0x9f
+ 1365 01cf 0E000000 		.4byte	.LVL23
+ 1366 01d3 1A000000 		.4byte	.LVL25
+ 1367 01d7 0100     		.2byte	0x1
+ 1368 01d9 55       		.byte	0x55
+ 1369 01da 1A000000 		.4byte	.LVL25
+ 1370 01de 20000000 		.4byte	.LVL27
+ 1371 01e2 0300     		.2byte	0x3
+ 1372 01e4 75       		.byte	0x75
+ 1373 01e5 01       		.sleb128 1
+ 1374 01e6 9F       		.byte	0x9f
+ 1375 01e7 20000000 		.4byte	.LVL27
+ 1376 01eb 24000000 		.4byte	.LVL29
+ 1377 01ef 0100     		.2byte	0x1
+ 1378 01f1 55       		.byte	0x55
+ 1379 01f2 00000000 		.4byte	0
+ 1380 01f6 00000000 		.4byte	0
+ 1381              	.LLST13:
+ 1382 01fa 00000000 		.4byte	.LVL30
+ 1383 01fe 07000000 		.4byte	.LVL31-1
+ 1384 0202 0100     		.2byte	0x1
+ 1385 0204 50       		.byte	0x50
+ 1386 0205 07000000 		.4byte	.LVL31-1
+ 1387 0209 10000000 		.4byte	.LFE40
+ 1388 020d 0400     		.2byte	0x4
+ 1389 020f F3       		.byte	0xf3
+ 1390 0210 01       		.uleb128 0x1
+ 1391 0211 50       		.byte	0x50
+ 1392 0212 9F       		.byte	0x9f
+ 1393 0213 00000000 		.4byte	0
+ 1394 0217 00000000 		.4byte	0
+ 1395              	.LLST14:
+ 1396 021b 00000000 		.4byte	.LVL30
+ 1397 021f 07000000 		.4byte	.LVL31-1
+ 1398 0223 0100     		.2byte	0x1
+ 1399 0225 51       		.byte	0x51
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 29
+
+
+ 1400 0226 07000000 		.4byte	.LVL31-1
+ 1401 022a 0E000000 		.4byte	.LVL33
+ 1402 022e 0100     		.2byte	0x1
+ 1403 0230 54       		.byte	0x54
+ 1404 0231 0E000000 		.4byte	.LVL33
+ 1405 0235 10000000 		.4byte	.LFE40
+ 1406 0239 0400     		.2byte	0x4
+ 1407 023b F3       		.byte	0xf3
+ 1408 023c 01       		.uleb128 0x1
+ 1409 023d 51       		.byte	0x51
+ 1410 023e 9F       		.byte	0x9f
+ 1411 023f 00000000 		.4byte	0
+ 1412 0243 00000000 		.4byte	0
+ 1413              	.LLST15:
+ 1414 0247 00000000 		.4byte	.LVL34
+ 1415 024b 06000000 		.4byte	.LVL35
+ 1416 024f 0100     		.2byte	0x1
+ 1417 0251 50       		.byte	0x50
+ 1418 0252 06000000 		.4byte	.LVL35
+ 1419 0256 12000000 		.4byte	.LFE41
+ 1420 025a 0400     		.2byte	0x4
+ 1421 025c F3       		.byte	0xf3
+ 1422 025d 01       		.uleb128 0x1
+ 1423 025e 50       		.byte	0x50
+ 1424 025f 9F       		.byte	0x9f
+ 1425 0260 00000000 		.4byte	0
+ 1426 0264 00000000 		.4byte	0
+ 1427              	.LLST16:
+ 1428 0268 00000000 		.4byte	.LVL34
+ 1429 026c 09000000 		.4byte	.LVL36-1
+ 1430 0270 0100     		.2byte	0x1
+ 1431 0272 51       		.byte	0x51
+ 1432 0273 09000000 		.4byte	.LVL36-1
+ 1433 0277 10000000 		.4byte	.LVL38
+ 1434 027b 0100     		.2byte	0x1
+ 1435 027d 54       		.byte	0x54
+ 1436 027e 10000000 		.4byte	.LVL38
+ 1437 0282 12000000 		.4byte	.LFE41
+ 1438 0286 0400     		.2byte	0x4
+ 1439 0288 F3       		.byte	0xf3
+ 1440 0289 01       		.uleb128 0x1
+ 1441 028a 51       		.byte	0x51
+ 1442 028b 9F       		.byte	0x9f
+ 1443 028c 00000000 		.4byte	0
+ 1444 0290 00000000 		.4byte	0
+ 1445              	.LLST17:
+ 1446 0294 00000000 		.4byte	.LVL39
+ 1447 0298 07000000 		.4byte	.LVL40-1
+ 1448 029c 0100     		.2byte	0x1
+ 1449 029e 50       		.byte	0x50
+ 1450 029f 07000000 		.4byte	.LVL40-1
+ 1451 02a3 10000000 		.4byte	.LFE42
+ 1452 02a7 0400     		.2byte	0x4
+ 1453 02a9 F3       		.byte	0xf3
+ 1454 02aa 01       		.uleb128 0x1
+ 1455 02ab 50       		.byte	0x50
+ 1456 02ac 9F       		.byte	0x9f
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 30
+
+
+ 1457 02ad 00000000 		.4byte	0
+ 1458 02b1 00000000 		.4byte	0
+ 1459              	.LLST18:
+ 1460 02b5 00000000 		.4byte	.LVL39
+ 1461 02b9 07000000 		.4byte	.LVL40-1
+ 1462 02bd 0100     		.2byte	0x1
+ 1463 02bf 51       		.byte	0x51
+ 1464 02c0 07000000 		.4byte	.LVL40-1
+ 1465 02c4 0E000000 		.4byte	.LVL42
+ 1466 02c8 0100     		.2byte	0x1
+ 1467 02ca 54       		.byte	0x54
+ 1468 02cb 0E000000 		.4byte	.LVL42
+ 1469 02cf 10000000 		.4byte	.LFE42
+ 1470 02d3 0400     		.2byte	0x4
+ 1471 02d5 F3       		.byte	0xf3
+ 1472 02d6 01       		.uleb128 0x1
+ 1473 02d7 51       		.byte	0x51
+ 1474 02d8 9F       		.byte	0x9f
+ 1475 02d9 00000000 		.4byte	0
+ 1476 02dd 00000000 		.4byte	0
+ 1477              		.section	.debug_aranges,"",%progbits
+ 1478 0000 44000000 		.4byte	0x44
+ 1479 0004 0200     		.2byte	0x2
+ 1480 0006 00000000 		.4byte	.Ldebug_info0
+ 1481 000a 04       		.byte	0x4
+ 1482 000b 00       		.byte	0
+ 1483 000c 0000     		.2byte	0
+ 1484 000e 0000     		.2byte	0
+ 1485 0010 00000000 		.4byte	.LFB36
+ 1486 0014 1C000000 		.4byte	.LFE36-.LFB36
+ 1487 0018 00000000 		.4byte	.LFB38
+ 1488 001c 48000000 		.4byte	.LFE38-.LFB38
+ 1489 0020 00000000 		.4byte	.LFB39
+ 1490 0024 26000000 		.4byte	.LFE39-.LFB39
+ 1491 0028 00000000 		.4byte	.LFB40
+ 1492 002c 10000000 		.4byte	.LFE40-.LFB40
+ 1493 0030 00000000 		.4byte	.LFB41
+ 1494 0034 12000000 		.4byte	.LFE41-.LFB41
+ 1495 0038 00000000 		.4byte	.LFB42
+ 1496 003c 10000000 		.4byte	.LFE42-.LFB42
+ 1497 0040 00000000 		.4byte	0
+ 1498 0044 00000000 		.4byte	0
+ 1499              		.section	.debug_ranges,"",%progbits
+ 1500              	.Ldebug_ranges0:
+ 1501 0000 06000000 		.4byte	.LBB6
+ 1502 0004 08000000 		.4byte	.LBE6
+ 1503 0008 0A000000 		.4byte	.LBB11
+ 1504 000c 22000000 		.4byte	.LBE11
+ 1505 0010 24000000 		.4byte	.LBB12
+ 1506 0014 2C000000 		.4byte	.LBE12
+ 1507 0018 00000000 		.4byte	0
+ 1508 001c 00000000 		.4byte	0
+ 1509 0020 06000000 		.4byte	.LBB7
+ 1510 0024 08000000 		.4byte	.LBE7
+ 1511 0028 0C000000 		.4byte	.LBB10
+ 1512 002c 14000000 		.4byte	.LBE10
+ 1513 0030 00000000 		.4byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 31
+
+
+ 1514 0034 00000000 		.4byte	0
+ 1515 0038 00000000 		.4byte	.LFB36
+ 1516 003c 1C000000 		.4byte	.LFE36
+ 1517 0040 00000000 		.4byte	.LFB38
+ 1518 0044 48000000 		.4byte	.LFE38
+ 1519 0048 00000000 		.4byte	.LFB39
+ 1520 004c 26000000 		.4byte	.LFE39
+ 1521 0050 00000000 		.4byte	.LFB40
+ 1522 0054 10000000 		.4byte	.LFE40
+ 1523 0058 00000000 		.4byte	.LFB41
+ 1524 005c 12000000 		.4byte	.LFE41
+ 1525 0060 00000000 		.4byte	.LFB42
+ 1526 0064 10000000 		.4byte	.LFE42
+ 1527 0068 00000000 		.4byte	0
+ 1528 006c 00000000 		.4byte	0
+ 1529              		.section	.debug_line,"",%progbits
+ 1530              	.Ldebug_line0:
+ 1531 0000 29020000 		.section	.debug_str,"MS",%progbits,1
+ 1531      02004501 
+ 1531      00000201 
+ 1531      FB0E0D00 
+ 1531      01010101 
+ 1532              	.LASF17:
+ 1533 0000 76616C75 		.ascii	"value\000"
+ 1533      6500
+ 1534              	.LASF18:
+ 1535 0006 72656D69 		.ascii	"reminder\000"
+ 1535      6E646572 
+ 1535      00
+ 1536              	.LASF3:
+ 1537 000f 73686F72 		.ascii	"short unsigned int\000"
+ 1537      7420756E 
+ 1537      7369676E 
+ 1537      65642069 
+ 1537      6E7400
+ 1538              	.LASF25:
+ 1539 0022 4442475F 		.ascii	"DBG_PRINT_DEC_TEXT\000"
+ 1539      5052494E 
+ 1539      545F4445 
+ 1539      435F5445 
+ 1539      585400
+ 1540              	.LASF23:
+ 1541 0035 74657874 		.ascii	"text\000"
+ 1541      00
+ 1542              	.LASF24:
+ 1543 003a 4442475F 		.ascii	"DBG_PRINT_HEX8_TEXT\000"
+ 1543      5052494E 
+ 1543      545F4845 
+ 1543      58385F54 
+ 1543      45585400 
+ 1544              	.LASF32:
+ 1545 004e 6469766D 		.ascii	"divmod10\000"
+ 1545      6F643130 
+ 1545      00
+ 1546              	.LASF12:
+ 1547 0057 666C6F61 		.ascii	"float\000"
+ 1547      7400
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 32
+
+
+ 1548              	.LASF19:
+ 1549 005d 66696C65 		.ascii	"file\000"
+ 1549      00
+ 1550              	.LASF1:
+ 1551 0062 756E7369 		.ascii	"unsigned char\000"
+ 1551      676E6564 
+ 1551      20636861 
+ 1551      7200
+ 1552              	.LASF5:
+ 1553 0070 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1553      20756E73 
+ 1553      69676E65 
+ 1553      6420696E 
+ 1553      7400
+ 1554              	.LASF21:
+ 1555 0082 4442475F 		.ascii	"DBG_PRINT_HEX\000"
+ 1555      5052494E 
+ 1555      545F4845 
+ 1555      5800
+ 1556              	.LASF30:
+ 1557 0090 64656275 		.ascii	"debug.c\000"
+ 1557      672E6300 
+ 1558              	.LASF13:
+ 1559 0098 646F7562 		.ascii	"double\000"
+ 1559      6C6500
+ 1560              	.LASF9:
+ 1561 009f 5F5F7569 		.ascii	"__uint32_t\000"
+ 1561      6E743332 
+ 1561      5F7400
+ 1562              	.LASF11:
+ 1563 00aa 75696E74 		.ascii	"uint32\000"
+ 1563      333200
+ 1564              	.LASF8:
+ 1565 00b1 756E7369 		.ascii	"unsigned int\000"
+ 1565      676E6564 
+ 1565      20696E74 
+ 1565      00
+ 1566              	.LASF7:
+ 1567 00be 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1567      206C6F6E 
+ 1567      6720756E 
+ 1567      7369676E 
+ 1567      65642069 
+ 1568              	.LASF31:
+ 1569 00d5 433A5C55 		.ascii	"C:\\Users\\Tymek\\Documents\\EE\\Programming\\PSoC\\"
+ 1569      73657273 
+ 1569      5C54796D 
+ 1569      656B5C44 
+ 1569      6F63756D 
+ 1570 0102 4359424C 		.ascii	"CYBLE-224110-00_Clock_OTA\\BLE_OTA_UpgradableStackE"
+ 1570      452D3232 
+ 1570      34313130 
+ 1570      2D30305F 
+ 1570      436C6F63 
+ 1571 0134 78616D70 		.ascii	"xample_Launcher01.cydsn\000"
+ 1571      6C655F4C 
+ 1571      61756E63 
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 33
+
+
+ 1571      68657230 
+ 1571      312E6379 
+ 1572              	.LASF33:
+ 1573 014c 72657375 		.ascii	"result\000"
+ 1573      6C7400
+ 1574              	.LASF20:
+ 1575 0153 4442475F 		.ascii	"DBG_PRINT_DEC\000"
+ 1575      5052494E 
+ 1575      545F4445 
+ 1575      4300
+ 1576              	.LASF26:
+ 1577 0161 55415254 		.ascii	"UART_PutChar\000"
+ 1577      5F507574 
+ 1577      43686172 
+ 1577      00
+ 1578              	.LASF16:
+ 1579 016e 73697A65 		.ascii	"sizetype\000"
+ 1579      74797065 
+ 1579      00
+ 1580              	.LASF6:
+ 1581 0177 6C6F6E67 		.ascii	"long long int\000"
+ 1581      206C6F6E 
+ 1581      6720696E 
+ 1581      7400
+ 1582              	.LASF14:
+ 1583 0185 63686172 		.ascii	"char\000"
+ 1583      00
+ 1584              	.LASF34:
+ 1585 018a 5F777269 		.ascii	"_write\000"
+ 1585      746500
+ 1586              	.LASF22:
+ 1587 0191 4442475F 		.ascii	"DBG_PRINT_HEX_TEXT\000"
+ 1587      5052494E 
+ 1587      545F4845 
+ 1587      585F5445 
+ 1587      585400
+ 1588              	.LASF2:
+ 1589 01a4 73686F72 		.ascii	"short int\000"
+ 1589      7420696E 
+ 1589      7400
+ 1590              	.LASF10:
+ 1591 01ae 75696E74 		.ascii	"uint32_t\000"
+ 1591      33325F74 
+ 1591      00
+ 1592              	.LASF4:
+ 1593 01b7 6C6F6E67 		.ascii	"long int\000"
+ 1593      20696E74 
+ 1593      00
+ 1594              	.LASF15:
+ 1595 01c0 6C6F6E67 		.ascii	"long double\000"
+ 1595      20646F75 
+ 1595      626C6500 
+ 1596              	.LASF0:
+ 1597 01cc 7369676E 		.ascii	"signed char\000"
+ 1597      65642063 
+ 1597      68617200 
+ 1598              	.LASF27:
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccBDTQex.s 			page 34
+
+
+ 1599 01d8 55415254 		.ascii	"UART_PutString\000"
+ 1599      5F507574 
+ 1599      53747269 
+ 1599      6E6700
+ 1600              	.LASF29:
+ 1601 01e7 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1601      43313120 
+ 1601      352E342E 
+ 1601      31203230 
+ 1601      31363036 
+ 1602 021a 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1602      20726576 
+ 1602      6973696F 
+ 1602      6E203233 
+ 1602      37373135 
+ 1603 024d 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 1603      66756E63 
+ 1603      74696F6E 
+ 1603      2D736563 
+ 1603      74696F6E 
+ 1604              	.LASF28:
+ 1605 0275 55415254 		.ascii	"UART_PutHexByte\000"
+ 1605      5F507574 
+ 1605      48657842 
+ 1605      79746500 
+ 1606              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

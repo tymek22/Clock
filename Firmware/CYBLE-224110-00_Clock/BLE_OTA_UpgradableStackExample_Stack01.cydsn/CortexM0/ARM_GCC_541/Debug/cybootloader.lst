@@ -1,0 +1,4535 @@
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"cybootloader.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	cy_meta_chipprotect
+  20              		.global	cy_meta_flashprotect
+  21              		.global	cy_metadata
+  22              		.global	cy_bootloader
+  23              		.section	.cychipprotect,"a",%progbits
+  24              		.align	2
+  25              		.type	cy_meta_chipprotect, %object
+  26              		.size	cy_meta_chipprotect, 1
+  27              	cy_meta_chipprotect:
+  28 0000 01       		.byte	1
+  29              		.section	.cymeta,"a",%progbits
+  30              		.align	2
+  31              		.type	cy_metadata, %object
+  32              		.size	cy_metadata, 12
+  33              	cy_metadata:
+  34 0000 00       		.byte	0
+  35 0001 02       		.byte	2
+  36 0002 13       		.byte	19
+  37 0003 53       		.byte	83
+  38 0004 11       		.byte	17
+  39 0005 A3       		.byte	-93
+  40 0006 00       		.byte	0
+  41 0007 01       		.byte	1
+  42 0008 13       		.byte	19
+  43 0009 57       		.byte	87
+  44 000a 95       		.byte	-107
+  45 000b 84       		.byte	-124
+  46              		.section	.cybootloader,"a",%progbits
+  47              		.align	2
+  48              		.type	cy_bootloader, %object
+  49              		.size	cy_bootloader, 3840
+  50              	cy_bootloader:
+  51 0000 00       		.byte	0
+  52 0001 80       		.byte	-128
+  53 0002 00       		.byte	0
+  54 0003 20       		.byte	32
+  55 0004 11       		.byte	17
+  56 0005 00       		.byte	0
+  57 0006 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 2
+
+
+  58 0007 00       		.byte	0
+  59 0008 D1       		.byte	-47
+  60 0009 01       		.byte	1
+  61 000a 00       		.byte	0
+  62 000b 00       		.byte	0
+  63 000c D1       		.byte	-47
+  64 000d 01       		.byte	1
+  65 000e 00       		.byte	0
+  66 000f 00       		.byte	0
+  67 0010 10       		.byte	16
+  68 0011 B5       		.byte	-75
+  69 0012 00       		.byte	0
+  70 0013 F0       		.byte	-16
+  71 0014 33       		.byte	51
+  72 0015 FA       		.byte	-6
+  73 0016 00       		.byte	0
+  74 0017 F0       		.byte	-16
+  75 0018 E3       		.byte	-29
+  76 0019 F8       		.byte	-8
+  77 001a 00       		.byte	0
+  78 001b 00       		.byte	0
+  79 001c 70       		.byte	112
+  80 001d B5       		.byte	-75
+  81 001e 72       		.byte	114
+  82 001f B6       		.byte	-74
+  83 0020 80       		.byte	-128
+  84 0021 25       		.byte	37
+  85 0022 00       		.byte	0
+  86 0023 24       		.byte	36
+  87 0024 26       		.byte	38
+  88 0025 4B       		.byte	75
+  89 0026 ED       		.byte	-19
+  90 0027 00       		.byte	0
+  91 0028 1C       		.byte	28
+  92 0029 60       		.byte	96
+  93 002a 2A       		.byte	42
+  94 002b 00       		.byte	0
+  95 002c 21       		.byte	33
+  96 002d 00       		.byte	0
+  97 002e 25       		.byte	37
+  98 002f 48       		.byte	72
+  99 0030 00       		.byte	0
+ 100 0031 F0       		.byte	-16
+ 101 0032 2D       		.byte	45
+ 102 0033 FE       		.byte	-2
+ 103 0034 2A       		.byte	42
+ 104 0035 00       		.byte	0
+ 105 0036 21       		.byte	33
+ 106 0037 00       		.byte	0
+ 107 0038 23       		.byte	35
+ 108 0039 48       		.byte	72
+ 109 003a 00       		.byte	0
+ 110 003b F0       		.byte	-16
+ 111 003c 28       		.byte	40
+ 112 003d FE       		.byte	-2
+ 113 003e EE       		.byte	-18
+ 114 003f 22       		.byte	34
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 3
+
+
+ 115 0040 22       		.byte	34
+ 116 0041 4B       		.byte	75
+ 117 0042 12       		.byte	18
+ 118 0043 06       		.byte	6
+ 119 0044 1A       		.byte	26
+ 120 0045 60       		.byte	96
+ 121 0046 99       		.byte	-103
+ 122 0047 23       		.byte	35
+ 123 0048 06       		.byte	6
+ 124 0049 21       		.byte	33
+ 125 004a 21       		.byte	33
+ 126 004b 4A       		.byte	74
+ 127 004c 1B       		.byte	27
+ 128 004d 04       		.byte	4
+ 129 004e 13       		.byte	19
+ 130 004f 60       		.byte	96
+ 131 0050 20       		.byte	32
+ 132 0051 4A       		.byte	74
+ 133 0052 30       		.byte	48
+ 134 0053 20       		.byte	32
+ 135 0054 13       		.byte	19
+ 136 0055 60       		.byte	96
+ 137 0056 20       		.byte	32
+ 138 0057 4A       		.byte	74
+ 139 0058 13       		.byte	19
+ 140 0059 60       		.byte	96
+ 141 005a 20       		.byte	32
+ 142 005b 4A       		.byte	74
+ 143 005c 13       		.byte	19
+ 144 005d 78       		.byte	120
+ 145 005e 0B       		.byte	11
+ 146 005f 43       		.byte	67
+ 147 0060 13       		.byte	19
+ 148 0061 70       		.byte	112
+ 149 0062 D8       		.byte	-40
+ 150 0063 22       		.byte	34
+ 151 0064 1E       		.byte	30
+ 152 0065 4B       		.byte	75
+ 153 0066 12       		.byte	18
+ 154 0067 04       		.byte	4
+ 155 0068 1A       		.byte	26
+ 156 0069 60       		.byte	96
+ 157 006a 20       		.byte	32
+ 158 006b 22       		.byte	34
+ 159 006c 1D       		.byte	29
+ 160 006d 4B       		.byte	75
+ 161 006e 1A       		.byte	26
+ 162 006f 60       		.byte	96
+ 163 0070 C0       		.byte	-64
+ 164 0071 22       		.byte	34
+ 165 0072 1D       		.byte	29
+ 166 0073 4B       		.byte	75
+ 167 0074 92       		.byte	-110
+ 168 0075 02       		.byte	2
+ 169 0076 1A       		.byte	26
+ 170 0077 60       		.byte	96
+ 171 0078 C0       		.byte	-64
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 4
+
+
+ 172 0079 22       		.byte	34
+ 173 007a 1C       		.byte	28
+ 174 007b 4B       		.byte	75
+ 175 007c 12       		.byte	18
+ 176 007d 04       		.byte	4
+ 177 007e 1A       		.byte	26
+ 178 007f 60       		.byte	96
+ 179 0080 12       		.byte	18
+ 180 0081 22       		.byte	34
+ 181 0082 1B       		.byte	27
+ 182 0083 4B       		.byte	75
+ 183 0084 1A       		.byte	26
+ 184 0085 60       		.byte	96
+ 185 0086 00       		.byte	0
+ 186 0087 F0       		.byte	-16
+ 187 0088 7F       		.byte	127
+ 188 0089 FB       		.byte	-5
+ 189 008a 1A       		.byte	26
+ 190 008b 4A       		.byte	74
+ 191 008c 1A       		.byte	26
+ 192 008d 4B       		.byte	75
+ 193 008e 1B       		.byte	27
+ 194 008f 49       		.byte	73
+ 195 0090 1A       		.byte	26
+ 196 0091 60       		.byte	96
+ 197 0092 1B       		.byte	27
+ 198 0093 4B       		.byte	75
+ 199 0094 06       		.byte	6
+ 200 0095 3A       		.byte	58
+ 201 0096 1A       		.byte	26
+ 202 0097 60       		.byte	96
+ 203 0098 80       		.byte	-128
+ 204 0099 22       		.byte	34
+ 205 009a 1A       		.byte	26
+ 206 009b 4B       		.byte	75
+ 207 009c 12       		.byte	18
+ 208 009d 03       		.byte	3
+ 209 009e 1A       		.byte	26
+ 210 009f 60       		.byte	96
+ 211 00a0 08       		.byte	8
+ 212 00a1 20       		.byte	32
+ 213 00a2 00       		.byte	0
+ 214 00a3 F0       		.byte	-16
+ 215 00a4 43       		.byte	67
+ 216 00a5 FB       		.byte	-5
+ 217 00a6 08       		.byte	8
+ 218 00a7 20       		.byte	32
+ 219 00a8 00       		.byte	0
+ 220 00a9 F0       		.byte	-16
+ 221 00aa 4C       		.byte	76
+ 222 00ab FB       		.byte	-5
+ 223 00ac 16       		.byte	22
+ 224 00ad 4B       		.byte	75
+ 225 00ae 17       		.byte	23
+ 226 00af 4A       		.byte	74
+ 227 00b0 1C       		.byte	28
+ 228 00b1 60       		.byte	96
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 5
+
+
+ 229 00b2 03       		.byte	3
+ 230 00b3 23       		.byte	35
+ 231 00b4 13       		.byte	19
+ 232 00b5 60       		.byte	96
+ 233 00b6 16       		.byte	22
+ 234 00b7 4A       		.byte	74
+ 235 00b8 13       		.byte	19
+ 236 00b9 60       		.byte	96
+ 237 00ba 16       		.byte	22
+ 238 00bb 4B       		.byte	75
+ 239 00bc 1C       		.byte	28
+ 240 00bd 60       		.byte	96
+ 241 00be 70       		.byte	112
+ 242 00bf BD       		.byte	-67
+ 243 00c0 6C       		.byte	108
+ 244 00c1 F0       		.byte	-16
+ 245 00c2 2E       		.byte	46
+ 246 00c3 40       		.byte	64
+ 247 00c4 00       		.byte	0
+ 248 00c5 30       		.byte	48
+ 249 00c6 0F       		.byte	15
+ 250 00c7 40       		.byte	64
+ 251 00c8 00       		.byte	0
+ 252 00c9 40       		.byte	64
+ 253 00ca 0F       		.byte	15
+ 254 00cb 40       		.byte	64
+ 255 00cc 00       		.byte	0
+ 256 00cd 00       		.byte	0
+ 257 00ce 02       		.byte	2
+ 258 00cf 40       		.byte	64
+ 259 00d0 00       		.byte	0
+ 260 00d1 50       		.byte	80
+ 261 00d2 0F       		.byte	15
+ 262 00d3 40       		.byte	64
+ 263 00d4 10       		.byte	16
+ 264 00d5 50       		.byte	80
+ 265 00d6 0F       		.byte	15
+ 266 00d7 40       		.byte	64
+ 267 00d8 30       		.byte	48
+ 268 00d9 50       		.byte	80
+ 269 00da 0F       		.byte	15
+ 270 00db 40       		.byte	64
+ 271 00dc 00       		.byte	0
+ 272 00dd 70       		.byte	112
+ 273 00de 0F       		.byte	15
+ 274 00df 40       		.byte	64
+ 275 00e0 08       		.byte	8
+ 276 00e1 00       		.byte	0
+ 277 00e2 04       		.byte	4
+ 278 00e3 40       		.byte	64
+ 279 00e4 00       		.byte	0
+ 280 00e5 01       		.byte	1
+ 281 00e6 04       		.byte	4
+ 282 00e7 40       		.byte	64
+ 283 00e8 08       		.byte	8
+ 284 00e9 01       		.byte	1
+ 285 00ea 04       		.byte	4
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 6
+
+
+ 286 00eb 40       		.byte	64
+ 287 00ec 08       		.byte	8
+ 288 00ed 03       		.byte	3
+ 289 00ee 04       		.byte	4
+ 290 00ef 40       		.byte	64
+ 291 00f0 30       		.byte	48
+ 292 00f1 00       		.byte	0
+ 293 00f2 10       		.byte	16
+ 294 00f3 40       		.byte	64
+ 295 00f4 06       		.byte	6
+ 296 00f5 00       		.byte	0
+ 297 00f6 00       		.byte	0
+ 298 00f7 80       		.byte	-128
+ 299 00f8 04       		.byte	4
+ 300 00f9 01       		.byte	1
+ 301 00fa 0B       		.byte	11
+ 302 00fb 40       		.byte	64
+ 303 00fc 51       		.byte	81
+ 304 00fd 09       		.byte	9
+ 305 00fe 00       		.byte	0
+ 306 00ff 00       		.byte	0
+ 307 0100 08       		.byte	8
+ 308 0101 01       		.byte	1
+ 309 0102 0B       		.byte	11
+ 310 0103 40       		.byte	64
+ 311 0104 00       		.byte	0
+ 312 0105 01       		.byte	1
+ 313 0106 0B       		.byte	11
+ 314 0107 40       		.byte	64
+ 315 0108 0C       		.byte	12
+ 316 0109 02       		.byte	2
+ 317 010a 0B       		.byte	11
+ 318 010b 40       		.byte	64
+ 319 010c 30       		.byte	48
+ 320 010d 00       		.byte	0
+ 321 010e 30       		.byte	48
+ 322 010f 40       		.byte	64
+ 323 0110 30       		.byte	48
+ 324 0111 00       		.byte	0
+ 325 0112 31       		.byte	49
+ 326 0113 40       		.byte	64
+ 327 0114 00       		.byte	0
+ 328 0115 0E       		.byte	14
+ 329 0116 3F       		.byte	63
+ 330 0117 40       		.byte	64
+ 331 0118 10       		.byte	16
+ 332 0119 B5       		.byte	-75
+ 333 011a 06       		.byte	6
+ 334 011b 4C       		.byte	76
+ 335 011c 23       		.byte	35
+ 336 011d 78       		.byte	120
+ 337 011e 00       		.byte	0
+ 338 011f 2B       		.byte	43
+ 339 0120 07       		.byte	7
+ 340 0121 D1       		.byte	-47
+ 341 0122 05       		.byte	5
+ 342 0123 4B       		.byte	75
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 7
+
+
+ 343 0124 00       		.byte	0
+ 344 0125 2B       		.byte	43
+ 345 0126 02       		.byte	2
+ 346 0127 D0       		.byte	-48
+ 347 0128 04       		.byte	4
+ 348 0129 48       		.byte	72
+ 349 012a 00       		.byte	0
+ 350 012b E0       		.byte	-32
+ 351 012c 00       		.byte	0
+ 352 012d BF       		.byte	-65
+ 353 012e 01       		.byte	1
+ 354 012f 23       		.byte	35
+ 355 0130 23       		.byte	35
+ 356 0131 70       		.byte	112
+ 357 0132 10       		.byte	16
+ 358 0133 BD       		.byte	-67
+ 359 0134 68       		.byte	104
+ 360 0135 01       		.byte	1
+ 361 0136 00       		.byte	0
+ 362 0137 20       		.byte	32
+ 363 0138 00       		.byte	0
+ 364 0139 00       		.byte	0
+ 365 013a 00       		.byte	0
+ 366 013b 00       		.byte	0
+ 367 013c A8       		.byte	-88
+ 368 013d 0C       		.byte	12
+ 369 013e 00       		.byte	0
+ 370 013f 00       		.byte	0
+ 371 0140 08       		.byte	8
+ 372 0141 4B       		.byte	75
+ 373 0142 10       		.byte	16
+ 374 0143 B5       		.byte	-75
+ 375 0144 00       		.byte	0
+ 376 0145 2B       		.byte	43
+ 377 0146 03       		.byte	3
+ 378 0147 D0       		.byte	-48
+ 379 0148 07       		.byte	7
+ 380 0149 49       		.byte	73
+ 381 014a 08       		.byte	8
+ 382 014b 48       		.byte	72
+ 383 014c 00       		.byte	0
+ 384 014d E0       		.byte	-32
+ 385 014e 00       		.byte	0
+ 386 014f BF       		.byte	-65
+ 387 0150 07       		.byte	7
+ 388 0151 48       		.byte	72
+ 389 0152 03       		.byte	3
+ 390 0153 68       		.byte	104
+ 391 0154 00       		.byte	0
+ 392 0155 2B       		.byte	43
+ 393 0156 00       		.byte	0
+ 394 0157 D1       		.byte	-47
+ 395 0158 10       		.byte	16
+ 396 0159 BD       		.byte	-67
+ 397 015a 06       		.byte	6
+ 398 015b 4B       		.byte	75
+ 399 015c 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 8
+
+
+ 400 015d 2B       		.byte	43
+ 401 015e FB       		.byte	-5
+ 402 015f D0       		.byte	-48
+ 403 0160 98       		.byte	-104
+ 404 0161 47       		.byte	71
+ 405 0162 F9       		.byte	-7
+ 406 0163 E7       		.byte	-25
+ 407 0164 00       		.byte	0
+ 408 0165 00       		.byte	0
+ 409 0166 00       		.byte	0
+ 410 0167 00       		.byte	0
+ 411 0168 6C       		.byte	108
+ 412 0169 01       		.byte	1
+ 413 016a 00       		.byte	0
+ 414 016b 20       		.byte	32
+ 415 016c A8       		.byte	-88
+ 416 016d 0C       		.byte	12
+ 417 016e 00       		.byte	0
+ 418 016f 00       		.byte	0
+ 419 0170 C8       		.byte	-56
+ 420 0171 00       		.byte	0
+ 421 0172 00       		.byte	0
+ 422 0173 20       		.byte	32
+ 423 0174 00       		.byte	0
+ 424 0175 00       		.byte	0
+ 425 0176 00       		.byte	0
+ 426 0177 00       		.byte	0
+ 427 0178 10       		.byte	16
+ 428 0179 B5       		.byte	-75
+ 429 017a 01       		.byte	1
+ 430 017b 20       		.byte	32
+ 431 017c 00       		.byte	0
+ 432 017d F0       		.byte	-16
+ 433 017e 4C       		.byte	76
+ 434 017f FA       		.byte	-6
+ 435 0180 00       		.byte	0
+ 436 0181 20       		.byte	32
+ 437 0182 00       		.byte	0
+ 438 0183 F0       		.byte	-16
+ 439 0184 49       		.byte	73
+ 440 0185 FA       		.byte	-6
+ 441 0186 0C       		.byte	12
+ 442 0187 20       		.byte	32
+ 443 0188 00       		.byte	0
+ 444 0189 F0       		.byte	-16
+ 445 018a 3A       		.byte	58
+ 446 018b FC       		.byte	-4
+ 447 018c 0C       		.byte	12
+ 448 018d 4C       		.byte	76
+ 449 018e 20       		.byte	32
+ 450 018f 00       		.byte	0
+ 451 0190 00       		.byte	0
+ 452 0191 F0       		.byte	-16
+ 453 0192 4E       		.byte	78
+ 454 0193 FA       		.byte	-6
+ 455 0194 20       		.byte	32
+ 456 0195 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 9
+
+
+ 457 0196 00       		.byte	0
+ 458 0197 F0       		.byte	-16
+ 459 0198 4B       		.byte	75
+ 460 0199 FA       		.byte	-6
+ 461 019a 0A       		.byte	10
+ 462 019b 48       		.byte	72
+ 463 019c 00       		.byte	0
+ 464 019d F0       		.byte	-16
+ 465 019e 48       		.byte	72
+ 466 019f FA       		.byte	-6
+ 467 01a0 09       		.byte	9
+ 468 01a1 48       		.byte	72
+ 469 01a2 00       		.byte	0
+ 470 01a3 F0       		.byte	-16
+ 471 01a4 45       		.byte	69
+ 472 01a5 FA       		.byte	-6
+ 473 01a6 09       		.byte	9
+ 474 01a7 48       		.byte	72
+ 475 01a8 00       		.byte	0
+ 476 01a9 F0       		.byte	-16
+ 477 01aa 42       		.byte	66
+ 478 01ab FA       		.byte	-6
+ 479 01ac 20       		.byte	32
+ 480 01ad 00       		.byte	0
+ 481 01ae 00       		.byte	0
+ 482 01af F0       		.byte	-16
+ 483 01b0 3F       		.byte	63
+ 484 01b1 FA       		.byte	-6
+ 485 01b2 20       		.byte	32
+ 486 01b3 00       		.byte	0
+ 487 01b4 00       		.byte	0
+ 488 01b5 F0       		.byte	-16
+ 489 01b6 3C       		.byte	60
+ 490 01b7 FA       		.byte	-6
+ 491 01b8 00       		.byte	0
+ 492 01b9 F0       		.byte	-16
+ 493 01ba CA       		.byte	-54
+ 494 01bb F9       		.byte	-7
+ 495 01bc FE       		.byte	-2
+ 496 01bd E7       		.byte	-25
+ 497 01be C0       		.byte	-64
+ 498 01bf 46       		.byte	70
+ 499 01c0 E5       		.byte	-27
+ 500 01c1 0C       		.byte	12
+ 501 01c2 00       		.byte	0
+ 502 01c3 00       		.byte	0
+ 503 01c4 AC       		.byte	-84
+ 504 01c5 0C       		.byte	12
+ 505 01c6 00       		.byte	0
+ 506 01c7 00       		.byte	0
+ 507 01c8 D6       		.byte	-42
+ 508 01c9 0C       		.byte	12
+ 509 01ca 00       		.byte	0
+ 510 01cb 00       		.byte	0
+ 511 01cc E8       		.byte	-24
+ 512 01cd 0C       		.byte	12
+ 513 01ce 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 10
+
+
+ 514 01cf 00       		.byte	0
+ 515 01d0 10       		.byte	16
+ 516 01d1 B5       		.byte	-75
+ 517 01d2 00       		.byte	0
+ 518 01d3 F0       		.byte	-16
+ 519 01d4 27       		.byte	39
+ 520 01d5 FD       		.byte	-3
+ 521 01d6 03       		.byte	3
+ 522 01d7 68       		.byte	104
+ 523 01d8 0C       		.byte	12
+ 524 01d9 2B       		.byte	43
+ 525 01da 00       		.byte	0
+ 526 01db D1       		.byte	-47
+ 527 01dc FE       		.byte	-2
+ 528 01dd E7       		.byte	-25
+ 529 01de FE       		.byte	-2
+ 530 01df E7       		.byte	-25
+ 531 01e0 F8       		.byte	-8
+ 532 01e1 B5       		.byte	-75
+ 533 01e2 00       		.byte	0
+ 534 01e3 25       		.byte	37
+ 535 01e4 0F       		.byte	15
+ 536 01e5 49       		.byte	73
+ 537 01e6 10       		.byte	16
+ 538 01e7 4B       		.byte	75
+ 539 01e8 01       		.byte	1
+ 540 01e9 39       		.byte	57
+ 541 01ea 4A       		.byte	74
+ 542 01eb 1C       		.byte	28
+ 543 01ec 14       		.byte	20
+ 544 01ed D0       		.byte	-48
+ 545 01ee 00       		.byte	0
+ 546 01ef 22       		.byte	34
+ 547 01f0 1F       		.byte	31
+ 548 01f1 68       		.byte	104
+ 549 01f2 5C       		.byte	92
+ 550 01f3 68       		.byte	104
+ 551 01f4 9E       		.byte	-98
+ 552 01f5 68       		.byte	104
+ 553 01f6 A0       		.byte	-96
+ 554 01f7 18       		.byte	24
+ 555 01f8 B2       		.byte	-78
+ 556 01f9 42       		.byte	66
+ 557 01fa 03       		.byte	3
+ 558 01fb D0       		.byte	-48
+ 559 01fc B8       		.byte	-72
+ 560 01fd 58       		.byte	88
+ 561 01fe A0       		.byte	-96
+ 562 01ff 50       		.byte	80
+ 563 0200 04       		.byte	4
+ 564 0201 32       		.byte	50
+ 565 0202 F8       		.byte	-8
+ 566 0203 E7       		.byte	-25
+ 567 0204 02       		.byte	2
+ 568 0205 00       		.byte	0
+ 569 0206 DE       		.byte	-34
+ 570 0207 68       		.byte	104
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 11
+
+
+ 571 0208 14       		.byte	20
+ 572 0209 1A       		.byte	26
+ 573 020a A6       		.byte	-90
+ 574 020b 42       		.byte	66
+ 575 020c 01       		.byte	1
+ 576 020d D0       		.byte	-48
+ 577 020e 20       		.byte	32
+ 578 020f C2       		.byte	-62
+ 579 0210 FA       		.byte	-6
+ 580 0211 E7       		.byte	-25
+ 581 0212 10       		.byte	16
+ 582 0213 33       		.byte	51
+ 583 0214 01       		.byte	1
+ 584 0215 39       		.byte	57
+ 585 0216 E8       		.byte	-24
+ 586 0217 E7       		.byte	-25
+ 587 0218 00       		.byte	0
+ 588 0219 F0       		.byte	-16
+ 589 021a 0A       		.byte	10
+ 590 021b FD       		.byte	-3
+ 591 021c FF       		.byte	-1
+ 592 021d F7       		.byte	-9
+ 593 021e AC       		.byte	-84
+ 594 021f FF       		.byte	-1
+ 595 0220 FE       		.byte	-2
+ 596 0221 E7       		.byte	-25
+ 597 0222 C0       		.byte	-64
+ 598 0223 46       		.byte	70
+ 599 0224 01       		.byte	1
+ 600 0225 00       		.byte	0
+ 601 0226 00       		.byte	0
+ 602 0227 00       		.byte	0
+ 603 0228 6C       		.byte	108
+ 604 0229 0D       		.byte	13
+ 605 022a 00       		.byte	0
+ 606 022b 00       		.byte	0
+ 607 022c 01       		.byte	1
+ 608 022d 21       		.byte	33
+ 609 022e 0F       		.byte	15
+ 610 022f 4A       		.byte	74
+ 611 0230 70       		.byte	112
+ 612 0231 B5       		.byte	-75
+ 613 0232 13       		.byte	19
+ 614 0233 68       		.byte	104
+ 615 0234 14       		.byte	20
+ 616 0235 00       		.byte	0
+ 617 0236 8B       		.byte	-117
+ 618 0237 43       		.byte	67
+ 619 0238 13       		.byte	19
+ 620 0239 60       		.byte	96
+ 621 023a 00       		.byte	0
+ 622 023b 23       		.byte	35
+ 623 023c 0C       		.byte	12
+ 624 023d 4D       		.byte	77
+ 625 023e 0D       		.byte	13
+ 626 023f 4E       		.byte	78
+ 627 0240 0D       		.byte	13
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 12
+
+
+ 628 0241 48       		.byte	72
+ 629 0242 9A       		.byte	-102
+ 630 0243 00       		.byte	0
+ 631 0244 29       		.byte	41
+ 632 0245 00       		.byte	0
+ 633 0246 03       		.byte	3
+ 634 0247 2B       		.byte	43
+ 635 0248 00       		.byte	0
+ 636 0249 D8       		.byte	-40
+ 637 024a B1       		.byte	-79
+ 638 024b 58       		.byte	88
+ 639 024c 01       		.byte	1
+ 640 024d 33       		.byte	51
+ 641 024e 81       		.byte	-127
+ 642 024f 50       		.byte	80
+ 643 0250 30       		.byte	48
+ 644 0251 2B       		.byte	43
+ 645 0252 F6       		.byte	-10
+ 646 0253 D1       		.byte	-47
+ 647 0254 FF       		.byte	-1
+ 648 0255 F7       		.byte	-9
+ 649 0256 E2       		.byte	-30
+ 650 0257 FE       		.byte	-2
+ 651 0258 08       		.byte	8
+ 652 0259 4B       		.byte	75
+ 653 025a 1A       		.byte	26
+ 654 025b 68       		.byte	104
+ 655 025c 00       		.byte	0
+ 656 025d 2A       		.byte	42
+ 657 025e 00       		.byte	0
+ 658 025f D1       		.byte	-47
+ 659 0260 1A       		.byte	26
+ 660 0261 60       		.byte	96
+ 661 0262 01       		.byte	1
+ 662 0263 22       		.byte	34
+ 663 0264 23       		.byte	35
+ 664 0265 68       		.byte	104
+ 665 0266 13       		.byte	19
+ 666 0267 43       		.byte	67
+ 667 0268 23       		.byte	35
+ 668 0269 60       		.byte	96
+ 669 026a 70       		.byte	112
+ 670 026b BD       		.byte	-67
+ 671 026c 00       		.byte	0
+ 672 026d 00       		.byte	0
+ 673 026e 10       		.byte	16
+ 674 026f 40       		.byte	64
+ 675 0270 D1       		.byte	-47
+ 676 0271 01       		.byte	1
+ 677 0272 00       		.byte	0
+ 678 0273 00       		.byte	0
+ 679 0274 00       		.byte	0
+ 680 0275 00       		.byte	0
+ 681 0276 00       		.byte	0
+ 682 0277 00       		.byte	0
+ 683 0278 00       		.byte	0
+ 684 0279 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 13
+
+
+ 685 027a 00       		.byte	0
+ 686 027b 20       		.byte	32
+ 687 027c C0       		.byte	-64
+ 688 027d 00       		.byte	0
+ 689 027e 00       		.byte	0
+ 690 027f 20       		.byte	32
+ 691 0280 00       		.byte	0
+ 692 0281 47       		.byte	71
+ 693 0282 F0       		.byte	-16
+ 694 0283 B5       		.byte	-75
+ 695 0284 FF       		.byte	-1
+ 696 0285 23       		.byte	35
+ 697 0286 0C       		.byte	12
+ 698 0287 00       		.byte	0
+ 699 0288 01       		.byte	1
+ 700 0289 00       		.byte	0
+ 701 028a C1       		.byte	-63
+ 702 028b B0       		.byte	-80
+ 703 028c 99       		.byte	-103
+ 704 028d 43       		.byte	67
+ 705 028e 0B       		.byte	11
+ 706 028f 00       		.byte	0
+ 707 0290 4D       		.byte	77
+ 708 0291 1C       		.byte	28
+ 709 0292 69       		.byte	105
+ 710 0293 46       		.byte	70
+ 711 0294 02       		.byte	2
+ 712 0295 0A       		.byte	10
+ 713 0296 FF       		.byte	-1
+ 714 0297 35       		.byte	53
+ 715 0298 CE       		.byte	-50
+ 716 0299 1A       		.byte	26
+ 717 029a 1F       		.byte	31
+ 718 029b 78       		.byte	120
+ 719 029c F7       		.byte	-9
+ 720 029d 54       		.byte	84
+ 721 029e 01       		.byte	1
+ 722 029f 33       		.byte	51
+ 723 02a0 AB       		.byte	-85
+ 724 02a1 42       		.byte	66
+ 725 02a2 FA       		.byte	-6
+ 726 02a3 D1       		.byte	-47
+ 727 02a4 C0       		.byte	-64
+ 728 02a5 B2       		.byte	-78
+ 729 02a6 0C       		.byte	12
+ 730 02a7 54       		.byte	84
+ 731 02a8 90       		.byte	-112
+ 732 02a9 B2       		.byte	-78
+ 733 02aa 00       		.byte	0
+ 734 02ab F0       		.byte	-16
+ 735 02ac CF       		.byte	-49
+ 736 02ad F9       		.byte	-7
+ 737 02ae 41       		.byte	65
+ 738 02af B0       		.byte	-80
+ 739 02b0 F0       		.byte	-16
+ 740 02b1 BD       		.byte	-67
+ 741 02b2 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 14
+
+
+ 742 02b3 00       		.byte	0
+ 743 02b4 01       		.byte	1
+ 744 02b5 38       		.byte	56
+ 745 02b6 10       		.byte	16
+ 746 02b7 B5       		.byte	-75
+ 747 02b8 0B       		.byte	11
+ 748 02b9 28       		.byte	40
+ 749 02ba 30       		.byte	48
+ 750 02bb D8       		.byte	-40
+ 751 02bc 09       		.byte	9
+ 752 02bd 02       		.byte	2
+ 753 02be 49       		.byte	73
+ 754 02bf 42       		.byte	66
+ 755 02c0 00       		.byte	0
+ 756 02c1 F0       		.byte	-16
+ 757 02c2 1A       		.byte	26
+ 758 02c3 FC       		.byte	-4
+ 759 02c4 06       		.byte	6
+ 760 02c5 08       		.byte	8
+ 761 02c6 0A       		.byte	10
+ 762 02c7 0C       		.byte	12
+ 763 02c8 0E       		.byte	14
+ 764 02c9 10       		.byte	16
+ 765 02ca 14       		.byte	20
+ 766 02cb 12       		.byte	18
+ 767 02cc 16       		.byte	22
+ 768 02cd 19       		.byte	25
+ 769 02ce 1B       		.byte	27
+ 770 02cf 20       		.byte	32
+ 771 02d0 17       		.byte	23
+ 772 02d1 4B       		.byte	75
+ 773 02d2 13       		.byte	19
+ 774 02d3 E0       		.byte	-32
+ 775 02d4 17       		.byte	23
+ 776 02d5 4B       		.byte	75
+ 777 02d6 16       		.byte	22
+ 778 02d7 E0       		.byte	-32
+ 779 02d8 17       		.byte	23
+ 780 02d9 4B       		.byte	75
+ 781 02da 0A       		.byte	10
+ 782 02db E0       		.byte	-32
+ 783 02dc 17       		.byte	23
+ 784 02dd 4B       		.byte	75
+ 785 02de 12       		.byte	18
+ 786 02df E0       		.byte	-32
+ 787 02e0 17       		.byte	23
+ 788 02e1 4B       		.byte	75
+ 789 02e2 0B       		.byte	11
+ 790 02e3 E0       		.byte	-32
+ 791 02e4 17       		.byte	23
+ 792 02e5 4B       		.byte	75
+ 793 02e6 09       		.byte	9
+ 794 02e7 E0       		.byte	-32
+ 795 02e8 17       		.byte	23
+ 796 02e9 4B       		.byte	75
+ 797 02ea 02       		.byte	2
+ 798 02eb E0       		.byte	-32
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 15
+
+
+ 799 02ec 17       		.byte	23
+ 800 02ed 4B       		.byte	75
+ 801 02ee 00       		.byte	0
+ 802 02ef E0       		.byte	-32
+ 803 02f0 17       		.byte	23
+ 804 02f1 4B       		.byte	75
+ 805 02f2 C9       		.byte	-55
+ 806 02f3 18       		.byte	24
+ 807 02f4 17       		.byte	23
+ 808 02f5 E0       		.byte	-32
+ 809 02f6 17       		.byte	23
+ 810 02f7 4B       		.byte	75
+ 811 02f8 05       		.byte	5
+ 812 02f9 E0       		.byte	-32
+ 813 02fa 17       		.byte	23
+ 814 02fb 4B       		.byte	75
+ 815 02fc C9       		.byte	-55
+ 816 02fd 18       		.byte	24
+ 817 02fe 08       		.byte	8
+ 818 02ff 78       		.byte	120
+ 819 0300 C0       		.byte	-64
+ 820 0301 B2       		.byte	-78
+ 821 0302 14       		.byte	20
+ 822 0303 E0       		.byte	-32
+ 823 0304 15       		.byte	21
+ 824 0305 4B       		.byte	75
+ 825 0306 C9       		.byte	-55
+ 826 0307 18       		.byte	24
+ 827 0308 0A       		.byte	10
+ 828 0309 78       		.byte	120
+ 829 030a 48       		.byte	72
+ 830 030b 78       		.byte	120
+ 831 030c 8C       		.byte	-116
+ 832 030d 78       		.byte	120
+ 833 030e 00       		.byte	0
+ 834 030f 02       		.byte	2
+ 835 0310 23       		.byte	35
+ 836 0311 04       		.byte	4
+ 837 0312 18       		.byte	24
+ 838 0313 43       		.byte	67
+ 839 0314 03       		.byte	3
+ 840 0315 00       		.byte	0
+ 841 0316 C8       		.byte	-56
+ 842 0317 78       		.byte	120
+ 843 0318 13       		.byte	19
+ 844 0319 43       		.byte	67
+ 845 031a 00       		.byte	0
+ 846 031b 06       		.byte	6
+ 847 031c 06       		.byte	6
+ 848 031d E0       		.byte	-32
+ 849 031e 00       		.byte	0
+ 850 031f 20       		.byte	32
+ 851 0320 00       		.byte	0
+ 852 0321 F0       		.byte	-16
+ 853 0322 1A       		.byte	26
+ 854 0323 FA       		.byte	-6
+ 855 0324 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 16
+
+
+ 856 0325 21       		.byte	33
+ 857 0326 0B       		.byte	11
+ 858 0327 78       		.byte	120
+ 859 0328 48       		.byte	72
+ 860 0329 78       		.byte	120
+ 861 032a 00       		.byte	0
+ 862 032b 02       		.byte	2
+ 863 032c 18       		.byte	24
+ 864 032d 43       		.byte	67
+ 865 032e 10       		.byte	16
+ 866 032f BD       		.byte	-67
+ 867 0330 C0       		.byte	-64
+ 868 0331 FF       		.byte	-1
+ 869 0332 03       		.byte	3
+ 870 0333 00       		.byte	0
+ 871 0334 C1       		.byte	-63
+ 872 0335 FF       		.byte	-1
+ 873 0336 03       		.byte	3
+ 874 0337 00       		.byte	0
+ 875 0338 C5       		.byte	-59
+ 876 0339 FF       		.byte	-1
+ 877 033a 03       		.byte	3
+ 878 033b 00       		.byte	0
+ 879 033c C9       		.byte	-55
+ 880 033d FF       		.byte	-1
+ 881 033e 03       		.byte	3
+ 882 033f 00       		.byte	0
+ 883 0340 D0       		.byte	-48
+ 884 0341 FF       		.byte	-1
+ 885 0342 03       		.byte	3
+ 886 0343 00       		.byte	0
+ 887 0344 D1       		.byte	-47
+ 888 0345 FF       		.byte	-1
+ 889 0346 03       		.byte	3
+ 890 0347 00       		.byte	0
+ 891 0348 D6       		.byte	-42
+ 892 0349 FF       		.byte	-1
+ 893 034a 03       		.byte	3
+ 894 034b 00       		.byte	0
+ 895 034c D2       		.byte	-46
+ 896 034d FF       		.byte	-1
+ 897 034e 03       		.byte	3
+ 898 034f 00       		.byte	0
+ 899 0350 D4       		.byte	-44
+ 900 0351 FF       		.byte	-1
+ 901 0352 03       		.byte	3
+ 902 0353 00       		.byte	0
+ 903 0354 D8       		.byte	-40
+ 904 0355 FF       		.byte	-1
+ 905 0356 03       		.byte	3
+ 906 0357 00       		.byte	0
+ 907 0358 DC       		.byte	-36
+ 908 0359 FF       		.byte	-1
+ 909 035a 03       		.byte	3
+ 910 035b 00       		.byte	0
+ 911 035c E0       		.byte	-32
+ 912 035d FF       		.byte	-1
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 17
+
+
+ 913 035e 03       		.byte	3
+ 914 035f 00       		.byte	0
+ 915 0360 F0       		.byte	-16
+ 916 0361 B5       		.byte	-75
+ 917 0362 01       		.byte	1
+ 918 0363 21       		.byte	33
+ 919 0364 C5       		.byte	-59
+ 920 0365 B0       		.byte	-80
+ 921 0366 0B       		.byte	11
+ 922 0367 20       		.byte	32
+ 923 0368 FF       		.byte	-1
+ 924 0369 F7       		.byte	-9
+ 925 036a A4       		.byte	-92
+ 926 036b FF       		.byte	-1
+ 927 036c 00       		.byte	0
+ 928 036d 21       		.byte	33
+ 929 036e C3       		.byte	-61
+ 930 036f B2       		.byte	-78
+ 931 0370 03       		.byte	3
+ 932 0371 20       		.byte	32
+ 933 0372 01       		.byte	1
+ 934 0373 93       		.byte	-109
+ 935 0374 FF       		.byte	-1
+ 936 0375 F7       		.byte	-9
+ 937 0376 9E       		.byte	-98
+ 938 0377 FF       		.byte	-1
+ 939 0378 3A       		.byte	58
+ 940 0379 4B       		.byte	75
+ 941 037a 01       		.byte	1
+ 942 037b 30       		.byte	48
+ 943 037c 84       		.byte	-124
+ 944 037d B2       		.byte	-78
+ 945 037e 1B       		.byte	27
+ 946 037f 1B       		.byte	27
+ 947 0380 5B       		.byte	91
+ 948 0381 08       		.byte	8
+ 949 0382 9B       		.byte	-101
+ 950 0383 B2       		.byte	-78
+ 951 0384 01       		.byte	1
+ 952 0385 21       		.byte	33
+ 953 0386 04       		.byte	4
+ 954 0387 20       		.byte	32
+ 955 0388 E4       		.byte	-28
+ 956 0389 18       		.byte	24
+ 957 038a 00       		.byte	0
+ 958 038b 93       		.byte	-109
+ 959 038c FF       		.byte	-1
+ 960 038d F7       		.byte	-9
+ 961 038e 92       		.byte	-110
+ 962 038f FF       		.byte	-1
+ 963 0390 03       		.byte	3
+ 964 0391 0A       		.byte	10
+ 965 0392 C0       		.byte	-64
+ 966 0393 B2       		.byte	-78
+ 967 0394 A4       		.byte	-92
+ 968 0395 B2       		.byte	-78
+ 969 0396 9B       		.byte	-101
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 18
+
+
+ 970 0397 B2       		.byte	-78
+ 971 0398 00       		.byte	0
+ 972 0399 28       		.byte	40
+ 973 039a 01       		.byte	1
+ 974 039b D0       		.byte	-48
+ 975 039c 01       		.byte	1
+ 976 039d 33       		.byte	51
+ 977 039e 9B       		.byte	-101
+ 978 039f B2       		.byte	-78
+ 979 03a0 00       		.byte	0
+ 980 03a1 25       		.byte	37
+ 981 03a2 1B       		.byte	27
+ 982 03a3 19       		.byte	25
+ 983 03a4 9B       		.byte	-101
+ 984 03a5 B2       		.byte	-78
+ 985 03a6 02       		.byte	2
+ 986 03a7 93       		.byte	-109
+ 987 03a8 02       		.byte	2
+ 988 03a9 9B       		.byte	-101
+ 989 03aa 9C       		.byte	-100
+ 990 03ab 42       		.byte	66
+ 991 03ac 24       		.byte	36
+ 992 03ad D0       		.byte	-48
+ 993 03ae 03       		.byte	3
+ 994 03af 26       		.byte	38
+ 995 03b0 00       		.byte	0
+ 996 03b1 9B       		.byte	-101
+ 997 03b2 27       		.byte	39
+ 998 03b3 02       		.byte	2
+ 999 03b4 E3       		.byte	-29
+ 1000 03b5 1A       		.byte	26
+ 1001 03b6 9B       		.byte	-101
+ 1002 03b7 B2       		.byte	-78
+ 1003 03b8 03       		.byte	3
+ 1004 03b9 93       		.byte	-109
+ 1005 03ba 3B       		.byte	59
+ 1006 03bb 00       		.byte	0
+ 1007 03bc 7A       		.byte	122
+ 1008 03bd 1C       		.byte	28
+ 1009 03be 04       		.byte	4
+ 1010 03bf A9       		.byte	-87
+ 1011 03c0 FF       		.byte	-1
+ 1012 03c1 32       		.byte	50
+ 1013 03c2 C8       		.byte	-56
+ 1014 03c3 1B       		.byte	27
+ 1015 03c4 1D       		.byte	29
+ 1016 03c5 78       		.byte	120
+ 1017 03c6 C5       		.byte	-59
+ 1018 03c7 54       		.byte	84
+ 1019 03c8 01       		.byte	1
+ 1020 03c9 33       		.byte	51
+ 1021 03ca 93       		.byte	-109
+ 1022 03cb 42       		.byte	66
+ 1023 03cc FA       		.byte	-6
+ 1024 03cd D1       		.byte	-47
+ 1025 03ce 03       		.byte	3
+ 1026 03cf 98       		.byte	-104
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 19
+
+
+ 1027 03d0 00       		.byte	0
+ 1028 03d1 F0       		.byte	-16
+ 1029 03d2 3C       		.byte	60
+ 1030 03d3 F9       		.byte	-7
+ 1031 03d4 05       		.byte	5
+ 1032 03d5 1E       		.byte	30
+ 1033 03d6 0C       		.byte	12
+ 1034 03d7 D0       		.byte	-48
+ 1035 03d8 01       		.byte	1
+ 1036 03d9 3E       		.byte	62
+ 1037 03da F6       		.byte	-10
+ 1038 03db B2       		.byte	-78
+ 1039 03dc 00       		.byte	0
+ 1040 03dd 2E       		.byte	46
+ 1041 03de EC       		.byte	-20
+ 1042 03df D1       		.byte	-47
+ 1043 03e0 01       		.byte	1
+ 1044 03e1 23       		.byte	35
+ 1045 03e2 01       		.byte	1
+ 1046 03e3 99       		.byte	-103
+ 1047 03e4 20       		.byte	32
+ 1048 03e5 48       		.byte	72
+ 1049 03e6 99       		.byte	-103
+ 1050 03e7 43       		.byte	67
+ 1051 03e8 FF       		.byte	-1
+ 1052 03e9 F7       		.byte	-9
+ 1053 03ea 4B       		.byte	75
+ 1054 03eb FF       		.byte	-1
+ 1055 03ec 30       		.byte	48
+ 1056 03ed 00       		.byte	0
+ 1057 03ee 00       		.byte	0
+ 1058 03ef F0       		.byte	-16
+ 1059 03f0 B3       		.byte	-77
+ 1060 03f1 F9       		.byte	-7
+ 1061 03f2 01       		.byte	1
+ 1062 03f3 34       		.byte	52
+ 1063 03f4 A4       		.byte	-92
+ 1064 03f5 B2       		.byte	-78
+ 1065 03f6 D7       		.byte	-41
+ 1066 03f7 E7       		.byte	-25
+ 1067 03f8 00       		.byte	0
+ 1068 03f9 2D       		.byte	45
+ 1069 03fa 2E       		.byte	46
+ 1070 03fb D1       		.byte	-47
+ 1071 03fc 80       		.byte	-128
+ 1072 03fd 23       		.byte	35
+ 1073 03fe 5B       		.byte	91
+ 1074 03ff 00       		.byte	0
+ 1075 0400 1A       		.byte	26
+ 1076 0401 4A       		.byte	74
+ 1077 0402 04       		.byte	4
+ 1078 0403 A9       		.byte	-87
+ 1079 0404 AA       		.byte	-86
+ 1080 0405 18       		.byte	24
+ 1081 0406 12       		.byte	18
+ 1082 0407 78       		.byte	120
+ 1083 0408 6A       		.byte	106
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 20
+
+
+ 1084 0409 54       		.byte	84
+ 1085 040a 01       		.byte	1
+ 1086 040b 35       		.byte	53
+ 1087 040c 9D       		.byte	-99
+ 1088 040d 42       		.byte	66
+ 1089 040e F7       		.byte	-9
+ 1090 040f D1       		.byte	-47
+ 1091 0410 44       		.byte	68
+ 1092 0411 AB       		.byte	-85
+ 1093 0412 5B       		.byte	91
+ 1094 0413 1B       		.byte	27
+ 1095 0414 19       		.byte	25
+ 1096 0415 00       		.byte	0
+ 1097 0416 01       		.byte	1
+ 1098 0417 22       		.byte	34
+ 1099 0418 00       		.byte	0
+ 1100 0419 24       		.byte	36
+ 1101 041a DC       		.byte	-36
+ 1102 041b 31       		.byte	49
+ 1103 041c 0A       		.byte	10
+ 1104 041d 70       		.byte	112
+ 1105 041e 14       		.byte	20
+ 1106 041f 49       		.byte	73
+ 1107 0420 10       		.byte	16
+ 1108 0421 48       		.byte	72
+ 1109 0422 0C       		.byte	12
+ 1110 0423 70       		.byte	112
+ 1111 0424 19       		.byte	25
+ 1112 0425 00       		.byte	0
+ 1113 0426 D0       		.byte	-48
+ 1114 0427 31       		.byte	49
+ 1115 0428 D1       		.byte	-47
+ 1116 0429 33       		.byte	51
+ 1117 042a 0A       		.byte	10
+ 1118 042b 70       		.byte	112
+ 1119 042c 04       		.byte	4
+ 1120 042d A9       		.byte	-87
+ 1121 042e 1A       		.byte	26
+ 1122 042f 70       		.byte	112
+ 1123 0430 00       		.byte	0
+ 1124 0431 F0       		.byte	-16
+ 1125 0432 0C       		.byte	12
+ 1126 0433 F9       		.byte	-7
+ 1127 0434 2A       		.byte	42
+ 1128 0435 00       		.byte	0
+ 1129 0436 06       		.byte	6
+ 1130 0437 00       		.byte	0
+ 1131 0438 21       		.byte	33
+ 1132 0439 00       		.byte	0
+ 1133 043a 04       		.byte	4
+ 1134 043b A8       		.byte	-88
+ 1135 043c 00       		.byte	0
+ 1136 043d F0       		.byte	-16
+ 1137 043e 27       		.byte	39
+ 1138 043f FC       		.byte	-4
+ 1139 0440 04       		.byte	4
+ 1140 0441 A9       		.byte	-87
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 21
+
+
+ 1141 0442 0C       		.byte	12
+ 1142 0443 48       		.byte	72
+ 1143 0444 00       		.byte	0
+ 1144 0445 F0       		.byte	-16
+ 1145 0446 02       		.byte	2
+ 1146 0447 F9       		.byte	-7
+ 1147 0448 30       		.byte	48
+ 1148 0449 43       		.byte	67
+ 1149 044a A0       		.byte	-96
+ 1150 044b 42       		.byte	66
+ 1151 044c 05       		.byte	5
+ 1152 044d D1       		.byte	-47
+ 1153 044e 80       		.byte	-128
+ 1154 044f 22       		.byte	34
+ 1155 0450 09       		.byte	9
+ 1156 0451 4B       		.byte	75
+ 1157 0452 1A       		.byte	26
+ 1158 0453 60       		.byte	96
+ 1159 0454 00       		.byte	0
+ 1160 0455 F0       		.byte	-16
+ 1161 0456 82       		.byte	-126
+ 1162 0457 F9       		.byte	-7
+ 1163 0458 02       		.byte	2
+ 1164 0459 E0       		.byte	-32
+ 1165 045a 00       		.byte	0
+ 1166 045b 20       		.byte	32
+ 1167 045c 00       		.byte	0
+ 1168 045d F0       		.byte	-16
+ 1169 045e 7C       		.byte	124
+ 1170 045f F9       		.byte	-7
+ 1171 0460 45       		.byte	69
+ 1172 0461 B0       		.byte	-80
+ 1173 0462 F0       		.byte	-16
+ 1174 0463 BD       		.byte	-67
+ 1175 0464 FF       		.byte	-1
+ 1176 0465 03       		.byte	3
+ 1177 0466 00       		.byte	0
+ 1178 0467 00       		.byte	0
+ 1179 0468 DC       		.byte	-36
+ 1180 0469 FE       		.byte	-2
+ 1181 046a 03       		.byte	3
+ 1182 046b 00       		.byte	0
+ 1183 046c 00       		.byte	0
+ 1184 046d FE       		.byte	-2
+ 1185 046e 03       		.byte	3
+ 1186 046f 00       		.byte	0
+ 1187 0470 CC       		.byte	-52
+ 1188 0471 00       		.byte	0
+ 1189 0472 00       		.byte	0
+ 1190 0473 20       		.byte	32
+ 1191 0474 FE       		.byte	-2
+ 1192 0475 03       		.byte	3
+ 1193 0476 00       		.byte	0
+ 1194 0477 00       		.byte	0
+ 1195 0478 C0       		.byte	-64
+ 1196 0479 00       		.byte	0
+ 1197 047a 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 22
+
+
+ 1198 047b 20       		.byte	32
+ 1199 047c 18       		.byte	24
+ 1200 047d 4B       		.byte	75
+ 1201 047e 70       		.byte	112
+ 1202 047f B5       		.byte	-75
+ 1203 0480 1A       		.byte	26
+ 1204 0481 68       		.byte	104
+ 1205 0482 10       		.byte	16
+ 1206 0483 23       		.byte	35
+ 1207 0484 17       		.byte	23
+ 1208 0485 4D       		.byte	77
+ 1209 0486 13       		.byte	19
+ 1210 0487 40       		.byte	64
+ 1211 0488 00       		.byte	0
+ 1212 0489 D1       		.byte	-47
+ 1213 048a 2B       		.byte	43
+ 1214 048b 60       		.byte	96
+ 1215 048c 2B       		.byte	43
+ 1216 048d 68       		.byte	104
+ 1217 048e 80       		.byte	-128
+ 1218 048f 2B       		.byte	43
+ 1219 0490 25       		.byte	37
+ 1220 0491 D1       		.byte	-47
+ 1221 0492 00       		.byte	0
+ 1222 0493 21       		.byte	33
+ 1223 0494 05       		.byte	5
+ 1224 0495 20       		.byte	32
+ 1225 0496 FF       		.byte	-1
+ 1226 0497 F7       		.byte	-9
+ 1227 0498 0D       		.byte	13
+ 1228 0499 FF       		.byte	-1
+ 1229 049a 01       		.byte	1
+ 1230 049b 21       		.byte	33
+ 1231 049c 04       		.byte	4
+ 1232 049d 00       		.byte	0
+ 1233 049e 05       		.byte	5
+ 1234 049f 20       		.byte	32
+ 1235 04a0 FF       		.byte	-1
+ 1236 04a1 F7       		.byte	-9
+ 1237 04a2 08       		.byte	8
+ 1238 04a3 FF       		.byte	-1
+ 1239 04a4 00       		.byte	0
+ 1240 04a5 23       		.byte	35
+ 1241 04a6 E4       		.byte	-28
+ 1242 04a7 B2       		.byte	-78
+ 1243 04a8 C0       		.byte	-64
+ 1244 04a9 B2       		.byte	-78
+ 1245 04aa 9C       		.byte	-100
+ 1246 04ab 42       		.byte	66
+ 1247 04ac 04       		.byte	4
+ 1248 04ad D0       		.byte	-48
+ 1249 04ae 1C       		.byte	28
+ 1250 04af 00       		.byte	0
+ 1251 04b0 98       		.byte	-104
+ 1252 04b1 42       		.byte	66
+ 1253 04b2 05       		.byte	5
+ 1254 04b3 D0       		.byte	-48
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 23
+
+
+ 1255 04b4 03       		.byte	3
+ 1256 04b5 34       		.byte	52
+ 1257 04b6 03       		.byte	3
+ 1258 04b7 E0       		.byte	-32
+ 1259 04b8 44       		.byte	68
+ 1260 04b9 1E       		.byte	30
+ 1261 04ba A0       		.byte	-96
+ 1262 04bb 41       		.byte	65
+ 1263 04bc 02       		.byte	2
+ 1264 04bd 24       		.byte	36
+ 1265 04be 24       		.byte	36
+ 1266 04bf 1A       		.byte	26
+ 1267 04c0 21       		.byte	33
+ 1268 04c1 00       		.byte	0
+ 1269 04c2 02       		.byte	2
+ 1270 04c3 20       		.byte	32
+ 1271 04c4 2B       		.byte	43
+ 1272 04c5 60       		.byte	96
+ 1273 04c6 FF       		.byte	-1
+ 1274 04c7 F7       		.byte	-9
+ 1275 04c8 F5       		.byte	-11
+ 1276 04c9 FE       		.byte	-2
+ 1277 04ca 00       		.byte	0
+ 1278 04cb 28       		.byte	40
+ 1279 04cc 07       		.byte	7
+ 1280 04cd D0       		.byte	-48
+ 1281 04ce 01       		.byte	1
+ 1282 04cf 2C       		.byte	44
+ 1283 04d0 05       		.byte	5
+ 1284 04d1 D8       		.byte	-40
+ 1285 04d2 21       		.byte	33
+ 1286 04d3 00       		.byte	0
+ 1287 04d4 02       		.byte	2
+ 1288 04d5 20       		.byte	32
+ 1289 04d6 FF       		.byte	-1
+ 1290 04d7 F7       		.byte	-9
+ 1291 04d8 ED       		.byte	-19
+ 1292 04d9 FE       		.byte	-2
+ 1293 04da FF       		.byte	-1
+ 1294 04db F7       		.byte	-9
+ 1295 04dc D1       		.byte	-47
+ 1296 04dd FE       		.byte	-2
+ 1297 04de 70       		.byte	112
+ 1298 04df BD       		.byte	-67
+ 1299 04e0 00       		.byte	0
+ 1300 04e1 03       		.byte	3
+ 1301 04e2 0B       		.byte	11
+ 1302 04e3 40       		.byte	64
+ 1303 04e4 C0       		.byte	-64
+ 1304 04e5 00       		.byte	0
+ 1305 04e6 00       		.byte	0
+ 1306 04e7 20       		.byte	32
+ 1307 04e8 70       		.byte	112
+ 1308 04e9 B5       		.byte	-75
+ 1309 04ea 01       		.byte	1
+ 1310 04eb 00       		.byte	0
+ 1311 04ec 06       		.byte	6
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 24
+
+
+ 1312 04ed 00       		.byte	0
+ 1313 04ee 03       		.byte	3
+ 1314 04ef 20       		.byte	32
+ 1315 04f0 FF       		.byte	-1
+ 1316 04f1 F7       		.byte	-9
+ 1317 04f2 E0       		.byte	-32
+ 1318 04f3 FE       		.byte	-2
+ 1319 04f4 31       		.byte	49
+ 1320 04f5 00       		.byte	0
+ 1321 04f6 04       		.byte	4
+ 1322 04f7 00       		.byte	0
+ 1323 04f8 04       		.byte	4
+ 1324 04f9 20       		.byte	32
+ 1325 04fa FF       		.byte	-1
+ 1326 04fb F7       		.byte	-9
+ 1327 04fc DB       		.byte	-37
+ 1328 04fd FE       		.byte	-2
+ 1329 04fe 05       		.byte	5
+ 1330 04ff 00       		.byte	0
+ 1331 0500 01       		.byte	1
+ 1332 0501 2E       		.byte	46
+ 1333 0502 01       		.byte	1
+ 1334 0503 D9       		.byte	-39
+ 1335 0504 06       		.byte	6
+ 1336 0505 20       		.byte	32
+ 1337 0506 21       		.byte	33
+ 1338 0507 E0       		.byte	-32
+ 1339 0508 01       		.byte	1
+ 1340 0509 34       		.byte	52
+ 1341 050a 31       		.byte	49
+ 1342 050b 00       		.byte	0
+ 1343 050c 24       		.byte	36
+ 1344 050d 02       		.byte	2
+ 1345 050e 03       		.byte	3
+ 1346 050f 20       		.byte	32
+ 1347 0510 FF       		.byte	-1
+ 1348 0511 F7       		.byte	-9
+ 1349 0512 D0       		.byte	-48
+ 1350 0513 FE       		.byte	-2
+ 1351 0514 61       		.byte	97
+ 1352 0515 19       		.byte	25
+ 1353 0516 00       		.byte	0
+ 1354 0517 24       		.byte	36
+ 1355 0518 25       		.byte	37
+ 1356 0519 00       		.byte	0
+ 1357 051a 43       		.byte	67
+ 1358 051b 1C       		.byte	28
+ 1359 051c 1B       		.byte	27
+ 1360 051d 02       		.byte	2
+ 1361 051e 8B       		.byte	-117
+ 1362 051f 42       		.byte	66
+ 1363 0520 09       		.byte	9
+ 1364 0521 D2       		.byte	-46
+ 1365 0522 1A       		.byte	26
+ 1366 0523 78       		.byte	120
+ 1367 0524 50       		.byte	80
+ 1368 0525 1E       		.byte	30
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 25
+
+
+ 1369 0526 C0       		.byte	-64
+ 1370 0527 B2       		.byte	-78
+ 1371 0528 FD       		.byte	-3
+ 1372 0529 28       		.byte	40
+ 1373 052a 00       		.byte	0
+ 1374 052b D8       		.byte	-40
+ 1375 052c 01       		.byte	1
+ 1376 052d 25       		.byte	37
+ 1377 052e A2       		.byte	-94
+ 1378 052f 18       		.byte	24
+ 1379 0530 D4       		.byte	-44
+ 1380 0531 B2       		.byte	-78
+ 1381 0532 01       		.byte	1
+ 1382 0533 33       		.byte	51
+ 1383 0534 F3       		.byte	-13
+ 1384 0535 E7       		.byte	-25
+ 1385 0536 31       		.byte	49
+ 1386 0537 00       		.byte	0
+ 1387 0538 01       		.byte	1
+ 1388 0539 20       		.byte	32
+ 1389 053a FF       		.byte	-1
+ 1390 053b F7       		.byte	-9
+ 1391 053c BB       		.byte	-69
+ 1392 053d FE       		.byte	-2
+ 1393 053e 64       		.byte	100
+ 1394 053f 42       		.byte	66
+ 1395 0540 E4       		.byte	-28
+ 1396 0541 B2       		.byte	-78
+ 1397 0542 84       		.byte	-124
+ 1398 0543 42       		.byte	66
+ 1399 0544 DE       		.byte	-34
+ 1400 0545 D1       		.byte	-47
+ 1401 0546 00       		.byte	0
+ 1402 0547 2D       		.byte	45
+ 1403 0548 DC       		.byte	-36
+ 1404 0549 D0       		.byte	-48
+ 1405 054a 00       		.byte	0
+ 1406 054b 20       		.byte	32
+ 1407 054c 70       		.byte	112
+ 1408 054d BD       		.byte	-67
+ 1409 054e 00       		.byte	0
+ 1410 054f 00       		.byte	0
+ 1411 0550 F8       		.byte	-8
+ 1412 0551 B5       		.byte	-75
+ 1413 0552 01       		.byte	1
+ 1414 0553 21       		.byte	33
+ 1415 0554 0B       		.byte	11
+ 1416 0555 20       		.byte	32
+ 1417 0556 FF       		.byte	-1
+ 1418 0557 F7       		.byte	-9
+ 1419 0558 AD       		.byte	-83
+ 1420 0559 FE       		.byte	-2
+ 1421 055a C3       		.byte	-61
+ 1422 055b 07       		.byte	7
+ 1423 055c 01       		.byte	1
+ 1424 055d D5       		.byte	-43
+ 1425 055e FF       		.byte	-1
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 26
+
+
+ 1426 055f F7       		.byte	-9
+ 1427 0560 FF       		.byte	-1
+ 1428 0561 FE       		.byte	-2
+ 1429 0562 00       		.byte	0
+ 1430 0563 20       		.byte	32
+ 1431 0564 FF       		.byte	-1
+ 1432 0565 F7       		.byte	-9
+ 1433 0566 C0       		.byte	-64
+ 1434 0567 FF       		.byte	-1
+ 1435 0568 05       		.byte	5
+ 1436 0569 00       		.byte	0
+ 1437 056a 01       		.byte	1
+ 1438 056b 20       		.byte	32
+ 1439 056c FF       		.byte	-1
+ 1440 056d F7       		.byte	-9
+ 1441 056e BC       		.byte	-68
+ 1442 056f FF       		.byte	-1
+ 1443 0570 02       		.byte	2
+ 1444 0571 23       		.byte	35
+ 1445 0572 25       		.byte	37
+ 1446 0573 4C       		.byte	76
+ 1447 0574 07       		.byte	7
+ 1448 0575 00       		.byte	0
+ 1449 0576 00       		.byte	0
+ 1450 0577 21       		.byte	33
+ 1451 0578 05       		.byte	5
+ 1452 0579 20       		.byte	32
+ 1453 057a 23       		.byte	35
+ 1454 057b 70       		.byte	112
+ 1455 057c FF       		.byte	-1
+ 1456 057d F7       		.byte	-9
+ 1457 057e 9A       		.byte	-102
+ 1458 057f FE       		.byte	-2
+ 1459 0580 06       		.byte	6
+ 1460 0581 26       		.byte	38
+ 1461 0582 01       		.byte	1
+ 1462 0583 28       		.byte	40
+ 1463 0584 08       		.byte	8
+ 1464 0585 D1       		.byte	-47
+ 1465 0586 00       		.byte	0
+ 1466 0587 2D       		.byte	45
+ 1467 0588 02       		.byte	2
+ 1468 0589 D1       		.byte	-47
+ 1469 058a 25       		.byte	37
+ 1470 058b 70       		.byte	112
+ 1471 058c 2E       		.byte	46
+ 1472 058d 00       		.byte	0
+ 1473 058e 03       		.byte	3
+ 1474 058f E0       		.byte	-32
+ 1475 0590 00       		.byte	0
+ 1476 0591 2F       		.byte	47
+ 1477 0592 01       		.byte	1
+ 1478 0593 D1       		.byte	-47
+ 1479 0594 3E       		.byte	62
+ 1480 0595 00       		.byte	0
+ 1481 0596 20       		.byte	32
+ 1482 0597 70       		.byte	112
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 27
+
+
+ 1483 0598 23       		.byte	35
+ 1484 0599 78       		.byte	120
+ 1485 059a 02       		.byte	2
+ 1486 059b 2B       		.byte	43
+ 1487 059c 0E       		.byte	14
+ 1488 059d D1       		.byte	-47
+ 1489 059e 01       		.byte	1
+ 1490 059f 21       		.byte	33
+ 1491 05a0 05       		.byte	5
+ 1492 05a1 20       		.byte	32
+ 1493 05a2 FF       		.byte	-1
+ 1494 05a3 F7       		.byte	-9
+ 1495 05a4 87       		.byte	-121
+ 1496 05a5 FE       		.byte	-2
+ 1497 05a6 01       		.byte	1
+ 1498 05a7 28       		.byte	40
+ 1499 05a8 08       		.byte	8
+ 1500 05a9 D1       		.byte	-47
+ 1501 05aa 00       		.byte	0
+ 1502 05ab 2F       		.byte	47
+ 1503 05ac 02       		.byte	2
+ 1504 05ad D1       		.byte	-47
+ 1505 05ae 20       		.byte	32
+ 1506 05af 70       		.byte	112
+ 1507 05b0 3E       		.byte	62
+ 1508 05b1 00       		.byte	0
+ 1509 05b2 03       		.byte	3
+ 1510 05b3 E0       		.byte	-32
+ 1511 05b4 00       		.byte	0
+ 1512 05b5 2D       		.byte	45
+ 1513 05b6 01       		.byte	1
+ 1514 05b7 D1       		.byte	-47
+ 1515 05b8 2E       		.byte	46
+ 1516 05b9 00       		.byte	0
+ 1517 05ba 25       		.byte	37
+ 1518 05bb 70       		.byte	112
+ 1519 05bc 23       		.byte	35
+ 1520 05bd 78       		.byte	120
+ 1521 05be 02       		.byte	2
+ 1522 05bf 2B       		.byte	43
+ 1523 05c0 08       		.byte	8
+ 1524 05c1 D1       		.byte	-47
+ 1525 05c2 00       		.byte	0
+ 1526 05c3 2D       		.byte	45
+ 1527 05c4 01       		.byte	1
+ 1528 05c5 D1       		.byte	-47
+ 1529 05c6 25       		.byte	37
+ 1530 05c7 70       		.byte	112
+ 1531 05c8 06       		.byte	6
+ 1532 05c9 E0       		.byte	-32
+ 1533 05ca 00       		.byte	0
+ 1534 05cb 2F       		.byte	47
+ 1535 05cc 02       		.byte	2
+ 1536 05cd D1       		.byte	-47
+ 1537 05ce 01       		.byte	1
+ 1538 05cf 23       		.byte	35
+ 1539 05d0 23       		.byte	35
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 28
+
+
+ 1540 05d1 70       		.byte	112
+ 1541 05d2 01       		.byte	1
+ 1542 05d3 E0       		.byte	-32
+ 1543 05d4 00       		.byte	0
+ 1544 05d5 2E       		.byte	46
+ 1545 05d6 12       		.byte	18
+ 1546 05d7 D1       		.byte	-47
+ 1547 05d8 24       		.byte	36
+ 1548 05d9 78       		.byte	120
+ 1549 05da E4       		.byte	-28
+ 1550 05db B2       		.byte	-78
+ 1551 05dc 01       		.byte	1
+ 1552 05dd 2C       		.byte	44
+ 1553 05de 08       		.byte	8
+ 1554 05df D8       		.byte	-40
+ 1555 05e0 01       		.byte	1
+ 1556 05e1 21       		.byte	33
+ 1557 05e2 0A       		.byte	10
+ 1558 05e3 48       		.byte	72
+ 1559 05e4 61       		.byte	97
+ 1560 05e5 40       		.byte	64
+ 1561 05e6 FF       		.byte	-1
+ 1562 05e7 F7       		.byte	-9
+ 1563 05e8 4C       		.byte	76
+ 1564 05e9 FE       		.byte	-2
+ 1565 05ea 21       		.byte	33
+ 1566 05eb 00       		.byte	0
+ 1567 05ec 08       		.byte	8
+ 1568 05ed 48       		.byte	72
+ 1569 05ee FF       		.byte	-1
+ 1570 05ef F7       		.byte	-9
+ 1571 05f0 48       		.byte	72
+ 1572 05f1 FE       		.byte	-2
+ 1573 05f2 80       		.byte	-128
+ 1574 05f3 22       		.byte	34
+ 1575 05f4 07       		.byte	7
+ 1576 05f5 4B       		.byte	75
+ 1577 05f6 1A       		.byte	26
+ 1578 05f7 60       		.byte	96
+ 1579 05f8 00       		.byte	0
+ 1580 05f9 F0       		.byte	-16
+ 1581 05fa B0       		.byte	-80
+ 1582 05fb F8       		.byte	-8
+ 1583 05fc F8       		.byte	-8
+ 1584 05fd BD       		.byte	-67
+ 1585 05fe 00       		.byte	0
+ 1586 05ff 20       		.byte	32
+ 1587 0600 00       		.byte	0
+ 1588 0601 F0       		.byte	-16
+ 1589 0602 AA       		.byte	-86
+ 1590 0603 F8       		.byte	-8
+ 1591 0604 F5       		.byte	-11
+ 1592 0605 E7       		.byte	-25
+ 1593 0606 C0       		.byte	-64
+ 1594 0607 46       		.byte	70
+ 1595 0608 CC       		.byte	-52
+ 1596 0609 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 29
+
+
+ 1597 060a 00       		.byte	0
+ 1598 060b 20       		.byte	32
+ 1599 060c D0       		.byte	-48
+ 1600 060d FF       		.byte	-1
+ 1601 060e 03       		.byte	3
+ 1602 060f 00       		.byte	0
+ 1603 0610 D0       		.byte	-48
+ 1604 0611 FE       		.byte	-2
+ 1605 0612 03       		.byte	3
+ 1606 0613 00       		.byte	0
+ 1607 0614 C0       		.byte	-64
+ 1608 0615 00       		.byte	0
+ 1609 0616 00       		.byte	0
+ 1610 0617 20       		.byte	32
+ 1611 0618 7F       		.byte	127
+ 1612 0619 23       		.byte	35
+ 1613 061a 04       		.byte	4
+ 1614 061b 4A       		.byte	74
+ 1615 061c C0       		.byte	-64
+ 1616 061d 01       		.byte	1
+ 1617 061e 11       		.byte	17
+ 1618 061f 68       		.byte	104
+ 1619 0620 0B       		.byte	11
+ 1620 0621 40       		.byte	64
+ 1621 0622 18       		.byte	24
+ 1622 0623 43       		.byte	67
+ 1623 0624 C0       		.byte	-64
+ 1624 0625 B2       		.byte	-78
+ 1625 0626 10       		.byte	16
+ 1626 0627 60       		.byte	96
+ 1627 0628 70       		.byte	112
+ 1628 0629 47       		.byte	71
+ 1629 062a C0       		.byte	-64
+ 1630 062b 46       		.byte	70
+ 1631 062c 00       		.byte	0
+ 1632 062d 03       		.byte	3
+ 1633 062e 04       		.byte	4
+ 1634 062f 40       		.byte	64
+ 1635 0630 70       		.byte	112
+ 1636 0631 B5       		.byte	-75
+ 1637 0632 01       		.byte	1
+ 1638 0633 24       		.byte	36
+ 1639 0634 05       		.byte	5
+ 1640 0635 00       		.byte	0
+ 1641 0636 00       		.byte	0
+ 1642 0637 78       		.byte	120
+ 1643 0638 00       		.byte	0
+ 1644 0639 28       		.byte	40
+ 1645 063a 05       		.byte	5
+ 1646 063b D0       		.byte	-48
+ 1647 063c 00       		.byte	0
+ 1648 063d F0       		.byte	-16
+ 1649 063e E0       		.byte	-32
+ 1650 063f F9       		.byte	-7
+ 1651 0640 28       		.byte	40
+ 1652 0641 5D       		.byte	93
+ 1653 0642 01       		.byte	1
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 30
+
+
+ 1654 0643 34       		.byte	52
+ 1655 0644 E4       		.byte	-28
+ 1656 0645 B2       		.byte	-78
+ 1657 0646 F7       		.byte	-9
+ 1658 0647 E7       		.byte	-25
+ 1659 0648 70       		.byte	112
+ 1660 0649 BD       		.byte	-67
+ 1661 064a 00       		.byte	0
+ 1662 064b 00       		.byte	0
+ 1663 064c 00       		.byte	0
+ 1664 064d 23       		.byte	35
+ 1665 064e F0       		.byte	-16
+ 1666 064f B5       		.byte	-75
+ 1667 0650 C7       		.byte	-57
+ 1668 0651 B0       		.byte	-80
+ 1669 0652 02       		.byte	2
+ 1670 0653 93       		.byte	-109
+ 1671 0654 03       		.byte	3
+ 1672 0655 93       		.byte	-109
+ 1673 0656 2C       		.byte	44
+ 1674 0657 4B       		.byte	75
+ 1675 0658 05       		.byte	5
+ 1676 0659 00       		.byte	0
+ 1677 065a 98       		.byte	-104
+ 1678 065b 42       		.byte	66
+ 1679 065c 4F       		.byte	79
+ 1680 065d D8       		.byte	-40
+ 1681 065e 00       		.byte	0
+ 1682 065f 29       		.byte	41
+ 1683 0660 4D       		.byte	77
+ 1684 0661 D0       		.byte	-48
+ 1685 0662 80       		.byte	-128
+ 1686 0663 22       		.byte	34
+ 1687 0664 06       		.byte	6
+ 1688 0665 A8       		.byte	-88
+ 1689 0666 52       		.byte	82
+ 1690 0667 00       		.byte	0
+ 1691 0668 00       		.byte	0
+ 1692 0669 F0       		.byte	-16
+ 1693 066a 08       		.byte	8
+ 1694 066b FB       		.byte	-5
+ 1695 066c 27       		.byte	39
+ 1696 066d 4B       		.byte	75
+ 1697 066e 9D       		.byte	-99
+ 1698 066f 42       		.byte	66
+ 1699 0670 01       		.byte	1
+ 1700 0671 D8       		.byte	-40
+ 1701 0672 27       		.byte	39
+ 1702 0673 4B       		.byte	75
+ 1703 0674 00       		.byte	0
+ 1704 0675 E0       		.byte	-32
+ 1705 0676 27       		.byte	39
+ 1706 0677 4B       		.byte	75
+ 1707 0678 FF       		.byte	-1
+ 1708 0679 22       		.byte	34
+ 1709 067a 04       		.byte	4
+ 1710 067b 93       		.byte	-109
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 31
+
+
+ 1711 067c 26       		.byte	38
+ 1712 067d 4C       		.byte	76
+ 1713 067e 27       		.byte	39
+ 1714 067f 49       		.byte	73
+ 1715 0680 27       		.byte	39
+ 1716 0681 4B       		.byte	75
+ 1717 0682 04       		.byte	4
+ 1718 0683 AE       		.byte	-82
+ 1719 0684 72       		.byte	114
+ 1720 0685 60       		.byte	96
+ 1721 0686 26       		.byte	38
+ 1722 0687 60       		.byte	96
+ 1723 0688 0B       		.byte	11
+ 1724 0689 60       		.byte	96
+ 1725 068a C0       		.byte	-64
+ 1726 068b 46       		.byte	70
+ 1727 068c 23       		.byte	35
+ 1728 068d 68       		.byte	104
+ 1729 068e 01       		.byte	1
+ 1730 068f 91       		.byte	-111
+ 1731 0690 1B       		.byte	27
+ 1732 0691 0F       		.byte	15
+ 1733 0692 0F       		.byte	15
+ 1734 0693 2B       		.byte	43
+ 1735 0694 04       		.byte	4
+ 1736 0695 D0       		.byte	-48
+ 1737 0696 21       		.byte	33
+ 1738 0697 68       		.byte	104
+ 1739 0698 00       		.byte	0
+ 1740 0699 23       		.byte	35
+ 1741 069a 09       		.byte	9
+ 1742 069b 0F       		.byte	15
+ 1743 069c 0A       		.byte	10
+ 1744 069d 29       		.byte	41
+ 1745 069e 01       		.byte	1
+ 1746 069f D0       		.byte	-48
+ 1747 06a0 23       		.byte	35
+ 1748 06a1 68       		.byte	104
+ 1749 06a2 13       		.byte	19
+ 1750 06a3 40       		.byte	64
+ 1751 06a4 02       		.byte	2
+ 1752 06a5 93       		.byte	-109
+ 1753 06a6 02       		.byte	2
+ 1754 06a7 9F       		.byte	-97
+ 1755 06a8 00       		.byte	0
+ 1756 06a9 2F       		.byte	47
+ 1757 06aa 2A       		.byte	42
+ 1758 06ab D1       		.byte	-47
+ 1759 06ac 00       		.byte	0
+ 1760 06ad F0       		.byte	-16
+ 1761 06ae 1D       		.byte	29
+ 1762 06af FA       		.byte	-6
+ 1763 06b0 03       		.byte	3
+ 1764 06b1 97       		.byte	-105
+ 1765 06b2 02       		.byte	2
+ 1766 06b3 9B       		.byte	-101
+ 1767 06b4 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 32
+
+
+ 1768 06b5 2B       		.byte	43
+ 1769 06b6 16       		.byte	22
+ 1770 06b7 D1       		.byte	-47
+ 1771 06b8 1A       		.byte	26
+ 1772 06b9 4A       		.byte	74
+ 1773 06ba 2D       		.byte	45
+ 1774 06bb 04       		.byte	4
+ 1775 06bc 04       		.byte	4
+ 1776 06bd 92       		.byte	-110
+ 1777 06be 04       		.byte	4
+ 1778 06bf 9A       		.byte	-102
+ 1779 06c0 19       		.byte	25
+ 1780 06c1 49       		.byte	73
+ 1781 06c2 15       		.byte	21
+ 1782 06c3 43       		.byte	67
+ 1783 06c4 04       		.byte	4
+ 1784 06c5 95       		.byte	-107
+ 1785 06c6 01       		.byte	1
+ 1786 06c7 9D       		.byte	-99
+ 1787 06c8 26       		.byte	38
+ 1788 06c9 60       		.byte	96
+ 1789 06ca 13       		.byte	19
+ 1790 06cb 4A       		.byte	74
+ 1791 06cc 29       		.byte	41
+ 1792 06cd 60       		.byte	96
+ 1793 06ce C0       		.byte	-64
+ 1794 06cf 46       		.byte	70
+ 1795 06d0 21       		.byte	33
+ 1796 06d1 68       		.byte	104
+ 1797 06d2 09       		.byte	9
+ 1798 06d3 0F       		.byte	15
+ 1799 06d4 0F       		.byte	15
+ 1800 06d5 29       		.byte	41
+ 1801 06d6 03       		.byte	3
+ 1802 06d7 D0       		.byte	-48
+ 1803 06d8 11       		.byte	17
+ 1804 06d9 68       		.byte	104
+ 1805 06da 09       		.byte	9
+ 1806 06db 0F       		.byte	15
+ 1807 06dc 0A       		.byte	10
+ 1808 06dd 29       		.byte	41
+ 1809 06de 01       		.byte	1
+ 1810 06df D0       		.byte	-48
+ 1811 06e0 13       		.byte	19
+ 1812 06e1 68       		.byte	104
+ 1813 06e2 DB       		.byte	-37
+ 1814 06e3 B2       		.byte	-78
+ 1815 06e4 02       		.byte	2
+ 1816 06e5 93       		.byte	-109
+ 1817 06e6 03       		.byte	3
+ 1818 06e7 9B       		.byte	-101
+ 1819 06e8 00       		.byte	0
+ 1820 06e9 2B       		.byte	43
+ 1821 06ea 05       		.byte	5
+ 1822 06eb D1       		.byte	-47
+ 1823 06ec 03       		.byte	3
+ 1824 06ed 93       		.byte	-109
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 33
+
+
+ 1825 06ee 03       		.byte	3
+ 1826 06ef 9B       		.byte	-101
+ 1827 06f0 00       		.byte	0
+ 1828 06f1 2B       		.byte	43
+ 1829 06f2 01       		.byte	1
+ 1830 06f3 D0       		.byte	-48
+ 1831 06f4 03       		.byte	3
+ 1832 06f5 9B       		.byte	-101
+ 1833 06f6 02       		.byte	2
+ 1834 06f7 93       		.byte	-109
+ 1835 06f8 00       		.byte	0
+ 1836 06f9 F0       		.byte	-16
+ 1837 06fa FB       		.byte	-5
+ 1838 06fb F9       		.byte	-7
+ 1839 06fc 01       		.byte	1
+ 1840 06fd E0       		.byte	-32
+ 1841 06fe 04       		.byte	4
+ 1842 06ff 23       		.byte	35
+ 1843 0700 02       		.byte	2
+ 1844 0701 93       		.byte	-109
+ 1845 0702 02       		.byte	2
+ 1846 0703 98       		.byte	-104
+ 1847 0704 47       		.byte	71
+ 1848 0705 B0       		.byte	-80
+ 1849 0706 F0       		.byte	-16
+ 1850 0707 BD       		.byte	-67
+ 1851 0708 FF       		.byte	-1
+ 1852 0709 03       		.byte	3
+ 1853 070a 00       		.byte	0
+ 1854 070b 00       		.byte	0
+ 1855 070c FF       		.byte	-1
+ 1856 070d 01       		.byte	1
+ 1857 070e 00       		.byte	0
+ 1858 070f 00       		.byte	0
+ 1859 0710 B6       		.byte	-74
+ 1860 0711 D7       		.byte	-41
+ 1861 0712 00       		.byte	0
+ 1862 0713 00       		.byte	0
+ 1863 0714 B6       		.byte	-74
+ 1864 0715 D7       		.byte	-41
+ 1865 0716 00       		.byte	0
+ 1866 0717 01       		.byte	1
+ 1867 0718 08       		.byte	8
+ 1868 0719 00       		.byte	0
+ 1869 071a 10       		.byte	16
+ 1870 071b 40       		.byte	64
+ 1871 071c 04       		.byte	4
+ 1872 071d 00       		.byte	0
+ 1873 071e 10       		.byte	16
+ 1874 071f 40       		.byte	64
+ 1875 0720 04       		.byte	4
+ 1876 0721 00       		.byte	0
+ 1877 0722 00       		.byte	0
+ 1878 0723 80       		.byte	-128
+ 1879 0724 B6       		.byte	-74
+ 1880 0725 D8       		.byte	-40
+ 1881 0726 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 34
+
+
+ 1882 0727 00       		.byte	0
+ 1883 0728 05       		.byte	5
+ 1884 0729 00       		.byte	0
+ 1885 072a 00       		.byte	0
+ 1886 072b 80       		.byte	-128
+ 1887 072c 1F       		.byte	31
+ 1888 072d 28       		.byte	40
+ 1889 072e 00       		.byte	0
+ 1890 072f D9       		.byte	-39
+ 1891 0730 01       		.byte	1
+ 1892 0731 BE       		.byte	-66
+ 1893 0732 03       		.byte	3
+ 1894 0733 4B       		.byte	75
+ 1895 0734 80       		.byte	-128
+ 1896 0735 00       		.byte	0
+ 1897 0736 C3       		.byte	-61
+ 1898 0737 18       		.byte	24
+ 1899 0738 18       		.byte	24
+ 1900 0739 68       		.byte	104
+ 1901 073a 19       		.byte	25
+ 1902 073b 60       		.byte	96
+ 1903 073c 70       		.byte	112
+ 1904 073d 47       		.byte	71
+ 1905 073e C0       		.byte	-64
+ 1906 073f 46       		.byte	70
+ 1907 0740 40       		.byte	64
+ 1908 0741 00       		.byte	0
+ 1909 0742 00       		.byte	0
+ 1910 0743 20       		.byte	32
+ 1911 0744 1F       		.byte	31
+ 1912 0745 23       		.byte	35
+ 1913 0746 18       		.byte	24
+ 1914 0747 40       		.byte	64
+ 1915 0748 1E       		.byte	30
+ 1916 0749 3B       		.byte	59
+ 1917 074a 83       		.byte	-125
+ 1918 074b 40       		.byte	64
+ 1919 074c 01       		.byte	1
+ 1920 074d 4A       		.byte	74
+ 1921 074e 13       		.byte	19
+ 1922 074f 60       		.byte	96
+ 1923 0750 70       		.byte	112
+ 1924 0751 47       		.byte	71
+ 1925 0752 C0       		.byte	-64
+ 1926 0753 46       		.byte	70
+ 1927 0754 00       		.byte	0
+ 1928 0755 E1       		.byte	-31
+ 1929 0756 00       		.byte	0
+ 1930 0757 E0       		.byte	-32
+ 1931 0758 01       		.byte	1
+ 1932 0759 BE       		.byte	-66
+ 1933 075a 70       		.byte	112
+ 1934 075b 47       		.byte	71
+ 1935 075c 03       		.byte	3
+ 1936 075d 4A       		.byte	74
+ 1937 075e 04       		.byte	4
+ 1938 075f 49       		.byte	73
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 35
+
+
+ 1939 0760 13       		.byte	19
+ 1940 0761 68       		.byte	104
+ 1941 0762 9B       		.byte	-101
+ 1942 0763 B2       		.byte	-78
+ 1943 0764 0B       		.byte	11
+ 1944 0765 43       		.byte	67
+ 1945 0766 13       		.byte	19
+ 1946 0767 60       		.byte	96
+ 1947 0768 70       		.byte	112
+ 1948 0769 47       		.byte	71
+ 1949 076a C0       		.byte	-64
+ 1950 076b 46       		.byte	70
+ 1951 076c 0C       		.byte	12
+ 1952 076d ED       		.byte	-19
+ 1953 076e 00       		.byte	0
+ 1954 076f E0       		.byte	-32
+ 1955 0770 04       		.byte	4
+ 1956 0771 00       		.byte	0
+ 1957 0772 FA       		.byte	-6
+ 1958 0773 05       		.byte	5
+ 1959 0774 10       		.byte	16
+ 1960 0775 B5       		.byte	-75
+ 1961 0776 03       		.byte	3
+ 1962 0777 4B       		.byte	75
+ 1963 0778 1B       		.byte	27
+ 1964 0779 7B       		.byte	123
+ 1965 077a 58       		.byte	88
+ 1966 077b 43       		.byte	67
+ 1967 077c 00       		.byte	0
+ 1968 077d F0       		.byte	-16
+ 1969 077e AC       		.byte	-84
+ 1970 077f F9       		.byte	-7
+ 1971 0780 10       		.byte	16
+ 1972 0781 BD       		.byte	-67
+ 1973 0782 C0       		.byte	-64
+ 1974 0783 46       		.byte	70
+ 1975 0784 E4       		.byte	-28
+ 1976 0785 00       		.byte	0
+ 1977 0786 00       		.byte	0
+ 1978 0787 20       		.byte	32
+ 1979 0788 F0       		.byte	-16
+ 1980 0789 B5       		.byte	-75
+ 1981 078a 05       		.byte	5
+ 1982 078b 00       		.byte	0
+ 1983 078c 87       		.byte	-121
+ 1984 078d B0       		.byte	-80
+ 1985 078e 00       		.byte	0
+ 1986 078f F0       		.byte	-16
+ 1987 0790 AC       		.byte	-84
+ 1988 0791 F9       		.byte	-7
+ 1989 0792 EB       		.byte	-21
+ 1990 0793 1E       		.byte	30
+ 1991 0794 04       		.byte	4
+ 1992 0795 90       		.byte	-112
+ 1993 0796 03       		.byte	3
+ 1994 0797 93       		.byte	-109
+ 1995 0798 2D       		.byte	45
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 36
+
+
+ 1996 0799 2B       		.byte	43
+ 1997 079a 5C       		.byte	92
+ 1998 079b D8       		.byte	-40
+ 1999 079c 31       		.byte	49
+ 2000 079d 4B       		.byte	75
+ 2001 079e 1B       		.byte	27
+ 2002 079f 78       		.byte	120
+ 2003 07a0 9D       		.byte	-99
+ 2004 07a1 42       		.byte	66
+ 2005 07a2 04       		.byte	4
+ 2006 07a3 D8       		.byte	-40
+ 2007 07a4 30       		.byte	48
+ 2008 07a5 4B       		.byte	75
+ 2009 07a6 1C       		.byte	28
+ 2010 07a7 78       		.byte	120
+ 2011 07a8 30       		.byte	48
+ 2012 07a9 4B       		.byte	75
+ 2013 07aa E4       		.byte	-28
+ 2014 07ab B2       		.byte	-78
+ 2015 07ac 1E       		.byte	30
+ 2016 07ad E0       		.byte	-32
+ 2017 07ae 30       		.byte	48
+ 2018 07af 4B       		.byte	75
+ 2019 07b0 1B       		.byte	27
+ 2020 07b1 78       		.byte	120
+ 2021 07b2 9D       		.byte	-99
+ 2022 07b3 42       		.byte	66
+ 2023 07b4 04       		.byte	4
+ 2024 07b5 D8       		.byte	-40
+ 2025 07b6 2F       		.byte	47
+ 2026 07b7 4B       		.byte	75
+ 2027 07b8 1C       		.byte	28
+ 2028 07b9 78       		.byte	120
+ 2029 07ba 2F       		.byte	47
+ 2030 07bb 4B       		.byte	75
+ 2031 07bc E4       		.byte	-28
+ 2032 07bd B2       		.byte	-78
+ 2033 07be 15       		.byte	21
+ 2034 07bf E0       		.byte	-32
+ 2035 07c0 2E       		.byte	46
+ 2036 07c1 4B       		.byte	75
+ 2037 07c2 1B       		.byte	27
+ 2038 07c3 78       		.byte	120
+ 2039 07c4 9D       		.byte	-99
+ 2040 07c5 42       		.byte	66
+ 2041 07c6 04       		.byte	4
+ 2042 07c7 D8       		.byte	-40
+ 2043 07c8 2D       		.byte	45
+ 2044 07c9 4B       		.byte	75
+ 2045 07ca 1C       		.byte	28
+ 2046 07cb 78       		.byte	120
+ 2047 07cc 2D       		.byte	45
+ 2048 07cd 4B       		.byte	75
+ 2049 07ce E4       		.byte	-28
+ 2050 07cf B2       		.byte	-78
+ 2051 07d0 0C       		.byte	12
+ 2052 07d1 E0       		.byte	-32
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 37
+
+
+ 2053 07d2 2D       		.byte	45
+ 2054 07d3 4B       		.byte	75
+ 2055 07d4 1B       		.byte	27
+ 2056 07d5 78       		.byte	120
+ 2057 07d6 9D       		.byte	-99
+ 2058 07d7 42       		.byte	66
+ 2059 07d8 04       		.byte	4
+ 2060 07d9 D8       		.byte	-40
+ 2061 07da 2C       		.byte	44
+ 2062 07db 4B       		.byte	75
+ 2063 07dc 1C       		.byte	28
+ 2064 07dd 78       		.byte	120
+ 2065 07de 2C       		.byte	44
+ 2066 07df 4B       		.byte	75
+ 2067 07e0 E4       		.byte	-28
+ 2068 07e1 B2       		.byte	-78
+ 2069 07e2 03       		.byte	3
+ 2070 07e3 E0       		.byte	-32
+ 2071 07e4 2B       		.byte	43
+ 2072 07e5 4B       		.byte	75
+ 2073 07e6 1C       		.byte	28
+ 2074 07e7 78       		.byte	120
+ 2075 07e8 2B       		.byte	43
+ 2076 07e9 4B       		.byte	75
+ 2077 07ea E4       		.byte	-28
+ 2078 07eb B2       		.byte	-78
+ 2079 07ec 1B       		.byte	27
+ 2080 07ed 78       		.byte	120
+ 2081 07ee EA       		.byte	-22
+ 2082 07ef 1E       		.byte	30
+ 2083 07f0 DB       		.byte	-37
+ 2084 07f1 B2       		.byte	-78
+ 2085 07f2 01       		.byte	1
+ 2086 07f3 93       		.byte	-109
+ 2087 07f4 29       		.byte	41
+ 2088 07f5 4B       		.byte	75
+ 2089 07f6 2A       		.byte	42
+ 2090 07f7 4F       		.byte	79
+ 2091 07f8 9A       		.byte	-102
+ 2092 07f9 5C       		.byte	92
+ 2093 07fa 05       		.byte	5
+ 2094 07fb 93       		.byte	-109
+ 2095 07fc 02       		.byte	2
+ 2096 07fd 92       		.byte	-110
+ 2097 07fe 2F       		.byte	47
+ 2098 07ff 2A       		.byte	42
+ 2099 0800 04       		.byte	4
+ 2100 0801 D9       		.byte	-39
+ 2101 0802 2A       		.byte	42
+ 2102 0803 2D       		.byte	45
+ 2103 0804 02       		.byte	2
+ 2104 0805 D9       		.byte	-39
+ 2105 0806 19       		.byte	25
+ 2106 0807 26       		.byte	38
+ 2107 0808 3E       		.byte	62
+ 2108 0809 60       		.byte	96
+ 2109 080a 08       		.byte	8
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 38
+
+
+ 2110 080b E0       		.byte	-32
+ 2111 080c 3F       		.byte	63
+ 2112 080d 23       		.byte	35
+ 2113 080e 3E       		.byte	62
+ 2114 080f 68       		.byte	104
+ 2115 0810 1E       		.byte	30
+ 2116 0811 40       		.byte	64
+ 2117 0812 02       		.byte	2
+ 2118 0813 9B       		.byte	-101
+ 2119 0814 B3       		.byte	-77
+ 2120 0815 42       		.byte	66
+ 2121 0816 05       		.byte	5
+ 2122 0817 D2       		.byte	-46
+ 2123 0818 21       		.byte	33
+ 2124 0819 4B       		.byte	75
+ 2125 081a 02       		.byte	2
+ 2126 081b 9A       		.byte	-102
+ 2127 081c 1A       		.byte	26
+ 2128 081d 60       		.byte	96
+ 2129 081e 05       		.byte	5
+ 2130 081f 20       		.byte	32
+ 2131 0820 00       		.byte	0
+ 2132 0821 F0       		.byte	-16
+ 2133 0822 5A       		.byte	90
+ 2134 0823 F9       		.byte	-7
+ 2135 0824 1C       		.byte	28
+ 2136 0825 4B       		.byte	75
+ 2137 0826 1F       		.byte	31
+ 2138 0827 4A       		.byte	74
+ 2139 0828 ED       		.byte	-19
+ 2140 0829 18       		.byte	24
+ 2141 082a 2B       		.byte	43
+ 2142 082b 78       		.byte	120
+ 2143 082c 05       		.byte	5
+ 2144 082d 20       		.byte	32
+ 2145 082e DB       		.byte	-37
+ 2146 082f B2       		.byte	-78
+ 2147 0830 13       		.byte	19
+ 2148 0831 60       		.byte	96
+ 2149 0832 1D       		.byte	29
+ 2150 0833 4B       		.byte	75
+ 2151 0834 01       		.byte	1
+ 2152 0835 9A       		.byte	-102
+ 2153 0836 1C       		.byte	28
+ 2154 0837 60       		.byte	96
+ 2155 0838 1C       		.byte	28
+ 2156 0839 4B       		.byte	75
+ 2157 083a 1A       		.byte	26
+ 2158 083b 60       		.byte	96
+ 2159 083c FF       		.byte	-1
+ 2160 083d F7       		.byte	-9
+ 2161 083e 9A       		.byte	-102
+ 2162 083f FF       		.byte	-1
+ 2163 0840 02       		.byte	2
+ 2164 0841 9B       		.byte	-101
+ 2165 0842 B3       		.byte	-77
+ 2166 0843 42       		.byte	66
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 39
+
+
+ 2167 0844 08       		.byte	8
+ 2168 0845 D9       		.byte	-39
+ 2169 0846 05       		.byte	5
+ 2170 0847 9B       		.byte	-101
+ 2171 0848 03       		.byte	3
+ 2172 0849 9A       		.byte	-102
+ 2173 084a 05       		.byte	5
+ 2174 084b 20       		.byte	32
+ 2175 084c 9B       		.byte	-101
+ 2176 084d 5C       		.byte	92
+ 2177 084e 3B       		.byte	59
+ 2178 084f 60       		.byte	96
+ 2179 0850 00       		.byte	0
+ 2180 0851 F0       		.byte	-16
+ 2181 0852 42       		.byte	66
+ 2182 0853 F9       		.byte	-7
+ 2183 0854 00       		.byte	0
+ 2184 0855 E0       		.byte	-32
+ 2185 0856 01       		.byte	1
+ 2186 0857 BE       		.byte	-66
+ 2187 0858 04       		.byte	4
+ 2188 0859 98       		.byte	-104
+ 2189 085a 00       		.byte	0
+ 2190 085b F0       		.byte	-16
+ 2191 085c 4A       		.byte	74
+ 2192 085d F9       		.byte	-7
+ 2193 085e 07       		.byte	7
+ 2194 085f B0       		.byte	-80
+ 2195 0860 F0       		.byte	-16
+ 2196 0861 BD       		.byte	-67
+ 2197 0862 C0       		.byte	-64
+ 2198 0863 46       		.byte	70
+ 2199 0864 40       		.byte	64
+ 2200 0865 F3       		.byte	-13
+ 2201 0866 FF       		.byte	-1
+ 2202 0867 0F       		.byte	15
+ 2203 0868 41       		.byte	65
+ 2204 0869 F3       		.byte	-13
+ 2205 086a FF       		.byte	-1
+ 2206 086b 0F       		.byte	15
+ 2207 086c 42       		.byte	66
+ 2208 086d F3       		.byte	-13
+ 2209 086e FF       		.byte	-1
+ 2210 086f 0F       		.byte	15
+ 2211 0870 43       		.byte	67
+ 2212 0871 F3       		.byte	-13
+ 2213 0872 FF       		.byte	-1
+ 2214 0873 0F       		.byte	15
+ 2215 0874 44       		.byte	68
+ 2216 0875 F3       		.byte	-13
+ 2217 0876 FF       		.byte	-1
+ 2218 0877 0F       		.byte	15
+ 2219 0878 45       		.byte	69
+ 2220 0879 F3       		.byte	-13
+ 2221 087a FF       		.byte	-1
+ 2222 087b 0F       		.byte	15
+ 2223 087c 46       		.byte	70
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 40
+
+
+ 2224 087d F3       		.byte	-13
+ 2225 087e FF       		.byte	-1
+ 2226 087f 0F       		.byte	15
+ 2227 0880 47       		.byte	71
+ 2228 0881 F3       		.byte	-13
+ 2229 0882 FF       		.byte	-1
+ 2230 0883 0F       		.byte	15
+ 2231 0884 48       		.byte	72
+ 2232 0885 F3       		.byte	-13
+ 2233 0886 FF       		.byte	-1
+ 2234 0887 0F       		.byte	15
+ 2235 0888 49       		.byte	73
+ 2236 0889 F3       		.byte	-13
+ 2237 088a FF       		.byte	-1
+ 2238 088b 0F       		.byte	15
+ 2239 088c 4A       		.byte	74
+ 2240 088d F3       		.byte	-13
+ 2241 088e FF       		.byte	-1
+ 2242 088f 0F       		.byte	15
+ 2243 0890 4B       		.byte	75
+ 2244 0891 F3       		.byte	-13
+ 2245 0892 FF       		.byte	-1
+ 2246 0893 0F       		.byte	15
+ 2247 0894 4C       		.byte	76
+ 2248 0895 F3       		.byte	-13
+ 2249 0896 FF       		.byte	-1
+ 2250 0897 0F       		.byte	15
+ 2251 0898 4D       		.byte	77
+ 2252 0899 F3       		.byte	-13
+ 2253 089a FF       		.byte	-1
+ 2254 089b 0F       		.byte	15
+ 2255 089c 18       		.byte	24
+ 2256 089d 0D       		.byte	13
+ 2257 089e 00       		.byte	0
+ 2258 089f 00       		.byte	0
+ 2259 08a0 2C       		.byte	44
+ 2260 08a1 FF       		.byte	-1
+ 2261 08a2 0B       		.byte	11
+ 2262 08a3 40       		.byte	64
+ 2263 08a4 28       		.byte	40
+ 2264 08a5 FF       		.byte	-1
+ 2265 08a6 0B       		.byte	11
+ 2266 08a7 40       		.byte	64
+ 2267 08a8 1C       		.byte	28
+ 2268 08a9 FF       		.byte	-1
+ 2269 08aa 0B       		.byte	11
+ 2270 08ab 40       		.byte	64
+ 2271 08ac 20       		.byte	32
+ 2272 08ad FF       		.byte	-1
+ 2273 08ae 0B       		.byte	11
+ 2274 08af 40       		.byte	64
+ 2275 08b0 10       		.byte	16
+ 2276 08b1 B5       		.byte	-75
+ 2277 08b2 00       		.byte	0
+ 2278 08b3 F0       		.byte	-16
+ 2279 08b4 1A       		.byte	26
+ 2280 08b5 F9       		.byte	-7
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 41
+
+
+ 2281 08b6 C0       		.byte	-64
+ 2282 08b7 21       		.byte	33
+ 2283 08b8 03       		.byte	3
+ 2284 08b9 4A       		.byte	74
+ 2285 08ba 09       		.byte	9
+ 2286 08bb 02       		.byte	2
+ 2287 08bc 13       		.byte	19
+ 2288 08bd 68       		.byte	104
+ 2289 08be 0B       		.byte	11
+ 2290 08bf 43       		.byte	67
+ 2291 08c0 13       		.byte	19
+ 2292 08c1 60       		.byte	96
+ 2293 08c2 00       		.byte	0
+ 2294 08c3 F0       		.byte	-16
+ 2295 08c4 16       		.byte	22
+ 2296 08c5 F9       		.byte	-7
+ 2297 08c6 10       		.byte	16
+ 2298 08c7 BD       		.byte	-67
+ 2299 08c8 00       		.byte	0
+ 2300 08c9 01       		.byte	1
+ 2301 08ca 0B       		.byte	11
+ 2302 08cb 40       		.byte	64
+ 2303 08cc 10       		.byte	16
+ 2304 08cd B5       		.byte	-75
+ 2305 08ce 80       		.byte	-128
+ 2306 08cf 24       		.byte	36
+ 2307 08d0 00       		.byte	0
+ 2308 08d1 F0       		.byte	-16
+ 2309 08d2 0B       		.byte	11
+ 2310 08d3 F9       		.byte	-7
+ 2311 08d4 07       		.byte	7
+ 2312 08d5 49       		.byte	73
+ 2313 08d6 08       		.byte	8
+ 2314 08d7 4B       		.byte	75
+ 2315 08d8 0A       		.byte	10
+ 2316 08d9 68       		.byte	104
+ 2317 08da E4       		.byte	-28
+ 2318 08db 01       		.byte	1
+ 2319 08dc 1A       		.byte	26
+ 2320 08dd 40       		.byte	64
+ 2321 08de 22       		.byte	34
+ 2322 08df 43       		.byte	67
+ 2323 08e0 0A       		.byte	10
+ 2324 08e1 60       		.byte	96
+ 2325 08e2 0A       		.byte	10
+ 2326 08e3 68       		.byte	104
+ 2327 08e4 13       		.byte	19
+ 2328 08e5 40       		.byte	64
+ 2329 08e6 80       		.byte	-128
+ 2330 08e7 22       		.byte	34
+ 2331 08e8 12       		.byte	18
+ 2332 08e9 02       		.byte	2
+ 2333 08ea 13       		.byte	19
+ 2334 08eb 43       		.byte	67
+ 2335 08ec 0B       		.byte	11
+ 2336 08ed 60       		.byte	96
+ 2337 08ee 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 42
+
+
+ 2338 08ef F0       		.byte	-16
+ 2339 08f0 00       		.byte	0
+ 2340 08f1 F9       		.byte	-7
+ 2341 08f2 10       		.byte	16
+ 2342 08f3 BD       		.byte	-67
+ 2343 08f4 00       		.byte	0
+ 2344 08f5 01       		.byte	1
+ 2345 08f6 0B       		.byte	11
+ 2346 08f7 40       		.byte	64
+ 2347 08f8 FF       		.byte	-1
+ 2348 08f9 3F       		.byte	63
+ 2349 08fa FF       		.byte	-1
+ 2350 08fb FF       		.byte	-1
+ 2351 08fc 70       		.byte	112
+ 2352 08fd B5       		.byte	-75
+ 2353 08fe 05       		.byte	5
+ 2354 08ff 00       		.byte	0
+ 2355 0900 00       		.byte	0
+ 2356 0901 F0       		.byte	-16
+ 2357 0902 F3       		.byte	-13
+ 2358 0903 F8       		.byte	-8
+ 2359 0904 0E       		.byte	14
+ 2360 0905 4B       		.byte	75
+ 2361 0906 04       		.byte	4
+ 2362 0907 00       		.byte	0
+ 2363 0908 1A       		.byte	26
+ 2364 0909 68       		.byte	104
+ 2365 090a C0       		.byte	-64
+ 2366 090b 23       		.byte	35
+ 2367 090c 1B       		.byte	27
+ 2368 090d 02       		.byte	2
+ 2369 090e 13       		.byte	19
+ 2370 090f 40       		.byte	64
+ 2371 0910 11       		.byte	17
+ 2372 0911 D1       		.byte	-47
+ 2373 0912 0C       		.byte	12
+ 2374 0913 48       		.byte	72
+ 2375 0914 0C       		.byte	12
+ 2376 0915 49       		.byte	73
+ 2377 0916 05       		.byte	5
+ 2378 0917 40       		.byte	64
+ 2379 0918 28       		.byte	40
+ 2380 0919 00       		.byte	0
+ 2381 091a 0E       		.byte	14
+ 2382 091b 68       		.byte	104
+ 2383 091c 0B       		.byte	11
+ 2384 091d 4A       		.byte	74
+ 2385 091e 32       		.byte	50
+ 2386 091f 40       		.byte	64
+ 2387 0920 10       		.byte	16
+ 2388 0921 43       		.byte	67
+ 2389 0922 08       		.byte	8
+ 2390 0923 60       		.byte	96
+ 2391 0924 0A       		.byte	10
+ 2392 0925 68       		.byte	104
+ 2393 0926 01       		.byte	1
+ 2394 0927 2B       		.byte	43
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 43
+
+
+ 2395 0928 01       		.byte	1
+ 2396 0929 D1       		.byte	-47
+ 2397 092a FF       		.byte	-1
+ 2398 092b F7       		.byte	-9
+ 2399 092c C1       		.byte	-63
+ 2400 092d FF       		.byte	-1
+ 2401 092e 20       		.byte	32
+ 2402 092f 00       		.byte	0
+ 2403 0930 00       		.byte	0
+ 2404 0931 F0       		.byte	-16
+ 2405 0932 DF       		.byte	-33
+ 2406 0933 F8       		.byte	-8
+ 2407 0934 70       		.byte	112
+ 2408 0935 BD       		.byte	-67
+ 2409 0936 FF       		.byte	-1
+ 2410 0937 F7       		.byte	-9
+ 2411 0938 C9       		.byte	-55
+ 2412 0939 FF       		.byte	-1
+ 2413 093a 01       		.byte	1
+ 2414 093b 23       		.byte	35
+ 2415 093c E9       		.byte	-23
+ 2416 093d E7       		.byte	-25
+ 2417 093e C0       		.byte	-64
+ 2418 093f 46       		.byte	70
+ 2419 0940 00       		.byte	0
+ 2420 0941 01       		.byte	1
+ 2421 0942 0B       		.byte	11
+ 2422 0943 40       		.byte	64
+ 2423 0944 04       		.byte	4
+ 2424 0945 04       		.byte	4
+ 2425 0946 04       		.byte	4
+ 2426 0947 00       		.byte	0
+ 2427 0948 10       		.byte	16
+ 2428 0949 02       		.byte	2
+ 2429 094a 0B       		.byte	11
+ 2430 094b 40       		.byte	64
+ 2431 094c FB       		.byte	-5
+ 2432 094d FB       		.byte	-5
+ 2433 094e FB       		.byte	-5
+ 2434 094f FF       		.byte	-1
+ 2435 0950 04       		.byte	4
+ 2436 0951 22       		.byte	34
+ 2437 0952 70       		.byte	112
+ 2438 0953 B5       		.byte	-75
+ 2439 0954 22       		.byte	34
+ 2440 0955 4C       		.byte	76
+ 2441 0956 23       		.byte	35
+ 2442 0957 68       		.byte	104
+ 2443 0958 13       		.byte	19
+ 2444 0959 42       		.byte	66
+ 2445 095a 13       		.byte	19
+ 2446 095b D0       		.byte	-48
+ 2447 095c 21       		.byte	33
+ 2448 095d 49       		.byte	73
+ 2449 095e 4B       		.byte	75
+ 2450 095f 68       		.byte	104
+ 2451 0960 13       		.byte	19
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 44
+
+
+ 2452 0961 42       		.byte	66
+ 2453 0962 0C       		.byte	12
+ 2454 0963 D0       		.byte	-48
+ 2455 0964 20       		.byte	32
+ 2456 0965 4B       		.byte	75
+ 2457 0966 5D       		.byte	93
+ 2458 0967 6A       		.byte	106
+ 2459 0968 48       		.byte	72
+ 2460 0969 68       		.byte	104
+ 2461 096a 15       		.byte	21
+ 2462 096b 40       		.byte	64
+ 2463 096c A8       		.byte	-88
+ 2464 096d 43       		.byte	67
+ 2465 096e 48       		.byte	72
+ 2466 096f 60       		.byte	96
+ 2467 0970 59       		.byte	89
+ 2468 0971 6A       		.byte	106
+ 2469 0972 91       		.byte	-111
+ 2470 0973 43       		.byte	67
+ 2471 0974 59       		.byte	89
+ 2472 0975 62       		.byte	98
+ 2473 0976 9B       		.byte	-101
+ 2474 0977 69       		.byte	105
+ 2475 0978 00       		.byte	0
+ 2476 0979 2B       		.byte	43
+ 2477 097a 00       		.byte	0
+ 2478 097b D0       		.byte	-48
+ 2479 097c 98       		.byte	-104
+ 2480 097d 47       		.byte	71
+ 2481 097e 04       		.byte	4
+ 2482 097f 20       		.byte	32
+ 2483 0980 FF       		.byte	-1
+ 2484 0981 F7       		.byte	-9
+ 2485 0982 BC       		.byte	-68
+ 2486 0983 FF       		.byte	-1
+ 2487 0984 80       		.byte	-128
+ 2488 0985 23       		.byte	35
+ 2489 0986 22       		.byte	34
+ 2490 0987 68       		.byte	104
+ 2491 0988 DB       		.byte	-37
+ 2492 0989 00       		.byte	0
+ 2493 098a 1A       		.byte	26
+ 2494 098b 42       		.byte	66
+ 2495 098c 15       		.byte	21
+ 2496 098d D0       		.byte	-48
+ 2497 098e 15       		.byte	21
+ 2498 098f 49       		.byte	73
+ 2499 0990 4A       		.byte	74
+ 2500 0991 68       		.byte	104
+ 2501 0992 1A       		.byte	26
+ 2502 0993 42       		.byte	66
+ 2503 0994 0D       		.byte	13
+ 2504 0995 D0       		.byte	-48
+ 2505 0996 14       		.byte	20
+ 2506 0997 4A       		.byte	74
+ 2507 0998 55       		.byte	85
+ 2508 0999 6A       		.byte	106
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 45
+
+
+ 2509 099a 48       		.byte	72
+ 2510 099b 68       		.byte	104
+ 2511 099c 2B       		.byte	43
+ 2512 099d 40       		.byte	64
+ 2513 099e 98       		.byte	-104
+ 2514 099f 43       		.byte	67
+ 2515 09a0 48       		.byte	72
+ 2516 09a1 60       		.byte	96
+ 2517 09a2 51       		.byte	81
+ 2518 09a3 6A       		.byte	106
+ 2519 09a4 11       		.byte	17
+ 2520 09a5 4B       		.byte	75
+ 2521 09a6 0B       		.byte	11
+ 2522 09a7 40       		.byte	64
+ 2523 09a8 53       		.byte	83
+ 2524 09a9 62       		.byte	98
+ 2525 09aa D3       		.byte	-45
+ 2526 09ab 69       		.byte	105
+ 2527 09ac 00       		.byte	0
+ 2528 09ad 2B       		.byte	43
+ 2529 09ae 00       		.byte	0
+ 2530 09af D0       		.byte	-48
+ 2531 09b0 98       		.byte	-104
+ 2532 09b1 47       		.byte	71
+ 2533 09b2 80       		.byte	-128
+ 2534 09b3 20       		.byte	32
+ 2535 09b4 C0       		.byte	-64
+ 2536 09b5 00       		.byte	0
+ 2537 09b6 FF       		.byte	-1
+ 2538 09b7 F7       		.byte	-9
+ 2539 09b8 A1       		.byte	-95
+ 2540 09b9 FF       		.byte	-1
+ 2541 09ba 80       		.byte	-128
+ 2542 09bb 23       		.byte	35
+ 2543 09bc 22       		.byte	34
+ 2544 09bd 68       		.byte	104
+ 2545 09be DB       		.byte	-37
+ 2546 09bf 02       		.byte	2
+ 2547 09c0 1A       		.byte	26
+ 2548 09c1 42       		.byte	66
+ 2549 09c2 0C       		.byte	12
+ 2550 09c3 D0       		.byte	-48
+ 2551 09c4 07       		.byte	7
+ 2552 09c5 4A       		.byte	74
+ 2553 09c6 52       		.byte	82
+ 2554 09c7 68       		.byte	104
+ 2555 09c8 1A       		.byte	26
+ 2556 09c9 42       		.byte	66
+ 2557 09ca 04       		.byte	4
+ 2558 09cb D0       		.byte	-48
+ 2559 09cc 06       		.byte	6
+ 2560 09cd 4B       		.byte	75
+ 2561 09ce 1B       		.byte	27
+ 2562 09cf 6A       		.byte	106
+ 2563 09d0 00       		.byte	0
+ 2564 09d1 2B       		.byte	43
+ 2565 09d2 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 46
+
+
+ 2566 09d3 D0       		.byte	-48
+ 2567 09d4 98       		.byte	-104
+ 2568 09d5 47       		.byte	71
+ 2569 09d6 80       		.byte	-128
+ 2570 09d7 20       		.byte	32
+ 2571 09d8 C0       		.byte	-64
+ 2572 09d9 02       		.byte	2
+ 2573 09da FF       		.byte	-1
+ 2574 09db F7       		.byte	-9
+ 2575 09dc 8F       		.byte	-113
+ 2576 09dd FF       		.byte	-1
+ 2577 09de 70       		.byte	112
+ 2578 09df BD       		.byte	-67
+ 2579 09e0 10       		.byte	16
+ 2580 09e1 02       		.byte	2
+ 2581 09e2 0B       		.byte	11
+ 2582 09e3 40       		.byte	64
+ 2583 09e4 F8       		.byte	-8
+ 2584 09e5 00       		.byte	0
+ 2585 09e6 00       		.byte	0
+ 2586 09e7 20       		.byte	32
+ 2587 09e8 84       		.byte	-124
+ 2588 09e9 01       		.byte	1
+ 2589 09ea 00       		.byte	0
+ 2590 09eb 20       		.byte	32
+ 2591 09ec FF       		.byte	-1
+ 2592 09ed FB       		.byte	-5
+ 2593 09ee FF       		.byte	-1
+ 2594 09ef FF       		.byte	-1
+ 2595 09f0 00       		.byte	0
+ 2596 09f1 00       		.byte	0
+ 2597 09f2 00       		.byte	0
+ 2598 09f3 00       		.byte	0
+ 2599 09f4 00       		.byte	0
+ 2600 09f5 00       		.byte	0
+ 2601 09f6 00       		.byte	0
+ 2602 09f7 00       		.byte	0
+ 2603 09f8 00       		.byte	0
+ 2604 09f9 00       		.byte	0
+ 2605 09fa 00       		.byte	0
+ 2606 09fb 00       		.byte	0
+ 2607 09fc 00       		.byte	0
+ 2608 09fd 00       		.byte	0
+ 2609 09fe 00       		.byte	0
+ 2610 09ff 00       		.byte	0
+ 2611 0a00 FE       		.byte	-2
+ 2612 0a01 B5       		.byte	-75
+ 2613 0a02 49       		.byte	73
+ 2614 0a03 46       		.byte	70
+ 2615 0a04 52       		.byte	82
+ 2616 0a05 46       		.byte	70
+ 2617 0a06 5B       		.byte	91
+ 2618 0a07 46       		.byte	70
+ 2619 0a08 0E       		.byte	14
+ 2620 0a09 B4       		.byte	-76
+ 2621 0a0a 07       		.byte	7
+ 2622 0a0b 46       		.byte	70
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 47
+
+
+ 2623 0a0c 2E       		.byte	46
+ 2624 0a0d 49       		.byte	73
+ 2625 0a0e 09       		.byte	9
+ 2626 0a0f 68       		.byte	104
+ 2627 0a10 8A       		.byte	-118
+ 2628 0a11 46       		.byte	70
+ 2629 0a12 2E       		.byte	46
+ 2630 0a13 4A       		.byte	74
+ 2631 0a14 12       		.byte	18
+ 2632 0a15 68       		.byte	104
+ 2633 0a16 2E       		.byte	46
+ 2634 0a17 48       		.byte	72
+ 2635 0a18 02       		.byte	2
+ 2636 0a19 21       		.byte	33
+ 2637 0a1a 00       		.byte	0
+ 2638 0a1b F0       		.byte	-16
+ 2639 0a1c 77       		.byte	119
+ 2640 0a1d F8       		.byte	-8
+ 2641 0a1e 03       		.byte	3
+ 2642 0a1f 00       		.byte	0
+ 2643 0a20 2A       		.byte	42
+ 2644 0a21 48       		.byte	72
+ 2645 0a22 00       		.byte	0
+ 2646 0a23 68       		.byte	104
+ 2647 0a24 C0       		.byte	-64
+ 2648 0a25 18       		.byte	24
+ 2649 0a26 2A       		.byte	42
+ 2650 0a27 49       		.byte	73
+ 2651 0a28 00       		.byte	0
+ 2652 0a29 F0       		.byte	-16
+ 2653 0a2a 70       		.byte	112
+ 2654 0a2b F8       		.byte	-8
+ 2655 0a2c 06       		.byte	6
+ 2656 0a2d 00       		.byte	0
+ 2657 0a2e 1F       		.byte	31
+ 2658 0a2f 3E       		.byte	62
+ 2659 0a30 B3       		.byte	-77
+ 2660 0a31 46       		.byte	70
+ 2661 0a32 23       		.byte	35
+ 2662 0a33 4A       		.byte	74
+ 2663 0a34 12       		.byte	18
+ 2664 0a35 68       		.byte	104
+ 2665 0a36 01       		.byte	1
+ 2666 0a37 21       		.byte	33
+ 2667 0a38 91       		.byte	-111
+ 2668 0a39 40       		.byte	64
+ 2669 0a3a C9       		.byte	-55
+ 2670 0a3b 43       		.byte	67
+ 2671 0a3c 0C       		.byte	12
+ 2672 0a3d 00       		.byte	0
+ 2673 0a3e 01       		.byte	1
+ 2674 0a3f 25       		.byte	37
+ 2675 0a40 00       		.byte	0
+ 2676 0a41 26       		.byte	38
+ 2677 0a42 00       		.byte	0
+ 2678 0a43 F0       		.byte	-16
+ 2679 0a44 52       		.byte	82
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 48
+
+
+ 2680 0a45 F8       		.byte	-8
+ 2681 0a46 81       		.byte	-127
+ 2682 0a47 46       		.byte	70
+ 2683 0a48 51       		.byte	81
+ 2684 0a49 46       		.byte	70
+ 2685 0a4a 0B       		.byte	11
+ 2686 0a4b 68       		.byte	104
+ 2687 0a4c 23       		.byte	35
+ 2688 0a4d 40       		.byte	64
+ 2689 0a4e 0B       		.byte	11
+ 2690 0a4f 60       		.byte	96
+ 2691 0a50 58       		.byte	88
+ 2692 0a51 46       		.byte	70
+ 2693 0a52 04       		.byte	4
+ 2694 0a53 30       		.byte	48
+ 2695 0a54 00       		.byte	0
+ 2696 0a55 F0       		.byte	-16
+ 2697 0a56 40       		.byte	64
+ 2698 0a57 F8       		.byte	-8
+ 2699 0a58 38       		.byte	56
+ 2700 0a59 00       		.byte	0
+ 2701 0a5a F0       		.byte	-16
+ 2702 0a5b 40       		.byte	64
+ 2703 0a5c 28       		.byte	40
+ 2704 0a5d 40       		.byte	64
+ 2705 0a5e 90       		.byte	-112
+ 2706 0a5f 40       		.byte	64
+ 2707 0a60 0B       		.byte	11
+ 2708 0a61 68       		.byte	104
+ 2709 0a62 23       		.byte	35
+ 2710 0a63 40       		.byte	64
+ 2711 0a64 03       		.byte	3
+ 2712 0a65 43       		.byte	67
+ 2713 0a66 0B       		.byte	11
+ 2714 0a67 60       		.byte	96
+ 2715 0a68 58       		.byte	88
+ 2716 0a69 46       		.byte	70
+ 2717 0a6a 00       		.byte	0
+ 2718 0a6b F0       		.byte	-16
+ 2719 0a6c 35       		.byte	53
+ 2720 0a6d F8       		.byte	-8
+ 2721 0a6e 01       		.byte	1
+ 2722 0a6f 36       		.byte	54
+ 2723 0a70 07       		.byte	7
+ 2724 0a71 2E       		.byte	46
+ 2725 0a72 F1       		.byte	-15
+ 2726 0a73 D9       		.byte	-39
+ 2727 0a74 00       		.byte	0
+ 2728 0a75 20       		.byte	32
+ 2729 0a76 01       		.byte	1
+ 2730 0a77 30       		.byte	48
+ 2731 0a78 01       		.byte	1
+ 2732 0a79 20       		.byte	32
+ 2733 0a7a 90       		.byte	-112
+ 2734 0a7b 40       		.byte	64
+ 2735 0a7c 0B       		.byte	11
+ 2736 0a7d 68       		.byte	104
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 49
+
+
+ 2737 0a7e 23       		.byte	35
+ 2738 0a7f 40       		.byte	64
+ 2739 0a80 03       		.byte	3
+ 2740 0a81 43       		.byte	67
+ 2741 0a82 0B       		.byte	11
+ 2742 0a83 60       		.byte	96
+ 2743 0a84 58       		.byte	88
+ 2744 0a85 46       		.byte	70
+ 2745 0a86 06       		.byte	6
+ 2746 0a87 30       		.byte	48
+ 2747 0a88 00       		.byte	0
+ 2748 0a89 F0       		.byte	-16
+ 2749 0a8a 26       		.byte	38
+ 2750 0a8b F8       		.byte	-8
+ 2751 0a8c 48       		.byte	72
+ 2752 0a8d 46       		.byte	70
+ 2753 0a8e 00       		.byte	0
+ 2754 0a8f F0       		.byte	-16
+ 2755 0a90 30       		.byte	48
+ 2756 0a91 F8       		.byte	-8
+ 2757 0a92 C0       		.byte	-64
+ 2758 0a93 46       		.byte	70
+ 2759 0a94 C0       		.byte	-64
+ 2760 0a95 46       		.byte	70
+ 2761 0a96 C0       		.byte	-64
+ 2762 0a97 46       		.byte	70
+ 2763 0a98 0E       		.byte	14
+ 2764 0a99 BC       		.byte	-68
+ 2765 0a9a 89       		.byte	-119
+ 2766 0a9b 46       		.byte	70
+ 2767 0a9c 92       		.byte	-110
+ 2768 0a9d 46       		.byte	70
+ 2769 0a9e 9B       		.byte	-101
+ 2770 0a9f 46       		.byte	70
+ 2771 0aa0 FE       		.byte	-2
+ 2772 0aa1 BD       		.byte	-67
+ 2773 0aa2 C0       		.byte	-64
+ 2774 0aa3 46       		.byte	70
+ 2775 0aa4 C0       		.byte	-64
+ 2776 0aa5 46       		.byte	70
+ 2777 0aa6 C0       		.byte	-64
+ 2778 0aa7 46       		.byte	70
+ 2779 0aa8 C0       		.byte	-64
+ 2780 0aa9 46       		.byte	70
+ 2781 0aaa C0       		.byte	-64
+ 2782 0aab 46       		.byte	70
+ 2783 0aac C0       		.byte	-64
+ 2784 0aad 46       		.byte	70
+ 2785 0aae C0       		.byte	-64
+ 2786 0aaf 46       		.byte	70
+ 2787 0ab0 C0       		.byte	-64
+ 2788 0ab1 46       		.byte	70
+ 2789 0ab2 C0       		.byte	-64
+ 2790 0ab3 46       		.byte	70
+ 2791 0ab4 C0       		.byte	-64
+ 2792 0ab5 46       		.byte	70
+ 2793 0ab6 C0       		.byte	-64
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 50
+
+
+ 2794 0ab7 46       		.byte	70
+ 2795 0ab8 C0       		.byte	-64
+ 2796 0ab9 46       		.byte	70
+ 2797 0aba C0       		.byte	-64
+ 2798 0abb 46       		.byte	70
+ 2799 0abc C0       		.byte	-64
+ 2800 0abd 46       		.byte	70
+ 2801 0abe C0       		.byte	-64
+ 2802 0abf 46       		.byte	70
+ 2803 0ac0 E0       		.byte	-32
+ 2804 0ac1 00       		.byte	0
+ 2805 0ac2 00       		.byte	0
+ 2806 0ac3 20       		.byte	32
+ 2807 0ac4 DC       		.byte	-36
+ 2808 0ac5 00       		.byte	0
+ 2809 0ac6 00       		.byte	0
+ 2810 0ac7 20       		.byte	32
+ 2811 0ac8 D8       		.byte	-40
+ 2812 0ac9 00       		.byte	0
+ 2813 0aca 00       		.byte	0
+ 2814 0acb 20       		.byte	32
+ 2815 0acc F4       		.byte	-12
+ 2816 0acd 00       		.byte	0
+ 2817 0ace 00       		.byte	0
+ 2818 0acf 20       		.byte	32
+ 2819 0ad0 00       		.byte	0
+ 2820 0ad1 E1       		.byte	-31
+ 2821 0ad2 00       		.byte	0
+ 2822 0ad3 00       		.byte	0
+ 2823 0ad4 00       		.byte	0
+ 2824 0ad5 00       		.byte	0
+ 2825 0ad6 00       		.byte	0
+ 2826 0ad7 00       		.byte	0
+ 2827 0ad8 02       		.byte	2
+ 2828 0ad9 30       		.byte	48
+ 2829 0ada 80       		.byte	-128
+ 2830 0adb 08       		.byte	8
+ 2831 0adc 03       		.byte	3
+ 2832 0add D0       		.byte	-48
+ 2833 0ade 01       		.byte	1
+ 2834 0adf 38       		.byte	56
+ 2835 0ae0 FD       		.byte	-3
+ 2836 0ae1 D1       		.byte	-47
+ 2837 0ae2 C0       		.byte	-64
+ 2838 0ae3 46       		.byte	70
+ 2839 0ae4 C0       		.byte	-64
+ 2840 0ae5 46       		.byte	70
+ 2841 0ae6 C0       		.byte	-64
+ 2842 0ae7 46       		.byte	70
+ 2843 0ae8 70       		.byte	112
+ 2844 0ae9 47       		.byte	71
+ 2845 0aea EF       		.byte	-17
+ 2846 0aeb F3       		.byte	-13
+ 2847 0aec 10       		.byte	16
+ 2848 0aed 80       		.byte	-128
+ 2849 0aee 72       		.byte	114
+ 2850 0aef B6       		.byte	-74
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 51
+
+
+ 2851 0af0 70       		.byte	112
+ 2852 0af1 47       		.byte	71
+ 2853 0af2 80       		.byte	-128
+ 2854 0af3 F3       		.byte	-13
+ 2855 0af4 10       		.byte	16
+ 2856 0af5 88       		.byte	-120
+ 2857 0af6 70       		.byte	112
+ 2858 0af7 47       		.byte	71
+ 2859 0af8 02       		.byte	2
+ 2860 0af9 B4       		.byte	-76
+ 2861 0afa 71       		.byte	113
+ 2862 0afb 46       		.byte	70
+ 2863 0afc 49       		.byte	73
+ 2864 0afd 08       		.byte	8
+ 2865 0afe 49       		.byte	73
+ 2866 0aff 00       		.byte	0
+ 2867 0b00 09       		.byte	9
+ 2868 0b01 5C       		.byte	92
+ 2869 0b02 49       		.byte	73
+ 2870 0b03 00       		.byte	0
+ 2871 0b04 8E       		.byte	-114
+ 2872 0b05 44       		.byte	68
+ 2873 0b06 02       		.byte	2
+ 2874 0b07 BC       		.byte	-68
+ 2875 0b08 70       		.byte	112
+ 2876 0b09 47       		.byte	71
+ 2877 0b0a C0       		.byte	-64
+ 2878 0b0b 46       		.byte	70
+ 2879 0b0c 00       		.byte	0
+ 2880 0b0d 22       		.byte	34
+ 2881 0b0e 43       		.byte	67
+ 2882 0b0f 08       		.byte	8
+ 2883 0b10 8B       		.byte	-117
+ 2884 0b11 42       		.byte	66
+ 2885 0b12 74       		.byte	116
+ 2886 0b13 D3       		.byte	-45
+ 2887 0b14 03       		.byte	3
+ 2888 0b15 09       		.byte	9
+ 2889 0b16 8B       		.byte	-117
+ 2890 0b17 42       		.byte	66
+ 2891 0b18 5F       		.byte	95
+ 2892 0b19 D3       		.byte	-45
+ 2893 0b1a 03       		.byte	3
+ 2894 0b1b 0A       		.byte	10
+ 2895 0b1c 8B       		.byte	-117
+ 2896 0b1d 42       		.byte	66
+ 2897 0b1e 44       		.byte	68
+ 2898 0b1f D3       		.byte	-45
+ 2899 0b20 03       		.byte	3
+ 2900 0b21 0B       		.byte	11
+ 2901 0b22 8B       		.byte	-117
+ 2902 0b23 42       		.byte	66
+ 2903 0b24 28       		.byte	40
+ 2904 0b25 D3       		.byte	-45
+ 2905 0b26 03       		.byte	3
+ 2906 0b27 0C       		.byte	12
+ 2907 0b28 8B       		.byte	-117
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 52
+
+
+ 2908 0b29 42       		.byte	66
+ 2909 0b2a 0D       		.byte	13
+ 2910 0b2b D3       		.byte	-45
+ 2911 0b2c FF       		.byte	-1
+ 2912 0b2d 22       		.byte	34
+ 2913 0b2e 09       		.byte	9
+ 2914 0b2f 02       		.byte	2
+ 2915 0b30 12       		.byte	18
+ 2916 0b31 BA       		.byte	-70
+ 2917 0b32 03       		.byte	3
+ 2918 0b33 0C       		.byte	12
+ 2919 0b34 8B       		.byte	-117
+ 2920 0b35 42       		.byte	66
+ 2921 0b36 02       		.byte	2
+ 2922 0b37 D3       		.byte	-45
+ 2923 0b38 12       		.byte	18
+ 2924 0b39 12       		.byte	18
+ 2925 0b3a 09       		.byte	9
+ 2926 0b3b 02       		.byte	2
+ 2927 0b3c 65       		.byte	101
+ 2928 0b3d D0       		.byte	-48
+ 2929 0b3e 03       		.byte	3
+ 2930 0b3f 0B       		.byte	11
+ 2931 0b40 8B       		.byte	-117
+ 2932 0b41 42       		.byte	66
+ 2933 0b42 19       		.byte	25
+ 2934 0b43 D3       		.byte	-45
+ 2935 0b44 00       		.byte	0
+ 2936 0b45 E0       		.byte	-32
+ 2937 0b46 09       		.byte	9
+ 2938 0b47 0A       		.byte	10
+ 2939 0b48 C3       		.byte	-61
+ 2940 0b49 0B       		.byte	11
+ 2941 0b4a 8B       		.byte	-117
+ 2942 0b4b 42       		.byte	66
+ 2943 0b4c 01       		.byte	1
+ 2944 0b4d D3       		.byte	-45
+ 2945 0b4e CB       		.byte	-53
+ 2946 0b4f 03       		.byte	3
+ 2947 0b50 C0       		.byte	-64
+ 2948 0b51 1A       		.byte	26
+ 2949 0b52 52       		.byte	82
+ 2950 0b53 41       		.byte	65
+ 2951 0b54 83       		.byte	-125
+ 2952 0b55 0B       		.byte	11
+ 2953 0b56 8B       		.byte	-117
+ 2954 0b57 42       		.byte	66
+ 2955 0b58 01       		.byte	1
+ 2956 0b59 D3       		.byte	-45
+ 2957 0b5a 8B       		.byte	-117
+ 2958 0b5b 03       		.byte	3
+ 2959 0b5c C0       		.byte	-64
+ 2960 0b5d 1A       		.byte	26
+ 2961 0b5e 52       		.byte	82
+ 2962 0b5f 41       		.byte	65
+ 2963 0b60 43       		.byte	67
+ 2964 0b61 0B       		.byte	11
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 53
+
+
+ 2965 0b62 8B       		.byte	-117
+ 2966 0b63 42       		.byte	66
+ 2967 0b64 01       		.byte	1
+ 2968 0b65 D3       		.byte	-45
+ 2969 0b66 4B       		.byte	75
+ 2970 0b67 03       		.byte	3
+ 2971 0b68 C0       		.byte	-64
+ 2972 0b69 1A       		.byte	26
+ 2973 0b6a 52       		.byte	82
+ 2974 0b6b 41       		.byte	65
+ 2975 0b6c 03       		.byte	3
+ 2976 0b6d 0B       		.byte	11
+ 2977 0b6e 8B       		.byte	-117
+ 2978 0b6f 42       		.byte	66
+ 2979 0b70 01       		.byte	1
+ 2980 0b71 D3       		.byte	-45
+ 2981 0b72 0B       		.byte	11
+ 2982 0b73 03       		.byte	3
+ 2983 0b74 C0       		.byte	-64
+ 2984 0b75 1A       		.byte	26
+ 2985 0b76 52       		.byte	82
+ 2986 0b77 41       		.byte	65
+ 2987 0b78 C3       		.byte	-61
+ 2988 0b79 0A       		.byte	10
+ 2989 0b7a 8B       		.byte	-117
+ 2990 0b7b 42       		.byte	66
+ 2991 0b7c 01       		.byte	1
+ 2992 0b7d D3       		.byte	-45
+ 2993 0b7e CB       		.byte	-53
+ 2994 0b7f 02       		.byte	2
+ 2995 0b80 C0       		.byte	-64
+ 2996 0b81 1A       		.byte	26
+ 2997 0b82 52       		.byte	82
+ 2998 0b83 41       		.byte	65
+ 2999 0b84 83       		.byte	-125
+ 3000 0b85 0A       		.byte	10
+ 3001 0b86 8B       		.byte	-117
+ 3002 0b87 42       		.byte	66
+ 3003 0b88 01       		.byte	1
+ 3004 0b89 D3       		.byte	-45
+ 3005 0b8a 8B       		.byte	-117
+ 3006 0b8b 02       		.byte	2
+ 3007 0b8c C0       		.byte	-64
+ 3008 0b8d 1A       		.byte	26
+ 3009 0b8e 52       		.byte	82
+ 3010 0b8f 41       		.byte	65
+ 3011 0b90 43       		.byte	67
+ 3012 0b91 0A       		.byte	10
+ 3013 0b92 8B       		.byte	-117
+ 3014 0b93 42       		.byte	66
+ 3015 0b94 01       		.byte	1
+ 3016 0b95 D3       		.byte	-45
+ 3017 0b96 4B       		.byte	75
+ 3018 0b97 02       		.byte	2
+ 3019 0b98 C0       		.byte	-64
+ 3020 0b99 1A       		.byte	26
+ 3021 0b9a 52       		.byte	82
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 54
+
+
+ 3022 0b9b 41       		.byte	65
+ 3023 0b9c 03       		.byte	3
+ 3024 0b9d 0A       		.byte	10
+ 3025 0b9e 8B       		.byte	-117
+ 3026 0b9f 42       		.byte	66
+ 3027 0ba0 01       		.byte	1
+ 3028 0ba1 D3       		.byte	-45
+ 3029 0ba2 0B       		.byte	11
+ 3030 0ba3 02       		.byte	2
+ 3031 0ba4 C0       		.byte	-64
+ 3032 0ba5 1A       		.byte	26
+ 3033 0ba6 52       		.byte	82
+ 3034 0ba7 41       		.byte	65
+ 3035 0ba8 CD       		.byte	-51
+ 3036 0ba9 D2       		.byte	-46
+ 3037 0baa C3       		.byte	-61
+ 3038 0bab 09       		.byte	9
+ 3039 0bac 8B       		.byte	-117
+ 3040 0bad 42       		.byte	66
+ 3041 0bae 01       		.byte	1
+ 3042 0baf D3       		.byte	-45
+ 3043 0bb0 CB       		.byte	-53
+ 3044 0bb1 01       		.byte	1
+ 3045 0bb2 C0       		.byte	-64
+ 3046 0bb3 1A       		.byte	26
+ 3047 0bb4 52       		.byte	82
+ 3048 0bb5 41       		.byte	65
+ 3049 0bb6 83       		.byte	-125
+ 3050 0bb7 09       		.byte	9
+ 3051 0bb8 8B       		.byte	-117
+ 3052 0bb9 42       		.byte	66
+ 3053 0bba 01       		.byte	1
+ 3054 0bbb D3       		.byte	-45
+ 3055 0bbc 8B       		.byte	-117
+ 3056 0bbd 01       		.byte	1
+ 3057 0bbe C0       		.byte	-64
+ 3058 0bbf 1A       		.byte	26
+ 3059 0bc0 52       		.byte	82
+ 3060 0bc1 41       		.byte	65
+ 3061 0bc2 43       		.byte	67
+ 3062 0bc3 09       		.byte	9
+ 3063 0bc4 8B       		.byte	-117
+ 3064 0bc5 42       		.byte	66
+ 3065 0bc6 01       		.byte	1
+ 3066 0bc7 D3       		.byte	-45
+ 3067 0bc8 4B       		.byte	75
+ 3068 0bc9 01       		.byte	1
+ 3069 0bca C0       		.byte	-64
+ 3070 0bcb 1A       		.byte	26
+ 3071 0bcc 52       		.byte	82
+ 3072 0bcd 41       		.byte	65
+ 3073 0bce 03       		.byte	3
+ 3074 0bcf 09       		.byte	9
+ 3075 0bd0 8B       		.byte	-117
+ 3076 0bd1 42       		.byte	66
+ 3077 0bd2 01       		.byte	1
+ 3078 0bd3 D3       		.byte	-45
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 55
+
+
+ 3079 0bd4 0B       		.byte	11
+ 3080 0bd5 01       		.byte	1
+ 3081 0bd6 C0       		.byte	-64
+ 3082 0bd7 1A       		.byte	26
+ 3083 0bd8 52       		.byte	82
+ 3084 0bd9 41       		.byte	65
+ 3085 0bda C3       		.byte	-61
+ 3086 0bdb 08       		.byte	8
+ 3087 0bdc 8B       		.byte	-117
+ 3088 0bdd 42       		.byte	66
+ 3089 0bde 01       		.byte	1
+ 3090 0bdf D3       		.byte	-45
+ 3091 0be0 CB       		.byte	-53
+ 3092 0be1 00       		.byte	0
+ 3093 0be2 C0       		.byte	-64
+ 3094 0be3 1A       		.byte	26
+ 3095 0be4 52       		.byte	82
+ 3096 0be5 41       		.byte	65
+ 3097 0be6 83       		.byte	-125
+ 3098 0be7 08       		.byte	8
+ 3099 0be8 8B       		.byte	-117
+ 3100 0be9 42       		.byte	66
+ 3101 0bea 01       		.byte	1
+ 3102 0beb D3       		.byte	-45
+ 3103 0bec 8B       		.byte	-117
+ 3104 0bed 00       		.byte	0
+ 3105 0bee C0       		.byte	-64
+ 3106 0bef 1A       		.byte	26
+ 3107 0bf0 52       		.byte	82
+ 3108 0bf1 41       		.byte	65
+ 3109 0bf2 43       		.byte	67
+ 3110 0bf3 08       		.byte	8
+ 3111 0bf4 8B       		.byte	-117
+ 3112 0bf5 42       		.byte	66
+ 3113 0bf6 01       		.byte	1
+ 3114 0bf7 D3       		.byte	-45
+ 3115 0bf8 4B       		.byte	75
+ 3116 0bf9 00       		.byte	0
+ 3117 0bfa C0       		.byte	-64
+ 3118 0bfb 1A       		.byte	26
+ 3119 0bfc 52       		.byte	82
+ 3120 0bfd 41       		.byte	65
+ 3121 0bfe 41       		.byte	65
+ 3122 0bff 1A       		.byte	26
+ 3123 0c00 00       		.byte	0
+ 3124 0c01 D2       		.byte	-46
+ 3125 0c02 01       		.byte	1
+ 3126 0c03 46       		.byte	70
+ 3127 0c04 52       		.byte	82
+ 3128 0c05 41       		.byte	65
+ 3129 0c06 10       		.byte	16
+ 3130 0c07 46       		.byte	70
+ 3131 0c08 70       		.byte	112
+ 3132 0c09 47       		.byte	71
+ 3133 0c0a FF       		.byte	-1
+ 3134 0c0b E7       		.byte	-25
+ 3135 0c0c 01       		.byte	1
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 56
+
+
+ 3136 0c0d B5       		.byte	-75
+ 3137 0c0e 00       		.byte	0
+ 3138 0c0f 20       		.byte	32
+ 3139 0c10 00       		.byte	0
+ 3140 0c11 F0       		.byte	-16
+ 3141 0c12 06       		.byte	6
+ 3142 0c13 F8       		.byte	-8
+ 3143 0c14 02       		.byte	2
+ 3144 0c15 BD       		.byte	-67
+ 3145 0c16 C0       		.byte	-64
+ 3146 0c17 46       		.byte	70
+ 3147 0c18 00       		.byte	0
+ 3148 0c19 29       		.byte	41
+ 3149 0c1a F7       		.byte	-9
+ 3150 0c1b D0       		.byte	-48
+ 3151 0c1c 76       		.byte	118
+ 3152 0c1d E7       		.byte	-25
+ 3153 0c1e 70       		.byte	112
+ 3154 0c1f 47       		.byte	71
+ 3155 0c20 70       		.byte	112
+ 3156 0c21 47       		.byte	71
+ 3157 0c22 C0       		.byte	-64
+ 3158 0c23 46       		.byte	70
+ 3159 0c24 01       		.byte	1
+ 3160 0c25 4B       		.byte	75
+ 3161 0c26 18       		.byte	24
+ 3162 0c27 68       		.byte	104
+ 3163 0c28 70       		.byte	112
+ 3164 0c29 47       		.byte	71
+ 3165 0c2a C0       		.byte	-64
+ 3166 0c2b 46       		.byte	70
+ 3167 0c2c 60       		.byte	96
+ 3168 0c2d 01       		.byte	1
+ 3169 0c2e 00       		.byte	0
+ 3170 0c2f 20       		.byte	32
+ 3171 0c30 0E       		.byte	14
+ 3172 0c31 4B       		.byte	75
+ 3173 0c32 70       		.byte	112
+ 3174 0c33 B5       		.byte	-75
+ 3175 0c34 00       		.byte	0
+ 3176 0c35 25       		.byte	37
+ 3177 0c36 1E       		.byte	30
+ 3178 0c37 00       		.byte	0
+ 3179 0c38 0D       		.byte	13
+ 3180 0c39 4C       		.byte	76
+ 3181 0c3a E4       		.byte	-28
+ 3182 0c3b 1A       		.byte	26
+ 3183 0c3c A4       		.byte	-92
+ 3184 0c3d 10       		.byte	16
+ 3185 0c3e A5       		.byte	-91
+ 3186 0c3f 42       		.byte	66
+ 3187 0c40 04       		.byte	4
+ 3188 0c41 D0       		.byte	-48
+ 3189 0c42 AB       		.byte	-85
+ 3190 0c43 00       		.byte	0
+ 3191 0c44 F3       		.byte	-13
+ 3192 0c45 58       		.byte	88
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 57
+
+
+ 3193 0c46 98       		.byte	-104
+ 3194 0c47 47       		.byte	71
+ 3195 0c48 01       		.byte	1
+ 3196 0c49 35       		.byte	53
+ 3197 0c4a F8       		.byte	-8
+ 3198 0c4b E7       		.byte	-25
+ 3199 0c4c 00       		.byte	0
+ 3200 0c4d F0       		.byte	-16
+ 3201 0c4e 7C       		.byte	124
+ 3202 0c4f F8       		.byte	-8
+ 3203 0c50 08       		.byte	8
+ 3204 0c51 4B       		.byte	75
+ 3205 0c52 00       		.byte	0
+ 3206 0c53 25       		.byte	37
+ 3207 0c54 1E       		.byte	30
+ 3208 0c55 00       		.byte	0
+ 3209 0c56 08       		.byte	8
+ 3210 0c57 4C       		.byte	76
+ 3211 0c58 E4       		.byte	-28
+ 3212 0c59 1A       		.byte	26
+ 3213 0c5a A4       		.byte	-92
+ 3214 0c5b 10       		.byte	16
+ 3215 0c5c A5       		.byte	-91
+ 3216 0c5d 42       		.byte	66
+ 3217 0c5e 04       		.byte	4
+ 3218 0c5f D0       		.byte	-48
+ 3219 0c60 AB       		.byte	-85
+ 3220 0c61 00       		.byte	0
+ 3221 0c62 F3       		.byte	-13
+ 3222 0c63 58       		.byte	88
+ 3223 0c64 98       		.byte	-104
+ 3224 0c65 47       		.byte	71
+ 3225 0c66 01       		.byte	1
+ 3226 0c67 35       		.byte	53
+ 3227 0c68 F8       		.byte	-8
+ 3228 0c69 E7       		.byte	-25
+ 3229 0c6a 70       		.byte	112
+ 3230 0c6b BD       		.byte	-67
+ 3231 0c6c 54       		.byte	84
+ 3232 0c6d 0D       		.byte	13
+ 3233 0c6e 00       		.byte	0
+ 3234 0c6f 00       		.byte	0
+ 3235 0c70 54       		.byte	84
+ 3236 0c71 0D       		.byte	13
+ 3237 0c72 00       		.byte	0
+ 3238 0c73 00       		.byte	0
+ 3239 0c74 54       		.byte	84
+ 3240 0c75 0D       		.byte	13
+ 3241 0c76 00       		.byte	0
+ 3242 0c77 00       		.byte	0
+ 3243 0c78 5C       		.byte	92
+ 3244 0c79 0D       		.byte	13
+ 3245 0c7a 00       		.byte	0
+ 3246 0c7b 00       		.byte	0
+ 3247 0c7c 00       		.byte	0
+ 3248 0c7d 23       		.byte	35
+ 3249 0c7e 10       		.byte	16
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 58
+
+
+ 3250 0c7f B5       		.byte	-75
+ 3251 0c80 9A       		.byte	-102
+ 3252 0c81 42       		.byte	66
+ 3253 0c82 03       		.byte	3
+ 3254 0c83 D0       		.byte	-48
+ 3255 0c84 CC       		.byte	-52
+ 3256 0c85 5C       		.byte	92
+ 3257 0c86 C4       		.byte	-60
+ 3258 0c87 54       		.byte	84
+ 3259 0c88 01       		.byte	1
+ 3260 0c89 33       		.byte	51
+ 3261 0c8a F9       		.byte	-7
+ 3262 0c8b E7       		.byte	-25
+ 3263 0c8c 10       		.byte	16
+ 3264 0c8d BD       		.byte	-67
+ 3265 0c8e 03       		.byte	3
+ 3266 0c8f 00       		.byte	0
+ 3267 0c90 82       		.byte	-126
+ 3268 0c91 18       		.byte	24
+ 3269 0c92 93       		.byte	-109
+ 3270 0c93 42       		.byte	66
+ 3271 0c94 02       		.byte	2
+ 3272 0c95 D0       		.byte	-48
+ 3273 0c96 19       		.byte	25
+ 3274 0c97 70       		.byte	112
+ 3275 0c98 01       		.byte	1
+ 3276 0c99 33       		.byte	51
+ 3277 0c9a FA       		.byte	-6
+ 3278 0c9b E7       		.byte	-25
+ 3279 0c9c 70       		.byte	112
+ 3280 0c9d 47       		.byte	71
+ 3281 0c9e 00       		.byte	0
+ 3282 0c9f 00       		.byte	0
+ 3283 0ca0 00       		.byte	0
+ 3284 0ca1 0F       		.byte	15
+ 3285 0ca2 00       		.byte	0
+ 3286 0ca3 00       		.byte	0
+ 3287 0ca4 11       		.byte	17
+ 3288 0ca5 00       		.byte	0
+ 3289 0ca6 00       		.byte	0
+ 3290 0ca7 00       		.byte	0
+ 3291 0ca8 00       		.byte	0
+ 3292 0ca9 00       		.byte	0
+ 3293 0caa 00       		.byte	0
+ 3294 0cab 00       		.byte	0
+ 3295 0cac 3E       		.byte	62
+ 3296 0cad 20       		.byte	32
+ 3297 0cae 42       		.byte	66
+ 3298 0caf 4C       		.byte	76
+ 3299 0cb0 45       		.byte	69
+ 3300 0cb1 20       		.byte	32
+ 3301 0cb2 55       		.byte	85
+ 3302 0cb3 70       		.byte	112
+ 3303 0cb4 67       		.byte	103
+ 3304 0cb5 72       		.byte	114
+ 3305 0cb6 61       		.byte	97
+ 3306 0cb7 64       		.byte	100
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 59
+
+
+ 3307 0cb8 61       		.byte	97
+ 3308 0cb9 62       		.byte	98
+ 3309 0cba 6C       		.byte	108
+ 3310 0cbb 65       		.byte	101
+ 3311 0cbc 20       		.byte	32
+ 3312 0cbd 53       		.byte	83
+ 3313 0cbe 74       		.byte	116
+ 3314 0cbf 61       		.byte	97
+ 3315 0cc0 63       		.byte	99
+ 3316 0cc1 6B       		.byte	107
+ 3317 0cc2 20       		.byte	32
+ 3318 0cc3 45       		.byte	69
+ 3319 0cc4 78       		.byte	120
+ 3320 0cc5 61       		.byte	97
+ 3321 0cc6 6D       		.byte	109
+ 3322 0cc7 70       		.byte	112
+ 3323 0cc8 6C       		.byte	108
+ 3324 0cc9 65       		.byte	101
+ 3325 0cca 20       		.byte	32
+ 3326 0ccb 4C       		.byte	76
+ 3327 0ccc 61       		.byte	97
+ 3328 0ccd 75       		.byte	117
+ 3329 0cce 6E       		.byte	110
+ 3330 0ccf 63       		.byte	99
+ 3331 0cd0 68       		.byte	104
+ 3332 0cd1 65       		.byte	101
+ 3333 0cd2 72       		.byte	114
+ 3334 0cd3 0D       		.byte	13
+ 3335 0cd4 0A       		.byte	10
+ 3336 0cd5 00       		.byte	0
+ 3337 0cd6 3E       		.byte	62
+ 3338 0cd7 20       		.byte	32
+ 3339 0cd8 56       		.byte	86
+ 3340 0cd9 65       		.byte	101
+ 3341 0cda 72       		.byte	114
+ 3342 0cdb 73       		.byte	115
+ 3343 0cdc 69       		.byte	105
+ 3344 0cdd 6F       		.byte	111
+ 3345 0cde 6E       		.byte	110
+ 3346 0cdf 3A       		.byte	58
+ 3347 0ce0 20       		.byte	32
+ 3348 0ce1 31       		.byte	49
+ 3349 0ce2 2E       		.byte	46
+ 3350 0ce3 32       		.byte	50
+ 3351 0ce4 30       		.byte	48
+ 3352 0ce5 0D       		.byte	13
+ 3353 0ce6 0A       		.byte	10
+ 3354 0ce7 00       		.byte	0
+ 3355 0ce8 3E       		.byte	62
+ 3356 0ce9 20       		.byte	32
+ 3357 0cea 43       		.byte	67
+ 3358 0ceb 6F       		.byte	111
+ 3359 0cec 6D       		.byte	109
+ 3360 0ced 70       		.byte	112
+ 3361 0cee 69       		.byte	105
+ 3362 0cef 6C       		.byte	108
+ 3363 0cf0 65       		.byte	101
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 60
+
+
+ 3364 0cf1 20       		.byte	32
+ 3365 0cf2 44       		.byte	68
+ 3366 0cf3 61       		.byte	97
+ 3367 0cf4 74       		.byte	116
+ 3368 0cf5 65       		.byte	101
+ 3369 0cf6 20       		.byte	32
+ 3370 0cf7 61       		.byte	97
+ 3371 0cf8 6E       		.byte	110
+ 3372 0cf9 64       		.byte	100
+ 3373 0cfa 20       		.byte	32
+ 3374 0cfb 54       		.byte	84
+ 3375 0cfc 69       		.byte	105
+ 3376 0cfd 6D       		.byte	109
+ 3377 0cfe 65       		.byte	101
+ 3378 0cff 3A       		.byte	58
+ 3379 0d00 20       		.byte	32
+ 3380 0d01 4A       		.byte	74
+ 3381 0d02 75       		.byte	117
+ 3382 0d03 6C       		.byte	108
+ 3383 0d04 20       		.byte	32
+ 3384 0d05 33       		.byte	51
+ 3385 0d06 30       		.byte	48
+ 3386 0d07 20       		.byte	32
+ 3387 0d08 32       		.byte	50
+ 3388 0d09 30       		.byte	48
+ 3389 0d0a 31       		.byte	49
+ 3390 0d0b 39       		.byte	57
+ 3391 0d0c 20       		.byte	32
+ 3392 0d0d 31       		.byte	49
+ 3393 0d0e 34       		.byte	52
+ 3394 0d0f 3A       		.byte	58
+ 3395 0d10 31       		.byte	49
+ 3396 0d11 33       		.byte	51
+ 3397 0d12 3A       		.byte	58
+ 3398 0d13 34       		.byte	52
+ 3399 0d14 34       		.byte	52
+ 3400 0d15 0D       		.byte	13
+ 3401 0d16 0A       		.byte	10
+ 3402 0d17 00       		.byte	0
+ 3403 0d18 03       		.byte	3
+ 3404 0d19 04       		.byte	4
+ 3405 0d1a 05       		.byte	5
+ 3406 0d1b 06       		.byte	6
+ 3407 0d1c 07       		.byte	7
+ 3408 0d1d 08       		.byte	8
+ 3409 0d1e 09       		.byte	9
+ 3410 0d1f 0A       		.byte	10
+ 3411 0d20 0B       		.byte	11
+ 3412 0d21 0C       		.byte	12
+ 3413 0d22 0E       		.byte	14
+ 3414 0d23 0F       		.byte	15
+ 3415 0d24 10       		.byte	16
+ 3416 0d25 11       		.byte	17
+ 3417 0d26 12       		.byte	18
+ 3418 0d27 13       		.byte	19
+ 3419 0d28 14       		.byte	20
+ 3420 0d29 15       		.byte	21
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 61
+
+
+ 3421 0d2a 16       		.byte	22
+ 3422 0d2b 17       		.byte	23
+ 3423 0d2c 18       		.byte	24
+ 3424 0d2d 19       		.byte	25
+ 3425 0d2e 1B       		.byte	27
+ 3426 0d2f 1C       		.byte	28
+ 3427 0d30 1D       		.byte	29
+ 3428 0d31 1E       		.byte	30
+ 3429 0d32 1F       		.byte	31
+ 3430 0d33 20       		.byte	32
+ 3431 0d34 21       		.byte	33
+ 3432 0d35 22       		.byte	34
+ 3433 0d36 23       		.byte	35
+ 3434 0d37 25       		.byte	37
+ 3435 0d38 26       		.byte	38
+ 3436 0d39 27       		.byte	39
+ 3437 0d3a 28       		.byte	40
+ 3438 0d3b 29       		.byte	41
+ 3439 0d3c 2A       		.byte	42
+ 3440 0d3d 2B       		.byte	43
+ 3441 0d3e 2E       		.byte	46
+ 3442 0d3f 2F       		.byte	47
+ 3443 0d40 30       		.byte	48
+ 3444 0d41 31       		.byte	49
+ 3445 0d42 32       		.byte	50
+ 3446 0d43 33       		.byte	51
+ 3447 0d44 34       		.byte	52
+ 3448 0d45 35       		.byte	53
+ 3449 0d46 43       		.byte	67
+ 3450 0d47 00       		.byte	0
+ 3451 0d48 F8       		.byte	-8
+ 3452 0d49 B5       		.byte	-75
+ 3453 0d4a C0       		.byte	-64
+ 3454 0d4b 46       		.byte	70
+ 3455 0d4c F8       		.byte	-8
+ 3456 0d4d BC       		.byte	-68
+ 3457 0d4e 08       		.byte	8
+ 3458 0d4f BC       		.byte	-68
+ 3459 0d50 9E       		.byte	-98
+ 3460 0d51 46       		.byte	70
+ 3461 0d52 70       		.byte	112
+ 3462 0d53 47       		.byte	71
+ 3463 0d54 41       		.byte	65
+ 3464 0d55 01       		.byte	1
+ 3465 0d56 00       		.byte	0
+ 3466 0d57 00       		.byte	0
+ 3467 0d58 2D       		.byte	45
+ 3468 0d59 02       		.byte	2
+ 3469 0d5a 00       		.byte	0
+ 3470 0d5b 00       		.byte	0
+ 3471 0d5c F8       		.byte	-8
+ 3472 0d5d B5       		.byte	-75
+ 3473 0d5e C0       		.byte	-64
+ 3474 0d5f 46       		.byte	70
+ 3475 0d60 F8       		.byte	-8
+ 3476 0d61 BC       		.byte	-68
+ 3477 0d62 08       		.byte	8
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 62
+
+
+ 3478 0d63 BC       		.byte	-68
+ 3479 0d64 9E       		.byte	-98
+ 3480 0d65 46       		.byte	70
+ 3481 0d66 70       		.byte	112
+ 3482 0d67 47       		.byte	71
+ 3483 0d68 19       		.byte	25
+ 3484 0d69 01       		.byte	1
+ 3485 0d6a 00       		.byte	0
+ 3486 0d6b 00       		.byte	0
+ 3487 0d6c 80       		.byte	-128
+ 3488 0d6d 0D       		.byte	13
+ 3489 0d6e 00       		.byte	0
+ 3490 0d6f 00       		.byte	0
+ 3491 0d70 C8       		.byte	-56
+ 3492 0d71 00       		.byte	0
+ 3493 0d72 00       		.byte	0
+ 3494 0d73 20       		.byte	32
+ 3495 0d74 A0       		.byte	-96
+ 3496 0d75 00       		.byte	0
+ 3497 0d76 00       		.byte	0
+ 3498 0d77 00       		.byte	0
+ 3499 0d78 48       		.byte	72
+ 3500 0d79 00       		.byte	0
+ 3501 0d7a 00       		.byte	0
+ 3502 0d7b 00       		.byte	0
+ 3503 0d7c 00       		.byte	0
+ 3504 0d7d 00       		.byte	0
+ 3505 0d7e 00       		.byte	0
+ 3506 0d7f 00       		.byte	0
+ 3507 0d80 00       		.byte	0
+ 3508 0d81 00       		.byte	0
+ 3509 0d82 00       		.byte	0
+ 3510 0d83 00       		.byte	0
+ 3511 0d84 02       		.byte	2
+ 3512 0d85 00       		.byte	0
+ 3513 0d86 00       		.byte	0
+ 3514 0d87 00       		.byte	0
+ 3515 0d88 A0       		.byte	-96
+ 3516 0d89 0C       		.byte	12
+ 3517 0d8a 00       		.byte	0
+ 3518 0d8b 00       		.byte	0
+ 3519 0d8c A4       		.byte	-92
+ 3520 0d8d 0C       		.byte	12
+ 3521 0d8e 00       		.byte	0
+ 3522 0d8f 00       		.byte	0
+ 3523 0d90 00       		.byte	0
+ 3524 0d91 01       		.byte	1
+ 3525 0d92 04       		.byte	4
+ 3526 0d93 40       		.byte	64
+ 3527 0d94 01       		.byte	1
+ 3528 0d95 00       		.byte	0
+ 3529 0d96 00       		.byte	0
+ 3530 0d97 00       		.byte	0
+ 3531 0d98 05       		.byte	5
+ 3532 0d99 00       		.byte	0
+ 3533 0d9a 00       		.byte	0
+ 3534 0d9b 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 63
+
+
+ 3535 0d9c 01       		.byte	1
+ 3536 0d9d 00       		.byte	0
+ 3537 0d9e 00       		.byte	0
+ 3538 0d9f 00       		.byte	0
+ 3539 0da0 00       		.byte	0
+ 3540 0da1 00       		.byte	0
+ 3541 0da2 E0       		.byte	-32
+ 3542 0da3 2E       		.byte	46
+ 3543 0da4 C0       		.byte	-64
+ 3544 0da5 5D       		.byte	93
+ 3545 0da6 00       		.byte	0
+ 3546 0da7 00       		.byte	0
+ 3547 0da8 18       		.byte	24
+ 3548 0da9 00       		.byte	0
+ 3549 0daa 00       		.byte	0
+ 3550 0dab 00       		.byte	0
+ 3551 0dac 00       		.byte	0
+ 3552 0dad 36       		.byte	54
+ 3553 0dae 6E       		.byte	110
+ 3554 0daf 01       		.byte	1
+ 3555 0db0 F0       		.byte	-16
+ 3556 0db1 00       		.byte	0
+ 3557 0db2 00       		.byte	0
+ 3558 0db3 00       		.byte	0
+ 3559 0db4 04       		.byte	4
+ 3560 0db5 04       		.byte	4
+ 3561 0db6 04       		.byte	4
+ 3562 0db7 00       		.byte	0
+ 3563 0db8 00       		.byte	0
+ 3564 0db9 00       		.byte	0
+ 3565 0dba 00       		.byte	0
+ 3566 0dbb 00       		.byte	0
+ 3567 0dbc 00       		.byte	0
+ 3568 0dbd 00       		.byte	0
+ 3569 0dbe 00       		.byte	0
+ 3570 0dbf 00       		.byte	0
+ 3571 0dc0 00       		.byte	0
+ 3572 0dc1 00       		.byte	0
+ 3573 0dc2 00       		.byte	0
+ 3574 0dc3 00       		.byte	0
+ 3575 0dc4 00       		.byte	0
+ 3576 0dc5 00       		.byte	0
+ 3577 0dc6 00       		.byte	0
+ 3578 0dc7 00       		.byte	0
+ 3579 0dc8 00       		.byte	0
+ 3580 0dc9 00       		.byte	0
+ 3581 0dca 00       		.byte	0
+ 3582 0dcb 00       		.byte	0
+ 3583 0dcc 00       		.byte	0
+ 3584 0dcd 00       		.byte	0
+ 3585 0dce 00       		.byte	0
+ 3586 0dcf 00       		.byte	0
+ 3587 0dd0 00       		.byte	0
+ 3588 0dd1 00       		.byte	0
+ 3589 0dd2 00       		.byte	0
+ 3590 0dd3 00       		.byte	0
+ 3591 0dd4 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 64
+
+
+ 3592 0dd5 00       		.byte	0
+ 3593 0dd6 00       		.byte	0
+ 3594 0dd7 00       		.byte	0
+ 3595 0dd8 46       		.byte	70
+ 3596 0dd9 0D       		.byte	13
+ 3597 0dda 00       		.byte	0
+ 3598 0ddb 00       		.byte	0
+ 3599 0ddc 00       		.byte	0
+ 3600 0ddd 00       		.byte	0
+ 3601 0dde 00       		.byte	0
+ 3602 0ddf 00       		.byte	0
+ 3603 0de0 00       		.byte	0
+ 3604 0de1 00       		.byte	0
+ 3605 0de2 00       		.byte	0
+ 3606 0de3 00       		.byte	0
+ 3607 0de4 00       		.byte	0
+ 3608 0de5 00       		.byte	0
+ 3609 0de6 00       		.byte	0
+ 3610 0de7 00       		.byte	0
+ 3611 0de8 00       		.byte	0
+ 3612 0de9 00       		.byte	0
+ 3613 0dea 00       		.byte	0
+ 3614 0deb 00       		.byte	0
+ 3615 0dec 00       		.byte	0
+ 3616 0ded 00       		.byte	0
+ 3617 0dee 00       		.byte	0
+ 3618 0def 00       		.byte	0
+ 3619 0df0 00       		.byte	0
+ 3620 0df1 00       		.byte	0
+ 3621 0df2 00       		.byte	0
+ 3622 0df3 00       		.byte	0
+ 3623 0df4 00       		.byte	0
+ 3624 0df5 00       		.byte	0
+ 3625 0df6 00       		.byte	0
+ 3626 0df7 00       		.byte	0
+ 3627 0df8 00       		.byte	0
+ 3628 0df9 00       		.byte	0
+ 3629 0dfa 00       		.byte	0
+ 3630 0dfb 00       		.byte	0
+ 3631 0dfc 00       		.byte	0
+ 3632 0dfd 00       		.byte	0
+ 3633 0dfe 00       		.byte	0
+ 3634 0dff 00       		.byte	0
+ 3635 0e00 00       		.byte	0
+ 3636 0e01 00       		.byte	0
+ 3637 0e02 00       		.byte	0
+ 3638 0e03 00       		.byte	0
+ 3639 0e04 00       		.byte	0
+ 3640 0e05 00       		.byte	0
+ 3641 0e06 00       		.byte	0
+ 3642 0e07 00       		.byte	0
+ 3643 0e08 00       		.byte	0
+ 3644 0e09 00       		.byte	0
+ 3645 0e0a 00       		.byte	0
+ 3646 0e0b 00       		.byte	0
+ 3647 0e0c 00       		.byte	0
+ 3648 0e0d 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 65
+
+
+ 3649 0e0e 00       		.byte	0
+ 3650 0e0f 00       		.byte	0
+ 3651 0e10 00       		.byte	0
+ 3652 0e11 00       		.byte	0
+ 3653 0e12 00       		.byte	0
+ 3654 0e13 00       		.byte	0
+ 3655 0e14 00       		.byte	0
+ 3656 0e15 00       		.byte	0
+ 3657 0e16 00       		.byte	0
+ 3658 0e17 00       		.byte	0
+ 3659 0e18 00       		.byte	0
+ 3660 0e19 01       		.byte	1
+ 3661 0e1a 00       		.byte	0
+ 3662 0e1b 20       		.byte	32
+ 3663 0e1c 00       		.byte	0
+ 3664 0e1d 00       		.byte	0
+ 3665 0e1e 00       		.byte	0
+ 3666 0e1f 00       		.byte	0
+ 3667 0e20 00       		.byte	0
+ 3668 0e21 00       		.byte	0
+ 3669 0e22 00       		.byte	0
+ 3670 0e23 00       		.byte	0
+ 3671 0e24 00       		.byte	0
+ 3672 0e25 00       		.byte	0
+ 3673 0e26 00       		.byte	0
+ 3674 0e27 00       		.byte	0
+ 3675 0e28 00       		.byte	0
+ 3676 0e29 00       		.byte	0
+ 3677 0e2a 00       		.byte	0
+ 3678 0e2b 00       		.byte	0
+ 3679 0e2c 00       		.byte	0
+ 3680 0e2d 00       		.byte	0
+ 3681 0e2e 00       		.byte	0
+ 3682 0e2f 00       		.byte	0
+ 3683 0e30 00       		.byte	0
+ 3684 0e31 00       		.byte	0
+ 3685 0e32 00       		.byte	0
+ 3686 0e33 00       		.byte	0
+ 3687 0e34 00       		.byte	0
+ 3688 0e35 00       		.byte	0
+ 3689 0e36 00       		.byte	0
+ 3690 0e37 00       		.byte	0
+ 3691 0e38 00       		.byte	0
+ 3692 0e39 00       		.byte	0
+ 3693 0e3a 00       		.byte	0
+ 3694 0e3b 00       		.byte	0
+ 3695 0e3c 00       		.byte	0
+ 3696 0e3d 00       		.byte	0
+ 3697 0e3e 00       		.byte	0
+ 3698 0e3f 00       		.byte	0
+ 3699 0e40 00       		.byte	0
+ 3700 0e41 00       		.byte	0
+ 3701 0e42 00       		.byte	0
+ 3702 0e43 00       		.byte	0
+ 3703 0e44 00       		.byte	0
+ 3704 0e45 00       		.byte	0
+ 3705 0e46 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 66
+
+
+ 3706 0e47 00       		.byte	0
+ 3707 0e48 00       		.byte	0
+ 3708 0e49 00       		.byte	0
+ 3709 0e4a 00       		.byte	0
+ 3710 0e4b 00       		.byte	0
+ 3711 0e4c 00       		.byte	0
+ 3712 0e4d 00       		.byte	0
+ 3713 0e4e 00       		.byte	0
+ 3714 0e4f 00       		.byte	0
+ 3715 0e50 00       		.byte	0
+ 3716 0e51 00       		.byte	0
+ 3717 0e52 00       		.byte	0
+ 3718 0e53 00       		.byte	0
+ 3719 0e54 00       		.byte	0
+ 3720 0e55 00       		.byte	0
+ 3721 0e56 00       		.byte	0
+ 3722 0e57 00       		.byte	0
+ 3723 0e58 00       		.byte	0
+ 3724 0e59 00       		.byte	0
+ 3725 0e5a 00       		.byte	0
+ 3726 0e5b 00       		.byte	0
+ 3727 0e5c 00       		.byte	0
+ 3728 0e5d 00       		.byte	0
+ 3729 0e5e 00       		.byte	0
+ 3730 0e5f 00       		.byte	0
+ 3731 0e60 00       		.byte	0
+ 3732 0e61 00       		.byte	0
+ 3733 0e62 00       		.byte	0
+ 3734 0e63 00       		.byte	0
+ 3735 0e64 00       		.byte	0
+ 3736 0e65 00       		.byte	0
+ 3737 0e66 00       		.byte	0
+ 3738 0e67 00       		.byte	0
+ 3739 0e68 00       		.byte	0
+ 3740 0e69 00       		.byte	0
+ 3741 0e6a 00       		.byte	0
+ 3742 0e6b 00       		.byte	0
+ 3743 0e6c 00       		.byte	0
+ 3744 0e6d 00       		.byte	0
+ 3745 0e6e 00       		.byte	0
+ 3746 0e6f 00       		.byte	0
+ 3747 0e70 00       		.byte	0
+ 3748 0e71 00       		.byte	0
+ 3749 0e72 00       		.byte	0
+ 3750 0e73 00       		.byte	0
+ 3751 0e74 00       		.byte	0
+ 3752 0e75 00       		.byte	0
+ 3753 0e76 00       		.byte	0
+ 3754 0e77 00       		.byte	0
+ 3755 0e78 00       		.byte	0
+ 3756 0e79 00       		.byte	0
+ 3757 0e7a 00       		.byte	0
+ 3758 0e7b 00       		.byte	0
+ 3759 0e7c 00       		.byte	0
+ 3760 0e7d 00       		.byte	0
+ 3761 0e7e 00       		.byte	0
+ 3762 0e7f 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 67
+
+
+ 3763 0e80 00       		.byte	0
+ 3764 0e81 00       		.byte	0
+ 3765 0e82 00       		.byte	0
+ 3766 0e83 00       		.byte	0
+ 3767 0e84 00       		.byte	0
+ 3768 0e85 00       		.byte	0
+ 3769 0e86 00       		.byte	0
+ 3770 0e87 00       		.byte	0
+ 3771 0e88 00       		.byte	0
+ 3772 0e89 00       		.byte	0
+ 3773 0e8a 00       		.byte	0
+ 3774 0e8b 00       		.byte	0
+ 3775 0e8c 00       		.byte	0
+ 3776 0e8d 00       		.byte	0
+ 3777 0e8e 00       		.byte	0
+ 3778 0e8f 00       		.byte	0
+ 3779 0e90 00       		.byte	0
+ 3780 0e91 00       		.byte	0
+ 3781 0e92 00       		.byte	0
+ 3782 0e93 00       		.byte	0
+ 3783 0e94 00       		.byte	0
+ 3784 0e95 00       		.byte	0
+ 3785 0e96 00       		.byte	0
+ 3786 0e97 00       		.byte	0
+ 3787 0e98 00       		.byte	0
+ 3788 0e99 00       		.byte	0
+ 3789 0e9a 00       		.byte	0
+ 3790 0e9b 00       		.byte	0
+ 3791 0e9c 00       		.byte	0
+ 3792 0e9d 00       		.byte	0
+ 3793 0e9e 00       		.byte	0
+ 3794 0e9f 00       		.byte	0
+ 3795 0ea0 00       		.byte	0
+ 3796 0ea1 00       		.byte	0
+ 3797 0ea2 00       		.byte	0
+ 3798 0ea3 00       		.byte	0
+ 3799 0ea4 00       		.byte	0
+ 3800 0ea5 00       		.byte	0
+ 3801 0ea6 00       		.byte	0
+ 3802 0ea7 00       		.byte	0
+ 3803 0ea8 00       		.byte	0
+ 3804 0ea9 00       		.byte	0
+ 3805 0eaa 00       		.byte	0
+ 3806 0eab 00       		.byte	0
+ 3807 0eac 00       		.byte	0
+ 3808 0ead 00       		.byte	0
+ 3809 0eae 00       		.byte	0
+ 3810 0eaf 00       		.byte	0
+ 3811 0eb0 00       		.byte	0
+ 3812 0eb1 00       		.byte	0
+ 3813 0eb2 00       		.byte	0
+ 3814 0eb3 00       		.byte	0
+ 3815 0eb4 00       		.byte	0
+ 3816 0eb5 00       		.byte	0
+ 3817 0eb6 00       		.byte	0
+ 3818 0eb7 00       		.byte	0
+ 3819 0eb8 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 68
+
+
+ 3820 0eb9 00       		.byte	0
+ 3821 0eba 00       		.byte	0
+ 3822 0ebb 00       		.byte	0
+ 3823 0ebc 00       		.byte	0
+ 3824 0ebd 00       		.byte	0
+ 3825 0ebe 00       		.byte	0
+ 3826 0ebf 00       		.byte	0
+ 3827 0ec0 00       		.byte	0
+ 3828 0ec1 00       		.byte	0
+ 3829 0ec2 00       		.byte	0
+ 3830 0ec3 00       		.byte	0
+ 3831 0ec4 00       		.byte	0
+ 3832 0ec5 00       		.byte	0
+ 3833 0ec6 00       		.byte	0
+ 3834 0ec7 00       		.byte	0
+ 3835 0ec8 00       		.byte	0
+ 3836 0ec9 00       		.byte	0
+ 3837 0eca 00       		.byte	0
+ 3838 0ecb 00       		.byte	0
+ 3839 0ecc 00       		.byte	0
+ 3840 0ecd 00       		.byte	0
+ 3841 0ece 00       		.byte	0
+ 3842 0ecf 00       		.byte	0
+ 3843 0ed0 00       		.byte	0
+ 3844 0ed1 00       		.byte	0
+ 3845 0ed2 00       		.byte	0
+ 3846 0ed3 00       		.byte	0
+ 3847 0ed4 00       		.byte	0
+ 3848 0ed5 00       		.byte	0
+ 3849 0ed6 00       		.byte	0
+ 3850 0ed7 00       		.byte	0
+ 3851 0ed8 00       		.byte	0
+ 3852 0ed9 00       		.byte	0
+ 3853 0eda 00       		.byte	0
+ 3854 0edb 00       		.byte	0
+ 3855 0edc 00       		.byte	0
+ 3856 0edd 00       		.byte	0
+ 3857 0ede 00       		.byte	0
+ 3858 0edf 00       		.byte	0
+ 3859 0ee0 00       		.byte	0
+ 3860 0ee1 00       		.byte	0
+ 3861 0ee2 00       		.byte	0
+ 3862 0ee3 00       		.byte	0
+ 3863 0ee4 00       		.byte	0
+ 3864 0ee5 00       		.byte	0
+ 3865 0ee6 00       		.byte	0
+ 3866 0ee7 00       		.byte	0
+ 3867 0ee8 00       		.byte	0
+ 3868 0ee9 00       		.byte	0
+ 3869 0eea 00       		.byte	0
+ 3870 0eeb 00       		.byte	0
+ 3871 0eec 00       		.byte	0
+ 3872 0eed 00       		.byte	0
+ 3873 0eee 00       		.byte	0
+ 3874 0eef 00       		.byte	0
+ 3875 0ef0 00       		.byte	0
+ 3876 0ef1 00       		.byte	0
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 69
+
+
+ 3877 0ef2 00       		.byte	0
+ 3878 0ef3 00       		.byte	0
+ 3879 0ef4 00       		.byte	0
+ 3880 0ef5 00       		.byte	0
+ 3881 0ef6 00       		.byte	0
+ 3882 0ef7 00       		.byte	0
+ 3883 0ef8 00       		.byte	0
+ 3884 0ef9 00       		.byte	0
+ 3885 0efa 00       		.byte	0
+ 3886 0efb 00       		.byte	0
+ 3887 0efc 00       		.byte	0
+ 3888 0efd 00       		.byte	0
+ 3889 0efe 00       		.byte	0
+ 3890 0eff 00       		.byte	0
+ 3891              		.section	.cyflashprotect,"a",%progbits
+ 3892              		.align	2
+ 3893              		.type	cy_meta_flashprotect, %object
+ 3894              		.size	cy_meta_flashprotect, 128
+ 3895              	cy_meta_flashprotect:
+ 3896 0000 00000000 		.space	128
+ 3896      00000000 
+ 3896      00000000 
+ 3896      00000000 
+ 3896      00000000 
+ 3897              		.text
+ 3898              	.Letext0:
+ 3899              		.file 1 "Generated_Source\\PSoC4\\cybootloader.c"
+ 3900              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 3901              		.section	.debug_info,"",%progbits
+ 3902              	.Ldebug_info0:
+ 3903 0000 29010000 		.4byte	0x129
+ 3904 0004 0400     		.2byte	0x4
+ 3905 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 3906 000a 04       		.byte	0x4
+ 3907 000b 01       		.uleb128 0x1
+ 3908 000c 21010000 		.4byte	.LASF17
+ 3909 0010 0C       		.byte	0xc
+ 3910 0011 D5010000 		.4byte	.LASF18
+ 3911 0015 22000000 		.4byte	.LASF19
+ 3912 0019 00000000 		.4byte	.Ldebug_line0
+ 3913 001d 02       		.uleb128 0x2
+ 3914 001e 01       		.byte	0x1
+ 3915 001f 06       		.byte	0x6
+ 3916 0020 04020000 		.4byte	.LASF0
+ 3917 0024 02       		.uleb128 0x2
+ 3918 0025 01       		.byte	0x1
+ 3919 0026 08       		.byte	0x8
+ 3920 0027 AE000000 		.4byte	.LASF1
+ 3921 002b 02       		.uleb128 0x2
+ 3922 002c 02       		.byte	0x2
+ 3923 002d 05       		.byte	0x5
+ 3924 002e CB010000 		.4byte	.LASF2
+ 3925 0032 02       		.uleb128 0x2
+ 3926 0033 02       		.byte	0x2
+ 3927 0034 07       		.byte	0x7
+ 3928 0035 CE000000 		.4byte	.LASF3
+ 3929 0039 02       		.uleb128 0x2
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 70
+
+
+ 3930 003a 04       		.byte	0x4
+ 3931 003b 05       		.byte	0x5
+ 3932 003c FB010000 		.4byte	.LASF4
+ 3933 0040 02       		.uleb128 0x2
+ 3934 0041 04       		.byte	0x4
+ 3935 0042 07       		.byte	0x7
+ 3936 0043 BC000000 		.4byte	.LASF5
+ 3937 0047 02       		.uleb128 0x2
+ 3938 0048 08       		.byte	0x8
+ 3939 0049 05       		.byte	0x5
+ 3940 004a B8010000 		.4byte	.LASF6
+ 3941 004e 02       		.uleb128 0x2
+ 3942 004f 08       		.byte	0x8
+ 3943 0050 07       		.byte	0x7
+ 3944 0051 F5000000 		.4byte	.LASF7
+ 3945 0055 03       		.uleb128 0x3
+ 3946 0056 04       		.byte	0x4
+ 3947 0057 05       		.byte	0x5
+ 3948 0058 696E7400 		.ascii	"int\000"
+ 3949 005c 02       		.uleb128 0x2
+ 3950 005d 04       		.byte	0x4
+ 3951 005e 07       		.byte	0x7
+ 3952 005f E8000000 		.4byte	.LASF8
+ 3953 0063 04       		.uleb128 0x4
+ 3954 0064 A8000000 		.4byte	.LASF20
+ 3955 0068 02       		.byte	0x2
+ 3956 0069 D201     		.2byte	0x1d2
+ 3957 006b 24000000 		.4byte	0x24
+ 3958 006f 02       		.uleb128 0x2
+ 3959 0070 04       		.byte	0x4
+ 3960 0071 04       		.byte	0x4
+ 3961 0072 A2000000 		.4byte	.LASF9
+ 3962 0076 02       		.uleb128 0x2
+ 3963 0077 08       		.byte	0x8
+ 3964 0078 04       		.byte	0x4
+ 3965 0079 E1000000 		.4byte	.LASF10
+ 3966 007d 02       		.uleb128 0x2
+ 3967 007e 01       		.byte	0x1
+ 3968 007f 08       		.byte	0x8
+ 3969 0080 C6010000 		.4byte	.LASF11
+ 3970 0084 05       		.uleb128 0x5
+ 3971 0085 9C000000 		.4byte	0x9c
+ 3972 0089 95000000 		.4byte	0x95
+ 3973 008d 06       		.uleb128 0x6
+ 3974 008e 95000000 		.4byte	0x95
+ 3975 0092 FF0E     		.2byte	0xeff
+ 3976 0094 00       		.byte	0
+ 3977 0095 02       		.uleb128 0x2
+ 3978 0096 04       		.byte	0x4
+ 3979 0097 07       		.byte	0x7
+ 3980 0098 AF010000 		.4byte	.LASF12
+ 3981 009c 07       		.uleb128 0x7
+ 3982 009d 63000000 		.4byte	0x63
+ 3983 00a1 08       		.uleb128 0x8
+ 3984 00a2 14000000 		.4byte	.LASF13
+ 3985 00a6 01       		.byte	0x1
+ 3986 00a7 21       		.byte	0x21
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 71
+
+
+ 3987 00a8 B2000000 		.4byte	0xb2
+ 3988 00ac 05       		.uleb128 0x5
+ 3989 00ad 03       		.byte	0x3
+ 3990 00ae 00000000 		.4byte	cy_bootloader
+ 3991 00b2 07       		.uleb128 0x7
+ 3992 00b3 84000000 		.4byte	0x84
+ 3993 00b7 05       		.uleb128 0x5
+ 3994 00b8 9C000000 		.4byte	0x9c
+ 3995 00bc C7000000 		.4byte	0xc7
+ 3996 00c0 09       		.uleb128 0x9
+ 3997 00c1 95000000 		.4byte	0x95
+ 3998 00c5 0B       		.byte	0xb
+ 3999 00c6 00       		.byte	0
+ 4000 00c7 0A       		.uleb128 0xa
+ 4001 00c8 96000000 		.4byte	.LASF14
+ 4002 00cc 01       		.byte	0x1
+ 4003 00cd 0A02     		.2byte	0x20a
+ 4004 00cf D9000000 		.4byte	0xd9
+ 4005 00d3 05       		.uleb128 0x5
+ 4006 00d4 03       		.byte	0x3
+ 4007 00d5 00000000 		.4byte	cy_metadata
+ 4008 00d9 07       		.uleb128 0x7
+ 4009 00da B7000000 		.4byte	0xb7
+ 4010 00de 05       		.uleb128 0x5
+ 4011 00df 9C000000 		.4byte	0x9c
+ 4012 00e3 EE000000 		.4byte	0xee
+ 4013 00e7 09       		.uleb128 0x9
+ 4014 00e8 95000000 		.4byte	0x95
+ 4015 00ec 7F       		.byte	0x7f
+ 4016 00ed 00       		.byte	0
+ 4017 00ee 0A       		.uleb128 0xa
+ 4018 00ef 0C010000 		.4byte	.LASF15
+ 4019 00f3 01       		.byte	0x1
+ 4020 00f4 1502     		.2byte	0x215
+ 4021 00f6 00010000 		.4byte	0x100
+ 4022 00fa 05       		.uleb128 0x5
+ 4023 00fb 03       		.byte	0x3
+ 4024 00fc 00000000 		.4byte	cy_meta_flashprotect
+ 4025 0100 07       		.uleb128 0x7
+ 4026 0101 DE000000 		.4byte	0xde
+ 4027 0105 05       		.uleb128 0x5
+ 4028 0106 9C000000 		.4byte	0x9c
+ 4029 010a 15010000 		.4byte	0x115
+ 4030 010e 09       		.uleb128 0x9
+ 4031 010f 95000000 		.4byte	0x95
+ 4032 0113 00       		.byte	0
+ 4033 0114 00       		.byte	0
+ 4034 0115 0A       		.uleb128 0xa
+ 4035 0116 00000000 		.4byte	.LASF16
+ 4036 011a 01       		.byte	0x1
+ 4037 011b 2E02     		.2byte	0x22e
+ 4038 011d 27010000 		.4byte	0x127
+ 4039 0121 05       		.uleb128 0x5
+ 4040 0122 03       		.byte	0x3
+ 4041 0123 00000000 		.4byte	cy_meta_chipprotect
+ 4042 0127 07       		.uleb128 0x7
+ 4043 0128 05010000 		.4byte	0x105
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 72
+
+
+ 4044 012c 00       		.byte	0
+ 4045              		.section	.debug_abbrev,"",%progbits
+ 4046              	.Ldebug_abbrev0:
+ 4047 0000 01       		.uleb128 0x1
+ 4048 0001 11       		.uleb128 0x11
+ 4049 0002 01       		.byte	0x1
+ 4050 0003 25       		.uleb128 0x25
+ 4051 0004 0E       		.uleb128 0xe
+ 4052 0005 13       		.uleb128 0x13
+ 4053 0006 0B       		.uleb128 0xb
+ 4054 0007 03       		.uleb128 0x3
+ 4055 0008 0E       		.uleb128 0xe
+ 4056 0009 1B       		.uleb128 0x1b
+ 4057 000a 0E       		.uleb128 0xe
+ 4058 000b 10       		.uleb128 0x10
+ 4059 000c 17       		.uleb128 0x17
+ 4060 000d 00       		.byte	0
+ 4061 000e 00       		.byte	0
+ 4062 000f 02       		.uleb128 0x2
+ 4063 0010 24       		.uleb128 0x24
+ 4064 0011 00       		.byte	0
+ 4065 0012 0B       		.uleb128 0xb
+ 4066 0013 0B       		.uleb128 0xb
+ 4067 0014 3E       		.uleb128 0x3e
+ 4068 0015 0B       		.uleb128 0xb
+ 4069 0016 03       		.uleb128 0x3
+ 4070 0017 0E       		.uleb128 0xe
+ 4071 0018 00       		.byte	0
+ 4072 0019 00       		.byte	0
+ 4073 001a 03       		.uleb128 0x3
+ 4074 001b 24       		.uleb128 0x24
+ 4075 001c 00       		.byte	0
+ 4076 001d 0B       		.uleb128 0xb
+ 4077 001e 0B       		.uleb128 0xb
+ 4078 001f 3E       		.uleb128 0x3e
+ 4079 0020 0B       		.uleb128 0xb
+ 4080 0021 03       		.uleb128 0x3
+ 4081 0022 08       		.uleb128 0x8
+ 4082 0023 00       		.byte	0
+ 4083 0024 00       		.byte	0
+ 4084 0025 04       		.uleb128 0x4
+ 4085 0026 16       		.uleb128 0x16
+ 4086 0027 00       		.byte	0
+ 4087 0028 03       		.uleb128 0x3
+ 4088 0029 0E       		.uleb128 0xe
+ 4089 002a 3A       		.uleb128 0x3a
+ 4090 002b 0B       		.uleb128 0xb
+ 4091 002c 3B       		.uleb128 0x3b
+ 4092 002d 05       		.uleb128 0x5
+ 4093 002e 49       		.uleb128 0x49
+ 4094 002f 13       		.uleb128 0x13
+ 4095 0030 00       		.byte	0
+ 4096 0031 00       		.byte	0
+ 4097 0032 05       		.uleb128 0x5
+ 4098 0033 01       		.uleb128 0x1
+ 4099 0034 01       		.byte	0x1
+ 4100 0035 49       		.uleb128 0x49
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 73
+
+
+ 4101 0036 13       		.uleb128 0x13
+ 4102 0037 01       		.uleb128 0x1
+ 4103 0038 13       		.uleb128 0x13
+ 4104 0039 00       		.byte	0
+ 4105 003a 00       		.byte	0
+ 4106 003b 06       		.uleb128 0x6
+ 4107 003c 21       		.uleb128 0x21
+ 4108 003d 00       		.byte	0
+ 4109 003e 49       		.uleb128 0x49
+ 4110 003f 13       		.uleb128 0x13
+ 4111 0040 2F       		.uleb128 0x2f
+ 4112 0041 05       		.uleb128 0x5
+ 4113 0042 00       		.byte	0
+ 4114 0043 00       		.byte	0
+ 4115 0044 07       		.uleb128 0x7
+ 4116 0045 26       		.uleb128 0x26
+ 4117 0046 00       		.byte	0
+ 4118 0047 49       		.uleb128 0x49
+ 4119 0048 13       		.uleb128 0x13
+ 4120 0049 00       		.byte	0
+ 4121 004a 00       		.byte	0
+ 4122 004b 08       		.uleb128 0x8
+ 4123 004c 34       		.uleb128 0x34
+ 4124 004d 00       		.byte	0
+ 4125 004e 03       		.uleb128 0x3
+ 4126 004f 0E       		.uleb128 0xe
+ 4127 0050 3A       		.uleb128 0x3a
+ 4128 0051 0B       		.uleb128 0xb
+ 4129 0052 3B       		.uleb128 0x3b
+ 4130 0053 0B       		.uleb128 0xb
+ 4131 0054 49       		.uleb128 0x49
+ 4132 0055 13       		.uleb128 0x13
+ 4133 0056 3F       		.uleb128 0x3f
+ 4134 0057 19       		.uleb128 0x19
+ 4135 0058 02       		.uleb128 0x2
+ 4136 0059 18       		.uleb128 0x18
+ 4137 005a 00       		.byte	0
+ 4138 005b 00       		.byte	0
+ 4139 005c 09       		.uleb128 0x9
+ 4140 005d 21       		.uleb128 0x21
+ 4141 005e 00       		.byte	0
+ 4142 005f 49       		.uleb128 0x49
+ 4143 0060 13       		.uleb128 0x13
+ 4144 0061 2F       		.uleb128 0x2f
+ 4145 0062 0B       		.uleb128 0xb
+ 4146 0063 00       		.byte	0
+ 4147 0064 00       		.byte	0
+ 4148 0065 0A       		.uleb128 0xa
+ 4149 0066 34       		.uleb128 0x34
+ 4150 0067 00       		.byte	0
+ 4151 0068 03       		.uleb128 0x3
+ 4152 0069 0E       		.uleb128 0xe
+ 4153 006a 3A       		.uleb128 0x3a
+ 4154 006b 0B       		.uleb128 0xb
+ 4155 006c 3B       		.uleb128 0x3b
+ 4156 006d 05       		.uleb128 0x5
+ 4157 006e 49       		.uleb128 0x49
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 74
+
+
+ 4158 006f 13       		.uleb128 0x13
+ 4159 0070 3F       		.uleb128 0x3f
+ 4160 0071 19       		.uleb128 0x19
+ 4161 0072 02       		.uleb128 0x2
+ 4162 0073 18       		.uleb128 0x18
+ 4163 0074 00       		.byte	0
+ 4164 0075 00       		.byte	0
+ 4165 0076 00       		.byte	0
+ 4166              		.section	.debug_aranges,"",%progbits
+ 4167 0000 14000000 		.4byte	0x14
+ 4168 0004 0200     		.2byte	0x2
+ 4169 0006 00000000 		.4byte	.Ldebug_info0
+ 4170 000a 04       		.byte	0x4
+ 4171 000b 00       		.byte	0
+ 4172 000c 0000     		.2byte	0
+ 4173 000e 0000     		.2byte	0
+ 4174 0010 00000000 		.4byte	0
+ 4175 0014 00000000 		.4byte	0
+ 4176              		.section	.debug_line,"",%progbits
+ 4177              	.Ldebug_line0:
+ 4178 0000 4F000000 		.section	.debug_str,"MS",%progbits,1
+ 4178      02004900 
+ 4178      00000201 
+ 4178      FB0E0D00 
+ 4178      01010101 
+ 4179              	.LASF16:
+ 4180 0000 63795F6D 		.ascii	"cy_meta_chipprotect\000"
+ 4180      6574615F 
+ 4180      63686970 
+ 4180      70726F74 
+ 4180      65637400 
+ 4181              	.LASF13:
+ 4182 0014 63795F62 		.ascii	"cy_bootloader\000"
+ 4182      6F6F746C 
+ 4182      6F616465 
+ 4182      7200
+ 4183              	.LASF19:
+ 4184 0022 433A5C55 		.ascii	"C:\\Users\\Tymek\\Documents\\EE\\Programming\\PSoC\\"
+ 4184      73657273 
+ 4184      5C54796D 
+ 4184      656B5C44 
+ 4184      6F63756D 
+ 4185 004f 4359424C 		.ascii	"CYBLE-224110-00_Clock_OTA\\BLE_OTA_UpgradableStackE"
+ 4185      452D3232 
+ 4185      34313130 
+ 4185      2D30305F 
+ 4185      436C6F63 
+ 4186 0081 78616D70 		.ascii	"xample_Stack01.cydsn\000"
+ 4186      6C655F53 
+ 4186      7461636B 
+ 4186      30312E63 
+ 4186      7964736E 
+ 4187              	.LASF14:
+ 4188 0096 63795F6D 		.ascii	"cy_metadata\000"
+ 4188      65746164 
+ 4188      61746100 
+ 4189              	.LASF9:
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 75
+
+
+ 4190 00a2 666C6F61 		.ascii	"float\000"
+ 4190      7400
+ 4191              	.LASF20:
+ 4192 00a8 75696E74 		.ascii	"uint8\000"
+ 4192      3800
+ 4193              	.LASF1:
+ 4194 00ae 756E7369 		.ascii	"unsigned char\000"
+ 4194      676E6564 
+ 4194      20636861 
+ 4194      7200
+ 4195              	.LASF5:
+ 4196 00bc 6C6F6E67 		.ascii	"long unsigned int\000"
+ 4196      20756E73 
+ 4196      69676E65 
+ 4196      6420696E 
+ 4196      7400
+ 4197              	.LASF3:
+ 4198 00ce 73686F72 		.ascii	"short unsigned int\000"
+ 4198      7420756E 
+ 4198      7369676E 
+ 4198      65642069 
+ 4198      6E7400
+ 4199              	.LASF10:
+ 4200 00e1 646F7562 		.ascii	"double\000"
+ 4200      6C6500
+ 4201              	.LASF8:
+ 4202 00e8 756E7369 		.ascii	"unsigned int\000"
+ 4202      676E6564 
+ 4202      20696E74 
+ 4202      00
+ 4203              	.LASF7:
+ 4204 00f5 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 4204      206C6F6E 
+ 4204      6720756E 
+ 4204      7369676E 
+ 4204      65642069 
+ 4205              	.LASF15:
+ 4206 010c 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 4206      6574615F 
+ 4206      666C6173 
+ 4206      6870726F 
+ 4206      74656374 
+ 4207              	.LASF17:
+ 4208 0121 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 4208      43313120 
+ 4208      352E342E 
+ 4208      31203230 
+ 4208      31363036 
+ 4209 0154 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 4209      20726576 
+ 4209      6973696F 
+ 4209      6E203233 
+ 4209      37373135 
+ 4210 0187 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 4210      66756E63 
+ 4210      74696F6E 
+ 4210      2D736563 
+ARM GAS  C:\Users\Tymek\AppData\Local\Temp\ccZsIRm2.s 			page 76
+
+
+ 4210      74696F6E 
+ 4211              	.LASF12:
+ 4212 01af 73697A65 		.ascii	"sizetype\000"
+ 4212      74797065 
+ 4212      00
+ 4213              	.LASF6:
+ 4214 01b8 6C6F6E67 		.ascii	"long long int\000"
+ 4214      206C6F6E 
+ 4214      6720696E 
+ 4214      7400
+ 4215              	.LASF11:
+ 4216 01c6 63686172 		.ascii	"char\000"
+ 4216      00
+ 4217              	.LASF2:
+ 4218 01cb 73686F72 		.ascii	"short int\000"
+ 4218      7420696E 
+ 4218      7400
+ 4219              	.LASF18:
+ 4220 01d5 47656E65 		.ascii	"Generated_Source\\PSoC4\\cybootloader.c\000"
+ 4220      72617465 
+ 4220      645F536F 
+ 4220      75726365 
+ 4220      5C50536F 
+ 4221              	.LASF4:
+ 4222 01fb 6C6F6E67 		.ascii	"long int\000"
+ 4222      20696E74 
+ 4222      00
+ 4223              	.LASF0:
+ 4224 0204 7369676E 		.ascii	"signed char\000"
+ 4224      65642063 
+ 4224      68617200 
+ 4225              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
