@@ -1,41 +1,47 @@
-/* ========================================
- *
- * Copyright Tymek Feldman, 2019
- * All Rights Reserved
- *
- * ========================================
-*/
+// ========================================
+//
+// Copyright Tymek Feldman, 2019
+// All Rights Reserved
+//
+// ========================================
+//
 
 #include "project.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-//#define DEBUG_MODE      1         // Comment to disable debug prints
-#define TEMP_ENABLE       1         // Comment to disable temperature reading
+//#define DEBUG_MODE      1            // Comment to disable debug prints
+#define TEMP_ENABLE       1            // Comment to disable temperature reading
 
-#define I2C_ADDRESS 0b1101000       // I2C address of RTC IC DS3231
+#define I2C_ADDRESS 0b1101000          // I2C address of RTC IC DS3231
 
-/* define the test register to switch the PA/LNA hardware control pins */
+// Define the test register to switch the PA/LNA hardware control pins
 #define CYREG_SRSS_TST_DDFT_CTRL 0x40030008
 
-#define HOURS       0               // Array indices for readability
-#define MINUTES     1               // ^
-#define SECONDS     2               // ^
+#define HOURS       0                  // Array indices for readability
+#define MINUTES     1                  // ^
+#define SECONDS     2                  // ^
+
 #define TRUE        1
 #define FALSE       0
-#define RED         0x0000FF00      // RGB Color definitions
-#define GREEN       0x000000FF      // ^
-#define BLUE        0x00FF0000      // ^
 
-uint8_t time[3];                    // Time array H:M:S
-uint8_t setColor[3];                // Color array R:G:B
-uint32_t setColorFull = RED;        // Converted color variable from the above array
-uint8_t lampState = FALSE;          // Lamp mode On/Off
-//uint8_t brightness = 0;           // Brightness (not used)
-_Bool colorUpdated = FALSE;         // Changed color flag
-_Bool itsDark = FALSE;              // Shows whether it's dark or not
-volatile _Bool sqwFired = FALSE;    // SQW pin flag, set inside ISR
+#define RED         0x0000FF00         // RGB Color definitions
+#define GREEN       0x000000FF         // ^
+#define BLUE        0x00FF0000         // ^
+
+uint8_t        time[3];                // Time array H:M:S
+uint8_t        setColor[3];            // Color array R:G:B
+uint8_t        lampState      = FALSE; // Lamp mode On/Off
+uint32_t       setColorFull   = RED;   // Converted color variable from the above color array
+uint32_t       hrColor        = BLUE;  // Color used for hours hand
+uint32_t       minColor       = RED;   // Color used for minutes hand
+uint32_t       secColor       = GREEN; // Color used for seconds hand
+_Bool          colorUpdated   = FALSE; // Changed color flag
+_Bool          itsDark        = FALSE; // Shows whether it's dark or not
+volatile _Bool sqwFired       = FALSE; // SQW pin flag, set inside ISR
+
 #ifdef TEMP_ENABLE
-    uint8_t states[5];              // 5 bytes containing states which are sent over BLE:
+    uint8_t    states[5];              // 5 bytes containing states which are sent over BLE:
 //       Bytes   |    1st    |  2nd  |  3rd  |   4th  |   5th  |
 //       Values  | lampState |  PIR  |  LDR  | TempHI | TempLO |
 #else
@@ -166,7 +172,6 @@ void bleEventHandler(uint32_t event, void * eventParam){
             setColor[1]     = wrReqParam->handleValPair.value.val[1]; //G
             setColor[2]     = wrReqParam->handleValPair.value.val[2]; //B
             lampState       = wrReqParam->handleValPair.value.val[3]; //Lamp On/Off
-            uint8_t brig    = wrReqParam->handleValPair.value.val[4]; //Brightness (not used)
             
             if(lampState == 22){ // 0x16=d22 this is the bootloader start command
                 #ifdef DEBUG_MODE
@@ -187,9 +192,9 @@ void bleEventHandler(uint32_t event, void * eventParam){
             
             #ifdef DEBUG_MODE
                 char buf[21];
-                sprintf(buf, "%d:%d:%d:%d:%d\n\r",
-                        setColor[0], setColor[1], setColor[2], lampState, brig);
-                UART_UartPutString("Color+state+brig: ");
+                sprintf(buf, "%d:%d:%d:%d\n\r",
+                        setColor[0], setColor[1], setColor[2], lampState);
+                UART_UartPutString("Color+state: ");
                 UART_UartPutString(buf);
             #endif
         }
@@ -251,13 +256,13 @@ void readTemp(){
 }
 
 void setDimLevel(_Bool dim){
-    /******************************************
-    0: No dimming
-    1: Dim to 50%
-    2: Dim to 25%
-    3: Dim to 12.5%
-    4: Dim to 6.3%
-    ******************************************/
+    //******************************************
+    //      0: No dimming
+    //      1: Dim to 50%
+    //      2: Dim to 25%
+    //      3: Dim to 12.5%
+    //      4: Dim to 6.3%
+    //*****************************************
     
     if(ADC_IsEndConversion(ADC_WAIT_FOR_RESULT))
     /*no warnings pls*/;
@@ -286,40 +291,58 @@ void setDimLevel(_Bool dim){
     }
 }
 
+void setColors(){
+    // Generate a random color used for the hours
+    uint32_t randNum = rand() % 0xFFFFFF;
+    
+    #ifdef DEBUG_MODE
+        char buf[15];
+        sprintf(buf, "Rand=%d\n\r", randNum);
+        UART_UartPutString(buf);
+    #endif
+    
+    // Save this color in separate rgb variables
+    uint8_t r = (randNum & 0xFF0000) >> 16;
+    uint8_t g = (randNum & 0x00FF00) >> 8;
+    uint8_t b =  randNum & 0x0000FF;
+    
+    // From this color, generate colors for all hands, with three opposite colors
+    hrColor  = randNum;
+    minColor = (g << 16) | (b << 8) | r;
+    secColor = (b << 16) | (r << 8) | g;
+}
+
 void updateClockFull(){
     // Update clock LEDs for full clock when somebody is in the room
     
     ledStrip_MemClear(0);
-    uint32_t hrColor  = BLUE;
-    uint32_t minColor = RED;
-    uint32_t secColor = GREEN;
-    
+
     // Hours
     uint8_t hourIndex = 44;
-    if(time[HOURS] != 0 && time[HOURS] != 12)       // Can be either 0 or 12, depending on AM/PM
-        hourIndex = 44 - time[HOURS]*4;             // Count down starting at 44, total LEDs 48
+    if(time[HOURS] != 0 && time[HOURS] != 12)         // Can be either 0 or 12, depending on AM/PM
+        hourIndex = 44 - time[HOURS]*4;               // Count down starting at 44, total LEDs 48
     for(int i = 44; i >= hourIndex; i--){
-        ledStrip_Pixel(i, 0, hrColor);              // Color all up to the correct hour-hand
+        ledStrip_Pixel(i, 0, hrColor);                // Color all up to the correct hour-hand
     }
     
     // Minutes
     uint8_t minIndex = (60 - time[MINUTES] + 2) % 60; // Count down starting at 2, total LEDs 60
     switch(minIndex){
-        case 0:                                     // Minute nr. 2
+        case 0:                                       // Minute nr. 2
             ledStrip_Pixel(0, 1, minColor);
-        //break;                                    // No break, if 2, should color the rest too
-        case 1:                                     // Minute nr. 1
+        //break;                                      // No break, if 2, should color the rest too
+        case 1:                                       // Minute nr. 1
             ledStrip_Pixel(1, 1, minColor);
-        //break;                                    // Again no break, if 1, should color the rest too
-        case 2:                                     // Minute nr. 0/60
+        //break;                                      // Again no break, if 1, should color the rest too
+        case 2:                                       // Minute nr. 0/60
             ledStrip_Pixel(2, 1, minColor);
-        break;                                      // Break here, the rest is for minutes>2
+        break;                                        // Break here, the rest is for minutes>2
         default:
             ledStrip_Pixel(0, 1, minColor);
             ledStrip_Pixel(1, 1, minColor);
             ledStrip_Pixel(2, 1, minColor);
             for(int i = 59; i >= minIndex; i--){
-                ledStrip_Pixel(i, 1, minColor);     // Color all up to the correct minute-hand
+                ledStrip_Pixel(i, 1, minColor);       // Color all up to the correct minute-hand
             }
         break;
     }
@@ -336,14 +359,11 @@ void updateClockEco(){
     // Update clock LEDs for eco mode when there is nobody in the room
     
     ledStrip_MemClear(0);
-    uint32_t hrColor  = GREEN;
-    uint32_t minColor = BLUE;
-    uint32_t secColor = RED;
     
     // Hours
     uint8_t hourIndex = 44;
-    if(time[HOURS] != 0 && time[HOURS] != 12)       // Can be either 0 or 12, depending on AM/PM
-        hourIndex = 44 - time[HOURS]*4;             // Count down starting at 44, total LEDs 48
+    if(time[HOURS] != 0 && time[HOURS] != 12)         // Can be either 0 or 12, depending on AM/PM
+        hourIndex = 44 - time[HOURS]*4;               // Count down starting at 44, total LEDs 48
     ledStrip_Pixel(hourIndex, 0, hrColor);
     // Minutes, shift by 2 because of the physical alignment of LEDs
     uint8_t minIndex = (60 - time[MINUTES] + 2) % 60;
@@ -395,6 +415,10 @@ void initialization(){
     ADC_StartConvert();
     if(ADC_IsEndConversion(ADC_WAIT_FOR_RESULT)) ADC_GetResult16(0); // First dummy read
     ledStrip_Dim(0);
+    // Initialize once with a random number (LDR LSBits are quite random)
+    srand(ADC_GetResult16(0));
+    // Set the colors to randomly generated values
+    setColors();
 }
 
 int main(void){
@@ -417,20 +441,25 @@ int main(void){
                 #ifdef TEMP_ENABLE
                     startTemp();        // Start a temperature reading
                 #endif
+                
                 ADC_StartConvert();     // Start reading of light from LDR
                 readTime();             // Read current time
+                
                 #ifdef DEBUG_MODE
                     char buf[20];
                     sprintf(buf, "h:%d m:%d s:%d\n\r", time[HOURS], time[MINUTES], time[SECONDS]);
                     UART_UartPutString(buf);
                 #endif
-                setDimLevel(1);         // Set LED brightness from LDR
+
                 #ifdef TEMP_ENABLE
                     readTemp();         // Read the temperature from DS3231
                 #endif
+                
+                setDimLevel(1);         // Set LED brightness from LDR
                 updateClock();          // Refresh LEDs with new time
+
                 updateCharacteristics(states, sizeof(states), CYBLE_SET_COLOR_COLOR_CHAR_HANDLE);
-                sqwFired = FALSE;
+                sqwFired = FALSE;       // Clear interrupt flag
             }
         }
         else{ // Lamp mode
@@ -451,15 +480,19 @@ int main(void){
                 #ifdef TEMP_ENABLE
                     startTemp();        // Start a temperature reading
                 #endif
+                
                 ADC_StartConvert();     // Start reading of light from LDR
                 setDimLevel(0);         // Set LED brightness from LDR
+                
                 #ifdef TEMP_ENABLE
                     readTemp();         // Read the temperature from DS3231
                 #endif
-                if(pirPin_Read()) states[1] = 1;
-                else states[1] = 0;
+                
+                if(pirPin_Read())  states[1] = 1;
+                else               states[1] = 0;
+                
                 updateCharacteristics(states, sizeof(states), CYBLE_SET_COLOR_COLOR_CHAR_HANDLE);
-                sqwFired = FALSE;
+                sqwFired = FALSE;       // Clear interrupt flag
             }
         }
         CyBle_ProcessEvents(); // Process BT
