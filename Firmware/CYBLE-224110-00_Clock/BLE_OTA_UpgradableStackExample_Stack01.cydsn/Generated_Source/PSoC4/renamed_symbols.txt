@@ -1,4 +1,0 @@
-Bootloader___cy_regions __cy_regions
-Bootloader___cy_region_num __cy_region_num
-Bootloader___libc_init_array __libc_init_array
-Bootloader___bss_end__ __bss_end__

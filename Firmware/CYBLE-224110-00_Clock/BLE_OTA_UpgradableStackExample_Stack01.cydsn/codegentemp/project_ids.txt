@@ -1,9 +1,0 @@
-C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\CYBLE-224110-00 Clock firmware.cydsn\CYBLE-224110-00 Clock firmware.cyprj|487a9072-22c5-4345-9c90-26028e7e4437
-D:\Apps\Cypress PSoc Creator\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|86b1a05c-79a9-4db6-b663-7b3921dd0168
-D:\Apps\Cypress PSoc Creator\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|3fcc0be9-589c-4484-b14d-d68509f80dbd
-C:\Users\Tymek\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|602563c1-fa75-4466-ad5d-8fc7c21ba873
-D:\Apps\Cypress PSoc Creator\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|eaddc630-168e-4654-a3a4-2822a8120627
-D:\Apps\Cypress PSoc Creator\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|1ad4e5eb-5d74-4856-915e-7c645ee8b8b1
-D:\Apps\Cypress PSoc Creator\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|e11735a5-47c9-4854-a208-731bf571706c
-C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\BLE_OTA_UpgradableStackExample_Launcher01.cydsn\BLE_OTA_UpgradableStackExample_Launcher01.cyprj|40d87901-bb8e-4f09-b72c-af1624c40924
-C:\Users\Tymek\Documents\EE\Clock\CYBLE-224110-00_clock_firmware\CYBLE-224110-00_Clock\BLE_OTA_UpgradableStackExample_Stack01.cydsn\BLE_OTA_UpgradableStackExample_Stack01.cyprj|943085b1-940a-4af7-85ca-a5adc4c4273d
