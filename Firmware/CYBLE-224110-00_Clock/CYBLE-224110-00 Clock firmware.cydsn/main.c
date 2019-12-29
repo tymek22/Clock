@@ -9,7 +9,7 @@
 #include "project.h"
 #include <stdio.h>
 
-#define DEBUG_MODE        1         // Comment to disable debug prints
+//#define DEBUG_MODE      1         // Comment to disable debug prints
 #define TEMP_ENABLE       1         // Comment to disable temperature reading
 
 #define I2C_ADDRESS 0b1101000       // I2C address of RTC IC DS3231
@@ -26,20 +26,20 @@
 #define GREEN       0x000000FF      // ^
 #define BLUE        0x00FF0000      // ^
 
-uint8 time[3];                      // Time array H:M:S
-uint8 setColor[3];                  // Color array R:G:B
-uint32 setColorFull = RED;          // Converted color variable from the above array
-uint8 lampState = FALSE;            // Lamp mode On/Off
-uint8 brightness = 0;               // Brightness (not used)
+uint8_t time[3];                    // Time array H:M:S
+uint8_t setColor[3];                // Color array R:G:B
+uint32_t setColorFull = RED;        // Converted color variable from the above array
+uint8_t lampState = FALSE;          // Lamp mode On/Off
+//uint8_t brightness = 0;           // Brightness (not used)
 _Bool colorUpdated = FALSE;         // Changed color flag
 _Bool itsDark = FALSE;              // Shows whether it's dark or not
 volatile _Bool sqwFired = FALSE;    // SQW pin flag, set inside ISR
 #ifdef TEMP_ENABLE
-    uint8 states[5];                    // 5 bytes containing states which are sent over BLE:
+    uint8_t states[5];              // 5 bytes containing states which are sent over BLE:
 //       Bytes   |    1st    |  2nd  |  3rd  |   4th  |   5th  |
 //       Values  | lampState |  PIR  |  LDR  | TempHI | TempLO |
 #else
-    uint8 states[3];                    // 3 bytes containing states which are sent over BLE:
+    uint8_t states[3];              // 3 bytes containing states which are sent over BLE:
 //       Bytes   |    1st    |  2nd  |  3rd  |
 //       Values  | lampState |  PIR  |  LDR  |
 #endif
@@ -52,7 +52,7 @@ CY_ISR(sqwPin_isr_Handler){
 }
 
 // Update Bluetooth data
-void updateCharacteristics(uint8* passedData, uint8 len, uint16 attrHandle){
+void updateCharacteristics(uint8_t* passedData, uint8_t len, uint16_t attrHandle){
     CYBLE_GATT_HANDLE_VALUE_PAIR_T handleVar;
     handleVar.attrHandle = attrHandle;
     handleVar.value.val = passedData;
@@ -61,7 +61,7 @@ void updateCharacteristics(uint8* passedData, uint8 len, uint16 attrHandle){
 }
 
 // Set RTC to time from Bluetooth data
-void setTime(uint8* timeData){
+void setTime(uint8_t* timeData){
     // Convert time to a format which the device uses, as described in the datasheet
     timeData[SECONDS] = (timeData[SECONDS] % 10) | ((timeData[SECONDS] / 10) << 4);
     timeData[MINUTES] = (timeData[MINUTES] % 10) | ((timeData[MINUTES] / 10) << 4);
@@ -103,7 +103,7 @@ void readTime(){
     updateCharacteristics(time, sizeof(time), CYBLE_SET_TIME_TIME_CHAR_HANDLE);
 }
 
-void bleEventHandler(uint32 event, void * eventParam){
+void bleEventHandler(uint32_t event, void * eventParam){
     // Main Bluetooth event handler: handles connections and reads data
     
     CYBLE_GATTS_WRITE_REQ_PARAM_T *wrReqParam;
@@ -143,7 +143,7 @@ void bleEventHandler(uint32 event, void * eventParam){
         
         if(wrReqParam->handleValPair.attrHandle == CYBLE_SET_TIME_TIME_CHAR_HANDLE){
             // Receive time from Bluetooth in normal format
-            uint8 tempTime[3];
+            uint8_t tempTime[3];
             tempTime[HOURS]   = wrReqParam->handleValPair.value.val[0];
             tempTime[MINUTES] = wrReqParam->handleValPair.value.val[1];
             tempTime[SECONDS] = wrReqParam->handleValPair.value.val[2];
@@ -166,7 +166,7 @@ void bleEventHandler(uint32 event, void * eventParam){
             setColor[1]     = wrReqParam->handleValPair.value.val[1]; //G
             setColor[2]     = wrReqParam->handleValPair.value.val[2]; //B
             lampState       = wrReqParam->handleValPair.value.val[3]; //Lamp On/Off
-            brightness  = wrReqParam->handleValPair.value.val[4]; //Brightness (not used)
+            uint8_t brig    = wrReqParam->handleValPair.value.val[4]; //Brightness (not used)
             
             if(lampState == 22){ // 0x16=d22 this is the bootloader start command
                 #ifdef DEBUG_MODE
@@ -188,7 +188,7 @@ void bleEventHandler(uint32 event, void * eventParam){
             #ifdef DEBUG_MODE
                 char buf[21];
                 sprintf(buf, "%d:%d:%d:%d:%d\n\r",
-                        setColor[0], setColor[1], setColor[2], lampState, brightness);
+                        setColor[0], setColor[1], setColor[2], lampState, brig);
                 UART_UartPutString("Color+state+brig: ");
                 UART_UartPutString(buf);
             #endif
@@ -220,8 +220,8 @@ void startTemp(){
     I2C_I2CMasterSendStart(I2C_ADDRESS, I2C_I2C_WRITE_XFER_MODE);
     I2C_I2CMasterWriteByte(0x0E);
     I2C_I2CMasterSendRestart(I2C_ADDRESS, I2C_I2C_READ_XFER_MODE);
-    uint8 temp0E = I2C_I2CMasterReadByte(I2C_I2C_ACK_DATA);
-    uint8 temp0F = I2C_I2CMasterReadByte(I2C_I2C_NAK_DATA);
+    uint8_t temp0E = I2C_I2CMasterReadByte(I2C_I2C_ACK_DATA);
+    uint8_t temp0F = I2C_I2CMasterReadByte(I2C_I2C_NAK_DATA);
     I2C_I2CMasterSendStop();
     if(!(temp0E & 0x20) && !(temp0F & 4)){
         // If no conversion is busy, start a fresh conversion
@@ -233,12 +233,12 @@ void startTemp(){
 }
 
 void readTemp(){
-    // Read the temperature from registers 0x11 and 0x11
+    // Read the temperature from registers 0x11 and 0x12
     I2C_I2CMasterSendStart(I2C_ADDRESS, I2C_I2C_WRITE_XFER_MODE);
     I2C_I2CMasterWriteByte(0x11);
     I2C_I2CMasterSendRestart(I2C_ADDRESS, I2C_I2C_READ_XFER_MODE);
-    int8 tempMSB = I2C_I2CMasterReadByte(I2C_I2C_ACK_DATA);
-    uint8 tempLSB = I2C_I2CMasterReadByte(I2C_I2C_NAK_DATA);
+    int8_t tempMSB = I2C_I2CMasterReadByte(I2C_I2C_ACK_DATA);
+    uint8_t tempLSB = I2C_I2CMasterReadByte(I2C_I2C_NAK_DATA);
     I2C_I2CMasterSendStop();
     #ifdef DEBUG_MODE
         char buf[20];
@@ -262,7 +262,7 @@ void setDimLevel(_Bool dim){
     if(ADC_IsEndConversion(ADC_WAIT_FOR_RESULT))
     /*no warnings pls*/;
     
-    int16 adcResult = ADC_GetResult16(0); // Read adc data in 16 bit value
+    int16_t adcResult = ADC_GetResult16(0); // Read adc data in 16 bit value
     
     #ifdef DEBUG_MODE
         char buf[16];
@@ -290,12 +290,12 @@ void updateClockFull(){
     // Update clock LEDs for full clock when somebody is in the room
     
     ledStrip_MemClear(0);
-    uint32 hrColor  = BLUE;
-    uint32 minColor = RED;
-    uint32 secColor = GREEN;
+    uint32_t hrColor  = BLUE;
+    uint32_t minColor = RED;
+    uint32_t secColor = GREEN;
     
     // Hours
-    uint8 hourIndex = 44;
+    uint8_t hourIndex = 44;
     if(time[HOURS] != 0 && time[HOURS] != 12)       // Can be either 0 or 12, depending on AM/PM
         hourIndex = 44 - time[HOURS]*4;             // Count down starting at 44, total LEDs 48
     for(int i = 44; i >= hourIndex; i--){
@@ -303,7 +303,7 @@ void updateClockFull(){
     }
     
     // Minutes
-    uint8 minIndex = (60 - time[MINUTES] + 2) % 60; // Count down starting at 2, total LEDs 60
+    uint8_t minIndex = (60 - time[MINUTES] + 2) % 60; // Count down starting at 2, total LEDs 60
     switch(minIndex){
         case 0:                                     // Minute nr. 2
             ledStrip_Pixel(0, 1, minColor);
@@ -325,7 +325,7 @@ void updateClockFull(){
     }
     
     // Seconds
-    uint8 secIndex = (60 - time[SECONDS] + 2) % 60; // Count down starting at 2, total LEDs 60
+    uint8_t secIndex = (60 - time[SECONDS] + 2) % 60; // Count down starting at 2, total LEDs 60
     if(time[SECONDS] <= time[MINUTES]) ledStrip_Pixel(secIndex, 1, (minColor | secColor));
     else ledStrip_Pixel(secIndex, 1, secColor);
 
@@ -336,19 +336,19 @@ void updateClockEco(){
     // Update clock LEDs for eco mode when there is nobody in the room
     
     ledStrip_MemClear(0);
-    uint32 hrColor  = GREEN;
-    uint32 minColor = BLUE;
-    uint32 secColor = RED;
+    uint32_t hrColor  = GREEN;
+    uint32_t minColor = BLUE;
+    uint32_t secColor = RED;
     
     // Hours
-    uint8 hourIndex = 44;
+    uint8_t hourIndex = 44;
     if(time[HOURS] != 0 && time[HOURS] != 12)       // Can be either 0 or 12, depending on AM/PM
         hourIndex = 44 - time[HOURS]*4;             // Count down starting at 44, total LEDs 48
     ledStrip_Pixel(hourIndex, 0, hrColor);
     // Minutes, shift by 2 because of the physical alignment of LEDs
-    uint8 minIndex = (60 - time[MINUTES] + 2) % 60;
+    uint8_t minIndex = (60 - time[MINUTES] + 2) % 60;
     // Seconds, shift by 2 because of the physical alignment of LEDs
-    uint8 secIndex = (60 - time[SECONDS] + 2) % 60;
+    uint8_t secIndex = (60 - time[SECONDS] + 2) % 60;
     if(time[SECONDS] == time[MINUTES]) ledStrip_Pixel(secIndex, 1, (minColor | secColor));
     else{
         ledStrip_Pixel(minIndex, 1, minColor);
