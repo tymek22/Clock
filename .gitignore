@@ -16,3 +16,9 @@ Export/
 *.svd
 *.log
 *.zip
+
+# Xcode project
+iOS App/Clock/**/.DS_Store
+iOS App/Clock/**/build/
+iOS App/Clock/**/xcuserdata/
+iOS App/Clock/**/._*
